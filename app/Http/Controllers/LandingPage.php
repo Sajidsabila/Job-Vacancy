@@ -9,6 +9,6 @@ class LandingPage extends Controller
     //
     public function index()
     {
-        return view('landing-page.layouts.main');
+        return view('landing-page\layouts.main');
     }
 }

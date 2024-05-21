@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LandingPage;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterCompanieController;
@@ -19,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [LandingPage::class, 'index']);
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [AuthController::class, 'index']);
 Route::get('/register/job-seekers', [RegisterController::class, 'index'])->name('getDataUrl');
 Route::get('/register/companies', [RegisterCompanieController::class, 'index']);
 Route::get('/admin', [AdminController::class, 'index']);
+Route::post('/auth', [AuthController::class, 'login']);
