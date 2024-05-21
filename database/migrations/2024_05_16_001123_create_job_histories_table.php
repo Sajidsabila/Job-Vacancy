@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('job_seeker_id');
             $table->string('status', 50)->nullable()->default('pending');
             $table->timestamps();
+            $table->softDeletes();
             $table->foreign('job_id')->references('id')->on('jobs')->onDelete('cascade');
             $table->foreign('job_seeker_id')->references('id')->on('job_seekers')->onDelete('cascade');
         });
