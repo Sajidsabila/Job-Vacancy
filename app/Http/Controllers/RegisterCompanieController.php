@@ -8,6 +8,6 @@ class RegisterCompanieController extends Controller
 {
     public function index()
     {
-        return view('login_page.register-companie');
+        return view('register.companie');
     }
 }
