@@ -20,10 +20,10 @@
 					<div class="card shadow-lg">
 						<div class="card-body p-5">
 							<h1 class="fs-4 card-title fw-bold mb-4">Register</h1>
-                            <div class="text-center my-3">
-                                <a href="{{ URL::to('/register/job-seekers')}}" class="btn btn-outline-primary">Job Seekers</a>
+                           <nav class=" nav nav-pills d-flex gap-2 text-center my-3">
+                                <a href="{{ URL::to('/register/job-seekers')}}" class="btn btn-outline-primary nav-link active">Job Seekers</a>
                                 <a href="{{ URL::to('/register/companies')}}" class="btn btn-outline-primary">Perusahaan</a>
-                            </div>
+						   </nav>
 							<form method="POST" class="needs-validation" novalidate="" autocomplete="off">
 								<div class="mb-3">
 									<label class="mb-2 text-muted" for="name">Name</label>
@@ -73,7 +73,5 @@
 			</div>
 		</div>
 	</section>
-
-	<script src="js/login.js"></script>
 </body>
 </html>

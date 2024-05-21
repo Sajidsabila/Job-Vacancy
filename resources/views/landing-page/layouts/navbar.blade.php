@@ -7,7 +7,7 @@
                         <div class="col-lg-3 col-md-2">
                             <!-- Logo -->
                             <div class="logo">
-                                <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                                <a href="index.html"><img src="{{ asset('img/logo/logo.png') }}" alt=""></a>
                             </div>  
                         </div>
                         <div class="col-lg-9 col-md-9">
@@ -33,8 +33,8 @@
                                 </div>          
                                 <!-- Header-btn -->
                                 <div class="header-btn d-none f-right d-lg-block">
-                                    <a href="#" class="btn head-btn1">Register</a>
-                                    <a href="#" class="btn head-btn2">Login</a>
+                                    <a href="{{URL::to('/login')}}" class="btn head-btn1">Register</a>
+                                    <a href="{{URL::to('/register/job-seekers')}}" class="btn head-btn2">Login</a>
                                 </div>
                             </div>
                         </div>

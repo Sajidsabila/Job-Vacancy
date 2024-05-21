@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<meta name="author" content="Muhamad Nauval Azhar">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<meta name="description" content="This is a login page template based on Bootstrap 5">
 	<title>Bootstrap 5 Login Page</title>
@@ -20,10 +19,10 @@
 					<div class="card shadow-lg">
 						<div class="card-body p-5">
 							<h1 class="fs-4 card-title fw-bold mb-4">Register</h1>
-                            <div class="text-center my-3">
-                                <a href="{{ URL::to('/register/job-seekers')}}" class="btn btn-outline-primary">Job Seekers</a>
-                                <a href="{{ URL::to('/register/companies')}}" class="btn btn-outline-primary">Perusahaan</a>
-                            </div>
+                            <nav class=" nav nav-pills d-flex gap-2 text-center my-3">
+                                <a onclick="loadData()"  class="btn btn-outline-primary">Job Seekers</a>
+                                <a  href="{{ URL::to('/register/companies')}}"  class="btn btn-outline-primary nav-link active">Perusahaan</a>
+                            </nav>
 							<form method="POST" class="needs-validation" novalidate="" autocomplete="off">
 								<div class="mb-3">
 									<label class="mb-2 text-muted" for="name">Name</label>
@@ -74,6 +73,16 @@
 		</div>
 	</section>
 
-	<script src="js/login.js"></script>
+	<script>
+    function loadData() {
+        axios.get('{{ route('getDataUrl') }}')
+            .then(function (response) {
+                console.log("berhasil");
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+            });
+    }
+</script>
 </body>
 </html>

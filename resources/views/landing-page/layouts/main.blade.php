@@ -31,7 +31,7 @@
             <div class="preloader-inner position-relative">
                 <div class="preloader-circle"></div>
                 <div class="preloader-img pere-text">
-                    <img src="assets/img/logo/logo.png" alt="">
+                    <img src="{{ asset('img/logo/logo.png') }}" alt="">
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
         <div class="slider-area ">
             <!-- Mobile Menu -->
             <div class="slider-active">
-                <div class="single-slider slider-height d-flex align-items-center" data-background="assets/img/hero/h1_hero.jpg">
+                <div class="single-slider slider-height d-flex align-items-center" data-background="{{ asset('img/hero/h1_hero.jpg') }}">
                     <div class="container">
                         <div class="row">
                             <div class="col-xl-6 col-lg-9 col-md-10">
@@ -555,6 +555,6 @@
         <script src="{{ asset('js/jquery.ajaxchimp.min.js') }}"></script>
         <script src="{{ asset('js/plugins.js') }}"></script>
         <script src="{{ asset('js/main.js') }}"></script>
-        
+     
     </body>
 </html>
