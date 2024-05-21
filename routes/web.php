@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\LandingPage;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterCompanieController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -17,7 +17,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [LandingPage::class, 'index']);
-Route::get('/login', [LoginController::class, 'index']);
+
+Route::get('/login-page', [AuthController::class, 'index'])
+->name('login')->middleware('guest');
+
 Route::get('/register/job-seekers', [RegisterController::class, 'index']);
 Route::get('/register/companies', [RegisterCompanieController::class, 'index']);
+Route::get('/', [LandingPageController::class, 'index'])
+->middleware('auth');
