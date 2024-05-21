@@ -10,14 +10,17 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('job_histories', function (Blueprint $table) {
+        Schema::create('published_jobs', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('company_id');
             $table->unsignedBigInteger('job_id');
-            $table->unsignedBigInteger('job_seeker_id');
-            $table->string('status', 50)->nullable()->default('pending');
+            $table->date('startDate');
+            $table->date('endDate');
+            $table->double('fee');
+            $table->string('status');
+            $table->string('requirements');
             $table->timestamps();
-            $table->foreign('job_id')->references('id')->on('jobs')->onDelete('cascade');
-            $table->foreign('job_seeker_id')->references('id')->on('job_seekers')->onDelete('cascade');
+            $table->foreign('company_id')->references('id')->on('companies');
         });
     }
 
@@ -26,6 +29,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('job_histories');
+        Schema::dropIfExists('published_jobs');
     }
 };

@@ -13,13 +13,15 @@ return new class extends Migration {
         Schema::create('job_seekers', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('name');
-            $table->string('agama');
-            $table->string('pendidikan');
-            $table->text('addres');
+            $table->string('first_name');
+            $table->string('gender');
+            $table->string('last_name');
+            $table->string('religion');
+            $table->text('address');
             $table->string('phone');
-            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
+            $table->softDeletes();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

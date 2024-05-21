@@ -14,11 +14,13 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('company_id');
             $table->string('title');
+            $table->string('slug');
             $table->string('description');
             $table->float('salary');
             $table->date('deadline');
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

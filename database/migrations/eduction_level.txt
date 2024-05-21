@@ -1,0 +1,10 @@
+        $table->id();
+            $table->unsignedBigInteger('job_seeker_id');
+            $table->string('education_level');
+            $table->string('school');
+            $table->string('address');
+            $table->date('startDate');
+            $table->date('endDate');
+            $table->timestamps();
+            $table->softDeletes();
+            $table->foreign('job_seeker_id')->references('id')->on('job_seekers');
