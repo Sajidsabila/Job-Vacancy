@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->string('slug');
             $table->unsignedBigInteger('job_category_id');
             $table->string('description');
+            $table->string('type', 100);
             $table->float('salary');
             $table->date('deadline');
 
