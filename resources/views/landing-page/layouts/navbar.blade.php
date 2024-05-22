@@ -33,8 +33,8 @@
                                 </div>          
                                 <!-- Header-btn -->
                                 <div class="header-btn d-none f-right d-lg-block">
-                                    <a href="{{URL::to('/login')}}" class="btn head-btn1">Register</a>
-                                    <a href="{{URL::to('/register/job-seekers')}}" class="btn head-btn2">Login</a>
+                                    <a href="{{URL::to('/register/job-seekers')}}" class="btn head-btn1">Register</a>
+                                    <a href="{{URL::to('/login-page')}}" class="btn head-btn2">Login</a>
                                 </div>
                             </div>
                         </div>

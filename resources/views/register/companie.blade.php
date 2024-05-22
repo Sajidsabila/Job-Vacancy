@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<meta name="description" content="This is a login page template based on Bootstrap 5">
-	<title>Bootstrap 5 Login Page</title>
+	<title>Job Vacancy | Register Page</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 </head>
 
@@ -20,7 +20,7 @@
 						<div class="card-body p-5">
 							<h1 class="fs-4 card-title fw-bold mb-4">Register</h1>
                             <nav class=" nav nav-pills d-flex gap-2 text-center my-3">
-                                <a onclick="loadData()"  class="btn btn-outline-primary">Job Seekers</a>
+                                <a href="{{ URL::to('/register/job-seekers')}}"  class="btn btn-outline-primary">Job Seekers</a>
                                 <a  href="{{ URL::to('/register/companies')}}"  class="btn btn-outline-primary nav-link active">Perusahaan</a>
                             </nav>
 							<form method="POST" class="needs-validation" novalidate="" autocomplete="off">
@@ -61,7 +61,7 @@
 						</div>
 						<div class="card-footer py-3 border-0">
 							<div class="text-center">
-								Already have an account? <a href="{{url::to('/login')}}" class="text-dark">Login</a>
+								Already have an account? <a href="{{url::to('/login-page')}}" class="text-dark">Login</a>
 							</div>
 						</div>
 					</div>
@@ -73,7 +73,7 @@
 		</div>
 	</section>
 
-	<script>
+	{{-- <script>
     function loadData() {
         axios.get('{{ route('getDataUrl') }}')
             .then(function (response) {
@@ -83,6 +83,6 @@
                 console.error('Error:', error);
             });
     }
-</script>
+</script> --}}
 </body>
 </html>
