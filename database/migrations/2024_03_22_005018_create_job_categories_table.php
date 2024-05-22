@@ -12,9 +12,10 @@ return new class extends Migration {
     {
         Schema::create('job_categories', function (Blueprint $table) {
             $table->id();
+            $table->string('icon');
             $table->string('category');
-            $table->string('image');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

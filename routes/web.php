@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterCompanieController;
@@ -27,4 +28,4 @@ Route::get('/admin', [AdminController::class, 'index']);
 Route::post('/auth', [AuthController::class, 'login']);
 Route::get('/', [LandingPageController::class, 'index'])
     ->middleware('guest');
-;
+Route::resource('/job-category', JobCategoryController::class);

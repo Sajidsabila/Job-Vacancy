@@ -16,7 +16,7 @@
                                 <div class="main-menu">
                                     <nav class="d-none d-lg-block">
                                         <ul id="navigation">
-                                            <li><a href="index.html">Home</a></li>
+                                            <li><a href="{{ URL::to("/") }}">Home</a></li>
                                             <li><a href="job_listing.html">Find a Jobs </a></li>
                                             <li><a href="about.html">About</a></li>
                                             <li><a href="#">Page</a>
