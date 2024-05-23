@@ -20,15 +20,20 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 |
 */
 
+Route::get('/', [LandingPageController::class, 'index'])
+    ->middleware('guest');
 
 Route::get('/login-page', [AuthController::class, 'index'])
     ->name('login')->name('login');
+
 Route::get('/register/job-seekers', [RegisterController::class, 'index']);
 Route::get('/register/companies', [RegisterCompanieController::class, 'index']);
+
 Route::post('/register/proses', [RegisterCompanieController::class, 'Register']);
 Route::post('/register/job-seekers/proses', [RegisterController::class, 'Register']);
 
-Route::get('/admin', [AdminController::class, 'index']);
+Route::get('/admin', [AdminController::class, 'index'])->middleware('checkRole:admin');
+
 Route::post('/auth', [AuthController::class, 'login']);
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
@@ -40,7 +45,4 @@ Route::get('/email/verify', function () {
     return view('register.verify-email');
 })->middleware('auth')->name('verification.notice');
 
-
-Route::get('/', [LandingPageController::class, 'index'])
-    ->middleware('guest');
 Route::resource('/job-category', JobCategoryController::class);
