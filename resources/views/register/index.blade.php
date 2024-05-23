@@ -24,29 +24,38 @@
                                 <a href="{{ URL::to('/register/job-seekers')}}" class="btn btn-outline-primary nav-link active">Job Seekers</a>
                                 <a href="{{ URL::to('/register/companies')}}" class="btn btn-outline-primary">Perusahaan</a>
 						   </nav>
-							<form method="POST" class="needs-validation" novalidate="" autocomplete="off">
-								<div class="mb-3">
-									<label class="mb-2 text-muted" for="name">Name</label>
-									<input id="name" type="text" class="form-control" name="name" value="" required autofocus>
-									<div class="invalid-feedback">
-										Name is required	
-									</div>
-								</div>
-
+								<form method="POST" action="{{ URL::to('/register/job-seekers/proses') }}" class="needs-validation" novalidate="" autocomplete="off">
+								@csrf
 								<div class="mb-3">
 									<label class="mb-2 text-muted" for="email">E-Mail Address</label>
-									<input id="email" type="email" class="form-control" name="email" value="" required>
+									<input id="email" type="email" class="form-control @error('email')is-invalid @enderror" name="email" value="" required>
+									@error('email')
 									<div class="invalid-feedback">
-										Email is invalid
-									</div>
+										{{ $message }}
+										</div>
+									@enderror
 								</div>
 
 								<div class="mb-3">
 									<label class="mb-2 text-muted" for="password">Password</label>
-									<input id="password" type="password" class="form-control" name="password" required>
-								    <div class="invalid-feedback">
-								    	Password is required
-							    	</div>
+									<input id="password" type="password"
+									 class="form-control @error('password')is-invalid @enderror" name="password" required>
+								    @error('password')
+                    					<div class="invalid-feedback">
+                        				{{ $message }}
+                    					</div>
+                					@enderror
+								</div>
+
+								<div class="mb-3">
+									<label class="mb-2 text-muted" for="password"> Re Type Password</label>
+									<input id="password_confirmation" type="password" 
+									class="form-control  @error('password_confirmation')is-invalid @enderror" name="password_confirmation" required>
+									@error('password_confirmation')
+                    					<div class="invalid-feedback">
+                        					{{ $message }}
+                   		 				</div>
+                					@enderror
 								</div>
 
 								<p class="form-text text-muted mb-3">
