@@ -22,10 +22,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login-page', [AuthController::class, 'index'])
     ->name('login')->name('login');
+
 Route::get('/register/job-seekers', [RegisterController::class, 'index']);
 Route::get('/register/companies', [RegisterCompanieController::class, 'index']);
-Route::get('/admin', [AdminController::class, 'index']);
+Route::get('/admin', [AdminController::class, 'index'])->middleware('CheckRole:admin');;
 Route::post('/auth', [AuthController::class, 'login']);
 Route::get('/', [LandingPageController::class, 'index'])
     ->middleware('guest');
 Route::resource('/job-category', JobCategoryController::class);
+Route::prefix('/')->middleware('auth')->group(
+    function(){
+        Route::resource('/admin', AdminController::class)->middleware('checkRole:admin');
+    }
+);
