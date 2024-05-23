@@ -21,8 +21,10 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 |
 */
 
-Route::get('/', [LandingPageController::class, 'index'])->middleware('guest');
-Route::get('/login-page', [AuthController::class, 'index'])->name('login')->name('login');
+Route::get('/', [LandingPageController::class, 'index'])
+    ->middleware('guest');
+Route::get('/login-page', [AuthController::class, 'index'])
+    ->name('login')->name('login');
 Route::get('/register/job-seekers', [RegisterController::class, 'index']);
 Route::get('/register/companies', [RegisterCompanieController::class, 'index']);
 Route::post('/register/proses', [RegisterCompanieController::class, 'Register']);
@@ -31,7 +33,7 @@ Route::post('/register/job-seekers/proses', [RegisterController::class, 'Registe
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index']);
     Route::get('/configuration', [ConfigurationController::class, 'index']);
-    Route::post('/configuration/create', [ConfigurationController::class, 'store']);
+    Route::get('/configuration/create', [ConfigurationController::class, 'store']);
 });
 
 Route::post('/auth', [AuthController::class, 'login']);
@@ -43,5 +45,7 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 Route::get('/email/verify', function () {
     return view('register.verify-email');
 })->middleware('auth')->name('verification.notice');
+
+
 
 Route::resource('/job-category', JobCategoryController::class);
