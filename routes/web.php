@@ -40,7 +40,6 @@ Route::prefix('/')->group(function () {
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index']);
-    Route::get('/configuration', [ConfigurationController::class, 'index']);
     Route::resource('/configuration', ConfigurationController::class);
     Route::resource('/job-category', JobCategoryController::class);
 });

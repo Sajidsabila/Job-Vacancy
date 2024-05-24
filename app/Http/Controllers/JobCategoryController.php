@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\job_category;
+use App\Models\JobCategory;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 
 class JobCategoryController extends Controller
@@ -13,7 +14,7 @@ class JobCategoryController extends Controller
     public function index()
     {
         //
-        $categories = job_category::limit(1)->get();
+        $categories = JobCategory::all();
         $data = ([
             "title" => "Job Category",
             "categories" => $categories
@@ -28,6 +29,7 @@ class JobCategoryController extends Controller
     public function create()
     {
         //
+        return view('super-admin.job category.form');
     }
 
     /**
@@ -36,6 +38,19 @@ class JobCategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->validate([
+            "icon" => "required",
+            "category" => "required"
+        ]);
+
+        try {
+            JobCategory::create($data);
+            Alert::success('Sukses', 'Add Data Berhasil success.');
+        } catch (\Throwable $th) {
+            Alert::error('Error', $th->getMessage());
+        } finally {
+            return redirect('/admin/job-category');
+        }
     }
 
     /**
@@ -52,6 +67,13 @@ class JobCategoryController extends Controller
     public function edit(string $id)
     {
         //
+        $jobcategory = JobCategory::find($id);
+        $data = ([
+            "title" => "Edit Data Perusahaan",
+            "jobcategory" => $jobcategory
+        ]);
+
+        return view('super-admin.job category.form', $data);
     }
 
     /**
@@ -59,7 +81,19 @@ class JobCategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->validate([
+            "icon" => "required",
+            "category" => "required"
+        ]);
+
+        try {
+            JobCategory::create($data);
+            Alert::success('Sukses', 'Add Data Berhasil success.');
+        } catch (\Throwable $th) {
+            Alert::error('Error', $th->getMessage());
+        } finally {
+            return redirect('/admin/job-category');
+        }
     }
 
     /**

@@ -36,7 +36,7 @@
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
        <li class="nav-item">
-          <a href="{{ URL::to('/admin/job-category')}}" class="nav-link {{ Request::is('/')? ' active' : '' }}">
+          <a href="{{ URL::to('/')}}" class="nav-link {{ Request::is('/')? ' active' : '' }}">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
              Kategori Pekerjaan
@@ -136,25 +136,31 @@
           </a>
           <li class="nav-item {{ Request::is('receipt') || Request::is('report')? ' menu-open' : '' }}">
                             <a href="#" class="nav-link {{ Request::is('receipt') ||Request::is('report')? ' active' : '' }}">
-                                <i class="nav-icon fas fa-shopping-cart"></i>
-                                <p>
-                                    Transactions
-                                    <i class="right fas fa-angle-left"></i>
+                              <i class="fa fa-solid fa-address-book"></i>                                <p>
+                                     Job Seekers
+                                    <i class="right fas fa-angle-down"></i>
                               </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ URL::to('/receipt') }}" class="nav-link {{ Request::is('receipt')? ' active' : '' }}">
+                                    <a href="{{ URL::to('/religion') }}" class="nav-link {{ Request::is('receipt')? ' active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Receipt</p>
+                                        <p>Religion</p>
                                 </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ URL::to('/report') }}" class="nav-link {{ Request::is('report')? ' active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Report</p>
+                                        <p>Education</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                  <a href="{{ URL::to('/report') }}" class="nav-link {{ Request::is('report')? ' active' : '' }}">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Skill</p>
+                                  </a>
+                              </li>
+                          
                         </ul>
                         </li>
         </li>

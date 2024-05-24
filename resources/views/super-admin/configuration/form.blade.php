@@ -7,15 +7,20 @@
 <div class="row mt-3">
     <div class="col-6">
         @if(isset($configuration))
-         <form method="post" action="{{ URL::to('/admin/configuration')}}" autocomplete="off" enctype="multipart/form-data">
+         <form method="post" action="{{ URL::to('/admin/configuration/' . $configuration->id)}}" autocomplete="off" enctype="multipart/form-data">
             @method('put')
             @else
         <form method="post" action="{{ URL::to('/admin/configuration')}}" autocomplete="off" enctype="multipart/form-data">
             @endif
             @csrf
             <div class="form-group">
+                 @if(isset($configuration))
+                    <img src="{{ URL::to('storage/'. $configuration->logo) }}" alt="Image" width="300px">
+                @endif
+                <br>
+                <br>
                 <label for="name">Logo Perusahaan</label>
-                <input type="file" id="logo" name="logo" value="{{old('logo')}}"placeholder="Masukkan Dengan Class ion Icon"  class="form-control @error('logo')is-invalid @enderror">
+                <input type="file" id="logo" name="logo" value="{{ isset($configuration) ? $configuration->logo : old('logo')}}"placeholder="Masukkan Dengan Class ion Icon"  class="form-control @error('logo')is-invalid @enderror">
                 
                 @error('logo')
                     <div class="invalid-feedback">
@@ -69,7 +74,7 @@
             </div>
              <div class="form-group">
                 <label for="name">Deskripsi</label>
-               <textarea name="description" id="description" cols="30" rows="10"  class="form-control @error('description')is-invalid @enderror">{{isset($configuration) ? $configuration->company_name : old('description')}}</textarea>
+               <textarea name="description" id="description" cols="30" rows="10"  class="form-control @error('description')is-invalid @enderror">{{ isset($configuration) ? $configuration->description : old('description')}}</textarea>
                 @error('description')
                     <div class="invalid-feedback">
                         {{ $message }}

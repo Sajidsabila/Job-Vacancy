@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\job_category;
+use App\Models\JobCategory;
 use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
@@ -10,7 +11,7 @@ class LandingPageController extends Controller
     //
     public function index()
     {
-        $categories = job_category::limit(8)->get();
+        $categories = JobCategory::limit(8)->get();
         $data = ([
             "title" => "Job Category",
             "categories" => $categories
@@ -20,7 +21,7 @@ class LandingPageController extends Controller
     }
     public function getJobCategory()
     {
-        $categories = job_category::all();
+        $categories = JobCategory::all();
         $data = ([
             "title" => "Job Category",
             "categories" => $categories

@@ -7,7 +7,7 @@
 <div class="row mt-3">
         @foreach($configurations as $configuration)
         <div class="col-6 ms-5">
-            <img src="{{ URL::to('storage/'. $configuration->logo) }}" alt="{{ $configuration->company_name }}" width="500px">
+            <img src="{{ URL::to('storage/'. $configuration->logo) }}" alt="{{ $configuration->company_name }}" width="300px">
         </div>
 
         <div class="col-6">

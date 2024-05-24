@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Configuration;
 use Illuminate\Http\Request;
-use App\Models\configuration;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ConfigurationController extends Controller
 {
     public function index()
     {
-        $configurations = configuration::all();
+        $configurations = Configuration::all();
         $data = ([
             'title' => 'Data Perusahaan Website',
             'configurations' => $configurations
@@ -33,34 +34,64 @@ class ConfigurationController extends Controller
             'email' => 'required|email',
             'description' => 'required'
         ]);
-        //dia tidak lolos validasi
-        //nomor telpon jangan integer krn nomo telpon itu dimulai dr angka 0
-        // misal 0898847474747474=>bukan iteger
         try {
             if ($request->hasFile('logo')) {
                 $data['logo'] = $request->file('logo')->store('img', 'public');
             } else {
                 $data['logo'] = null;
             }
-            configuration::create($data);
-            Alert::error('success', "Berhasil");
+            Configuration::create($data);
+            Alert::success('Sukses', 'Add Data Berhasil success.');
         } catch (\Throwable $th) {
             Alert::error('Error', $th->getMessage());
         } finally {
-            //TODO: redirect ke index 
-            return redirect('super-admin.configuration.form');
+            return redirect('/admin/configuration');
         }
     }
 
     public function edit(string $id)
     {
-        $configuration = configuration::find($id);
+        $configuration = Configuration::find($id);
         $data = ([
             "title" => "Edit Data Perusahaan",
             "configuration" => $configuration
         ]);
 
         return view('super-admin.configuration.form', $data);
+    }
+
+    public function update(Request $request, string $id)
+    {
+        $data = $request->validate([
+            'company_name' => 'required',
+            'logo' => 'mimes:jpg,png,jpeg|max:512',
+            'company_addres' => 'required',
+            'phone' => 'required|numeric',
+            'email' => 'required|email',
+            'description' => 'required'
+        ]);
+        try {
+
+            $configartion = Configuration::find($id);
+
+            if ($request->hasFile('image')) {
+                if ($configartion->logo) {
+                    Storage::delete($configartion->logo);
+                }
+
+                $data['logo'] = $request->file('logo')->store('img', 'public');
+            } else {
+                $data['logo'] = $configartion->logo;
+            }
+            $configartion->update($data);
+
+            Alert::success('Sukses', 'Edit data success.');
+        } catch (\Throwable $th) {
+            Alert::error('Error', $th->getMessage());
+
+        } finally {
+            return redirect('/admin/configuration');
+        }
     }
 
 }
