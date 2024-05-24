@@ -13,7 +13,7 @@ class JobCategoryController extends Controller
     public function index()
     {
         //
-        $categories = job_category::all();
+        $categories = job_category::limit(1)->get();
         $data = ([
             "title" => "Job Category",
             "categories" => $categories

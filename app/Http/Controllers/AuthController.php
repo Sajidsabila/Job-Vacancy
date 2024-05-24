@@ -35,12 +35,12 @@ class AuthController extends Controller
             switch ($role) {
                 case 'admin':
                     return redirect('/admin');
-                // case 'superadmin':
-                //     return redirect('/superadmin');
-                // case 'jobseeker':
-                //     return redirect('/jobseeker');
-                // default:
-                //     return redirect('/landing-page');
+                case 'superadmin':
+                    return redirect('/superadmin');
+                case 'Companie':
+                    return redirect('/companie');
+                default:
+                    return redirect('/');
             }
         }
         return back()->with("errorMessage", "Gagal login, email atau password tidak ditemukan");

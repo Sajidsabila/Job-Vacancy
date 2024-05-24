@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RegisterCompanieController extends Controller
 {
@@ -22,14 +23,20 @@ class RegisterCompanieController extends Controller
             'password' => 'required|min:8',
             'password_confirmation' => 'required|same:password',
         ]);
-        $user = User::create([
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => 'Companie'
-        ]);
+        try {
+            $user = User::create([
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role' => 'Companie'
+            ]);
 
-        event(new Registered($user));
+            event(new Registered($user));
 
-        Auth::login($user);
+            Auth::login($user);
+            Alert::success('Success Title', 'Success Message');
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
     }
 }

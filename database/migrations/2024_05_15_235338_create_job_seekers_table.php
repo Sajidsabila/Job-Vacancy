@@ -11,8 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('job_seekers', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('id');
             $table->unsignedBigInteger('religion_id');
             $table->unsignedBigInteger('skill_id');
             $table->string('first_name');
@@ -22,7 +21,7 @@ return new class extends Migration {
             $table->string('phone');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('id')->references('id')->on('users');
             $table->foreign('religion_id')->references('id')->on('religions');
         });
     }

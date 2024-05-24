@@ -20,9 +20,6 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', [LandingPageController::class, 'index'])
-    ->middleware('guest');
 Route::get('/login-page', [AuthController::class, 'index'])
     ->name('login')->name('login');
 Route::get('/register/job-seekers', [RegisterController::class, 'index']);
@@ -30,10 +27,18 @@ Route::get('/register/companies', [RegisterCompanieController::class, 'index']);
 Route::post('/register/proses', [RegisterCompanieController::class, 'Register']);
 Route::post('/register/job-seekers/proses', [RegisterController::class, 'Register']);
 
+Route::prefix('/')->group(function () {
+    Route::get('/', [LandingPageController::class, 'index']);
+    Route::get('/job category', [LandingPageController::class, 'getJobCategory']);
+})->middleware('guest');
+
+
+
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index']);
     Route::get('/configuration', [ConfigurationController::class, 'index']);
-    Route::get('/configuration/create', [ConfigurationController::class, 'store']);
+    Route::resource('/configuration', ConfigurationController::class);
+    Route::resource('/job-category', JobCategoryController::class);
 });
 
 Route::post('/auth', [AuthController::class, 'login']);
@@ -48,4 +53,3 @@ Route::get('/email/verify', function () {
 
 
 
-Route::resource('/job-category', JobCategoryController::class);

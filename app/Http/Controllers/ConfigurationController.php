@@ -4,41 +4,63 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\configuration;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ConfigurationController extends Controller
 {
     public function index()
     {
-        $configuration = configuration::all();
+        $configurations = configuration::all();
         $data = ([
             'title' => 'Data Perusahaan Website',
-            'configurations' => $configuration
+            'configurations' => $configurations
         ]);
-        if ($configuration->isEmpty()) {
+
+        if ($configurations->isEmpty()) {
             return view('super-admin.configuration.form', $data);
         } else {
-            return view('configuration.index', $data);
+            return view('super-admin.configuration.index', $data);
         }
     }
 
     public function store(Request $request)
     {
         $data = $request->validate([
-            'logo' => 'required|mimes: jpg,png,jpeg|max:512',
             'company_name' => 'required',
+            'logo' => 'required|mimes:jpg,png,jpeg|max:512',
             'company_addres' => 'required',
-            'phone' => 'required|integer',
+            'phone' => 'required|numeric',
             'email' => 'required|email',
             'description' => 'required'
         ]);
-
-
-        if ($request->hasFile('logo')) {
-            $data['logo'] = $request->file('logo')->store('img', 'public');
-        } else {
-            $data['logo'] = null;
+        //dia tidak lolos validasi
+        //nomor telpon jangan integer krn nomo telpon itu dimulai dr angka 0
+        // misal 0898847474747474=>bukan iteger
+        try {
+            if ($request->hasFile('logo')) {
+                $data['logo'] = $request->file('logo')->store('img', 'public');
+            } else {
+                $data['logo'] = null;
+            }
+            configuration::create($data);
+            Alert::error('success', "Berhasil");
+        } catch (\Throwable $th) {
+            Alert::error('Error', $th->getMessage());
+        } finally {
+            //TODO: redirect ke index 
+            return redirect('super-admin.configuration.form');
         }
-        configuration::create($data);
-        dd($data);
     }
+
+    public function edit(string $id)
+    {
+        $configuration = configuration::find($id);
+        $data = ([
+            "title" => "Edit Data Perusahaan",
+            "configuration" => $configuration
+        ]);
+
+        return view('super-admin.configuration.form', $data);
+    }
+
 }

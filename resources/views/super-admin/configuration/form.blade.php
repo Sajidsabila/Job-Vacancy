@@ -1,29 +1,34 @@
 @extends ('adminTemplate.layouts.main')
 @section('container')
-@if(isset($category))
- <form method="post" action="{{ URL::to('category/' . $category->id) }}" autocomplete="off">
-    @method('put')
-    @else
+@include('sweetalert::alert')
+
      <h3> {{ $title }} </h3>
      <hr>
 <div class="row mt-3">
     <div class="col-6">
-        <form method="post" action="{{ URL::to('/admin/configuration/create')}}" autocomplete="off" enctype="multipart/form-data">
+        @if(isset($configuration))
+         <form method="post" action="{{ URL::to('/admin/configuration')}}" autocomplete="off" enctype="multipart/form-data">
+            @method('put')
+            @else
+        <form method="post" action="{{ URL::to('/admin/configuration')}}" autocomplete="off" enctype="multipart/form-data">
             @endif
             @csrf
             <div class="form-group">
                 <label for="name">Logo Perusahaan</label>
-                <input type="file" id="logo" name="logo" placeholder="Masukkan Dengan Class ion Icon" value="{{ isset($category) ? $category->name : old('icon') }}" class="form-control @error('logo')is-invalid @enderror">
+                <input type="file" id="logo" name="logo" value="{{old('logo')}}"placeholder="Masukkan Dengan Class ion Icon"  class="form-control @error('logo')is-invalid @enderror">
+                
                 @error('logo')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                 @enderror
+{{-- diperbaiki nanti saja supaya tidak lama --}}
             </div>
             <div class="form-group">
                 <label for="name">Nama Perusahaan</label>
-                <input type="text" id="company_name" name="company_name"  value="{{ isset($category) ? $category->description : old('name') }}"
-                    class="form-control @error('company_name')is-invalid @enderror">
+                <input type="text" id="company_name" name="company_name"
+                    class="form-control @error('company_name')is-invalid @enderror" value="{{ isset($configuration) ? $configuration->company_name : old('company_name')}}">
+                {{-- anda isikan oldnya supaya tidak --}}
                 @error('company_name')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -32,8 +37,8 @@
             </div>
                    <div class="form-group">
                 <label for="name">Phone</label>
-                <input type="text" id="phone" name="phone"  value="{{ isset($category) ? $category->description : old('phone') }}"
-                    class="form-control @error('phone')is-invalid @enderror">
+                <input type="text" id="phone" name="phone"  
+                    class="form-control @error('phone')is-invalid @enderror" value="{{ isset($configuration) ? $configuration->phone : old('phone')}}">
                 @error('phone')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -42,7 +47,7 @@
             </div>
              <div class="form-group">
                 <label for="name">Email</label>
-                <input type="email" id="email" name="email"  value="{{ isset($category) ? $category->description : old('name') }}"
+                <input type="email" id="email" name="email"  value="{{ isset($configuration) ? $configuration->email : old('email')}}"
                     class="form-control @error('email')is-invalid @enderror">
                 @error('email')
                     <div class="invalid-feedback">
@@ -52,9 +57,11 @@
             </div>
        <div class="form-group">
                 <label for="name">Alamat Perusahaan</label>
-                <input type="description" id="description" name="description"  value="{{ isset($category) ? $category->description : old('name') }}"
-                    class="form-control @error('description')is-invalid @enderror">
-                @error('description')
+                
+                {{-- pada name juga salah itu yangm embuat validassinya salah nanti saja, join met lagi ka .k--}}
+                <input type="text" id="company_addres" name="company_addres"  value="{{ isset($configuration) ? $configuration->company_name : old('company_addres')}}"
+                    class="form-control @error('company_addres')is-invalid @enderror">
+                @error('company_addres')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
@@ -62,7 +69,7 @@
             </div>
              <div class="form-group">
                 <label for="name">Deskripsi</label>
-               <textarea name="description" id="description" cols="30" rows="10"  class="form-control @error('description')is-invalid @enderror"></textarea>
+               <textarea name="description" id="description" cols="30" rows="10"  class="form-control @error('description')is-invalid @enderror">{{isset($configuration) ? $configuration->company_name : old('description')}}</textarea>
                 @error('description')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -71,7 +78,7 @@
             </div>
             <div class="mt-2 form-group">
                 <button type="submit" class="btn btn-primary">Simpan</button>
-                <a href="{{ URL::to('user/')}}" class=" btn btn-secondary">Back</a>
+               
             </div>
         </form>
     </div>

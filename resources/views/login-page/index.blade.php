@@ -22,10 +22,10 @@
                     <div class="card shadow-lg">
                         <div class="card-body p-5">
                                 @if(session()->has("errorMessage"))
-      <div class="alert alert-danger">
-      {{ session("errorMessage") }}
-      </div>
-    @endif
+                                <div class="alert alert-danger">
+                                {{ session("errorMessage") }}
+                                </div>
+                                @endif
                             <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
                             <form method="POST" action="{{ URL::to('/auth') }}" class="needs-validation"
                                 novalidate="" autocomplete="off">
