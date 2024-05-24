@@ -8,6 +8,10 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\RegisterCompanieController;
+
+use App\Http\Controllers\ReligionController;
+use App\Http\Controllers\UserController;
+
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -49,3 +53,8 @@ Route::get('/email/verify', function () {
 
 
 Route::resource('/job-category', JobCategoryController::class);
+
+Route::resource('/user', UserController::class, );
+
+Route::resource('/religion', ReligionController::class, );
+Route::resource('religion', ReligionController::class);
