@@ -21,20 +21,28 @@ class AuthController extends Controller
             'email.required' => 'Masukkan Email Terlebih Dahulu',
             'password.required' => 'Masukkan Password Dengan Benar',
             // Define more custom messages here
-            ];
+        ];
 
         $data = $request->validate([
             'email' => 'required',
             'password' => 'required'
         ], $messages);
 
-        if(Auth::attempt($data))
-        {
+        if (Auth::attempt($data)) {
             $request->session()->regenerate();
-            return redirect("/");
+
+            $role = Auth::user()->role;
+            switch ($role) {
+                case 'admin':
+                    return redirect('/admin');
+                // case 'superadmin':
+                //     return redirect('/superadmin');
+                // case 'jobseeker':
+                //     return redirect('/jobseeker');
+                // default:
+                //     return redirect('/landing-page');
+            }
         }
-
         return back()->with("errorMessage", "Gagal login, email atau password tidak ditemukan");
-
     }
 }

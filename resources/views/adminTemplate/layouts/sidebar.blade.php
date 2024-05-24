@@ -183,6 +183,16 @@
           </a>
         </li>
 
+
+        <li class="nav-header">Konfigurasi</li>
+        <li class="nav-item">
+          <a href="{{ URL::to('/admin/configuration')}}" class="nav-link {{ Request::is('user')? ' active' : '' }}">
+            <i class="nav-icon fas fa-cog"></i>
+            <p>
+              Konfigurasi
+            </p>
+          </a>
+        </li>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

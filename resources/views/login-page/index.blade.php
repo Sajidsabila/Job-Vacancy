@@ -17,10 +17,15 @@
             <div class="row justify-content-sm-center h-100">
                 <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
                     <div class="text-center my-5">
-                        Job Vacancy 1.0
+                       <h4>Job Vacancy 1.0</h4>
                     </div>
                     <div class="card shadow-lg">
                         <div class="card-body p-5">
+                                @if(session()->has("errorMessage"))
+      <div class="alert alert-danger">
+      {{ session("errorMessage") }}
+      </div>
+    @endif
                             <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
                             <form method="POST" action="{{ URL::to('/auth') }}" class="needs-validation"
                                 novalidate="" autocomplete="off">

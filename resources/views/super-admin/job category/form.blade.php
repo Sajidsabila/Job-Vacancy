@@ -1,10 +1,13 @@
-@extends('layouts.main')
+@extends('adminTemplate.layouts.main')
 @section('container')
+
+
 @if(isset($category))
  <form method="post" action="{{ URL::to('category/' . $category->id) }}" autocomplete="off">
     @method('put')
     @else
 <div class="row">
+    <h3>Data Perusahaan Website</h3>
     <div class="col-6">
         <form method="post" action="{{ URL::to('category')}}" autocomplete="off">
             @endif
