@@ -42,6 +42,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index']);
     Route::resource('/configuration', ConfigurationController::class);
     Route::resource('/job-category', JobCategoryController::class);
+    Route::resource('/religion', JobCategoryController::class);
 });
 
 Route::post('/auth', [AuthController::class, 'login']);
