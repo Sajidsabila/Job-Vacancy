@@ -128,7 +128,7 @@
           </a>
 
         <li class="nav-item">
-          <a href="{{ URL::to('/user')}}" class="nav-link {{ Request::is('user')? ' active' : '' }}">
+          <a href="{{ URL::to('/admin/user')}}" class="nav-link {{ Request::is('user')? ' active' : '' }}">
             <i class="nav-icon fas fa-users"></i>
             <p>
               User

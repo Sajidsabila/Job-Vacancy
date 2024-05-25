@@ -1,10 +1,10 @@
 @extends('adminTemplate.layouts.main')
 @section('container')
     @if (isset($user))
-        <form method="POST" action="{{ URL::to('user/' . $user->id) }}" autocomplete="off">
+        <form method="POST" action="{{ URL::to('admin/user/' . $user->id) }}" autocomplete="off">
             @method('put')
         @else
-            <form method="POST" action="{{ URL::to('user') }}" autocomplete="off">
+            <form method="POST" action="{{ URL::to('admin/user') }}" autocomplete="off">
     @endif
 
     @csrf
@@ -41,7 +41,7 @@
                 </select>
             </div>
 <button type="submit" class="btn btn-sm btn-primary">Save</button>
-            <a href="{{ URL::to('user') }}" class="btn btn-sm btn-secondary">Back</a>
+            <a href="{{ URL::to('admin/user') }}" class="btn btn-sm btn-secondary">Back</a>
         </div>
     </div>
     </form>

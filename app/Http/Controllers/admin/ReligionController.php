@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Religion;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ReligionController extends Controller
@@ -15,7 +14,8 @@ class ReligionController extends Controller
      */
     public function index()
     {
-        $religions = Religion::orderby('id')->get();
+        $religions = Religion::orderby('religion')->get();
+
         $data = [
             "title" => "Religions",
             "religions" => $religions,
@@ -42,20 +42,17 @@ class ReligionController extends Controller
     public function store(Request $request)
     {
         $messages = [
-            'id.required' => 'Tolong isi ID dengan benar.',
-            'id.unique' => 'ID harus unik',
             'religion.required' => 'Isi Religion dengan benar.',
             'religion.min' => 'Religion kurang panjang minimal 3 karakter.',
         ];
 
         $data = $request->validate([
-            'id' => 'required|unique:religions,id',
             'religion' => 'required|min:3',
         ], $messages);
 
         Religion::create($data);
         Alert::success('Sukses', 'Add data success.');
-        return redirect('super-admin.religion');
+        return redirect()->route('religion.index')->with('success', 'Religion added successfully.');
     }
 
     /**
@@ -79,7 +76,7 @@ class ReligionController extends Controller
     {
         $religion = Religion::find($id);
         if (!$religion) {
-            return redirect('religion')->with("errorMessage", "Religion Tidak Ditemukan");
+            return redirect()->route('religion.index')->with("errorMessage", "Religion Tidak Ditemukan");
         }
         $data = [
             "title" => "Edit Religion",
@@ -110,10 +107,10 @@ class ReligionController extends Controller
             $religion = Religion::find($id);
             $religion->update($data);
             Alert::success('Sukses', 'Edit data success.');
-            return redirect('religion');
+            return redirect()->route('religion.index');
         } catch (\Throwable $th) {
             Alert::error('Error', $th->getMessage());
-            return redirect('super-admin.religion');
+            return redirect()->route('religion.index');
         }
     }
 
@@ -126,10 +123,10 @@ class ReligionController extends Controller
             $religion = Religion::find($id);
             $religion->delete();
             Alert::success('Sukses', 'Delete data success.');
-            return redirect('religion');
+            return redirect()->route('religion.index');
         } catch (\Throwable $th) {
             Alert::error('Error', $th->getMessage());
-            return redirect('super-admin.religion');
+            return redirect()->route('religion.index');
         }
     }
 }

@@ -24,7 +24,7 @@ class UserController extends Controller
             "users" => $users,
         ];
 
-        return view('user.index', $data);
+        return view('super-admin.user.index', $data);
     }
 
     /**
@@ -36,7 +36,9 @@ class UserController extends Controller
             "title" => "Add User",
         ];
 
-        return view('user.form', $data);
+
+return view('super-admin.user.form', $data);
+
     }
 
     /**
@@ -63,8 +65,7 @@ class UserController extends Controller
 
         // Menggunakan sweet alert untuk memberi pesan bahwa data berhasil ditambahkan
         Alert::success('Sukses', 'Add data success.');
-
-        return redirect('user'); // Mengalihkan kembali ke halaman index
+        return redirect()->route('user.index');
     }
 
     /**
@@ -79,7 +80,9 @@ class UserController extends Controller
             "user" => $user,
         ];
 
-        return view('user.detail', $data);
+
+return view('super-admin.user.detail', $data);
+
     }
 
     /**
@@ -97,7 +100,9 @@ class UserController extends Controller
             "user" => $user,
         ];
 
-        return view('user.form', $data);
+
+return view('super-admin.user.form', $data);
+
     }
 
 
@@ -134,10 +139,10 @@ class UserController extends Controller
 
             $user->update($data);
             Alert::success('Sukses', 'Edit data success.');
-            return redirect('user');
+            return redirect('user.index');
         } catch (\Throwable $th) {
             Alert::error('Error', $th->getMessage());
-            return redirect('user');
+            return redirect('user.index');
 
         }
 
@@ -151,10 +156,10 @@ class UserController extends Controller
             $user = User::find($id);
             $user->delete();
             Alert::success('Sukses', 'Delete data success.');
-            return redirect('user');
+            return redirect('user.index');
         } catch (\Throwable $th) {
             Alert::error('Error', $th->getMessage());
-            return redirect('user');
+            return redirect('user.index');
 
         }
     }
