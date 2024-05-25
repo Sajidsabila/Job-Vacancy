@@ -44,7 +44,8 @@ Route::prefix('admin')->group(function () {
     Route::resource('/job-category', JobCategoryController::class);
     Route::resource('/religion', ReligionController::class);
     Route::get('/trash-job-category', [RestoreDataJobCategory::class, 'index']);
-    Route::delete('/restore-job-category/{id}', [RestoreDataJobCategory::class, 'index']);
+    Route::get('/restore-job-category/{id}', [RestoreDataJobCategory::class, 'restore']);
+    Route::delete('/delete-job-category/{id}', [RestoreDataJobCategory::class, 'destroy']);
 });
 
 Route::post('/auth', [AuthController::class, 'login']);
