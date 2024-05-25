@@ -26,9 +26,9 @@
             <td>
                 <div class="d-flex">
                     <a href="{{ URL::to('category/' . $category->id)}}" class="mr-2 btn btn-info btn-sm">Info</a>
-                    <a href="{{ URL::to('job-category/' . $category->id . '/edit')}}"
+                    <a href="{{ URL::to('/admin/job-category/' . $category->id . '/edit')}}"
                         class="mr-2 btn btn-warning btn-sm">Edit</a>
-                    <form action="{{URL::to('category/' . $category->id)}}" method="post">
+                    <form action="{{URL::to('/admin/job-category/' . $category->id)}}" method="post">
                         @csrf
                         @method('delete')
                         <button type="submit" class="btn btn-sm btn-danger"

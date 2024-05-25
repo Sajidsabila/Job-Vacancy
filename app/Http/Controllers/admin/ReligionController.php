@@ -21,7 +21,7 @@ class ReligionController extends Controller
             "religions" => $religions,
         ];
 
-        return view('religion.index', $data);
+        return view('super-admin.religion.index', $data);
     }
 
     /**
@@ -33,7 +33,7 @@ class ReligionController extends Controller
             "title" => "Add Religion",
         ];
 
-        return view('religion.form', $data);
+        return view('super-admin.religion.form', $data);
     }
 
     /**
@@ -55,7 +55,7 @@ class ReligionController extends Controller
 
         Religion::create($data);
         Alert::success('Sukses', 'Add data success.');
-        return redirect('religion');
+        return redirect('super-admin.religion');
     }
 
     /**
@@ -69,7 +69,7 @@ class ReligionController extends Controller
             "religion" => $religion,
         ];
 
-        return view('religion.detail', $data);
+        return view('super-admin.religion.detail', $data);
     }
 
     /**
@@ -86,7 +86,7 @@ class ReligionController extends Controller
             "religion" => $religion,
         ];
 
-        return view('religion.form', $data);
+        return view('super-admin.religion.form', $data);
     }
 
     /**
@@ -113,7 +113,7 @@ class ReligionController extends Controller
             return redirect('religion');
         } catch (\Throwable $th) {
             Alert::error('Error', $th->getMessage());
-            return redirect('religion');
+            return redirect('super-admin.religion');
         }
     }
 
@@ -129,7 +129,7 @@ class ReligionController extends Controller
             return redirect('religion');
         } catch (\Throwable $th) {
             Alert::error('Error', $th->getMessage());
-            return redirect('religion');
+            return redirect('super-admin.religion');
         }
     }
 }

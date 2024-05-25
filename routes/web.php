@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\admin\ReligionController;
+use App\Http\Controllers\admin\RestoreDataJobCategory;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
@@ -40,7 +42,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index']);
     Route::resource('/configuration', ConfigurationController::class);
     Route::resource('/job-category', JobCategoryController::class);
-    Route::resource('/religion', JobCategoryController::class);
+    Route::resource('/religion', ReligionController::class);
+    Route::get('/trash-job-category', [RestoreDataJobCategory::class, 'index']);
+    Route::delete('/restore-job-category/{id}', [RestoreDataJobCategory::class, 'index']);
 });
 
 Route::post('/auth', [AuthController::class, 'login']);
