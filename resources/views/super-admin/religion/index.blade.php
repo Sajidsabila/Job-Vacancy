@@ -2,7 +2,7 @@
 @section('container')
     @include('sweetalert::alert')
 
-    <a href="{{ URL::to('religion/create') }}" class="btn btn-sm btn-primary mb-3"><i class="fas fa-plus" aria-hidden="true"></i>
+    <a href="{{ URL::to('/admin/religion/create') }}" class="btn btn-sm btn-primary mb-3"><i class="fas fa-plus" aria-hidden="true"></i>
         Add</a>
     <table id="datatable1" class="table table-bordered table-striped">
         <thead>
