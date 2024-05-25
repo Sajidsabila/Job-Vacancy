@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
+
+use App\Http\Controllers\Controller;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -87,7 +89,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         // TODO : u can add some protection to disallow random id
-        if(!$user) {
+        if (!$user) {
             return redirect('user')->with("errorMessage", "User Tidak DItemukan");
         }
         $data = [
@@ -116,15 +118,15 @@ class UserController extends Controller
         ];
 
         $data = $request->validate([
-                'name' => 'required',
-                'username' => 'required|alpha_num|unique:users,username,' . $id,
-                'password' => 'nullable|min:3',
-                'role' => 'required',
-            ], $messages);
+            'name' => 'required',
+            'username' => 'required|alpha_num|unique:users,username,' . $id,
+            'password' => 'nullable|min:3',
+            'role' => 'required',
+        ], $messages);
         try {
 
             $user = User::find($id);
-            if($request->password) {
+            if ($request->password) {
                 $data['password'] = Hash::make($data["password"]);
             } else {
                 $data['password'] = $user->password;

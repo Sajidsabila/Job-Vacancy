@@ -1,18 +1,16 @@
 <?php
 
-use App\Http\Controllers\ConfigurationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\JobCategoryController;
-use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\admin\AdminController;
+
+
 use App\Http\Controllers\RegisterCompanieController;
-
-use App\Http\Controllers\ReligionController;
-use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\admin\JobCategoryController;
+use App\Http\Controllers\admin\ConfigurationController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\job_seeker\LandingPageController;
 
 /*
 |--------------------------------------------------------------------------

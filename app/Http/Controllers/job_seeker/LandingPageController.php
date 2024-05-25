@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\job_seeker;
 
-use App\Models\job_category;
+use App\Http\Controllers\Controller;
 use App\Models\JobCategory;
 use Illuminate\Http\Request;
 
