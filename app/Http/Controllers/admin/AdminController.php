@@ -11,6 +11,6 @@ class AdminController extends Controller
     //
     public function index()
     {
-        return view('adminTemplate.layouts.main');
+        return view('super-admin.dashboard.index');
     }
 }

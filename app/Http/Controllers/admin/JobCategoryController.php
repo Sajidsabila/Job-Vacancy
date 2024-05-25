@@ -103,6 +103,14 @@ class JobCategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $job_category = JobCategory::find($id);
+            $job_category->delete();
+            Alert::success('Sukses', 'Delete data success.');
+            return redirect('religion');
+        } catch (\Throwable $th) {
+            Alert::error('Error', $th->getMessage());
+            return redirect('/admin/job-category');
+        }
     }
 }

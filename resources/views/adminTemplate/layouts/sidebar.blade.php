@@ -36,10 +36,10 @@
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
        <li class="nav-item">
-          <a href="{{ URL::to('/')}}" class="nav-link {{ Request::is('/')? ' active' : '' }}">
+          <a href="{{ URL::to('/admin')}}" class="nav-link {{ Request::is('/')? ' active' : '' }}">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
-             Kategori Pekerjaan
+             Dashboard
             </p>
           </a>
         </li>
@@ -183,9 +183,9 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ URL::to('/religion') }}" class="nav-link {{ Request::is('receipt')? ' active' : '' }}">
+                                    <a href="{{ URL::to('/admin/trash-job-category') }}" class="nav-link {{ Request::is('receipt')? ' active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Religion</p>
+                                        <p>Job Category</p>
                                 </a>
                                 </li>
                                 <li class="nav-item">

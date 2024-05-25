@@ -14,7 +14,7 @@ class RestoreDataJobCategory extends Controller
         //
         $categories = JobCategory::onlyTrashed()->get();
         $data = ([
-            "title" => "Job Category",
+            "title" => "Trash Data Job Category",
             "categories" => $categories
         ]);
 
@@ -33,16 +33,16 @@ class RestoreDataJobCategory extends Controller
 
     }
 
-    public function destroy(string $id)
+    public function destroy($id)
     {
         try {
-            $jobcategory = JobCategory::find($id);
+            $jobcategory = JobCategory::withTrashed()->findOrFail($id);
             $jobcategory->forceDelete();
             Alert::success('Sukses', 'Delete data success.');
         } catch (\Throwable $th) {
             Alert::error('Error', $th->getMessage());
         } finally {
-            return redirect('/admin/job-category');
+            return redirect('/admin/trash-job-category');
         }
     }
 }

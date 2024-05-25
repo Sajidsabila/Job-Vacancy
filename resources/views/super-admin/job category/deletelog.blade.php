@@ -25,14 +25,14 @@
             <td>{{ $category->category }}</td>
             <td>
                 <div class="d-flex">
-                    <a href="{{ URL::to('category/' . $category->id)}}" class="mr-2 btn btn-info btn-sm">Info</a>
-                    <a href="{{ URL::to('job-category/' . $category->id . '/edit')}}"
-                        class="mr-2 btn btn-warning btn-sm">Edit</a>
-                    <form action="{{URL::to('/admin/category/' . $category->id)}}" method="post">
+    
+                    <a href="{{ URL::to('/admin/restore-job-category/' . $category->id)}}"
+                        class="mr-2 btn btn-success btn-sm">Edit</a>
+                    <form action="{{URL::to('/admin/delete-job-category/' . $category->id)}}" method="post">
                         @csrf
                         @method('delete')
                         <button type="submit" class="btn btn-sm btn-danger"
-                            onclick="return confirm('apakah Yakin Ingin Menghapus {{ $category->name }}')">
+                            onclick="return confirm('apakah Yakin Ingin Menghapus {{ $category->category }} secara permanen')">
                             Hapus
                         </button>
                     </form>
