@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\admin\CompanyController;
 use App\Http\Controllers\admin\ReligionController;
 use App\Http\Controllers\admin\RestoreDataJobCategory;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
@@ -43,9 +45,15 @@ Route::prefix('admin')->group(function () {
     Route::resource('/configuration', ConfigurationController::class);
     Route::resource('/job-category', JobCategoryController::class);
     Route::resource('/religion', ReligionController::class);
+    Route::resource('/list-companie', CompanyController::class);
     Route::get('/trash-job-category', [RestoreDataJobCategory::class, 'index']);
     Route::get('/restore-job-category/{id}', [RestoreDataJobCategory::class, 'restore']);
     Route::delete('/delete-job-category/{id}', [RestoreDataJobCategory::class, 'destroy']);
+
+});
+
+Route::prefix('Companie')->group(function () {
+
 });
 
 Route::post('/auth', [AuthController::class, 'login']);

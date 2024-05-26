@@ -126,7 +126,13 @@
              Category 
             </p>
           </a>
-
+        <li class="nav-item">
+          <a href="{{ URL::to('/admin/list-companie') }}" class="nav-link {{ Request::is('category')? ' active' : '' }}">
+            <i class="nav-icon fas fa-building"></i>
+            <p>
+             List Perusahaan 
+            </p>
+          </a>
         <li class="nav-item">
           <a href="{{ URL::to('/user')}}" class="nav-link {{ Request::is('user')? ' active' : '' }}">
             <i class="nav-icon fas fa-users"></i>
