@@ -16,7 +16,7 @@
                 <input type="text" id="role" name="role" class="form-control" value=" {{ $user->role }}"
                     readonly>
             </div>
-            <a href="{{ URL::to('user') }}" class="btn btn-sm btn-secondary">Back</a>
+            <a href="{{ URL::to('admin/user') }}" class="btn btn-sm btn-secondary">Back</a>
         </div>
 
     </div>

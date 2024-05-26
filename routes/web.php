@@ -11,8 +11,14 @@ use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\RegisterCompanieController;
 use App\Http\Controllers\admin\JobCategoryController;
 use App\Http\Controllers\admin\ConfigurationController;
+
+use App\Http\Controllers\admin\UserController;
+
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\job_seeker\LandingPageController;
+
+use App\Models\User;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +49,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('/configuration', ConfigurationController::class);
     Route::resource('/job-category', JobCategoryController::class);
     Route::resource('/religion', ReligionController::class);
+    Route::resource('/user', UserController::class);
     Route::get('/trash-job-category', [RestoreDataJobCategory::class, 'index']);
     Route::get('/restore-job-category/{id}', [RestoreDataJobCategory::class, 'restore']);
     Route::delete('/delete-job-category/{id}', [RestoreDataJobCategory::class, 'destroy']);
