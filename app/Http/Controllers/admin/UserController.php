@@ -20,7 +20,7 @@ class UserController extends Controller
         // select * from users where role='user' order by name
         $users = User::orderby('id')->get();
         $data = [
-            "title" => "Users",
+            "title" => "Data Users",
             "users" => $users,
         ];
 
@@ -36,8 +36,7 @@ class UserController extends Controller
             "title" => "Add User",
         ];
 
-
-return view('super-admin.user.form', $data);
+        return view('super-admin.user.form', $data);
 
     }
 
@@ -81,7 +80,8 @@ return view('super-admin.user.form', $data);
         ];
 
 
-return view('super-admin.user.detail', $data);
+edit
+        return view('super-admin.user.detail', $data);
 
     }
 
@@ -99,9 +99,8 @@ return view('super-admin.user.detail', $data);
             "title" => "Edit User",
             "user" => $user,
         ];
+        return view('super-admin.user.form', $data);
 
-
-return view('super-admin.user.form', $data);
 
     }
 

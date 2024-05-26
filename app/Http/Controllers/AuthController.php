@@ -20,11 +20,10 @@ class AuthController extends Controller
         $messages = [
             'email.required' => 'Masukkan Email Terlebih Dahulu',
             'password.required' => 'Masukkan Password Dengan Benar',
-            // Define more custom messages here
         ];
 
         $data = $request->validate([
-            'email' => 'required',
+            'email' => 'required|email',
             'password' => 'required'
         ], $messages);
 
@@ -33,16 +32,24 @@ class AuthController extends Controller
 
             $role = Auth::user()->role;
             switch ($role) {
-                case 'admin':
-                    return redirect('/admin');
-                case 'superadmin':
-                    return redirect('/superadmin');
+                case 'Admin':
+                    return redirect()->route('admin.dashboard');
+                case 'Superadmin':
+                    return redirect()->route('superadmin.dashboard');
                 case 'Companie':
-                    return redirect('/companie');
+                    return redirect()->route('companie.dashboard');
                 default:
-                    return redirect('/');
+                    return redirect()->route('home');
             }
         }
-        return back()->with("errorMessage", "Gagal login, email atau password tidak ditemukan");
+
+        return back()->with('errorMessage', 'Gagal login, email atau password tidak ditemukan');
+    }
+    public function logout()
+    {
+        Auth::logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+        return redirect()->route('login');
     }
 }

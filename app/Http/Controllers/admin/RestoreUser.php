@@ -2,47 +2,47 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Models\JobCategory;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class RestoreDataJobCategory extends Controller
+class RestoreUser extends Controller
 {
     public function index()
     {
         //
-        $categories = JobCategory::onlyTrashed()->get();
+        $users = User::onlyTrashed()->get();
         $data = ([
-            "title" => "Trash Data Job Category",
-            "categories" => $categories
+            "title" => "Trash Data User",
+            "users" => $users
         ]);
 
-        return view('super-admin.trash data.jobcategory', $data);
+        return view('super-admin.trash data.user', $data);
     }
+
     public function restore($id)
     {
         try {
-            $restore_jobcategory = JobCategory::withTrashed()->where('id', $id)->restore();
+            $restore_jobcategory = User::withTrashed()->where('id', $id)->restore();
             Alert::success("Sukses", "Restore Data Sukses");
-            return redirect('/admin/job-category');
         } catch (\Throwable $th) {
             Alert::error("Gagal", $th->getMessage());
-            return redirect("/admin/restore-data-job-category");
+        } finally {
+            return redirect("/admin/user");
         }
 
     }
-
     public function destroy($id)
     {
         try {
-            $jobcategory = JobCategory::withTrashed()->findOrFail($id);
-            $jobcategory->forceDelete();
+            $user = User::withTrashed()->findOrFail($id);
+            $user->forceDelete();
             Alert::success('Sukses', 'Delete data success.');
         } catch (\Throwable $th) {
             Alert::error('Error', $th->getMessage());
         } finally {
-            return redirect('/admin/trash-job-category');
+            return redirect("/admin/trash-user");
         }
     }
 }

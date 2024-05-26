@@ -17,7 +17,7 @@ class ReligionController extends Controller
         $religions = Religion::orderby('religion')->get();
 
         $data = [
-            "title" => "Religions",
+            "title" => "Data Religions",
             "religions" => $religions,
         ];
 

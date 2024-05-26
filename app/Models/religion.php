@@ -11,8 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Religion extends Model
 {
 
-use HasFactory;
-
+    use HasFactory;
 
 
     // Add fillable property to allow mass assignment

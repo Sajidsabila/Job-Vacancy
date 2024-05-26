@@ -14,17 +14,31 @@ class CheckRole
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle($request, Closure $next, ...$roles)
     {
-        $roles = array_slice(func_get_args(), 2);
-
-        foreach ($roles as $role) {
-            $user = Auth::user()->role;
-            if($user == $role) {
-                return $next($request);
-            }
+        if (!Auth::check()) {
+            return redirect('/login');
         }
 
-        return redirect('/');
+        $userRole = Auth::user()->role;
+
+        // Check if user has one of the required roles
+        if (in_array($userRole, $roles)) {
+            return $next($request);
+        }
+
+        // Example: Redirect based on the user's role with a parameter
+        $routeParameter = $request->route('id') ?? null; // Adjust this based on your route parameters
+
+        switch ($userRole) {
+            case 'Admin':
+                return redirect('/admin');
+            case 'Superadmin':
+                return redirect()->route('admin.dashboard');
+            case 'Companie':
+                return redirect()->route('companie.dashboard');
+            default:
+                return redirect('/home')->with('error', 'You do not have access to this page.');
+        }
     }
 }

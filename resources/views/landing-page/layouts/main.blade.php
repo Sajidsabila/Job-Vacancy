@@ -40,6 +40,7 @@
    @include('landing-page.layouts.navbar')
    @yield('content');
     @include('landing-page.layouts.footer')
+       @livewireScripts
                              </div>
                          </div>
                          <div class="col-xl-2 col-lg-2">

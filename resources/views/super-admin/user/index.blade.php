@@ -1,6 +1,8 @@
 @extends('adminTemplate.layouts.main')
 @section('container')
     @include('sweetalert::alert')
+<h3>{{ $title }}</h3>
+<hr>
 
     <a href="{{ URL::to('admin/user/create') }}" class="btn btn-sm btn-primary mb-3"><i class="fas fa-plus" aria-hidden="true"></i>
         Add</a>
