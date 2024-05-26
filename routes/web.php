@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\EducationLevelController;
 use App\Http\Controllers\admin\CompanyController;
 use App\Http\Controllers\admin\ReligionController;
 use App\Http\Controllers\admin\RestoreDataJobCategory;
@@ -14,7 +15,7 @@ use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\RegisterCompanieController;
 use App\Http\Controllers\admin\JobCategoryController;
 use App\Http\Controllers\admin\ConfigurationController;
-
+use App\Http\Controllers\admin\RestoreEduLevelController;
 use App\Http\Controllers\admin\UserController;
 
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -66,6 +67,10 @@ Route::group([
     Route::resource('/user', UserController::class);
     Route::resource('/list-perusahaan', CompanyController::class);
     Route::resource('/job-category', JobCategoryController::class);
+    Route::resource('/educationLevel', EducationLevelController::class);
+    Route::get('/trash-educationLevel', [RestoreEduLevelController::class, 'index']);
+    Route::get('/restore-educationLevel/{id}', [RestoreEduLevelController::class, 'restore']);
+    Route::delete('/delete-educationLevel/{id}', [RestoreEduLevelController::class, 'destroy']);
 });
 
 Route::prefix('Companie')->group(function () {
