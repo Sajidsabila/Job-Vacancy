@@ -12,7 +12,7 @@
                 <label for="religion">Religion</label>
                 <input type="text" id="religion" name="religion" class="form-control" value="{{ $religion->religion }}" readonly>
             </div>
-            <a href="{{ URL::to('religion') }}" class="btn btn-sm btn-secondary">Back</a>
+            <a href="{{ URL::to('admin/religion') }}" class="btn btn-sm btn-secondary">Back</a>
         </div>
     </div>
 @endsection

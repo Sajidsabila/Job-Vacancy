@@ -127,14 +127,14 @@
             </p>
           </a>
         <li class="nav-item">
-          <a href="{{ URL::to('/admin/list-companie') }}" class="nav-link {{ Request::is('category')? ' active' : '' }}">
+          <a href="{{ URL::to('/admin/list-perusahaan') }}" class="nav-link {{ Request::is('category')? ' active' : '' }}">
             <i class="nav-icon fas fa-building"></i>
             <p>
              List Perusahaan 
             </p>
           </a>
         <li class="nav-item">
-          <a href="{{ URL::to('/user')}}" class="nav-link {{ Request::is('user')? ' active' : '' }}">
+          <a href="{{ URL::to('/admin/user')}}" class="nav-link {{ Request::is('user')? ' active' : '' }}">
             <i class="nav-icon fas fa-users"></i>
             <p>
               User
@@ -195,9 +195,9 @@
                                 </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ URL::to('/report') }}" class="nav-link {{ Request::is('report')? ' active' : '' }}">
+                                    <a href="{{ URL::to('/admin/trash-user') }}" class="nav-link {{ Request::is('report')? ' active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Education</p>
+                                        <p>User</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">

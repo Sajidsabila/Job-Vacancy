@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\CompanyController;
 use App\Http\Controllers\admin\ReligionController;
 use App\Http\Controllers\admin\RestoreDataJobCategory;
+use App\Http\Controllers\admin\RestoreUser;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -13,8 +14,14 @@ use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\RegisterCompanieController;
 use App\Http\Controllers\admin\JobCategoryController;
 use App\Http\Controllers\admin\ConfigurationController;
+
+use App\Http\Controllers\admin\UserController;
+
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\job_seeker\LandingPageController;
+
+use App\Models\User;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,29 +34,37 @@ use App\Http\Controllers\job_seeker\LandingPageController;
 |
 */
 Route::get('/login-page', [AuthController::class, 'index'])
-    ->name('login')->name('login');
-Route::get('/register/job-seekers', [RegisterController::class, 'index']);
-Route::get('/register/companies', [RegisterCompanieController::class, 'index']);
-Route::post('/register/proses', [RegisterCompanieController::class, 'Register']);
-Route::post('/register/job-seekers/proses', [RegisterController::class, 'Register']);
+    ->name('login')->middleware('guest');
+Route::get('/register/job-seekers', [RegisterController::class, 'index'])->middleware('guest');
+Route::get('/register/companies', [RegisterCompanieController::class, 'index'])->middleware('guest');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/register/proses', [RegisterCompanieController::class, 'Register'])->middleware('guest');
+Route::post('/register/job-seekers/proses', [RegisterController::class, 'Register'])->middleware('guest');
 
 Route::prefix('/')->group(function () {
     Route::get('/', [LandingPageController::class, 'index']);
     Route::get('/job category', [LandingPageController::class, 'getJobCategory']);
-})->middleware('guest');
+})->middleware(['auth', 'checkRole:User']);
 
 
 
-Route::prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'index']);
+Route::group([
+    'middleware' => ['auth', 'checkRole:Admin'],
+    'prefix' => 'admin',
+    'as' => 'admin.'
+], function () {
+    Route::get('/', [AdminController::class, 'index'])->name('dashboard');
     Route::resource('/configuration', ConfigurationController::class);
     Route::resource('/job-category', JobCategoryController::class);
     Route::resource('/religion', ReligionController::class);
-    Route::resource('/list-companie', CompanyController::class);
     Route::get('/trash-job-category', [RestoreDataJobCategory::class, 'index']);
+    Route::get('/trash-user', [RestoreUser::class, 'index']);
     Route::get('/restore-job-category/{id}', [RestoreDataJobCategory::class, 'restore']);
+    Route::get('/user/{id}', [RestoreUser::class, 'restore']);
     Route::delete('/delete-job-category/{id}', [RestoreDataJobCategory::class, 'destroy']);
-
+    Route::resource('/user', UserController::class);
+    Route::resource('/list-perusahaan', CompanyController::class);
+    Route::resource('/job-category', JobCategoryController::class);
 });
 
 Route::prefix('Companie')->group(function () {
@@ -68,4 +83,3 @@ Route::get('/email/verify', function () {
 
 
 
-Route::resource('/job-category', JobCategoryController::class);
