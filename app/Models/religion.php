@@ -14,7 +14,6 @@ class Religion extends Model
     use HasFactory;
 
 
-
     // Add fillable property to allow mass assignment
     protected $fillable = ['id', 'religion'];
 

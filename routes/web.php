@@ -57,6 +57,7 @@ Route::group([
     Route::resource('/configuration', ConfigurationController::class);
     Route::resource('/job-category', JobCategoryController::class);
     Route::resource('/religion', ReligionController::class);
+    Route::resource('/user', UserController::class);
     Route::get('/trash-job-category', [RestoreDataJobCategory::class, 'index']);
     Route::get('/trash-user', [RestoreUser::class, 'index']);
     Route::get('/restore-job-category/{id}', [RestoreDataJobCategory::class, 'restore']);

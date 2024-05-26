@@ -36,7 +36,6 @@ class UserController extends Controller
             "title" => "Add User",
         ];
 
-
         return view('super-admin.user.form', $data);
 
     }
@@ -81,6 +80,7 @@ class UserController extends Controller
         ];
 
 
+edit
         return view('super-admin.user.detail', $data);
 
     }
@@ -99,9 +99,8 @@ class UserController extends Controller
             "title" => "Edit User",
             "user" => $user,
         ];
-
-
         return view('super-admin.user.form', $data);
+
 
     }
 
