@@ -25,7 +25,7 @@
     
                     <a href="{{ URL::to('/admin/user/' . $user->id)}}"
                         class="mr-2 btn btn-success btn-sm">Restore</a>
-                    <form action="{{URL::to('/admin/delete-job-category/' . $user->id)}}" method="post">
+                    <form action="{{URL::to('/admin/delete-user/' . $user->id)}}" method="post">
                         @csrf
                         @method('delete')
                         <button type="submit" class="btn btn-sm btn-danger"

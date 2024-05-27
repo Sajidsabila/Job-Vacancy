@@ -20,6 +20,12 @@
 					</div>
 					<div class="card shadow-lg">
 						<div class="card-body p-5">
+							 @if (session('success'))
+    							<div class="alert alert-success alert-dismissible fade show" role="alert">
+        						{{ session('success') }}
+        						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    							</div>
+							@endif
 							<h1 class="fs-4 card-title fw-bold mb-4">Register</h1>
                            <nav class=" nav nav-pills d-flex gap-2 text-center my-3">
                                 <a href="{{ URL::to('/register/job-seekers')}}" class="btn btn-outline-primary nav-link active">Job Seekers</a>
@@ -83,5 +89,8 @@
 			</div>
 		</div>
 	</section>
+<!-- Bootstrap JS and dependencies -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -52,7 +52,7 @@ class ReligionController extends Controller
 
         Religion::create($data);
         Alert::success('Sukses', 'Add data success.');
-        return redirect()->route('religion.index')->with('success', 'Religion added successfully.');
+        return redirect()->route('super-admin.religion.index')->with('success', 'Religion added successfully.');
     }
 
     /**
@@ -110,7 +110,7 @@ class ReligionController extends Controller
             return redirect()->route('religion.index');
         } catch (\Throwable $th) {
             Alert::error('Error', $th->getMessage());
-            return redirect()->route('religion.index');
+            return redirect()->route('super-admin.religion.index');
         }
     }
 
@@ -126,7 +126,7 @@ class ReligionController extends Controller
             return redirect()->route('religion.index');
         } catch (\Throwable $th) {
             Alert::error('Error', $th->getMessage());
-            return redirect()->route('religion.index');
+            return redirect()->route('super-admin.religion.index');
         }
     }
 }
