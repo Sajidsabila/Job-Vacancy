@@ -80,7 +80,6 @@ class UserController extends Controller
         ];
 
 
-edit
         return view('super-admin.user.detail', $data);
 
     }
