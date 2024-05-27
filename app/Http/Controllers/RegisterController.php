@@ -29,6 +29,6 @@ class RegisterController extends Controller
         ]);
 
         event(new Registered($user));
-        Auth::login($user);
+        return back()->with("success", "Registrasi Berhasi Silahkan Login");
     }
 }

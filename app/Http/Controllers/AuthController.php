@@ -39,7 +39,7 @@ class AuthController extends Controller
                 case 'Companie':
                     return redirect()->route('companie.dashboard');
                 default:
-                    return redirect()->route('home');
+                    return redirect('/');
             }
         }
 

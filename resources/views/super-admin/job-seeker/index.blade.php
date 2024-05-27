@@ -2,6 +2,7 @@
 @section ('container')
 @include('sweetalert::alert')
 <h3>{{ $title }}</h3>
+
 <table class="table table-striped" id="datatable1">
     <thead>
         <tr>
@@ -34,10 +35,10 @@
                         </button>
                     </form>
                 </div>
+
             </td>
             @endforeach
         </tr>
     </tbody>
 </table>
-
 @endsection

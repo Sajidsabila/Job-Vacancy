@@ -4,7 +4,10 @@ use App\Http\Controllers\admin\EducationLevelController;
 use App\Http\Controllers\admin\CompanyController;
 use App\Http\Controllers\admin\ReligionController;
 use App\Http\Controllers\admin\RestoreDataJobCategory;
+use App\Http\Controllers\admin\RestoreReligionController;
 use App\Http\Controllers\admin\RestoreUser;
+use App\Http\Controllers\companie\CompanyProfilController;
+use App\Http\Controllers\companie\DashboardController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -45,7 +48,7 @@ Route::post('/register/job-seekers/proses', [RegisterController::class, 'Registe
 Route::prefix('/')->group(function () {
     Route::get('/', [LandingPageController::class, 'index']);
     Route::get('/job category', [LandingPageController::class, 'getJobCategory']);
-})->middleware(['auth', 'checkRole:User']);
+})->middleware('guest');
 
 
 
@@ -59,11 +62,18 @@ Route::group([
     Route::resource('/job-category', JobCategoryController::class);
     Route::resource('/religion', ReligionController::class);
     Route::resource('/user', UserController::class);
+    Route::resource('/user', UserController::class);
+    Route::resource('/list-perusahaan', CompanyController::class);
+    Route::resource('/job-category', JobCategoryController::class);
     Route::get('/trash-job-category', [RestoreDataJobCategory::class, 'index']);
+    Route::get('/trash-religion', [RestoreReligionController::class, 'index']);
     Route::get('/trash-user', [RestoreUser::class, 'index']);
     Route::get('/restore-job-category/{id}', [RestoreDataJobCategory::class, 'restore']);
+    Route::get('/restore-religion/{id}', [RestoreReligionController::class, 'restore']);
     Route::get('/user/{id}', [RestoreUser::class, 'restore']);
     Route::delete('/delete-job-category/{id}', [RestoreDataJobCategory::class, 'destroy']);
+    Route::delete('/delete-religion/{id}', [RestoreReligionController::class, 'destroy']);
+    Route::delete('/delete-user/{id}', [RestoreUser::class, 'destroy']);
     Route::resource('/user', UserController::class);
     Route::resource('/list-perusahaan', CompanyController::class);
     Route::resource('/job-category', JobCategoryController::class);
@@ -73,8 +83,15 @@ Route::group([
     Route::delete('/delete-educationLevel/{id}', [RestoreEduLevelController::class, 'destroy']);
 });
 
-Route::prefix('Companie')->group(function () {
+});
 
+Route::group([
+    'middleware' => ['auth', 'checkRole:Companie'],
+    'prefix' => 'companie',
+    'as' => 'companie.'
+], function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('/company-profile', CompanyProfilController::class);
 });
 
 Route::post('/auth', [AuthController::class, 'login']);

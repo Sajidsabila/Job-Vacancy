@@ -120,6 +120,7 @@
                             </a>
                         </li>
                     </ul>
+@if (auth()->user()->role == 'Admin')
                 </li>
                 <li class="nav-item">
                     <a href="{{ URL::to('/admin/job-category') }}"
@@ -146,6 +147,98 @@
                         </p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{ URL::to('/admin/configuration') }}"
+                        class="nav-link {{ Request::is('user') ? ' active' : '' }}">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>
+                            Konfigurasi
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item {{ Request::is('receipt') || Request::is('report') ? ' menu-open' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ Request::is('receipt') || Request::is('report') ? ' active' : '' }}">
+                        <i class="fa fa-solid fa-address-book"></i>
+                        <p>
+                            Job Seekers
+                            <i class="right fas fa-angle-down"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ URL::to('/admin/religion') }}"
+                                class="nav-link {{ Request::is('receipt') ? ' active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Religion</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ URL::to('/report') }}"
+                                class="nav-link {{ Request::is('report') ? ' active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Education</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ URL::to('/report') }}"
+                                class="nav-link {{ Request::is('report') ? ' active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Skill</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                </li>
+                <li class="nav-item {{ Request::is('receipt') || Request::is('report') ? ' menu-open' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ Request::is('/admin/trash-job-category') || Request::is('report') ? ' active' : '' }}">
+                        <i class="fa fa-solid fa-address-book"></i>
+                        <p>
+                            Restore Data
+                            <i class="right fas fa-angle-down"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ URL::to('/admin/trash-job-category') }}"
+                                class="nav-link {{ Request::is('receipt') ? ' active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Job Category</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ URL::to('/admin/trash-user') }}"
+                                class="nav-link {{ Request::is('report') ? ' active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>User</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ URL::to('/admin/trash-religion') }}"
+                                class="nav-link {{ Request::is('report') ? ' active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Religion</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                </li>
+                @endif
+
+                @if (auth()->user()->role == 'Companie')
+                    <li class="nav-item">
+                        <a href="{{ URL::to('/admin/job-category') }}"
+                            class="nav-link {{ Request::is('category') ? ' active' : '' }}">
+                            <i class="nav-icon fas fa-list-alt"></i>
+                            <p>
+                                List Lowongan Pekerjaan
+                            </p>
+                        </a>
+                @endif
 
                 <li class="nav-item">
                     <a href="{{ URL::to('/admin/configuration') }}"

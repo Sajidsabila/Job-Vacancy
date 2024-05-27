@@ -31,9 +31,7 @@ class RegisterCompanieController extends Controller
             ]);
 
             event(new Registered($user));
-
-            Auth::login($user);
-            Alert::success('Success Title', 'Success Message');
+            return back()->with("success", "Registrasi Berhasi Silahkan Login");
         } catch (\Throwable $th) {
             //throw $th;
         }

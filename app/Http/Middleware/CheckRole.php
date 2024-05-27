@@ -38,7 +38,7 @@ class CheckRole
             case 'Companie':
                 return redirect()->route('companie.dashboard');
             default:
-                return redirect('/home')->with('error', 'You do not have access to this page.');
+                return redirect('/');
         }
     }
 }
