@@ -1,28 +1,29 @@
 <?php
 
-use App\Http\Controllers\admin\CompanyController;
-use App\Http\Controllers\admin\ReligionController;
-use App\Http\Controllers\admin\RestoreDataJobCategory;
-use App\Http\Controllers\admin\RestoreReligionController;
-use App\Http\Controllers\admin\RestoreUser;
-use App\Http\Controllers\company\CompanyProfilController;
-use App\Http\Controllers\company\DashboardController;
-use App\Http\Controllers\company\LowonganController;
+use App\Models\User;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\admin\RestoreUser;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\companie\JobController;
+use App\Http\Controllers\admin\CompanyController;
+use App\Http\Controllers\admin\ReligionController;
+use App\Http\Controllers\company\LowonganController;
 use App\Http\Controllers\RegisterCompanieController;
 use App\Http\Controllers\admin\JobCategoryController;
+use App\Http\Controllers\company\DashboardController;
+use App\Http\Controllers\admin\RestoreDataJobCategory;
 use App\Http\Controllers\admin\ConfigurationController;
-use App\Http\Controllers\admin\RestoreEduLevelController;
-use App\Http\Controllers\admin\UserController;
-use App\Http\Controllers\companie\JobController;
+use App\Http\Controllers\admin\EducationLevelController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use App\Http\Controllers\job_seeker\LandingPageController;
+use App\Http\Controllers\admin\RestoreEduLevelController;
+use App\Http\Controllers\admin\RestoreReligionController;
 
-use App\Models\User;
+use App\Http\Controllers\company\CompanyProfilController;
+use App\Http\Controllers\job_seeker\LandingPageController;
 
 
 /*
