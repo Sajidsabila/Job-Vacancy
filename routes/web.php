@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\job_seeker\ListJobController;
 use App\Models\User;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +48,7 @@ Route::post('/register/job-seekers/proses', [RegisterController::class, 'Registe
 Route::prefix('/')->group(function () {
     Route::get('/', [LandingPageController::class, 'index']);
     Route::get('/job category', [LandingPageController::class, 'getJobCategory']);
+    Route::get('/job-list', [ListJobController::class, 'index']);
 })->middleware('guest');
 
 

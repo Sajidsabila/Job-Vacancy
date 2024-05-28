@@ -21,9 +21,9 @@ class DashboardController extends Controller
         ]);
         //dd($company);
         if (!$company) {
-            return view('companie.profil-companie.form');
+            return view('company.profil-Company.form');
         }
-        return view('companie.profil-companie.index', $data);
+        return view('company.profil-Company.index', $data);
     }
 
     public function store(Request $request)
