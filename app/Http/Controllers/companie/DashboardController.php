@@ -18,7 +18,7 @@ class DashboardController extends Controller
             "title" => "Profile Perusahaan",
             "company" => $company
         ]);
-        if (!$company) {
+        if (!$company->isEmpty()) {
             return view('companie.profil-companie.form');
         } else {
             return view('companie.profil-companie.index', $data);
