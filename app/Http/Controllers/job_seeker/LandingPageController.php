@@ -21,7 +21,7 @@ class LandingPageController extends Controller
     }
     public function getJobCategory()
     {
-        $categories = JobCategory::all();
+        $categories = JobCategory::limit(8)->get();
         $data = ([
             "title" => "Job Category",
             "categories" => $categories
@@ -29,4 +29,16 @@ class LandingPageController extends Controller
 
         return view('job-seekers.index', $data);
     }
+
+    public function listJob()
+    {
+        $categories = JobCategory::all();
+        $data = ([
+            "title" => "All Job Categories",
+            "categories" => $categories
+        ]);
+
+        return view('job-seekers.list-job', $data);
+    }
+
 }

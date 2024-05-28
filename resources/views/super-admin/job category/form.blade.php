@@ -34,7 +34,7 @@
             </div>
             <div class="mt-2 form-group">
                 <button type="submit" class="btn btn-primary">Simpan</button>
-                <a href="{{ URL::to('user/')}}" class=" btn btn-secondary">Back</a>
+                <a href="{{ URL::to('admin/job category/')}}" class=" btn btn-secondary">Back</a>
             </div>
         </form>
     </div>

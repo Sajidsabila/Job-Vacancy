@@ -20,7 +20,7 @@ use App\Http\Controllers\admin\JobCategoryController;
 use App\Http\Controllers\admin\ConfigurationController;
 use App\Http\Controllers\admin\RestoreEduLevelController;
 use App\Http\Controllers\admin\UserController;
-
+use App\Http\Controllers\companie\JobController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\job_seeker\LandingPageController;
 
@@ -82,6 +82,8 @@ Route::group([
     Route::get('/restore-educationLevel/{id}', [RestoreEduLevelController::class, 'restore']);
     Route::delete('/delete-educationLevel/{id}', [RestoreEduLevelController::class, 'destroy']);
 });
+
+
 Route::group([
     'middleware' => ['auth', 'checkRole:Companie'],
     'prefix' => 'companie',
@@ -89,6 +91,8 @@ Route::group([
 ], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/company-profile', CompanyProfilController::class);
+    Route::resource('/jobs', JobController::class);
+
 });
 
 Route::post('/auth', [AuthController::class, 'login']);
@@ -101,5 +105,4 @@ Route::get('/email/verify', function () {
     return view('register.verify-email');
 })->middleware('auth')->name('verification.notice');
 
-
-
+Route::get('/job-seekers/list-job', [LandingPageController::class, 'listJob'])->name('job-seekers.list-job');
