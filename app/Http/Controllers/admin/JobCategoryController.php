@@ -107,7 +107,7 @@ class JobCategoryController extends Controller
             $job_category = JobCategory::find($id);
             $job_category->delete();
             Alert::success('Sukses', 'Delete data success.');
-            return redirect('religion');
+            return redirect('/admin/job-category');
         } catch (\Throwable $th) {
             Alert::error('Error', $th->getMessage());
             return redirect('/admin/job-category');

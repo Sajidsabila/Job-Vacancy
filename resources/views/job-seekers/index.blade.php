@@ -56,7 +56,8 @@
                          </div>
                      </div>
                  </div>
-                 <div class="row d-flex justify-content-center">
+                 <div class="row d-flex justify-contnet-center">
+
                      @foreach ($categories as $category)
                          <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
                              <div class="single-services text-center mb-30">
@@ -65,7 +66,9 @@
                                  </div>
                                  <div class="services-cap">
                                      <h5><a href="job_listing.html">{{ $category->category }}</a></h5>
-                                     {{-- <span>(653)</span> --}}
+
+                                     <span>(653)</span>
+
                                  </div>
                              </div>
                          </div>

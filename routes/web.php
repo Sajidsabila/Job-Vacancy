@@ -72,9 +72,19 @@ Route::group([
     Route::get('/restore-educationLevel/{id}', [RestoreEduLevelController::class, 'restore']);
     Route::delete('/delete-educationLevel/{id}', [RestoreEduLevelController::class, 'destroy']);
 });
+<<<<<<< HEAD
 
 Route::prefix('Companie')->group(function () {
 
+=======
+Route::group([
+    'middleware' => ['auth', 'checkRole:Companie'],
+    'prefix' => 'companie',
+    'as' => 'companie.'
+], function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('/company-profile', CompanyProfilController::class);
+>>>>>>> esa/master
 });
 
 Route::post('/auth', [AuthController::class, 'login']);
