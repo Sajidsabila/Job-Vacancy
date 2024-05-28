@@ -120,7 +120,7 @@
                             </a>
                         </li>
                     </ul>
-@if (auth()->user()->role == 'Admin')
+                    @if (auth()->user()->role == 'Admin')
                 </li>
                 <li class="nav-item">
                     <a href="{{ URL::to('/admin/job-category') }}"
@@ -158,7 +158,7 @@
                     </a>
                 </li>
                 </li>
-                   <li class="nav-item {{ Request::is('receipt') || Request::is('report') ? ' menu-open' : '' }}">
+                <li class="nav-item {{ Request::is('receipt') || Request::is('report') ? ' menu-open' : '' }}">
                     <a href="#"
                         class="nav-link {{ Request::is('receipt') || Request::is('report') ? ' active' : '' }}">
                         <i class="fa fa-solid fa-address-book"></i>
@@ -192,7 +192,7 @@
 
                     </ul>
                 </li>
-                 <li class="nav-item {{ Request::is('receipt') || Request::is('report') ? ' menu-open' : '' }}">
+                <li class="nav-item {{ Request::is('receipt') || Request::is('report') ? ' menu-open' : '' }}">
                     <a href="#"
                         class="nav-link {{ Request::is('/admin/trash-job-category') || Request::is('report') ? ' active' : '' }}">
                         <i class="fa fa-solid fa-address-book"></i>
@@ -237,7 +237,7 @@
 
                 @if (auth()->user()->role == 'Companie')
                     <li class="nav-item">
-                        <a href="{{ URL::to('/admin/job-category') }}"
+                        <a href="{{ URL::to('/companie/lowongan-kerja') }}"
                             class="nav-link {{ Request::is('category') ? ' active' : '' }}">
                             <i class="nav-icon fas fa-list-alt"></i>
                             <p>
@@ -246,10 +246,10 @@
                         </a>
                 @endif
 
-           
-             
+
+
                 </li>
-               
+
                 </li>
             </ul>
         </nav>

@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Job extends Model
 {
+    protected $guarded = [];
     use HasFactory;
+
+    public function company()
+    {
+        $this->hasMany(Company::class);
+    }
 }

@@ -1,20 +1,18 @@
 <?php
 
-use App\Http\Controllers\admin\EducationLevelController;
 use App\Http\Controllers\admin\CompanyController;
 use App\Http\Controllers\admin\ReligionController;
 use App\Http\Controllers\admin\RestoreDataJobCategory;
 use App\Http\Controllers\admin\RestoreReligionController;
 use App\Http\Controllers\admin\RestoreUser;
-use App\Http\Controllers\companie\CompanyProfilController;
-use App\Http\Controllers\companie\DashboardController;
+use App\Http\Controllers\company\CompanyProfilController;
+use App\Http\Controllers\company\DashboardController;
+use App\Http\Controllers\company\LowonganController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\admin\AdminController;
-
-
 use App\Http\Controllers\RegisterCompanieController;
 use App\Http\Controllers\admin\JobCategoryController;
 use App\Http\Controllers\admin\ConfigurationController;
@@ -89,6 +87,7 @@ Route::group([
 ], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/company-profile', CompanyProfilController::class);
+    Route::resource('/lowongan-kerja', LowonganController::class);
 });
 
 Route::post('/auth', [AuthController::class, 'login']);

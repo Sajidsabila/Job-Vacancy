@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\companie;
+namespace App\Http\Controllers\company;
 
 use App\Models\Company;
 use Illuminate\Http\Request;
@@ -13,15 +13,15 @@ class CompanyProfilController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $company = Company::where('id', $user->id)->get();
+        $company = Company::where('id', $user->id)->first();
         $data = ([
             "title" => "Profile Perusahaan",
             "company" => $company
         ]);
-        if ($company->isEmpty()) {
-            return view('companie.profil-companie.form');
+        if (!$company) {
+            return view('company.profil-companie.form');
         }
-        return view('companie.profil-companie.index', $data);
+        return view('company.profil-companie.index', $data);
     }
 
     /**

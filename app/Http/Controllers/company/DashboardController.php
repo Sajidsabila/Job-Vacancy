@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\companie;
+namespace App\Http\Controllers\company;
 
 use App\Models\Company;
 use Illuminate\Http\Request;
@@ -13,12 +13,14 @@ class DashboardController extends Controller
     {
 
         $user = Auth::user();
-        $company = Company::where('id', $user->id)->get();
+        $company = Company::where('id', $user->id)->first();
+        //cm data tunggal bukan collection
         $data = ([
             "title" => "Profile Perusahaan",
             "company" => $company
         ]);
-        if ($company->isEmpty()) {
+        //dd($company);
+        if (!$company) {
             return view('companie.profil-companie.form');
         }
         return view('companie.profil-companie.index', $data);
