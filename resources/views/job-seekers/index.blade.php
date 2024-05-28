@@ -75,7 +75,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="browse-btn2 text-center mt-50">
-                            <a href="{{URL::to('/job category')}}" class="border-btn2">Lihat Semua Kategori Pekerjaan</a>
+                            <a href="{{URL::to('/job-seekers/list-job')}}" class="border-btn2">Lihat Semua Kategori Pekerjaan</a>
                         </div>
                     </div>
                 </div>
