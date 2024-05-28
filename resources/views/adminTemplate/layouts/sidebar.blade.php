@@ -275,7 +275,7 @@
                 @endif
 
 
-                @if (auth()->user()->role == 'Companie')
+                @if (auth()->user()->role == 'Company')
                     <li class="nav-item">
                         <a href="{{ URL::to('/companie/lowongan-kerja') }}"
                             class="nav-link {{ Request::is('category') ? ' active' : '' }}">

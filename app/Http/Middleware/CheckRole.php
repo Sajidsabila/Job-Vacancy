@@ -35,7 +35,7 @@ class CheckRole
                 return redirect('/admin');
             case 'Superadmin':
                 return redirect()->route('admin.dashboard');
-            case 'Companie':
+            case 'Company':
                 return redirect()->route('companie.dashboard');
             default:
                 return redirect('/');

@@ -2,6 +2,8 @@
 @section('container')
     @include('sweetalert::alert')
 
+
+
     <h3> {{ $title }} </h3>
     <hr>
     <div class="row mt-3">
@@ -50,15 +52,7 @@
             </div>
 
         </div>
-        <form action="{{ URL::to('configuration/' . $company->id) }}" method="post">
-            @csrf
-            @method('delete')
-            <button type="submit" class="btn btn-md btn-danger m-2"
-                onclick="return confirm('apakah Yakin Ingin Menghapus {{ $company->company_id }}')">
-                Hapus
-            </button>
-        </form>
-        <a href="{{ URL::to('/admin/configuration/' . $company->id . '/edit') }}"
+        <a href="{{ URL::to('/companie/company-profile/' . $company->id . '/edit') }}"
             class="btn btn-warning btn-md m-2">Edit</a>
 
     </div>

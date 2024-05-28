@@ -6,6 +6,7 @@ use App\Models\Company;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class CompanyProfilController extends Controller
@@ -19,9 +20,9 @@ class CompanyProfilController extends Controller
             "company" => $company
         ]);
         if (!$company) {
-            return view('company.profil-companie.form');
+            return view('company.profil-company.form');
         }
-        return view('company.profil-companie.index', $data);
+        return view('company.profil-company.index', $data);
     }
 
     /**
@@ -75,7 +76,15 @@ class CompanyProfilController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = Auth::user();
+        $company = Company::where('id', $user->id)->firstOrFail();
+
+        $data = ([
+            "title" => "Edit Data",
+            "company" => $company
+        ]);
+
+        return view("company.profil-company.form", $data);
     }
 
     /**
@@ -83,7 +92,35 @@ class CompanyProfilController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->validate([
+            'company_name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'addres' => 'required',
+            'deskripsi' => 'required'
+        ]);
+
+        try {
+            $user = Auth::user();
+            $company = Company::where('id', $user->id)->firstOrFail();
+            $data['id'] = auth()->user()->id;
+
+            if ($request->hasFile('logo')) {
+                if ($company->logo) {
+                    Storage::delete($company->logo);
+                }
+
+                $data['logo'] = $request->file('logo')->store('img/Company-image', 'public');
+            } else {
+                $data['logo'] = $company->logo;
+            }
+            $company->update($data);
+            Alert::success('Sukses', 'Edit Data success.');
+            return redirect('companie/company-profile');
+        } catch (\Throwable $th) {
+            Alert::error('Gagal', $th->getMessage());
+            return back();
+        }
     }
 
     /**
