@@ -20,6 +20,16 @@ class Job extends Model
     }
     public function company()
     {
-        $this->hasMany(Company::class);
+        $this->hasOne(Company::class);
+    }
+
+    public function jobcategory()
+    {
+        $this->hasMany(JobCategory::class);
+    }
+
+    public function jobTime()
+    {
+        $this->hasMany(JobTimeType::class);
     }
 }
