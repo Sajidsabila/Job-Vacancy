@@ -17,7 +17,8 @@ use App\Http\Controllers\admin\JobCategoryController;
 use App\Http\Controllers\admin\ConfigurationController;
 use App\Http\Controllers\admin\RestoreEduLevelController;
 use App\Http\Controllers\admin\UserController;
-
+use App\Http\Controllers\companie\CompanyProfilController;
+use App\Http\Controllers\companie\DashboardController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\job_seeker\LandingPageController;
 
@@ -72,11 +73,7 @@ Route::group([
     Route::get('/restore-educationLevel/{id}', [RestoreEduLevelController::class, 'restore']);
     Route::delete('/delete-educationLevel/{id}', [RestoreEduLevelController::class, 'destroy']);
 });
-<<<<<<< HEAD
 
-Route::prefix('Companie')->group(function () {
-
-=======
 Route::group([
     'middleware' => ['auth', 'checkRole:Companie'],
     'prefix' => 'companie',
@@ -84,7 +81,6 @@ Route::group([
 ], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/company-profile', CompanyProfilController::class);
->>>>>>> esa/master
 });
 
 Route::post('/auth', [AuthController::class, 'login']);
