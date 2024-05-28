@@ -232,6 +232,27 @@
                                     <p>Education Level</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ URL::to('/admin/trash-educationLevel') }}"
+                                    class="nav-link {{ Request::is('report') ? ' active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Job Seeker</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ URL::to('/admin/trash-educationLevel') }}"
+                                    class="nav-link {{ Request::is('report') ? ' active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>List Perusahaan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ URL::to('/admin/trash-educationLevel') }}"
+                                    class="nav-link {{ Request::is('report') ? ' active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Lowongan Kerja</p>
+                                </a>
+                            </li>
 
 
                         </ul>
