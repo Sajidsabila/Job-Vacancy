@@ -177,7 +177,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ URL::to('/report') }}"
+                                <a href="{{ URL::to('/admin/educationLevel') }}"
                                     class="nav-link {{ Request::is('report') ? ' active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Education</p>
@@ -225,22 +225,20 @@
                                     <p>Religion</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ URL::to('/admin/trash-educationLevel') }}"
+                                    class="nav-link {{ Request::is('report') ? ' active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Education Level</p>
+                                </a>
+                            </li>
+
 
                         </ul>
                     </li>
                     </li>
                 @endif
 
-                @if (auth()->user()->role == 'Companie')
-                    <li class="nav-item">
-                        <a href="{{ URL::to('/admin/job-category') }}"
-                            class="nav-link {{ Request::is('category') ? ' active' : '' }}">
-                            <i class="nav-icon fas fa-list-alt"></i>
-                            <p>
-                                List Lowongan Pekerjaan
-                            </p>
-                        </a>
-                @endif
 
                 @if (auth()->user()->role == 'Companie')
                     <li class="nav-item">
