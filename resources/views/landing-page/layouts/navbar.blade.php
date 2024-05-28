@@ -37,26 +37,27 @@
                                          <a href="{{ URL::to('/register/job-seekers') }}" class="btn head-btn1">Register</a>
                                          <a href="{{ URL::to('/login-page') }}" class="btn head-btn2">Login</a>
                                      @endguest
-
                                      @auth
-                                         <div class="dropdown">
-                                             <a class="btn btn-primary dropdown-toggle" href="#" role="button"
-                                                 id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                                 <i class="fa-solid fa-user"></i>
-                                             </a>
+                                         @if (auth()->user()->role == 'User')
+                                             <div class="dropdown">
+                                                 <a class="btn btn-primary dropdown-toggle" href="#" role="button"
+                                                     id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                                     <i class="fa-solid fa-user"></i>
+                                                 </a>
 
-                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                 <li><a class="dropdown-item" href="">Profile</a></li>
-                                                 <li><a class="dropdown-item" href="">Settings</a></li>
-                                                 <form action="{{ route('logout') }}" method="POST"
-                                                     style="display: inline;">
-                                                     @csrf
-                                                     <button type="submit" class="dropdown-item">Logout</button>
-                                                 </form>
-                                                 </li>
-                                             </ul>
-                                         </div>
+                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                     <li><a class="dropdown-item" href="">Profile</a></li>
+                                                     <li><a class="dropdown-item" href="">Settings</a></li>
+                                                     <form action="{{ route('logout') }}" method="POST"
+                                                         style="display: inline;">
+                                                         @csrf
+                                                         <button type="submit" class="dropdown-item">Logout</button>
+                                                     </form>
+                                                     </li>
+                                                 </ul>
+                                             </div>
                                      </div>
+                                     @endif
                                  @endauth
                              </div>
                          </div>

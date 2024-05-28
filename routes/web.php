@@ -82,9 +82,6 @@ Route::group([
     Route::get('/restore-educationLevel/{id}', [RestoreEduLevelController::class, 'restore']);
     Route::delete('/delete-educationLevel/{id}', [RestoreEduLevelController::class, 'destroy']);
 });
-
-});
-
 Route::group([
     'middleware' => ['auth', 'checkRole:Companie'],
     'prefix' => 'companie',
