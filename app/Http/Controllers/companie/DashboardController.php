@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\companie;
 
-use App\Http\Controllers\Controller;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -18,11 +18,10 @@ class DashboardController extends Controller
             "title" => "Profile Perusahaan",
             "company" => $company
         ]);
-        if (!$company) {
+        if ($company->isEmpty()) {
             return view('companie.profil-companie.form');
-        } else {
-            return view('companie.profil-companie.index', $data);
         }
+        return view('companie.profil-companie.index', $data);
     }
 
     public function store(Request $request)
