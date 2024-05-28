@@ -36,7 +36,7 @@ class AuthController extends Controller
                     return redirect()->route('admin.dashboard');
                 case 'Superadmin':
                     return redirect()->route('superadmin.dashboard');
-                case 'Companie':
+                case 'Company':
                     return redirect()->route('companie.dashboard');
                 default:
                     return redirect('/');

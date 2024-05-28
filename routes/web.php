@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\job_seeker\ListJobController;
+use App\Livewire\JobListNavigation;
 use App\Models\User;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
@@ -86,7 +87,7 @@ Route::group([
 
 
 Route::group([
-    'middleware' => ['auth', 'checkRole:Companie'],
+    'middleware' => ['auth', 'checkRole:Company'],
     'prefix' => 'companie',
     'as' => 'companie.'
 ], function () {

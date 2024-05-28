@@ -16,19 +16,22 @@ return new class extends Migration {
             $table->unsignedBigInteger('job_category_id');
             $table->unsignedBigInteger('job_time_type_id');
             $table->string('title');
-            $table->string('slug');
-
+            $table->string('slug')->unique();
             $table->string('description');
             $table->string('type', 100);
             $table->float('salary');
+            $table->string('job_location', 50);
+            $table->string('name', 100);
+            $table->string('requirements');
             $table->date('deadline');
 
-            $table->timestamps();
-            $table->softDeletes();
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->foreign('job_category_id')->references('id')->on('job_categories')->onDelete('cascade');
             $table->foreign('job_time_type_id')->references('id')->on('job_time_types')->onDelete('cascade');
+            $table->timestamps();
+            $table->softDeletes();
         });
+
     }
 
     /**

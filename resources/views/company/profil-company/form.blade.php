@@ -7,7 +7,8 @@
                 <div class="card-header">Data Perusahaan</div>
                 <div class="card-body">
                     @if (isset($company))
-                        <form method="post" action="{{ URL::to('/companie/company-profile') }}" autocomplete="off">
+                        <form method="post" action="{{ URL::to('/companie/company-profile/' . $company->id) }}"
+                            autocomplete="off">
                             @method('put')
                         @else
                             <form method="post" action="{{ URL::to('/companie/company-profile') }}" autocomplete="off"
@@ -29,6 +30,11 @@
                                         {{ $message }}
                                     </div>
                                 @enderror
+
+                                @if (isset($company))
+                                    <img src="{{ URL::to('storage/' . $company->logo) }}" alt="{{ $company->company_name }}"
+                                        width="20%">
+                                @endif
                             </div>
                         </div>
                         {{-- ende --}}
@@ -50,7 +56,7 @@
                             <div class="form-group">
                                 <label for="name">Email Perusahaan</label>
                                 <input type="email" id="email" name="email"
-                                    value="{{ isset($company) ? $company->company_name : old('company_name') }}"
+                                    value="{{ isset($company) ? $company->email : old('email') }}"
                                     placeholder="Masukkan Dengan Class ion Icon"
                                     class="form-control  @error('email')is-invalid @enderror">
                                 @error('email')
@@ -63,7 +69,7 @@
                             <div class="form-group">
                                 <label for="name">Nomer Telepon Perusahaan</label>
                                 <input type="text" id="phone" name="phone"
-                                    value="{{ isset($company) ? $company->company_name : old('company_name') }}"
+                                    value="{{ isset($company) ? $company->phone : old('phone') }}"
                                     placeholder="Masukkan Dengan Class ion Icon"
                                     class="form-control  @error('phone')is-invalid @enderror">
                                 @error('phone')
@@ -76,7 +82,7 @@
                             <div class="form-group">
                                 <label for="name">Alamat Perusahaan</label>
                                 <input type="text" id="addres" name="addres"
-                                    value="{{ isset($company) ? $company->company_name : old('company_name') }}"
+                                    value="{{ isset($company) ? $company->addres : old('addres') }}"
                                     placeholder="Masukkan Dengan Class ion Icon"
                                     class="form-control  @error('addres')is-invalid @enderror">
                                 @error('addres')
@@ -89,7 +95,7 @@
                             <div class="form-group">
                                 <label for="name">Profil Singkat Perusahaan</label>
                                 <textarea id="deskripsi" name="deskripsi" cols="40" rows="30"
-                                    class="form-control  @error('deskripsi')is-invalid @enderror">{{ isset($company) ? $company->company_name : old('company_name') }}</textarea>
+                                    class="form-control  @error('deskripsi')is-invalid @enderror">{{ isset($company) ? $company->deskripsi : old('deskripsi') }}</textarea>
                                 @error('deskripsi')
                                     <div class="invalid-feedback">
                                         {{ $message }}
