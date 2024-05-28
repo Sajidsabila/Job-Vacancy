@@ -169,7 +169,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ URL::to('/admin/religion') }}"
-                                class="nav-link {{ Request::is('receipt') ? ' active' : '' }}">
+                                class="nav-link {{ Request::is('religion') ? ' active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Religion</p>
                             </a>
@@ -231,8 +231,8 @@
 
                 @if (auth()->user()->role == 'Companie')
                     <li class="nav-item">
-                        <a href="{{ URL::to('/admin/job-category') }}"
-                            class="nav-link {{ Request::is('category') ? ' active' : '' }}">
+                        <a href="{{ URL::to('/companie/jobs') }}"
+                            class="nav-link {{ Request::is('jobs') ? ' active' : '' }}">
                             <i class="nav-icon fas fa-list-alt"></i>
                             <p>
                                 List Lowongan Pekerjaan
