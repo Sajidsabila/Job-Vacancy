@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->date('endDate');
             $table->double('fee');
             $table->string('status');
-            $table->string('requirements');
+
             $table->timestamps();
             $table->foreign('company_id')->references('id')->on('companies');
         });
