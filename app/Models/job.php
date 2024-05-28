@@ -11,4 +11,8 @@ class Job extends Model
     protected $guarded = [];
     use SoftDeletes;
     use HasFactory;
+    public function company()
+    {
+        $this->hasMany(Company::class);
+    }
 }
