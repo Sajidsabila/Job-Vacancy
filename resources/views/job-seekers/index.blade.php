@@ -1,4 +1,4 @@
- @extends ('landing-page.layouts.main')
+@extends ('landing-page.layouts.main')
 @section ('content')
  <main>
         <!-- slider Area Start-->
