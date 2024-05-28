@@ -169,7 +169,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ URL::to('/admin/religion') }}"
-                                class="nav-link {{ Request::is('religion') ? ' active' : '' }}">
+                                class="nav-link {{ Request::is('receipt') ? ' active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Religion</p>
                             </a>
@@ -231,8 +231,8 @@
 
                 @if (auth()->user()->role == 'Companie')
                     <li class="nav-item">
-                        <a href="{{ URL::to('/companie/jobs') }}"
-                            class="nav-link {{ Request::is('jobs') ? ' active' : '' }}">
+                        <a href="{{ URL::to('/admin/job-category') }}"
+                            class="nav-link {{ Request::is('category') ? ' active' : '' }}">
                             <i class="nav-icon fas fa-list-alt"></i>
                             <p>
                                 List Lowongan Pekerjaan
@@ -249,7 +249,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item {{ Request::is('receipt') || Request::is('report') ? ' menu-open' : '' }}">
+                   <li class="nav-item {{ Request::is('receipt') || Request::is('report') ? ' menu-open' : '' }}">
                     <a href="#"
                         class="nav-link {{ Request::is('receipt') || Request::is('report') ? ' active' : '' }}">
                         <i class="fa fa-solid fa-address-book"></i>
@@ -283,8 +283,7 @@
 
                     </ul>
                 </li>
-                </li>
-                <li class="nav-item {{ Request::is('receipt') || Request::is('report') ? ' menu-open' : '' }}">
+                 <li class="nav-item {{ Request::is('receipt') || Request::is('report') ? ' menu-open' : '' }}">
                     <a href="#"
                         class="nav-link {{ Request::is('/admin/trash-job-category') || Request::is('report') ? ' active' : '' }}">
                         <i class="fa fa-solid fa-address-book"></i>
@@ -325,6 +324,23 @@
 
                     </ul>
                 </li>
+                @endif
+
+                @if (auth()->user()->role == 'Companie')
+                    <li class="nav-item">
+                        <a href="{{ URL::to('/admin/job-category') }}"
+                            class="nav-link {{ Request::is('category') ? ' active' : '' }}">
+                            <i class="nav-icon fas fa-list-alt"></i>
+                            <p>
+                                List Lowongan Pekerjaan
+                            </p>
+                        </a>
+                @endif
+
+           
+             
+                </li>
+               
                 </li>
             </ul>
         </nav>

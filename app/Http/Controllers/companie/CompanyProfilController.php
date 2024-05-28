@@ -10,18 +10,18 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class CompanyProfilController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-
         $user = Auth::user();
-        if (!$user->companies) {
+        $company = Company::where('id', $user->id)->get();
+        $data = ([
+            "title" => "Profile Perusahaan",
+            "company" => $company
+        ]);
+        if ($company->isEmpty()) {
             return view('companie.profil-companie.form');
-        } else {
-            return view('companie.profil-companie.index');
         }
+        return view('companie.profil-companie.index', $data);
     }
 
     /**
