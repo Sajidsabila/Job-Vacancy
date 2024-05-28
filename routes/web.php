@@ -19,8 +19,10 @@ use App\Http\Controllers\company\DashboardController;
 use App\Http\Controllers\admin\RestoreDataJobCategory;
 use App\Http\Controllers\admin\ConfigurationController;
 use App\Http\Controllers\admin\EducationLevelController;
+use App\Http\Controllers\admin\JobTimeTypeController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\admin\RestoreEduLevelController;
+use App\Http\Controllers\admin\RestoreJobTimeTypeController;
 use App\Http\Controllers\admin\RestoreReligionController;
 
 use App\Http\Controllers\company\CompanyProfilController;
@@ -82,6 +84,10 @@ Route::group([
     Route::get('/trash-educationLevel', [RestoreEduLevelController::class, 'index']);
     Route::get('/restore-educationLevel/{id}', [RestoreEduLevelController::class, 'restore']);
     Route::delete('/delete-educationLevel/{id}', [RestoreEduLevelController::class, 'destroy']);
+    Route::resource('/jobTimeType', JobTimeTypeController::class);
+    Route::get('/trash-jobTimeType', [RestoreJobTimeTypeController::class, 'index']);
+    Route::get('/restore-jobTimeType/{id}', [RestoreJobTimeTypeController::class, 'restore']);
+    Route::delete('/delete-jobTimeType/{id}', [RestoreJobTimeTypeController::class, 'destroy']);
 });
 
 

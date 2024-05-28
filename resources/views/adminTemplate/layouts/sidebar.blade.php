@@ -190,6 +190,13 @@
                                     <p>Skill</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ URL::to('/admin/jobTimeType') }}"
+                                    class="nav-link {{ Request::is('report') ? ' active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Job Time Type</p>
+                                </a>
+                            </li>
 
                         </ul>
                     </li>
@@ -251,6 +258,13 @@
                                     class="nav-link {{ Request::is('report') ? ' active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Lowongan Kerja</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ URL::to('/admin/trash-jobTimeType') }}"
+                                    class="nav-link {{ Request::is('report') ? ' active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Job Time Type</p>
                                 </a>
                             </li>
 
