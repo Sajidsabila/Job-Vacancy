@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\job_seeker\JobListingController;
 use App\Http\Controllers\job_seeker\ListJobController;
+use App\Http\Controllers\RequirementController;
 use App\Livewire\JobListNavigation;
 use App\Models\User;
 use GuzzleHttp\Middleware;
@@ -10,10 +12,9 @@ use App\Http\Controllers\admin\RestoreUser;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\AdminController;
-use App\Http\Controllers\companie\JobController;
+use App\Http\Controllers\company\JobController;
 use App\Http\Controllers\admin\CompanyController;
 use App\Http\Controllers\admin\ReligionController;
-use App\Http\Controllers\company\LowonganController;
 use App\Http\Controllers\RegisterCompanieController;
 use App\Http\Controllers\admin\JobCategoryController;
 use App\Http\Controllers\company\DashboardController;
@@ -47,11 +48,12 @@ Route::get('/register/companies', [RegisterCompanieController::class, 'index'])-
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/register/proses', [RegisterCompanieController::class, 'Register'])->middleware('guest');
 Route::post('/register/job-seekers/proses', [RegisterController::class, 'Register'])->middleware('guest');
-
+Route::get("/get-requirement", [RequirementController::class, 'index']);
 Route::prefix('/')->group(function () {
     Route::get('/', [LandingPageController::class, 'index']);
     Route::get('/job category', [LandingPageController::class, 'getJobCategory']);
     Route::get('/job-list', [ListJobController::class, 'index']);
+    Route::get('/listing-job', [JobListingController::class, 'index']);
 })->middleware('guest');
 
 
