@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     <!-- Tempusdominus Bootstrap 4 -->
     <link rel="stylesheet"
@@ -163,6 +164,7 @@
     <script src="{{ asset('js/select2.min.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(function() {
             $("#datatable1").DataTable({
@@ -199,6 +201,13 @@
                     console.error(error);
                 });
         });
+
+        $(document).ready(function() {
+            $("#requirements").select2({
+                placeholder: 'select',
+                allowClear: true,
+            });
+        })
     </script>
 </body>
 
