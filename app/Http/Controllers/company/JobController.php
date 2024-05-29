@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class LowonganController extends Controller
+class JobController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,8 +23,9 @@ class LowonganController extends Controller
         $jobs = [];
 
         if ($company) {
-            $jobs = Job::where('company_id', $company->id)->get();
+            $jobs = Job::with("company")->where('company_id', $company->id)->get();
         }
+        //  dd($jobs[0]->company);
         $data = [
             "title" => "List Lowongan Kerja",
             "jobs" => $jobs
@@ -60,7 +61,26 @@ class LowonganController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->validate([
+            "job_category_id" => "required",
+            "job_time_type_id" => "required",
+            "title" => "required",
+            "description" => "required",
+            "salary" => "required",
+            "job_location" => "required",
+            "deadline" => "required",
+            "requirements" => "required"
+        ]);
 
+        try {
+            $data['company_id'] = auth()->user()->id;
+            Job::create($data);
+            Alert::success("Sukses", "Upload Lowongan Berhasil");
+            return view("/companie/lowongan-kerja");
+        } catch (\Throwable $th) {
+            Alert::error("Gagal", $th->getMessage());
+            return back();
+        }
     }
 
     /**

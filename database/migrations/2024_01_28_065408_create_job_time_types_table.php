@@ -26,3 +26,5 @@ return new class extends Migration {
         Schema::dropIfExists('job_time_types');
     }
 };
+
+
