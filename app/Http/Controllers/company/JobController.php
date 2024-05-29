@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\company;
 
-use App\Models\Company;
 use App\Models\Job;
+use App\Models\Company;
 use App\Models\JobCategory;
 use App\Models\JobTimeType;
+use App\Models\requirement;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -31,7 +32,7 @@ class JobController extends Controller
             "jobs" => $jobs
         ];
 
-        return view("company.lowongan.index", $data);
+        return view("company.job.index", $data);
     }
 
     /**
@@ -44,16 +45,19 @@ class JobController extends Controller
         $jobtimtypes = JobTimeType::all();
         $jobcategories = JobCategory::all();
 
+        $requirements = requirement::all();
+
         $data = ([
             "title" => "Tambah Lowongan Pekerjaan",
             "jobtimtypes" => $jobtimtypes,
-            "jobcategories" => $jobcategories
+            "jobcategories" => $jobcategories,
+            "requirements" => $requirements
         ]);
         if (!$company) {
             Alert::warning("Maaf", "Untuk Input Lowongan Kerja, Masukkan Data Perusahaan Terlebih Dahulu");
             return back();
         }
-        return view("company.lowongan.form", $data);
+        return view("company.job.form", $data);
     }
 
     /**
