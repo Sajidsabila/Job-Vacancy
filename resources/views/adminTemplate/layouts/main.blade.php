@@ -165,6 +165,18 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!-- Include Bootstrap-Select CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css"
+        rel="stylesheet">
+
+    <!-- Include jQuery (required for Bootstrap JS) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Include Bootstrap-Select JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
     <script>
         $(function() {
             $("#datatable1").DataTable({
@@ -203,9 +215,12 @@
         });
 
         $(document).ready(function() {
-            $("#requirements").select2({
-                placeholder: 'select',
+            $(".requirements").select2({
+                placeholder: 'Pilih Persyaratan',
                 allowClear: true,
+            });
+            $(document).ready(function() {
+                $('.selectpicker').selectpicker();
             });
         })
     </script>

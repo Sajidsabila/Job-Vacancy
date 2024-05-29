@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class requirement extends Model
 {
     use HasFactory;
+    public function jobs()
+    {
+        return $this->hasManyThrough(Job::class, 'requirement_id', 'id');
+    }
 }
