@@ -16,9 +16,8 @@
                              <div class="main-menu d-flex flex-row ">
                                  <nav class="d-none d-lg-block">
                                      <ul id="navigation">
-                                         <li><a href="{{ URL::to('/') }}" wire:click.prevent>Home</a></li>
-                                         <li><a href="{{ URL::to('/job-list') }}" class="jobListLink">Find a Jobs </a>
-                                         </li>
+                                         <li><a href="{{ URL::to('/') }}">Home</a></li>
+                                         <li><a href="job_listing.html">Find a Jobs </a></li>
                                          <li><a href="about.html">About</a></li>
                                          <li><a href="#">Page</a>
                                              <ul class="submenu">
@@ -31,7 +30,6 @@
                                          <li><a href="contact.html">Contact</a></li>
                                      </ul>
                                  </nav>
-                                 <!-- Kontainer untuk memuat konten halaman baru -->
 
                                  <!-- Header-btn -->
                                  <div class="header-btn flex-end my-3 align-self-end lg-ms-5 f-right d-lg-block">

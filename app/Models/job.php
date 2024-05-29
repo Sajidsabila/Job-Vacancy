@@ -13,19 +13,22 @@ class Job extends Model
     use SoftDeletes;
     use HasFactory;
 
-    public function setTitleAttribute($value)
+    protected static function booted()
     {
-        $this->attributes['title'] = $value;
-        $this->attributes['slug'] = Str::slug($value);
+        static::saving(function ($job) {
+            if (empty ($job->slug)) {
+                $job->slug = Str::slug($job->title);
+            }
+        });
     }
     public function company()
     {
-        $this->hasOne(Company::class);
+        return $this->belongsTo(Company::class);
     }
 
     public function jobcategory()
     {
-        $this->hasMany(JobCategory::class);
+        return $this->hasMany(JobCategory::class);
     }
 
     public function jobTime()

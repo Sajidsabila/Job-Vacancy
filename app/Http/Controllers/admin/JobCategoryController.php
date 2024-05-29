@@ -68,7 +68,6 @@ class JobCategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
         $jobcategory = JobCategory::find($id);
         $data = ([
             "title" => "Edit Data Perusahaan",
@@ -89,8 +88,9 @@ class JobCategoryController extends Controller
         ]);
 
         try {
-            JobCategory::create($data);
-            Alert::success('Sukses', 'Add Data Berhasil success.');
+            $jobCategory = JobCategory::find($id);
+            $jobCategory->update($data);
+            Alert::success('Sukses', 'Update Data Berhasil success.');
         } catch (\Throwable $th) {
             Alert::error('Error', $th->getMessage());
         } finally {

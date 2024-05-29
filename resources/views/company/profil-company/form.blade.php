@@ -94,7 +94,7 @@
                             <br>
                             <div class="form-group">
                                 <label for="name">Profil Singkat Perusahaan</label>
-                                <textarea id="deskripsi" name="deskripsi" cols="40" rows="30"
+                                <textarea id="description" name="deskripsi" cols="40" rows="30"
                                     class="form-control  @error('deskripsi')is-invalid @enderror">{{ isset($company) ? $company->deskripsi : old('deskripsi') }}</textarea>
                                 @error('deskripsi')
                                     <div class="invalid-feedback">
