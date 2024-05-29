@@ -23,7 +23,7 @@ class JobController extends Controller
             "jobs" => $jobs
         ]);
 
-        return view('companie.jobs.index', $data);
+        return view('company.lowongan.index', $data);
     }
 
     /**
@@ -32,7 +32,7 @@ class JobController extends Controller
     public function create()
     {
         //
-        return view('super-admin.job category.form');
+        return view('company.lowongan.form');
     }
 
     /**

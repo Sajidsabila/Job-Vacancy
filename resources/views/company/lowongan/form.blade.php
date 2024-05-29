@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-header">Input Data Lowongan Kerja</div>
                 <div class="card-body">
-                    <form action="{{ URL::to('/companie/lowongan-kerja/') }}" method="post">
+                    <form action="{{ URL::to('/companie/Job') }}" method="post">
                         @csrf
                         <div class="col-12 d-flex flex-row">
                             <div class="col-6">
