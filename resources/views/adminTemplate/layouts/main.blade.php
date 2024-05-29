@@ -189,15 +189,16 @@
         }
     </script>
     <script>
-        ClassicEditor
-            .create(document.querySelector('#deskripsi'))
-            .then(editor => {
-                console.log(editor);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-            
+        document.querySelectorAll('#description').forEach(editorElement => {
+            ClassicEditor
+                .create(editorElement)
+                .then(editor => {
+                    console.log(editor);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        });
     </script>
 </body>
 

@@ -99,7 +99,7 @@ Route::group([
 ], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/company-profile', CompanyProfilController::class);
-    Route::resource('/lowongan-kerja', LowonganController::class);
+    Route::resource('/lowongan-kerja', JobController::class);
 });
 
 Route::post('/auth', [AuthController::class, 'login']);

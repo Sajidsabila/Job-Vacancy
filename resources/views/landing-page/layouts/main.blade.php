@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html class="no-js" lang="zxx">
 
 <head>
     <meta charset="utf-8">
@@ -29,7 +29,6 @@
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
-
 <body>
     <!-- Preloader Start -->
     <div id="preloader-active">
@@ -46,6 +45,7 @@
     @include('landing-page.layouts.navbar')
     @yield('content');
     @include('landing-page.layouts.footer')
+    @livewireScripts
     </div>
     </div>
     <div class="col-xl-2 col-lg-2">
@@ -87,27 +87,8 @@
     <script src="{{ asset('js/mail-script.js') }}"></script>
     <script src="{{ asset('js/jquery.ajaxchimp.min.js') }}"></script>
     <script src="{{ asset('js/plugins.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Cek apakah ini pertama kali halaman dimuat
-            if (!localStorage.getItem('page_loaded')) {
-                // Tampilkan preloader
-                document.getElementById('preloader-active').style.display = 'flex';
 
-                // Sembunyikan preloader setelah halaman selesai dimuat
-                window.addEventListener('load', function() {
-                    document.getElementById('preloader-active').style.display = 'none';
-                    // Set item di localStorage untuk menandai halaman sudah pernah dimuat
-                    localStorage.setItem('page_loaded', 'true');
-                });
-            } else {
-                // Jika halaman sudah pernah dimuat, sembunyikan preloader langsung
-                document.getElementById('preloader-active').style.display = 'none';
-            }
-        });
-    </script>
 </body>
 
 </html>
