@@ -9,14 +9,28 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Job extends Model
 {
-    protected $guarded = [];
+
     use SoftDeletes;
     use HasFactory;
+    protected $fillable = [
+        'job_category_id',
+        'job_time_type_id',
+        'company_id',
+        'title',
+        'description',
+        'salary',
+        'job_location',
+        'requirement_id', // Pastikan requirement_id termasuk dalam $fillable
+        'slug'
+    ];
+    protected $casts = [
+        'requirement_id' => 'array',  // Cast requirement_id to array
+    ];
 
     protected static function booted()
     {
         static::saving(function ($job) {
-            if (empty ($job->slug)) {
+            if (empty($job->slug)) {
                 $job->slug = Str::slug($job->title);
             }
         });
@@ -25,7 +39,10 @@ class Job extends Model
     {
         return $this->belongsTo(Company::class);
     }
-
+    public function requirements()
+    {
+        return $this->belongsToMany(requirement::class); // Gunakan hasMany karena relasinya one-to-many
+    }
     public function jobcategory()
     {
         return $this->hasMany(JobCategory::class);

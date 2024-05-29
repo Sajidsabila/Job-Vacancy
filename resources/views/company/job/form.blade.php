@@ -40,7 +40,7 @@
                                     class="form-control @error('job_time_type_id')is-invalid @enderror" name="category_id">
                                     @foreach ($jobtimtypes as $jobtimetype)
                                         <option class="form-control" value="{{ $jobtimetype->id }}"
-                                            {{ isset($companyu) ? ($company->category_id === $jobtimetypey->id ? 'selected' : '') : '' }}>
+                                            {{ isset($company) ? ($company->category_id === $jobtimetypey->id ? 'selected' : '') : '' }}>
                                             {{ $jobtimetype->type }}</option>
                                     @endforeach
                                 </select>
@@ -78,8 +78,8 @@
 
                         <div class="form-group">
                             <label>Gaji yang ditawarkan</label>
-                            <input type="text" class="form-control  @error('salary') is-invalid @enderror"
-                                id="requirements" name="requirement[]" multiple="multiple" value="{{ old('salary') }}">
+                            <input type="text" class="form-control  @error('salary') is-invalid @enderror" id="salary"
+                                name="salary" value="{{ old('salary') }}">
                             @error('salary')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -87,7 +87,20 @@
                             @enderror
                         </div>
 
-
+                        <div class="form-group">
+                            <label>Requirement</label>
+                            <select class="form-control selectpicker" id="requirement_id" name="requirement_id[]" multiple
+                                data-style="btn-primary" title="Requirement">
+                                @foreach ($requirements as $key => $requirement)
+                                    <option value="{{ $requirement->id }}">{{ $requirement->requirements }}</option>
+                                @endforeach
+                            </select>
+                            @error('requirement')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
                         <div class="form-group">
                             <label for="name">Deskripsi Pekerjaan</label>
                             <textarea id="description" name="description" cols="40" rows="30"
@@ -99,16 +112,6 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
-                            <label for="name">Persyaratan </label>
-                            <textarea id="description" name="requirements" cols="40" rows="30"
-                                class="form-control  @error('requirements')is-invalid @enderror">{{ isset($company) ? $company-> old('requirements') }}</textarea>
-                            @error('requirements')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Simpan</button>
