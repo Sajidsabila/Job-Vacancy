@@ -48,10 +48,9 @@
                                 <div class="select-job-items2">
                                     <select name="select">
                                         <option value="">All Category</option>
-                                        <option value="">Category 1</option>
-                                        <option value="">Category 2</option>
-                                        <option value="">Category 3</option>
-                                        <option value="">Category 4</option>
+                                        @foreach ($job_category as $key => $job_category)
+                                    <option value="{{ $job_category->id }}">{{ $job_category->category }}</option>
+                                @endforeach
                                     </select>
                                 </div>
                                 <!--  Select job items End-->
@@ -60,22 +59,12 @@
                                     <div class="small-section-tittle2">
                                         <h4>Job Type</h4>
                                     </div>
-                                    <label class="container">Full Time
+                                    @foreach ($job_time as $key => $job_time)
+                                    <label class="container">{{$job_time->type}}
                                         <input type="checkbox">
                                         <span class="checkmark"></span>
                                     </label>
-                                    <label class="container">Part Time
-                                        <input type="checkbox" checked="checked active">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">Remote
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">Freelance
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
+                                    @endforeach
                                 </div>
                                 <!-- select-Categories End -->
                             </div>

@@ -159,6 +159,16 @@
                             </p>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="{{ URL::to('/admin/requirement') }}"
+                            class="nav-link {{ Request::is('user') ? ' active' : '' }}">
+                            <i class="nav-icon fas fa-cog"></i>
+                            <p>
+                                Konfigurasi
+                            </p>
+                        </a>
+                    </li>
                     <li class="nav-item {{ Request::is('receipt') || Request::is('report') ? ' menu-open' : '' }}">
                         <a href="#"
                             class="nav-link {{ Request::is('receipt') || Request::is('report') ? ' active' : '' }}">

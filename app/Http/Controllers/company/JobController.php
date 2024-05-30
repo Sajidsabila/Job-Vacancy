@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\company;
 
-use App\Models\Company;
 use App\Models\Job;
+use App\Models\Company;
 use App\Models\JobCategory;
 use App\Models\JobTimeType;
+use App\Models\requirement;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -27,13 +28,12 @@ class JobController extends Controller
         }
         //  dd($jobs[0]->company);
         $data = [
-            "title" => "List job Kerja",
+            "title" => "List Lowongan Kerja",
             "jobs" => $jobs
         ];
 
         return view("company.job.index", $data);
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -43,14 +43,16 @@ class JobController extends Controller
         $company = Company::where('id', $user->id)->first();
         $jobtimtypes = JobTimeType::all();
         $jobcategories = JobCategory::all();
+        $requirements = requirement::all();
 
         $data = ([
-            "title" => "Tambah job Pekerjaan",
+            "title" => "Tambah Lowongan Pekerjaan",
             "jobtimtypes" => $jobtimtypes,
-            "jobcategories" => $jobcategories
+            "jobcategories" => $jobcategories,
+            "requirements" => $requirements
         ]);
         if (!$company) {
-            Alert::warning("Maaf", "Untuk Input job Kerja, Masukkan Data Perusahaan Terlebih Dahulu");
+            Alert::warning("Maaf", "Untuk Input Lowongan Kerja, Masukkan Data Perusahaan Terlebih Dahulu");
             return back();
         }
         return view("company.job.form", $data);
@@ -68,16 +70,25 @@ class JobController extends Controller
             "description" => "required",
             "salary" => "required",
             "job_location" => "required",
-            "deadline" => "required",
-            "requirements" => "required"
+            'requirement_id' => 'required|array',
+            'requirement_id.*' => 'exists:requirements,id',
         ]);
 
         try {
+            // Menambahkan company_id dari user yang sedang login
             $data['company_id'] = auth()->user()->id;
-            Job::create($data);
-            Alert::success("Sukses", "Upload job Berhasil");
-            return view("/companie/job-kerja");
+
+            // Membuat job terlebih dahulu
+            $job = Job::create($data);
+
+            // Sinkronisasi requirements
+            $job->requirements()->sync($request->requirement_id);
+
+            // Menampilkan pesan sukses dan mengarahkan ke halaman lowongan kerja
+            Alert::success("Sukses", "Upload Lowongan Berhasil");
+            return redirect("/companie/lowongan-kerja");
         } catch (\Throwable $th) {
+            // Menampilkan pesan error dan kembali ke halaman sebelumnya
             Alert::error("Gagal", $th->getMessage());
             return back();
         }
