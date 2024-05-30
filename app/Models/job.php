@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 
 class Job extends Model
 {
@@ -37,7 +38,7 @@ class Job extends Model
     }
     public function company()
     {
-        return $this->belongsTo(Company::class);
+        return $this->belongsTo(Company::class, 'company_id');
     }
     public function requirements()
     {
@@ -50,6 +51,9 @@ class Job extends Model
 
     public function jobTime()
     {
-        $this->hasMany(JobTimeType::class);
+        // $this->hasMany(JobTimeType::class);
+        return $this->belongsTo(JobTimeType::class, 'job_time_type_id');
     }
+
+  
 }

@@ -10,6 +10,15 @@ class Company extends Model
     protected $guarded = [];
     use HasFactory;
 
+
+    protected $fillable = [
+        'company_name',
+        'deskripsi',
+        'logo',
+        'email',
+        'phone',
+        'address',
+    ];
     public function user()
     {
         return $this->hasOne(User::class);
