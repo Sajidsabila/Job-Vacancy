@@ -22,8 +22,8 @@ return new class extends Migration {
             $table->float('salary', 10, 2);
             $table->string('job_location', 50);
 
-            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
-            $table->foreign('job_category_id')->references('id')->on('job_categories')->onDelete('cascade');
+            $table->foreign('company_id')->references('id')->on('companies');
+            $table->foreign('job_category_id')->references('id')->on('job_categories');
             $table->foreign('job_time_type_id')->references('id')->on('job_time_types');
             $table->timestamps();
             $table->softDeletes();

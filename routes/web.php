@@ -3,6 +3,7 @@
 use App\Http\Controllers\job_seeker\JobListingController;
 use App\Http\Controllers\job_seeker\ListJobController;
 use App\Http\Controllers\admin\RequirementController;
+use App\Http\Controllers\job_seeker\ProfileController;
 use App\Livewire\JobListNavigation;
 use App\Models\User;
 use GuzzleHttp\Middleware;
@@ -56,6 +57,7 @@ Route::prefix('/')->group(function () {
     Route::get('/job-list', [ListJobController::class, 'index']);
     Route::get('/listing-job', [JobListingController::class, 'index']);
     Route::get('/job-details/{id}', [JobDetailsController::class, 'index']);
+    Route::get("/profile", [ProfileController::class, 'index']);
 })->middleware('guest');
 
 

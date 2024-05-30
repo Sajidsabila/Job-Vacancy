@@ -207,6 +207,7 @@
                                             </div>
                                             <div class="job-tittle job-tittle2">
                                                 <a href="{{ URL::to('/job-details', $job->id) }}">
+
                                                     <h4>{{ $job->title }}</h4>
                                                 </a>
                                                 <ul>

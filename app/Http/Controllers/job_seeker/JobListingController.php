@@ -24,6 +24,7 @@ class JobListingController extends Controller
 
         ]);
         $jobs = Job::with('company')->get();
+
         return view('job-seekers.job-listing', $data);
 
 
