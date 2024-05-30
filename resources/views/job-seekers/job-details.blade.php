@@ -22,47 +22,48 @@
         <div class="job-post-company pt-120 pb-120">
             <div class="container">
                 <div class="row justify-content-between">
-                    @foreach ($jobs as $job)
-                        <!-- Left Content -->
-                        <div class="col-xl-7 col-lg-8">
-                            <!-- job single -->
-                            <div class="single-job-items mb-50">
-                                <div class="job-items">
-                                    <div class="company-img company-img-details">
-                                        <a href="#"><img src="{{ $company->logo }}" alt=""></a>
-                                    </div>
-                                    <div class="job-tittle">
-                                        <a href="#">
-                                            <h4>{{ $job->title }}</h4>
-                                        </a>
-                                        <ul>
-                                            <li>{{ $company->company_name }}</li>
-                                            <li><i class="fas fa-map-marker-alt"></i>{{ $company->addres }}</li>
-                                            <li>{{ $job->salary }}</li>
-                                        </ul>
-                                    </div>
+                    {{-- @foreach ($jobs as $job) --}}
+                    <!-- Left Content -->
+                    <div class="col-xl-7 col-lg-8">
+                        <!-- job single -->
+                        <div class="single-job-items mb-50">
+                            <div class="job-items">
+                                <div class="company-img company-img-details">
+                                    <a href="#"><img src="{{ asset($company->logo) }}"
+                                            alt="{{ $company->company_name }}"></a>
                                 </div>
-                            </div>
-                            <!-- job single End -->
-
-                            <div class="job-post-details">
-                                <div class="post-details1 mb-50">
-                                    <!-- Small Section Tittle -->
-                                    <div class="small-section-tittle">
-                                        <h4>Job Description</h4>
-                                    </div>
-                                    <p>{{ $job->description }}</p>
-                                </div>
-                                <div class="post-details2  mb-50">
-                                    <!-- Small Section Tittle -->
-                                    <div class="small-section-tittle">
-                                        <h4>Required Knowledge, Skills, and Abilities</h4>
-                                    </div>
+                                <div class="job-tittle">
+                                    <a href="#">
+                                        <h4>{{ $job->title }}</h4>
+                                    </a>
                                     <ul>
-                                        <li>{{ $job->requirements }}</li>
+                                        <li>{{ $company->company_name }}</li>
+                                        <li><i class="fas fa-map-marker-alt"></i>{{ $company->addres }}</li>
+                                        <li>{{ $job->salary }}</li>
                                     </ul>
                                 </div>
-                                {{-- <div class="post-details2  mb-50">
+                            </div>
+                        </div>
+                        <!-- job single End -->
+
+                        <div class="job-post-details">
+                            <div class="post-details1 mb-50">
+                                <!-- Small Section Tittle -->
+                                <div class="small-section-tittle">
+                                    <h4>Job Description</h4>
+                                </div>
+                                <p>{{ strip_tags($job->description) }}</p>
+                            </div>
+                            <div class="post-details2  mb-50">
+                                <!-- Small Section Tittle -->
+                                <div class="small-section-tittle">
+                                    <h4>Required Knowledge, Skills, and Abilities</h4>
+                                </div>
+                                <ul>
+                                    <li>{{ $job->requirements_id }}</li>
+                                </ul>
+                            </div>
+                            {{-- <div class="post-details2  mb-50">
                                     <!-- Small Section Tittle -->
                                     <div class="small-section-tittle">
                                         <h4>Education + Experience</h4>
@@ -75,12 +76,12 @@
                                         <li>Experience using Invision a plus</li>
                                     </ul>
                                 </div> --}}
-                            </div>
-
                         </div>
-                        <!-- Right Content -->
-                        <div class="col-xl-4 col-lg-4">
-                            {{-- <div class="post-details3  mb-50">
+
+                    </div>
+                    <!-- Right Content -->
+                    <div class="col-xl-4 col-lg-4">
+                        {{-- <div class="post-details3  mb-50">
                                 <!-- Small Section Tittle -->
                                 <div class="small-section-tittle">
                                     <h4>Job Overview</h4>
@@ -97,21 +98,21 @@
                                     <a href="#" class="btn">Apply Now</a>
                                 </div>
                             </div> --}}
-                            <div class="post-details4  mb-50">
-                                <!-- Small Section Tittle -->
-                                <div class="small-section-tittle">
-                                    <h4>Company Information</h4>
-                                </div>
-                                <span>{{ $company->company_name }}</span>
-                                <p>{{ $company->description }}</p>
-                                <ul>
-                                    <li>Name: <span>{{ $company->company_name }}</span></li>
-                                    <li>Phone : <span>{{ $company->phone }}</span></li>
-                                    <li>Email: <span>{{ $company->email }}</span></li>
-                                </ul>
+                        <div class="post-details4  mb-50">
+                            <!-- Small Section Tittle -->
+                            <div class="small-section-tittle">
+                                <h4>Company Information</h4>
                             </div>
+                            <span>{{ $company->company_name }}</span>
+                            <p>{{ $company->description }}</p>
+                            <ul>
+                                <li>Name: <span>{{ $company->company_name }}</span></li>
+                                <li>Phone : <span>{{ $company->phone }}</span></li>
+                                <li>Email: <span>{{ $company->email }}</span></li>
+                            </ul>
                         </div>
-                    @endforeach
+                    </div>
+                    {{-- @endforeach --}}
                 </div>
             </div>
         </div>

@@ -55,7 +55,7 @@ Route::prefix('/')->group(function () {
     Route::get('/job category', [LandingPageController::class, 'getJobCategory']);
     Route::get('/job-list', [ListJobController::class, 'index']);
     Route::get('/listing-job', [JobListingController::class, 'index']);
-    Route::get('/job-details', [JobDetailsController::class, 'index']);
+    Route::get('/job-details/{id}', [JobDetailsController::class, 'index']);
 })->middleware('guest');
 
 
