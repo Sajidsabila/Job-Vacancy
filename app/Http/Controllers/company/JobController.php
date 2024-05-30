@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\company;
 
-use App\Models\Job;
 use App\Models\Company;
+use App\Models\Job;
 use App\Models\JobCategory;
 use App\Models\JobTimeType;
-use App\Models\requirement;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +27,7 @@ class JobController extends Controller
         }
         //  dd($jobs[0]->company);
         $data = [
-            "title" => "List Lowongan Kerja",
+            "title" => "List job Kerja",
             "jobs" => $jobs
         ];
 
@@ -45,16 +44,13 @@ class JobController extends Controller
         $jobtimtypes = JobTimeType::all();
         $jobcategories = JobCategory::all();
 
-        $requirements = requirement::all();
-
         $data = ([
-            "title" => "Tambah Lowongan Pekerjaan",
+            "title" => "Tambah job Pekerjaan",
             "jobtimtypes" => $jobtimtypes,
-            "jobcategories" => $jobcategories,
-            "requirements" => $requirements
+            "jobcategories" => $jobcategories
         ]);
         if (!$company) {
-            Alert::warning("Maaf", "Untuk Input Lowongan Kerja, Masukkan Data Perusahaan Terlebih Dahulu");
+            Alert::warning("Maaf", "Untuk Input job Kerja, Masukkan Data Perusahaan Terlebih Dahulu");
             return back();
         }
         return view("company.job.form", $data);
@@ -79,8 +75,8 @@ class JobController extends Controller
         try {
             $data['company_id'] = auth()->user()->id;
             Job::create($data);
-            Alert::success("Sukses", "Upload Lowongan Berhasil");
-            return view("/companie/lowongan-kerja");
+            Alert::success("Sukses", "Upload job Berhasil");
+            return view("/companie/job-kerja");
         } catch (\Throwable $th) {
             Alert::error("Gagal", $th->getMessage());
             return back();

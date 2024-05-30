@@ -7,11 +7,11 @@
                 <div class="card-header">Data Perusahaan</div>
                 <div class="card-body">
                     @if (isset($company))
-                        <form method="post" action="{{ URL::to('/companie/company-profile/' . $company->id) }}"
+                        <form method="post" action="{{ URL::to('/company/CompanyProfil/' . $company->id) }}"
                             autocomplete="off">
                             @method('put')
                         @else
-                            <form method="post" action="{{ URL::to('/companie/company-profile') }}" autocomplete="off"
+                            <form method="post" action="{{ URL::to('/company/CompanyProfil') }}" autocomplete="off"
                                 enctype="multipart/form-data">
                     @endif
                     @csrf

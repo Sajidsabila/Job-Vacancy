@@ -215,7 +215,7 @@
                                                     alt=""></a>
                                         </div>
                                         <div class="job-tittle job-tittle2">
-                                            <a href="#">
+                                            <a href="job-details">
                                                 <h4>Digital Marketer</h4>
                                             </a>
                                             <ul>
