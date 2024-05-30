@@ -161,7 +161,6 @@
     <script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-    <script src="{{ asset('js/select2.min.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -177,24 +176,27 @@
 
     <!-- Include Bootstrap-Select JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        $(function() {
-            $("#datatable1").DataTable({
-                "responsive": true,
-                "lengthChange": false,
-                "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#datatable1_wrapper .col-md-6:eq(0)');
-            $('#datatable2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
+        < script >
+            $(function() {
+                $("#datatable1").DataTable({
+                    "responsive": true,
+                    "lengthChange": false,
+                    "autoWidth": false,
+                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                }).buttons().container().appendTo('#datatable1_wrapper .col-md-6:eq(0)');
+                $('#datatable2').DataTable({
+                    "paging": true,
+                    "lengthChange": false,
+                    "searching": false,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": false,
+                    "responsive": true,
+                });
             });
-        });
     </script>
     <script>
         const showDetailImageModal = (url) => {
@@ -221,6 +223,21 @@
             });
             $(document).ready(function() {
                 $('.selectpicker').selectpicker();
+            });
+
+            $(document).ready(function() {
+                $('.nav-link.dropdown-toggle').on('click', function(event) {
+                    event.preventDefault();
+                    $(this).parent().toggleClass('show');
+                    $(this).next('.dropdown-menu').toggleClass('show');
+                });
+
+                $(document).click(function(event) {
+                    if (!$(event.target).closest('.nav-item.dropdown').length) {
+                        $('.nav-item.dropdown .dropdown-menu').removeClass('show');
+                        $('.nav-item.dropdown').removeClass('show');
+                    }
+                });
             });
         })
     </script>

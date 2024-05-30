@@ -76,7 +76,7 @@ class ReligionController extends Controller
     {
         $religion = Religion::find($id);
         if (!$religion) {
-            return redirect()->route('religion.index')->with("errorMessage", "Religion Tidak Ditemukan");
+            return redirect('super-admin.religion.index')->with("errorMessage", "Religion Tidak Ditemukan");
         }
         $data = [
             "title" => "Edit Religion",
@@ -110,7 +110,7 @@ class ReligionController extends Controller
             return redirect()->route('religion.index');
         } catch (\Throwable $th) {
             Alert::error('Error', $th->getMessage());
-            return redirect()->route('super-admin.religion.index');
+            return redirect('super-admin.religion.index');
         }
     }
 

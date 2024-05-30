@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\job_seeker\JobListingController;
 use App\Http\Controllers\job_seeker\ListJobController;
-use App\Http\Controllers\RequirementController;
+use App\Http\Controllers\admin\RequirementController;
 use App\Livewire\JobListNavigation;
 use App\Models\User;
 use GuzzleHttp\Middleware;
@@ -84,6 +84,7 @@ Route::group([
     Route::resource('/list-perusahaan', CompanyController::class);
     Route::resource('/job-category', JobCategoryController::class);
     Route::resource('/educationLevel', EducationLevelController::class);
+    Route::resource('/requirement', RequirementController::class);
     Route::get('/trash-educationLevel', [RestoreEduLevelController::class, 'index']);
     Route::get('/restore-educationLevel/{id}', [RestoreEduLevelController::class, 'restore']);
     Route::delete('/delete-educationLevel/{id}', [RestoreEduLevelController::class, 'destroy']);
