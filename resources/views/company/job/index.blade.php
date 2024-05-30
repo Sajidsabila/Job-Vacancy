@@ -5,12 +5,12 @@
     .
     <a href="{{ URL::to('/companie/lowongan-kerja/create') }}" class="my-2 btn btn-primary ">
         <i class="fas fa-plus" aria-hidden="true"> </i> &nbsp; Add</a>
-    <table class="table table-striped" id="datatable1">
+    <table id="datatable1" class="table table-striped">
         <thead>
             <tr>
                 <th>No</th>
                 <th>Posisi</th>
-                <th>Job Kategori</th>
+                <th>Range Gaji</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -19,11 +19,11 @@
                 <tr>
                     <td>{{ $key + 1 }}</td>
                     <td>{{ $job->title }}</td>
-                    <td>{{ $job->company->email }}</td>
+                    <td>{{ number_format($job->salary) }}</td>
                     <td>
                         <div class="d-flex">
                             <a href="{{ URL::to('category/' . $job->id) }}" class="mr-2 btn btn-info btn-sm">Info</a>
-                            <a href="{{ URL::to('/admin/job-category/' . $job->company->company_name . '/edit') }}"
+                            <a href="{{ URL::to('/companie/lowongan-kerja/' . $job->id . '/edit') }}"
                                 class="mr-2 btn btn-warning btn-sm">Edit</a>
                             <form action="{{ URL::to('/admin/job-category/' . $job->id) }}" method="post">
                                 @csrf
