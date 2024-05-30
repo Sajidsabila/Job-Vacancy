@@ -38,7 +38,7 @@
                      <!-- Message Start -->
                      <!-- Message End -->
                  </a>
-                 <a href="{{ URL::to('/logout') }}" class="dropdown-item dropdown-footer">Logout</a></a>
+                 <a href="{{ route('logout') }}" class="dropdown-item dropdown-footer">Logout</a></a>
              </div>
          </li>
          <!-- Notifications Dropdown Menu -->
