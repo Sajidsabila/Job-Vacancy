@@ -7,7 +7,7 @@
                 <div class="card-header">Input Data Lowongan Kerja</div>
                 <div class="card-body">
                     @if (isset($job))
-                        <form action="{{ URL::to('/companie/lowongan-kerja/') }}" method="post">
+                        <form action="{{ URL::to('/companie/lowongan-kerja/' . $job->id) }}" method="post">
                             @method('put')
                         @else
                             <form action="{{ URL::to('/companie/lowongan-kerja/') }}" method="post">
@@ -40,7 +40,7 @@
                                     class="form-control @error('job_time_type_id')is-invalid @enderror" name="category_id">
                                     @foreach ($jobtimtypes as $jobtimetype)
                                         <option class="form-control" value="{{ $jobtimetype->id }}"
-                                            {{ isset($company) ? ($company->category_id === $jobtimetypey->id ? 'selected' : '') : '' }}>
+                                            {{ isset($job) ? ($job->job_time_type_id === $jobtimetype->id ? 'selected' : '') : '' }}>
                                             {{ $jobtimetype->type }}</option>
                                     @endforeach
                                 </select>
@@ -56,7 +56,7 @@
                         <div class="form-group">
                             <label>Lowongan Kerja Yang Dibutuhkan</label>
                             <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
-                                name="title" value="{{ isset($company) ? $company->title : old('title') }}">
+                                name="title" value="{{ isset($job) ? $job->title : old('title') }}">
                             @error('title')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -68,7 +68,7 @@
                             <label>Lokasi Penempatan</label>
                             <input type="text" class="form-control @error('job_location') is-invalid @enderror"
                                 id="job_location" name="job_location"
-                                value="{{ isset($company) ? $company->job_location : old('job_location') }}">
+                                value="{{ isset($job) ? $job->job_location : old('job_location') }}">
                             @error('job_location')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -79,7 +79,7 @@
                         <div class="form-group">
                             <label>Gaji yang ditawarkan</label>
                             <input type="text" class="form-control  @error('salary') is-invalid @enderror" id="salary"
-                                name="salary" value="{{ old('salary') }}">
+                                name="salary" value="{{ isset($job) ? $job->salary : old('job_location') }}">
                             @error('salary')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -92,7 +92,9 @@
                             <select class="form-control selectpicker" id="requirement_id" name="requirement_id[]" multiple
                                 data-style="btn-primary" title="Requirement">
                                 @foreach ($requirements as $key => $requirement)
-                                    <option value="{{ $requirement->id }}">{{ $requirement->requirements }}</option>
+                                    <option value="{{ $requirement->id }}"
+                                        @if (isset($selectedRequirements) && in_array($requirement->id, $selectedRequirements)) selected @endif>
+                                        {{ $requirement->type }}</option>
                                 @endforeach
                             </select>
                             @error('requirement')
@@ -104,7 +106,7 @@
                         <div class="form-group">
                             <label for="name">Deskripsi Pekerjaan</label>
                             <textarea id="description" name="description" cols="40" rows="30"
-                                class="form-control  @error('description')is-invalid @enderror">{{ isset($company) ? $company->description : old('description') }}</textarea>
+                                class="form-control  @error('description')is-invalid @enderror">{{ isset($job) ? $job->description : old('description') }}</textarea>
                             @error('description')
                                 <div class="invalid-feedback">
                                     {{ $message }}

@@ -8,6 +8,7 @@ use App\Models\JobCategory;
 use App\Models\JobTimeType;
 use App\Models\requirement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -78,13 +79,7 @@ class JobController extends Controller
             // Menambahkan company_id dari user yang sedang login
             $data['company_id'] = auth()->user()->id;
 
-            // Membuat job terlebih dahulu
             $job = Job::create($data);
-
-            // Sinkronisasi requirements
-            $job->requirements()->sync($request->requirement_id);
-
-            // Menampilkan pesan sukses dan mengarahkan ke halaman lowongan kerja
             Alert::success("Sukses", "Upload Lowongan Berhasil");
             return redirect("/companie/lowongan-kerja");
         } catch (\Throwable $th) {
@@ -107,7 +102,21 @@ class JobController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $job = Job::findOrFail($id);
+        $requirements = Requirement::all();
+        $selectedRequirements = $job->pluck('id')->toArray(); // Assume the project has a many-to-many relationship with requirements
+        $jobcategories = JobCategory::all();
+        $jobtimtypes = JobTimeType::all();
+
+        $data = ([
+            "title" => "Edit Data Lowongan Kerja",
+            "job" => $job,
+            "requirements" => $requirements,
+            "selectedRequirements" => $selectedRequirements,
+            "jobcategories" => $jobcategories,
+            "jobtimtypes" => $jobtimtypes
+        ]);
+        return view('company.job.form', $data);
     }
 
     /**
@@ -115,7 +124,25 @@ class JobController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->validate([
+            "job_category_id" => "required",
+            "job_time_type_id" => "required",
+            "title" => "required",
+            "description" => "required",
+            "salary" => "required",
+            "job_location" => "required",
+            'requirement_id' => 'required|array',
+            'requirement_id.*' => 'exists:requirements,id',
+        ]);
+        try {
+            $job = Job::findOrFail($id);
+            job::create();
+            $job->update($data);
+            Alert::success("Sukses", "Edit Data Sukses");
+            return redirect("/companie/lowongan-kerja");
+        } catch (\Throwable $th) {
+            Alert::error("Error", $th->getMessage());
+        }
     }
 
     /**
@@ -123,6 +150,14 @@ class JobController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $requirement = Requirement::find($id);
+            $requirement->delete();
+            Alert::success('Sukses', 'Delete data success.');
+            return redirect("/companie/lowongan-kerja");
+        } catch (\Throwable $th) {
+            Alert::error('Error', $th->getMessage());
+            return back();
+        }
     }
 }
