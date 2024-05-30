@@ -15,7 +15,8 @@ class JobListingController extends Controller
         $job_time =JobTimeType::all();
         $data=([
             "job_category"=>$job_category,
-            "job_time"=>$job_time
+            "job_time"=>$job_time,
+            
         ]);
         return view('job-seekers.job-listing',$data);
 

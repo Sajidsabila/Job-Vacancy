@@ -4,28 +4,32 @@ namespace App\Http\Controllers\job_seeker;
 
 use App\Http\Controllers\Controller;
 use App\Models\JobCategory;
+use App\Models\Job;
 use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
 {
-    //
     public function index()
     {
         $categories = JobCategory::limit(8)->get();
-        $data = ([
+        $jobs = Job::all(); // Ambil semua pekerjaan, atau sesuaikan query jika diperlukan
+        $jobs = Job::with('jobTime', 'company')->get();
+        $data = [
             "title" => "Job Category",
-            "categories" => $categories
-        ]);
+            "categories" => $categories,
+            "jobs" => $jobs,
+        ];
 
         return view('job-seekers.index', $data);
     }
+
     public function getJobCategory()
     {
         $categories = JobCategory::limit(8)->get();
-        $data = ([
+        $data = [
             "title" => "Job Category",
-            "categories" => $categories
-        ]);
+            "categories" => $categories,
+        ];
 
         return view('job-seekers.index', $data);
     }
@@ -33,12 +37,11 @@ class LandingPageController extends Controller
     public function listJob()
     {
         $categories = JobCategory::all();
-        $data = ([
+        $data = [
             "title" => "All Job Categories",
-            "categories" => $categories
-        ]);
+            "categories" => $categories,
+        ];
 
         return view('job-seekers.list-job', $data);
     }
-
 }
