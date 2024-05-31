@@ -1,5 +1,6 @@
 @extends ('landing-page.layouts.main')
 @section('content')
+
     <main>
         <!-- slider Area Start-->
         <div class="slider-area ">
@@ -118,8 +119,8 @@
                             <div class="single-job-items mb-30">
                                 <div class="job-items">
                                     <div class="company-img">
-                                        <a href="job_details.html"><img src="{{ 'storage' . $job->company->logo }}"
-                                                alt=""></a>
+                                        <a href="job_details.html"><img src="{{ 'storage/' . $job->company->logo }}"
+                                                alt=" {{ $job->company->company_name }}" width="100" height="auto"></a>
                                     </div>
                                     <div class="job-tittle">
                                         <a href="job_details.html">
