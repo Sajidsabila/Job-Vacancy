@@ -13,7 +13,7 @@ class LandingPageController extends Controller
     {
         $categories = JobCategory::limit(8)->get();
         $jobs = Job::all(); // Ambil semua pekerjaan, atau sesuaikan query jika diperlukan
-        $jobs = Job::with('jobTime', 'company')->get();
+        $jobs = Job::with('jobTime', 'company', 'jobcategory')->get();
         $data = [
             "title" => "Job Category",
             "categories" => $categories,

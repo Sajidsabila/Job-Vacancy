@@ -94,7 +94,13 @@ class JobController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $job = Job::with('jobcategory')->findOrFail($id);
+        $data = ([
+            "title" => "Detail Data Lowongan",
+            "job" => $job
+        ]);
+
+        return view("company.job.detail", $data);
     }
 
     /**
@@ -104,17 +110,17 @@ class JobController extends Controller
     {
         $job = Job::findOrFail($id);
         $requirements = Requirement::all();
-        $selectedRequirements = $job->pluck('id')->toArray(); // Assume the project has a many-to-many relationship with requirements
         $jobcategories = JobCategory::all();
+        $selectedRequirements = is_string($job->requirement_id) ? json_decode($job->requirement_id, true) : $job->requirement_id;
+        $selectedRequirements = is_array($selectedRequirements) ? $selectedRequirements : [];
         $jobtimtypes = JobTimeType::all();
-
         $data = ([
             "title" => "Edit Data Lowongan Kerja",
             "job" => $job,
             "requirements" => $requirements,
-            "selectedRequirements" => $selectedRequirements,
             "jobcategories" => $jobcategories,
-            "jobtimtypes" => $jobtimtypes
+            "jobtimtypes" => $jobtimtypes,
+            "selectedRequirements" => $selectedRequirements
         ]);
         return view('company.job.form', $data);
     }
@@ -136,7 +142,6 @@ class JobController extends Controller
         ]);
         try {
             $job = Job::findOrFail($id);
-            job::create();
             $job->update($data);
             Alert::success("Sukses", "Edit Data Sukses");
             return redirect("/companie/lowongan-kerja");

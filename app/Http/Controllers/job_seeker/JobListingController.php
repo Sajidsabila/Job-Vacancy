@@ -14,7 +14,7 @@ class JobListingController extends Controller
     {
         $job_category = JobCategory::all();
         $job_time = JobTimeType::all();
-        $jobs = Job::paginate(10);
+        $jobs = Job::with('jobTime', 'company', 'jobcategory')->paginate(10);
         $totalJob = Job::count();
         $data = ([
             "job_category" => $job_category,

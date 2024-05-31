@@ -93,7 +93,7 @@
                                 data-style="btn-primary" title="Requirement">
                                 @foreach ($requirements as $key => $requirement)
                                     <option value="{{ $requirement->id }}"
-                                        @if (isset($selectedRequirements) && in_array($requirement->id, $selectedRequirements)) selected @endif>
+                                        {{ in_array($requirement->id, $selectedRequirements) ? 'selected' : '' }}>
                                         {{ $requirement->type }}</option>
                                 @endforeach
                             </select>
