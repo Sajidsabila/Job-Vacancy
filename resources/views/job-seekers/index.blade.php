@@ -114,33 +114,35 @@
                 <div class="row justify-content-center">
                     <div class="col-xl-10">
                         @foreach ($jobs as $job)
-                        <!-- single-job-content -->
-                        <div class="single-job-items mb-30">
-                            <div class="job-items">
-                                <div class="company-img">
-                                    <a href="job_details.html"><img src="assets/img/icon/job-list{{ $loop->iteration }}.png" alt=""></a>
+                            <!-- single-job-content -->
+                            <div class="single-job-items mb-30">
+                                <div class="job-items">
+                                    <div class="company-img">
+                                        <a href="job_details.html"><img src="{{ 'storage' . $job->company->logo }}"
+                                                alt=""></a>
+                                    </div>
+                                    <div class="job-tittle">
+                                        <a href="job_details.html">
+                                            <h4>{{ $job->title }}</h4>
+                                        </a>
+                                        <ul>
+                                            <li>{{ $job->company->company_name }}</li>
+                                            <li><i class="fas fa-map-marker-alt"></i>{{ $job->job_location }}</li>
+                                            <li>{{ number_format($job->salary) }}</li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="job-tittle">
-                                    <a href="job_details.html">
-                                        <h4>{{ $job->title }}</h4>
-                                    </a>
-                                    <ul>
-                                        <li>{{ $job->company->company_name }}</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>{{ $job->job_location }}</li>
-                                        <li>{{ $job->salary }}</li>
-                                    </ul>
+                                <div class="items-link f-right">
+                                    <a href="job_details.html">{{ $job->jobTime->type }}</a>
+                                    <span>{{ $job->created_at->diffForHumans() }}</span>
                                 </div>
                             </div>
-                            <div class="items-link f-right">
-                                <a href="job_details.html">{{ $job->jobTime->type}}</a>
-                                <span>{{ $job->created_at->diffForHumans() }}</span>                            </div>
-                        </div>
                         @endforeach
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <!-- Featured_job_end -->
         <!-- How  Apply Process Start-->
         <div class="apply-process-area apply-bg pt-150 pb-150" data-background="assets/img/gallery/how-applybg.png">

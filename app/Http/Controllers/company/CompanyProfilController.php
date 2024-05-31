@@ -93,6 +93,7 @@ class CompanyProfilController extends Controller
     public function update(Request $request, string $id)
     {
         $data = $request->validate([
+
             'company_name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',

@@ -239,7 +239,9 @@
                     }
                 });
             });
-        })
+
+            $('.selectpicker').selectpicker('refresh');
+        });
     </script>
 </body>
 

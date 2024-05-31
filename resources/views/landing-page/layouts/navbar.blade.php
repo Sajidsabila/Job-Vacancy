@@ -39,36 +39,20 @@
                                      @endguest
                                      @auth
                                          @if (auth()->user()->role == 'User')
-                                             <div class="dropdown">
-                                                 <a class="btn btn-primary dropdown-toggle" href="#" role="button"
-                                                     id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                                     <i class="fa-solid fa-user"></i>
-                                                 </a>
-
-                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                     <li><a class="dropdown-item" href="">Profile</a></li>
-                                                     <li><a class="dropdown-item" href="">Settings</a></li>
-                                                     <form action="{{ route('logout') }}" method="POST"
-                                                         style="display: inline;">
-                                                         @csrf
-                                                         <button type="submit" class="dropdown-item">Logout</button>
-                                                     </form>
-                                                     </li>
-                                                 </ul>
-                                             </div>
-                                     </div>
-                                     @endif
-                                 @endauth
+                                             <a class="btn btn-primary" href="{{ URL::to('/profile') }}" role="button"><i
+                                                     class="fa-solid fa-user"></i></a>
+                                         @endif
+                                     @endauth
+                                 </div>
                              </div>
                          </div>
-                     </div>
-                     <!-- Mobile Menu -->
-                     <div class="col-12">
-                         <div class="mobile_menu d-block d-lg-none"></div>
+                         <!-- Mobile Menu -->
+                         <div class="col-12">
+                             <div class="mobile_menu d-block d-lg-none"></div>
+                         </div>
                      </div>
                  </div>
              </div>
          </div>
-     </div>
-     <!-- Header End -->
+         <!-- Header End -->
  </header>

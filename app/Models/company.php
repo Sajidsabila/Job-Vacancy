@@ -12,15 +12,21 @@ class Company extends Model
 
 
     protected $fillable = [
+        'id',
         'company_name',
         'deskripsi',
         'logo',
         'email',
         'phone',
-        'address',
+        'addres',
     ];
     public function user()
     {
         return $this->hasOne(User::class);
+    }
+
+    public function jobs()
+    {
+        return $this->hasMany(Job::class);
     }
 }
