@@ -128,7 +128,7 @@
                                         <ul>
                                             <li>{{ $job->company->company_name }}</li>
                                             <li><i class="fas fa-map-marker-alt"></i>{{ $job->job_location }}</li>
-                                            <li>{{ $job->salary }}</li>
+                                            <li>{{ number_format($job->salary) }}</li>
                                         </ul>
                                     </div>
                                 </div>

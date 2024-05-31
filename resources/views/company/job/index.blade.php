@@ -22,7 +22,8 @@
                     <td>{{ number_format($job->salary) }}</td>
                     <td>
                         <div class="d-flex">
-                            <a href="{{ URL::to('category/' . $job->id) }}" class="mr-2 btn btn-info btn-sm">Info</a>
+                            <a href="{{ URL::to('/companie/lowongan-kerja/' . $job->id) }}"
+                                class="mr-2 btn btn-info btn-sm">Info</a>
                             <a href="{{ URL::to('/companie/lowongan-kerja/' . $job->id . '/edit') }}"
                                 class="mr-2 btn btn-warning btn-sm">Edit</a>
                             <form action="{{ URL::to('/admin/job-category/' . $job->id) }}" method="post">

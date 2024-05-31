@@ -210,15 +210,15 @@
                                                     <h4>{{ $job->title }}</h4>
                                                 </a>
                                                 <ul>
-                                                    <li>Creative Agency</li>
-                                                    <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                                    <li>$3500 - $4000</li>
+                                                    <li>{{ $job->jobcategory->category }}</li>
+                                                    <li><i class="fas fa-map-marker-alt"></i>{{ $job->job_location }}</li>
+                                                    <li>{{ number_format($job->salary) }}</li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="items-link items-link2 f-right">
-                                            <a href="job_details.html">Full Time</a>
-                                            <span>7 hours ago</span>
+                                            <a href="job_details.html">{{ $job->jobTime->type }}</a>
+                                            <span>{{ $job->created_at->diffForHumans() }}</span>
                                         </div>
                                     </div>
                                 @endforeach

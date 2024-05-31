@@ -9,6 +9,7 @@ class Requirement extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected $fillable = ['type'];
     public function jobs()
     {
         return $this->hasManyThrough(Job::class, 'requirement_id', 'id');

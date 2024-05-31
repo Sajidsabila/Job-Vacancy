@@ -42,11 +42,11 @@ class Job extends Model
     }
     public function requirements()
     {
-        return $this->belongsToMany(requirement::class); // Gunakan hasMany karena relasinya one-to-many
+        return $this->belongsTo(Requirement::class, 'requirement_id');
     }
     public function jobcategory()
     {
-        return $this->hasMany(JobCategory::class);
+        return $this->belongsTo(JobCategory::class, 'job_category_id');
     }
 
     public function jobTime()
@@ -55,5 +55,5 @@ class Job extends Model
         return $this->belongsTo(JobTimeType::class, 'job_time_type_id');
     }
 
-  
+
 }
