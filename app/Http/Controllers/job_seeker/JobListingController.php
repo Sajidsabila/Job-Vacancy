@@ -12,15 +12,22 @@ class JobListingController extends Controller
 {
     public function index()
     {
+        $jobCategoryId = Request()->input("job_category_id");
         $job_category = JobCategory::all();
         $job_time = JobTimeType::all();
-        $jobs = Job::with('jobTime', 'company', 'jobcategory')->paginate(10);
-        $totalJob = Job::count();
+        $jobEloquent = Job::with('jobTime', 'company', 'jobcategory');
+        if ($jobCategoryId) {
+            $jobEloquent->where("job_category_id", $jobCategoryId);
+        }
+        $jobs = $jobEloquent->paginate(10);
+        $totalJob = $jobEloquent->count();
+
         $data = ([
             "job_category" => $job_category,
             "job_time" => $job_time,
             "jobs" => $jobs,
-            "totalJob" => $totalJob
+            "totalJob" => $totalJob,
+            'jobCategoryId' => $jobCategoryId
 
         ]);
         $jobs = Job::with('company')->get();
