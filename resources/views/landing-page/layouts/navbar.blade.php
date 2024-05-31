@@ -40,7 +40,9 @@
                                      @auth
                                          @if (auth()->user()->role == 'User')
                                              <a class="btn btn-primary" href="{{ URL::to('/profile') }}" role="button"><i
-                                                     class="fa-solid fa-user"></i></a>
+                                                     class="fa-solid fa-user"></i>
+                                                 {{ auth()->user()->email }}
+                                             </a>
                                          @endif
                                      @endauth
                                  </div>

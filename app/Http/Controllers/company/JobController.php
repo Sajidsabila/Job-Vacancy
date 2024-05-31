@@ -45,12 +45,14 @@ class JobController extends Controller
         $jobtimtypes = JobTimeType::all();
         $jobcategories = JobCategory::all();
         $requirements = requirement::all();
-
+        $selectedRequirements = [];
         $data = ([
             "title" => "Tambah Lowongan Pekerjaan",
             "jobtimtypes" => $jobtimtypes,
             "jobcategories" => $jobcategories,
-            "requirements" => $requirements
+            "requirements" => $requirements,
+            "selectedRequirements" => $selectedRequirements
+
         ]);
         if (!$company) {
             Alert::warning("Maaf", "Untuk Input Lowongan Kerja, Masukkan Data Perusahaan Terlebih Dahulu");
