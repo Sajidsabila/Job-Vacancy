@@ -44,4 +44,18 @@ class LandingPageController extends Controller
 
         return view('job-seekers.list-job', $data);
     }
+
+    public function jobDetails()
+    {
+        $categories = JobCategory::all();
+        $jobs = Job::all(); // Ambil semua pekerjaan, atau sesuaikan query jika diperlukan
+        $jobs = Job::with('jobTime', 'company')->get();
+        $data = [
+            "title" => "Job Category",
+            "categories" => $categories,
+            "jobs" => $jobs,
+        ];
+
+        return view('job-seekers.job-details', $data);
+    }
 }

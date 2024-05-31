@@ -23,6 +23,8 @@ class JobListingController extends Controller
             "totalJob" => $totalJob
 
         ]);
+        $jobs = Job::with('company')->get();
+
         return view('job-seekers.job-listing', $data);
 
 

@@ -29,6 +29,7 @@ use App\Http\Controllers\admin\RestoreJobTimeTypeController;
 use App\Http\Controllers\admin\RestoreReligionController;
 
 use App\Http\Controllers\company\CompanyProfilController;
+use App\Http\Controllers\job_seeker\JobDetailsController;
 use App\Http\Controllers\job_seeker\LandingPageController;
 
 
@@ -55,6 +56,7 @@ Route::prefix('/')->group(function () {
     Route::get('/job category', [LandingPageController::class, 'getJobCategory']);
     Route::get('/job-list', [ListJobController::class, 'index']);
     Route::get('/listing-job', [JobListingController::class, 'index']);
+    Route::get('/job-details/{id}', [JobDetailsController::class, 'index']);
     Route::get("/profile", [ProfileController::class, 'index']);
 })->middleware('guest');
 
