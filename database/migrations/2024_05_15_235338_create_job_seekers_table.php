@@ -13,8 +13,8 @@ return new class extends Migration {
         Schema::create('job_seekers', function (Blueprint $table) {
             $table->unsignedBigInteger('id');
             $table->unsignedBigInteger('religion_id');
-            $table->unsignedBigInteger('skill_id');
             $table->string("photo");
+            $table->integer("nik");
             $table->date("birth_date");
             $table->string('first_name');
             $table->string('gender');

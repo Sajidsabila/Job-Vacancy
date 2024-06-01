@@ -30,7 +30,6 @@ class JobListingController extends Controller
             'jobCategoryId' => $jobCategoryId
 
         ]);
-        $jobs = Job::with('company')->get();
 
         return view('job-seekers.job-listing', $data);
 

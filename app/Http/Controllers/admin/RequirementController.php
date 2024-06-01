@@ -44,7 +44,7 @@ class RequirementController extends Controller
             ];
 
             $data = $request->validate([
-                'requirements' => 'required|min:3',
+                'type' => 'required|min:3',
             ], $messages);
 
             requirement::create($data);
@@ -84,15 +84,13 @@ class RequirementController extends Controller
     public function update(Request $request, string $id)
     {
         $messages = [
-            'id.required' => 'Tolong isi ID dengan benar.',
-            'id.unique' => 'ID harus unik',
             'religion.required' => 'Isi Religion dengan benar.',
             'religion.min' => 'Religion kurang panjang minimal 3 karakter.',
         ];
 
         $data = $request->validate([
             'id' => 'required|unique:religions,id,' . $id,
-            'religion' => 'required|min:3',
+            'type' => 'required|min:3',
         ], $messages);
 
         try {
