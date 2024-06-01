@@ -13,10 +13,10 @@
 
             <div class="form-group">
                 <label for="religion">Requiremen</label>
-                <input type="text" id="requirements" name="requirements"
+                <input type="text" id="type" name="type"
                     class="form-control @error('requirements')is-invalid @enderror"
-                    value="{{ isset($requirement) ? $requirement->requirements : old('requirements') }}">
-                @error('requirements')
+                    value="{{ isset($requirement) ? $requirement->type : old('requirements') }}">
+                @error('type')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
