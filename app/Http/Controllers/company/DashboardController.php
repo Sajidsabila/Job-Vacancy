@@ -14,7 +14,6 @@ class DashboardController extends Controller
 
         $user = Auth::user();
         $company = Company::where('id', $user->id)->first();
-        //cm data tunggal bukan collection
         $data = ([
             "title" => "Profile Perusahaan",
             "company" => $company

@@ -57,7 +57,7 @@ Route::prefix('/')->group(function () {
     Route::get('/job-list', [ListJobController::class, 'index']);
     Route::get('/listing-job', [JobListingController::class, 'index']);
     Route::get('/job-details/{id}', [JobDetailsController::class, 'index']);
-    Route::get("/profile", [ProfileController::class, 'index']);
+    Route::resource("/profile", ProfileController::class);
 })->middleware('guest');
 
 
