@@ -20,20 +20,6 @@ class JobDetailsController extends Controller
 
     public function index($id)
     {
-        // $company = Company::all();
-        // $job_category = JobCategory::all();
-        // // $job_time = JobTimeType::all();
-        // $jobs = Job::with('company')->findOrFail($id);
-        // $jobs = Job::paginate(10);
-        // $data = ([
-        //     "job_category" => $job_category,
-        //     // "job_time" => $job_time,
-        //     "jobs" => $jobs,
-        //     "company" => $company
-
-        // ]);
-        
-
         $job = Job::findOrFail($id);
         $company = $job->company; // Mendapatkan informasi perusahaan terkait
         $requirements = Requirement::all();
