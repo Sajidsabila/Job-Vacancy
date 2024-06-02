@@ -29,9 +29,15 @@
                         <div class="single-job-items mb-50">
                             <div class="job-items">
                                 <div class="company-img company-img-details">
-                                    @if ($job && $job->company && $job->company->logo)
+                                    {{-- @if ($job && $job->company && $job->company->logo)
                                         <a href="#"><img src="{{ 'storage/' . $job->company->logo }}"
-                                                alt="{{ $company->company_name }}"></a>
+                                                alt=" {{ $job->company->company_name }}" width="100" height="auto"></a>
+                                    @endif --}}
+                                    @if ($logoUrl)
+                                        <img src="{{ $logoUrl }}" alt="Logo {{ $company->company_name }}"
+                                            width="60" height="auto">
+                                    @else
+                                        <p>Logo tidak tersedia</p>
                                     @endif
                                 </div>
                                 <div class="job-tittle">
@@ -41,7 +47,7 @@
                                     <ul>
                                         <li>{{ $company->company_name }}</li>
                                         <li><i class="fas fa-map-marker-alt"></i>{{ $company->addres }}</li>
-                                        <li>{{ $job->salary }}</li>
+                                        <li>{{ number_format($job->salary) }}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -56,13 +62,22 @@
                                 </div>
                                 <p>{{ strip_tags($job->description) }}</p>
                             </div>
+
                             <div class="post-details2  mb-50">
                                 <!-- Small Section Tittle -->
+
                                 <div class="small-section-tittle">
                                     <h4>Required Knowledge, Skills, and Abilities</h4>
                                 </div>
                                 <ul>
-                                    <li>{{ $job->requirement_id }}</li>
+                                    @foreach ($selectedRequirements as $requirementId)
+                                        @php
+                                            $requirement = $requirements->firstWhere('id', $requirementId);
+                                        @endphp
+                                        @if ($requirement)
+                                            <li>{{ $requirement->requirements }}</li>
+                                        @endif
+                                    @endforeach
                                 </ul>
                             </div>
                             {{-- <div class="post-details2  mb-50">
@@ -83,23 +98,24 @@
                     </div>
                     <!-- Right Content -->
                     <div class="col-xl-4 col-lg-4">
-                        {{-- <div class="post-details3  mb-50">
-                                <!-- Small Section Tittle -->
-                                <div class="small-section-tittle">
-                                    <h4>Job Overview</h4>
-                                </div>
-                                <ul>
-                                    <li>Posted date : <span>12 Aug 2019</span></li>
-                                    <li>Location : <span>New York</span></li>
-                                    <li>Vacancy : <span>02</span></li>
-                                    <li>Job nature : <span>Full time</span></li>
-                                    <li>Salary : <span>$7,800 yearly</span></li>
-                                    <li>Application date : <span>12 Sep 2020</span></li>
-                                </ul>
-                                <div class="apply-btn2">
-                                    <a href="#" class="btn">Apply Now</a>
-                                </div>
-                            </div> --}}
+                        <div class="post-details3  mb-50">
+                            <!-- Small Section Tittle -->
+                            <div class="small-section-tittle">
+                                <h4>Job Overview</h4>
+                            </div>
+                            <ul>
+                                <li>Posted date : <span>{{ $job->created_at->format('d M Y') }}</span></li>
+                                <li>Location : <span>{{ $company->addres }}</span></li>
+                                @foreach ($job_time as $key => $job_time)
+                                    <li>Job nature : <span>{{ $job_time->type }}</span></li>
+                                @endforeach
+                                <li>Salary : <span>{{ number_format($job->salary) }}</span></li>
+                                {{-- <li>Application date : <span>12 Sep 2020</span></li> --}}
+                            </ul>
+                            <div class="apply-btn2">
+                                <a href="#" class="btn">Apply Now</a>
+                            </div>
+                        </div>
                         <div class="post-details4  mb-50">
                             <!-- Small Section Tittle -->
                             <div class="small-section-tittle">
