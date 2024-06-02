@@ -1,46 +1,69 @@
 @extends('landing-page.layouts.main')
-
 @section('content')
-    <div class="row" style="margin: 100px;">
-        <div class="col-12">
-            <h2 class="contact-title">Get in Touch</h2>
-        </div>
-        <div class="col-lg-8">
-            <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm"
-                novalidate="novalidate">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'" placeholder=" Enter Message"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <input class="form-control valid" name="name" id="name" type="text"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'"
-                                placeholder="Enter your name">
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <input class="form-control valid" name="email" id="email" type="email"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'"
-                                placeholder="Email">
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-group">
-                            <input class="form-control" name="subject" id="subject" type="text"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'"
-                                placeholder="Enter Subject">
-                        </div>
+    @include('sweetalert::alert')
+    <div class="container light-style flex-grow-1 container-p-y">
+        <h4 class="font-weight-bold py-3 mb-4">Account settings</h4>
+        <div class="card overflow-hidden">
+            <div class="row no-gutters row-bordered row-border-light">
+                <div class="col-md-3 pt-0">
+                    <div class="list-group list-group-flush account-settings-links">
+                        @include('job-seekers.navbar-profile')
                     </div>
                 </div>
-                <div class="form-group mt-3">
-                    <button type="submit" class="button button-contactForm boxed-btn">Send</button>
+                <div class="col-md-9">
+                    <div class="tab-content">
+                        <div class="tab-pane fade active show" id="account-general">
+                            <div class="card-body media align-items-center">
+                                <img src="{{ 'storage/' . $jobseeker->photo }}" alt="{{ $jobseeker->first_name }}"
+                                    class="d-block ui-w-80">
+                                <div class="media-body ml-4">
+
+                                </div>
+                            </div>
+                            <hr class="border-light m-0">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="font-weight-bold">First Name</label>
+                                    <div class="">{{ $jobseeker->first_name . ' ' . $jobseeker->last_name }}</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-weight-bold">Tanggal Lahir</label>
+                                    <div class="">{{ $jobseeker->birth_date }}</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-weight-bold">Nik</label>
+                                    <div class="">{{ $jobseeker->nik }}</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-weight-bold">Jenis Kelamin</label>
+                                    <div class="">{{ $jobseeker->gender }}</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-weight-bold">Agama</label>
+                                    <div class="">{{ $jobseeker->religion->religion }}</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-weight-bold">No Handphone</label>
+                                    <div class="">{{ $jobseeker->phone }}</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-weight-bold">Alamat Tempat Tinggal</label>
+                                    <div class="">{{ $jobseeker->address }}</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-weight-bold">Tentang Diri Anda</label>
+                                    <div class="">{!! $jobseeker->description !!}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-left m-4">
+                        <a href="{{ URL::to('/profile/' . $jobseeker->id . '/edit') }}" class="btn btn-warning">
+                            Update Data
+                        </a>
+                    </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 @endsection
