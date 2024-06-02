@@ -1,6 +1,5 @@
 @extends ('landing-page.layouts.main')
 @section('content')
-
     <main>
         <!-- slider Area Start-->
         <div class="slider-area ">
@@ -119,11 +118,12 @@
                             <div class="single-job-items mb-30">
                                 <div class="job-items">
                                     <div class="company-img">
-                                        <a href="job_details.html"><img src="{{ 'storage/' . $job->company->logo }}"
+                                        <a href="{{ URL::to('/job-details', $job->id) }}"><img
+                                                src="{{ 'storage/' . $job->company->logo }}"
                                                 alt=" {{ $job->company->company_name }}" width="100" height="auto"></a>
                                     </div>
                                     <div class="job-tittle">
-                                        <a href="job_details.html">
+                                        <a href="{{ URL::to('/job-details', $job->id) }}">
                                             <h4>{{ $job->title }}</h4>
                                         </a>
                                         <ul>
@@ -134,7 +134,7 @@
                                     </div>
                                 </div>
                                 <div class="items-link f-right">
-                                    <a href="job_details.html">{{ $job->jobTime->type }}</a>
+                                    <a href="{{ URL::to('/job-details', $job->id) }}">{{ $job->jobTime->type }}</a>
                                     <span>{{ $job->created_at->diffForHumans() }}</span>
                                 </div>
                             </div>

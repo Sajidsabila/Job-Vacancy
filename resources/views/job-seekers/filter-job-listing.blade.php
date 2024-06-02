@@ -151,7 +151,7 @@
                                         <div class="single-job-items mb-30">
                                             <div class="job-items">
                                                 <div class="company-img">
-                                                    <a href="job_details.html"><img
+                                                    <a href="{{ URL::to('/job-details', $job->id) }}"><img
                                                             src="{{ 'storage/' . $job->company->logo }}"
                                                             alt=" {{ $job->company->company_name }}" width="100"
                                                             height="auto"></a>
@@ -171,7 +171,8 @@
                                                 </div>
                                             </div>
                                             <div class="items-link items-link2 f-right">
-                                                <a href="job_details.html">{{ $job->jobTime->type }}</a>
+                                                <a
+                                                    href="{{ URL::to('/job-details', $job->id) }}">{{ $job->jobTime->type }}</a>
                                                 <span>{{ $job->created_at->diffForHumans() }}</span>
                                             </div>
                                         </div>
