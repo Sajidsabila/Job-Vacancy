@@ -10,7 +10,9 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="hero-cap text-center">
-                                <h2>UI/UX Designer</h2>
+                                {{-- @foreach ($job_category as $key => $job_category) --}}
+                                {{-- <h2>{{ $job_category->id }}</h2> --}}
+                                {{-- @endforeach --}}
                             </div>
                         </div>
                     </div>
@@ -29,8 +31,10 @@
                         <div class="single-job-items mb-50">
                             <div class="job-items">
                                 <div class="company-img company-img-details">
-                                    <a href="#"><img src="{{ asset($company->logo) }}"
-                                            alt="{{ $company->company_name }}"></a>
+                                    @if ($job && $job->company && $job->company->logo)
+                                        <a href="#"><img src="{{ 'storage/' . $job->company->logo }}"
+                                                alt="{{ $company->company_name }}"></a>
+                                    @endif
                                 </div>
                                 <div class="job-tittle">
                                     <a href="#">
@@ -60,7 +64,7 @@
                                     <h4>Required Knowledge, Skills, and Abilities</h4>
                                 </div>
                                 <ul>
-                                    <li>{{ $job->requirements_id }}</li>
+                                    <li>{{ $job->requirement_id }}</li>
                                 </ul>
                             </div>
                             {{-- <div class="post-details2  mb-50">

@@ -202,8 +202,10 @@
                                     <div class="single-job-items mb-30">
                                         <div class="job-items">
                                             <div class="company-img">
-                                                <a href="job_details.html"><img src="{{ 'storage/' . $job->company->logo }}"
-                                                    alt=" {{ $job->company->company_name }}" width="100" height="auto"></a>
+                                                <a href="job_details.html"><img
+                                                        src="{{ 'storage/' . $job->company->logo }}"
+                                                        alt=" {{ $job->company->company_name }}" width="100"
+                                                        height="auto"></a>
                                             </div>
                                             <div class="job-tittle job-tittle2">
                                                 <a href="{{ URL::to('/job-details', $job->id) }}">
