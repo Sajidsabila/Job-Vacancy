@@ -75,7 +75,7 @@
                                             $requirement = $requirements->firstWhere('id', $requirementId);
                                         @endphp
                                         @if ($requirement)
-                                            <li>{{ $requirement->requirements }}</li>
+                                            <li>{{ $requirement->type }}</li>
                                         @endif
                                     @endforeach
                                 </ul>
