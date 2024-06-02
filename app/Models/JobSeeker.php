@@ -14,4 +14,9 @@ class JobSeeker extends Model
     {
         return $this->hasOne(User::class);
     }
+
+    public function religion()
+    {
+        return $this->belongsTo(Religion::class);
+    }
 }
