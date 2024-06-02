@@ -56,39 +56,6 @@
 
                                 <!-- single three -->
                                 <div class="single-listing">
-                                    <!-- select-Categories start -->
-                                    <div class="select-Categories pb-50">
-                                        <div class="small-section-tittle2">
-                                            <h4>Posted Within</h4>
-                                        </div>
-                                        <label class="container">Any
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="container">Today
-                                            <input type="checkbox" checked="checked active">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="container">Last 2 days
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="container">Last 3 days
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="container">Last 5 days
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="container">Last 10 days
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                    <!-- select-Categories End -->
-                                </div>
-                                <div class="single-listing">
                                     <!-- Range Slider Start -->
                                     <aside class="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow">
                                         <div class="small-section-tittle2">
@@ -100,7 +67,7 @@
                                                 <input type="text" class="js-range-slider" value="" />
                                                 <div class="d-flex align-items-center">
                                                     <div class="price_text">
-                                                        <p>Price :</p>
+                                                        <p>Gaji :</p>
                                                     </div>
                                                     <div class="price_value d-flex justify-content-center">
                                                         <input type="text" class="js-input-from" id="amount"

@@ -4,6 +4,7 @@ use App\Http\Controllers\job_seeker\JobListingController;
 use App\Http\Controllers\job_seeker\ListJobController;
 use App\Http\Controllers\admin\RequirementController;
 use App\Http\Controllers\job_seeker\ProfileController;
+use App\Http\Controllers\job_seeker\WorkExperienceController;
 use App\Livewire\JobListNavigation;
 use App\Models\User;
 use GuzzleHttp\Middleware;
@@ -51,6 +52,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/register/proses', [RegisterCompanieController::class, 'Register'])->middleware('guest');
 Route::post('/register/job-seekers/proses', [RegisterController::class, 'Register'])->middleware('guest');
 Route::post("/get-requirement", [JobController::class, 'getrequiremen'])->name('get_requrements');
+
 Route::prefix('/')->group(function () {
     Route::get('/', [LandingPageController::class, 'index']);
     Route::get('/job category', [LandingPageController::class, 'getJobCategory']);
@@ -58,6 +60,7 @@ Route::prefix('/')->group(function () {
     Route::get('/listing-job', [JobListingController::class, 'index']);
     Route::get('/job-details/{id}', [JobDetailsController::class, 'index']);
     Route::resource("/profile", ProfileController::class);
+    Route::resource("/work-experince", WorkExperienceController::class);
 })->middleware('guest');
 
 
