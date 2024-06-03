@@ -1,4 +1,4 @@
-        <form action="{{ URL::to('listing-job') }}" method="get">
+ <form action="{{ URL::to('listing-job') }}" method="get">
             <div class="job-listing-area pt-120 pb-120">
                 <div class="container">
                     <div class="row">
@@ -46,7 +46,7 @@
                                         </div>
                                         @foreach ($job_time as $key => $job_time)
                                             <label class="container">{{ $job_time->type }}
-                                                <input type="checkbox">
+                                                <input type="checkbox" name="job_time_type_id"  value="{{ $job_time->type }}">
                                                 <span class="checkmark"></span>
                                             </label>
                                         @endforeach
