@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Testimoni extends Model
+{
+    use HasFactory;
+
+    protected $table = 'testimoni'; // Pastikan nama tabel adalah 'testimonials'
+
+    protected $fillable = [
+        'name', 'job', 'quote', 'image'
+    ];
+}

@@ -151,6 +151,17 @@
                     </li>
 
                     <li class="nav-item">
+
+                        <a href="{{ URL::to('/admin/testimoni') }}"
+                            class="nav-link {{ Request::is('testimoni') ? ' active' : '' }}">
+                            <i class="nav-icon fas fa-quote-right"></i>
+                            <p>
+                                Testimoni
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="{{ URL::to('/admin/configuration') }}"
                             class="nav-link {{ Request::is('user') ? ' active' : '' }}">
                             <i class="nav-icon fas fa-cog"></i>
