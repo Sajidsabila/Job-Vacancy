@@ -18,7 +18,7 @@ class ProfileController extends Controller
         $religions = Religion::all();
         $jobseeker = JobSeeker::where('id', $user->id)->first();
         $data = ([
-            "title" => "Profile Perusahaan",
+            "title" => "Profile User",
             "jobseeker" => $jobseeker,
             "religions" => $religions
         ]);

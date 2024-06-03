@@ -73,11 +73,13 @@
                                     {{-- @foreach ($selectedRequirements as $requirementId)
                                         @php
                                             $requirement = $requirements->firstWhere('id', $requirementId);
-                                        @endphp
-                                        @if ($requirement) --}}
-                                    <li>{{ $requirements->$type }}</li>
-                                    {{-- @endif
-                                    @endforeach --}}
+                                        @endphp --}}
+
+                                    @if ($requirement)
+                                        <li>{{ $requirement->type }}</li>
+                                    @endif
+                                    @endforeach
+
                                 </ul>
                             </div>
                             {{-- <div class="post-details2  mb-50">
