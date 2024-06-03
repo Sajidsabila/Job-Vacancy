@@ -70,14 +70,14 @@
                                     <h4>Required Knowledge, Skills, and Abilities</h4>
                                 </div>
                                 <ul>
-                                    @foreach ($selectedRequirements as $requirementId)
+                                    {{-- @foreach ($selectedRequirements as $requirementId)
                                         @php
                                             $requirement = $requirements->firstWhere('id', $requirementId);
                                         @endphp
-                                        @if ($requirement)
-                                            <li>{{ $requirement->requirements }}</li>
-                                        @endif
-                                    @endforeach
+                                        @if ($requirement) --}}
+                                    <li>{{ $requirements->$type }}</li>
+                                    {{-- @endif
+                                    @endforeach --}}
                                 </ul>
                             </div>
                             {{-- <div class="post-details2  mb-50">
