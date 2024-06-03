@@ -13,6 +13,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\admin\RestoreUser;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\admin\UserController;
+
+use App\Http\Controllers\admin\TestimoniController;
+
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\company\JobController;
 use App\Http\Controllers\admin\CompanyController;
@@ -33,6 +36,8 @@ use App\Http\Controllers\company\CompanyProfilController;
 use App\Http\Controllers\job_seeker\JobDetailsController;
 use App\Http\Controllers\job_seeker\LandingPageController;
 
+use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\TestimoniPublicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,6 +93,11 @@ Route::group([
     Route::delete('/delete-religion/{id}', [RestoreReligionController::class, 'destroy']);
     Route::delete('/delete-user/{id}', [RestoreUser::class, 'destroy']);
     Route::resource('/user', UserController::class);
+
+    Route::resource('/testimoni', TestimoniController::class);
+    Route::get('/testimonis', [TestimoniPublicController::class, 'index'])->name('testimonis.index');
+    Route::get('/job-seeker/testimoni', [TestimoniPublicController::class, 'jobSeekerIndex'])->name('job-seeker.testimoni.index');
+
     Route::resource('/list-perusahaan', CompanyController::class);
     Route::resource('/job-category', JobCategoryController::class);
     Route::resource('/educationLevel', EducationLevelController::class);
