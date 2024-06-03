@@ -46,7 +46,9 @@
                                         </div>
                                         @foreach ($job_time as $key => $job_time)
                                             <label class="container">{{ $job_time->type }}
-                                                <input type="checkbox" name="job_time_type_id"  value="{{ $job_time->type }}">
+                                                <input type="checkbox" value="{{ $job_time->id }}"
+                                                    name="job_time_type_id"
+                                                    @if ($jobTimeType == $job_time->id) checked @endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                         @endforeach
@@ -56,63 +58,33 @@
 
                                 <!-- single three -->
                                 <div class="single-listing">
-                                    <!-- select-Categories start -->
-                                    <div class="select-Categories pb-50">
-                                        <div class="small-section-tittle2">
-                                            <h4>Posted Within</h4>
-                                        </div>
-                                        <label class="container">Any
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="container">Today
-                                            <input type="checkbox" checked="checked active">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="container">Last 2 days
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="container">Last 3 days
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="container">Last 5 days
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="container">Last 10 days
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                    <!-- select-Categories End -->
-                                </div>
-                                <div class="single-listing">
                                     <!-- Range Slider Start -->
                                     <aside class="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow">
                                         <div class="small-section-tittle2">
-                                            <h4>Filter Jobs</h4>
+                                            <h4>Filter Payment</h4>
                                         </div>
                                         <div class="widgets_inner">
                                             <div class="range_item">
                                                 <!-- <div id="slider-range"></div> -->
                                                 <input type="text" class="js-range-slider" value="" />
                                                 <div class="d-flex align-items-center">
-                                                    <div class="price_text">
-                                                        <p>Price :</p>
-                                                    </div>
-                                                    <div class="price_value d-flex justify-content-center">
-                                                        <input type="text" class="js-input-from" id="amount"
-                                                            readonly />
+                                                    {{-- <div class="price_text">
+                                                        <p>Gaji :</p>
+                                                    </div> --}}
+                                                    {{-- <div class="price_value d-flex justify-content-center"> --}}
+                                                    <div class="text-center mt-2">
+                                                        <input type="text" class="js-input-from  form-control"
+                                                            name="range_start" id="amount" />
+
                                                         <span>to</span>
-                                                        <input type="text" class="js-input-to" id="amount"
-                                                            readonly />
+
+                                                        <input type="text" class="js-input-to form-control"
+                                                            name="range_end" id="amount" />
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Filter</button>
+                                        <button type="submit" class="mt-5 btn btn-primary btn-block">Filter</button>
                                     </aside>
                                     <!-- Range Slider End -->
                                 </div>

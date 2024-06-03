@@ -4,6 +4,7 @@ use App\Http\Controllers\job_seeker\JobListingController;
 use App\Http\Controllers\job_seeker\ListJobController;
 use App\Http\Controllers\admin\RequirementController;
 use App\Http\Controllers\job_seeker\ProfileController;
+use App\Http\Controllers\job_seeker\WorkExperienceController;
 use App\Livewire\JobListNavigation;
 use App\Models\User;
 use GuzzleHttp\Middleware;
@@ -12,6 +13,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\admin\RestoreUser;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\admin\UserController;
+
+use App\Http\Controllers\admin\TestimoniController;
+
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\company\JobController;
 use App\Http\Controllers\admin\CompanyController;
@@ -32,6 +36,8 @@ use App\Http\Controllers\company\CompanyProfilController;
 use App\Http\Controllers\job_seeker\JobDetailsController;
 use App\Http\Controllers\job_seeker\LandingPageController;
 
+use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\TestimoniPublicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +57,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/register/proses', [RegisterCompanieController::class, 'Register'])->middleware('guest');
 Route::post('/register/job-seekers/proses', [RegisterController::class, 'Register'])->middleware('guest');
 Route::post("/get-requirement", [JobController::class, 'getrequiremen'])->name('get_requrements');
+
 Route::prefix('/')->group(function () {
     Route::get('/', [LandingPageController::class, 'index']);
     Route::get('/job category', [LandingPageController::class, 'getJobCategory']);
@@ -58,6 +65,7 @@ Route::prefix('/')->group(function () {
     Route::get('/listing-job', [JobListingController::class, 'index']);
     Route::get('/job-details/{id}', [JobDetailsController::class, 'index']);
     Route::resource("/profile", ProfileController::class);
+    Route::resource("/work-experince", WorkExperienceController::class);
 })->middleware('guest');
 
 
@@ -85,6 +93,11 @@ Route::group([
     Route::delete('/delete-religion/{id}', [RestoreReligionController::class, 'destroy']);
     Route::delete('/delete-user/{id}', [RestoreUser::class, 'destroy']);
     Route::resource('/user', UserController::class);
+
+    Route::resource('/testimoni', TestimoniController::class);
+    Route::get('/testimonis', [TestimoniPublicController::class, 'index'])->name('testimonis.index');
+    Route::get('/job-seeker/testimoni', [TestimoniPublicController::class, 'jobSeekerIndex'])->name('job-seeker.testimoni.index');
+
     Route::resource('/list-perusahaan', CompanyController::class);
     Route::resource('/job-category', JobCategoryController::class);
     Route::resource('/educationLevel', EducationLevelController::class);

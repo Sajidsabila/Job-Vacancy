@@ -5,12 +5,16 @@ namespace App\Http\Controllers\job_seeker;
 use App\Http\Controllers\Controller;
 use App\Models\JobCategory;
 use App\Models\Job;
+use App\Models\Testimoni;
 use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
 {
     public function index()
     {
+
+        $testimonis = Testimoni::all();
+
         $categories = JobCategory::limit(8)->get();
         $jobs = Job::all(); // Ambil semua pekerjaan, atau sesuaikan query jika diperlukan
         $jobs = Job::with('jobTime', 'company', 'jobcategory')->get();
@@ -18,6 +22,7 @@ class LandingPageController extends Controller
             "title" => "Job Category",
             "categories" => $categories,
             "jobs" => $jobs,
+            "testimonis" => $testimonis
         ];
 
         return view('job-seekers.index', $data);
@@ -57,5 +62,22 @@ class LandingPageController extends Controller
         ];
 
         return view('job-seekers.job-details', $data);
+    }
+
+    public function Testimoni()
+    {
+        $testimonis = Testimoni::all();
+        $data = [
+            "title" => "Data Testimoni",
+            "testimonis" => $testimonis,
+        ];
+
+        return view('job-seekers.index', $data);
+    }
+
+    public function jobSeekerIndex()
+    {
+        $testimonis = Testimoni::all();
+        return view('job-seeker.testimoni.index', compact('testimonis'));
     }
 }
