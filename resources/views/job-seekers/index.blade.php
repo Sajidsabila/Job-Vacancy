@@ -18,23 +18,13 @@
                         <!-- Search Box -->
                         <div class="row">
                             <div class="col-xl-8">
-                                <!-- form -->
-                                <form action="#" class="search-box">
-                                    <div class="input-form">
-                                        <input type="text" placeholder="Job Tittle or keyword">
+                                <form action="{{ route('job_listing') }}" method="GET"
+                                    class="search-box d-flex align-items-block">
+                                    <div class="input-form input-group col-9">
+                                        <input type="text" name="keyword" placeholder="Job Title or keyword">
                                     </div>
-                                    <div class="select-form">
-                                        <div class="select-itms">
-                                            <select name="select" id="select1">
-                                                <option value="">Location BD</option>
-                                                <option value="">Location PK</option>
-                                                <option value="">Location US</option>
-                                                <option value="">Location UK</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="search-form">
-                                        <a href="#">Find job</a>
+                                    <div class="search-form input-group-append col-3">
+                                        <button type="submit" class="btn btn-primary btn-block">Find job</button>
                                     </div>
                                 </form>
                             </div>
