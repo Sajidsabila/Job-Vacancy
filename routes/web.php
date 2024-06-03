@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\job_seeker\EducationController;
 use App\Http\Controllers\job_seeker\JobListingController;
 use App\Http\Controllers\job_seeker\ListJobController;
 use App\Http\Controllers\admin\RequirementController;
@@ -67,6 +68,7 @@ Route::prefix('/')->group(function () {
     Route::get('/job-details/{id}', [JobDetailsController::class, 'index']);
     Route::resource("/profile", ProfileController::class);
     Route::resource("/work-experince", WorkExperienceController::class);
+    Route::resource("/education-user", EducationController::class);
 })->middleware('guest');
 
 
