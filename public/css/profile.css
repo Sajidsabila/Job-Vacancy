@@ -121,3 +121,12 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 .btn-add:hover {
     color: rgb(97, 97, 227);
 }
+
+.btn-btn-edit {
+    text-decoration: none;
+    color: rgb(181, 178, 7);
+}
+.btn-btn-delete {
+    text-decoration: none;
+    color: rgb(217, 33, 9);
+}

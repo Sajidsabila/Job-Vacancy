@@ -109,6 +109,19 @@
                     console.error(error);
                 });
         });
+
+        function toggleEndYear() {
+            var checkBox = document.getElementById('ongoing');
+            var endYearField = document.getElementById('end_year_field');
+            var endMonthField = document.getElementById('end_month_field');
+            if (checkBox.checked) {
+                endYearField.style.display = 'none';
+                endMonthField.style.display = 'none';
+            } else {
+                endYearField.style.display = 'block';
+                endMonthField.style.display = 'block';
+            }
+        }
     </script>
 </body>
 

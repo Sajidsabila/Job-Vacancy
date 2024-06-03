@@ -23,7 +23,7 @@ class WorkExperienceController extends Controller
             "workexperience" => $workexperience,
             "jobseeker" => $jobseeker
         ]);
-        if (!$workexperience) {
+        if ($workexperience->isEmpty()) {
             return view('job-seekers.work-experience.work-null', $data);
         }
         return view('job-seekers.work-experience.work-null', $data);
