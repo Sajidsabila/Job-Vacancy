@@ -14,10 +14,10 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('job_id');
             $table->unsignedBigInteger('job_seeker_id');
-            $table->string('status', 50)->nullable()->default('pending');
+            $table->string('status', 50)->nullable()->default('Lamaran Terkrim');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('job_id')->references('id')->on('published_jobs')->onDelete('cascade');
+            $table->foreign('job_id')->references('id')->on('jobs')->onDelete('cascade');
             $table->foreign('job_seeker_id')->references('id')->on('job_seekers')->onDelete('cascade');
         });
     }

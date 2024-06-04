@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div class="col-md-9">
-                    @if (isset($education))
+                    @if (isset($workexperience))
                         <form action="{{ URL::to('/education-user/' . $education->id) }}" method="post"
                             enctype="multipart/form-data">
                             @method('put')
@@ -172,7 +172,7 @@
                                         @enderror
                                     </div>
                                     <div class="form-group ml-4" id="end_year_field">
-                                        <label class="form-label" id="end_year_field">Mulai Di Tahun</label>
+                                        <label class="form-label" id="end_year_field">Berakhir Di Tahun</label>
                                         <input type="number" name="end_year" id="end_year_field"
                                             class="form-control @error('end_year')is-invalid @enderror mb-2"
                                             value="{{ isset($education) ? $education->end_year : old('phone') }}">
