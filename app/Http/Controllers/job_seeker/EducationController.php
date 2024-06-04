@@ -66,9 +66,9 @@ class EducationController extends Controller
             $data['job_seeker_id'] = auth()->user()->id;
             $ongoing = $request->has('ongoing') ? true : false;
             $endYear = $ongoing ? null : $request->end_year;
-            $endMonthId = $ongoing ? null : $request->end_month;
+            $endMonth = $ongoing ? null : $request->end_month;
             $data['end_year'] = $endYear;
-            $data["end_month"] = $endMonthId;
+            $data["end_month"] = $endMonth;
             Education::create($data);
             return redirect("/education-user");
         } catch (\Throwable $th) {
@@ -117,11 +117,17 @@ class EducationController extends Controller
         try {
             //code...
             $education = Education::with(['educationlevel'])->findOrFail($id);
+            $ongoing = $request->has('ongoing') ? true : false;
+            $endYear = $ongoing ? null : $request->end_year;
+            $endMonth = $ongoing ? null : $request->end_month;
+            $data['end_year'] = $endYear;
+            $data["end_month"] = $endMonth;
             $education->update($data);
             Alert::success("Berhasil", "Data Berhasil DiEdit");
             return redirect("/education-user");
         } catch (\Throwable $th) {
             Alert::error("Gagal", $th->getMessage());
+            return back();
         }
     }
 

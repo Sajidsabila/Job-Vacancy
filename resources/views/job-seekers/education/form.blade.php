@@ -123,11 +123,11 @@
                                 </div>
                                 <div class="d-flex flex-row gap-3" id="end_field">
                                     <div class="form-group" id="end_month_field">
-                                        <label class="form-label" id="end_month_field">Mulai Di Bulan</label>
+                                        <label class="form-label" id="end_month_field">Berakhir Di Bulan</label>
                                         <br>
                                         <select name="end_month"
                                             class="form-control  @error('end_month')is-invalid @enderror w-100 mb-2"
-                                            id="end_month_field" required>
+                                            id="end_month_field">
                                             <option value="Januari"
                                                 {{ isset($education) ? ($education->end_month == 'Januari' ? 'selected' : '') : '' }}>
                                                 January</option>
