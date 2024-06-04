@@ -22,6 +22,7 @@ return new class extends Migration {
             $table->text('address');
             $table->string('phone');
             $table->text("decription");
+
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('id')->references('id')->on('users');
