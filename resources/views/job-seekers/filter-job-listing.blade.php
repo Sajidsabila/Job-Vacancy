@@ -120,41 +120,46 @@
                                     <!-- single-job-content -->
                                     <!-- single-job-content -->
                                     @foreach ($jobs as $job)
-                                        <div class="single-job-items mb-30">
-                                            <div class="job-items">
-                                                <div class="company-img">
-                                                    <a href="{{ URL::to('/job-details', $job->id) }}"><img
-                                                            src="{{ 'storage/' . $job->company->logo }}"
-                                                            alt=" {{ $job->company->company_name }}" width="100"
-                                                            height="auto"></a>
+                                        <a href="{{ URL::to('/job-details', $job->id) }}" class="single-job-link">
+                                            <div class="single-job-items mb-30">
+                                                <div class="job-items">
+                                                    <div class="company-img">
+                                                        <a href="{{ URL::to('/job-details', $job->id) }}">
+                                                            <img src="{{ 'storage/' . $job->company->logo }}"
+                                                                alt=" {{ $job->company->company_name }}" width="100"
+                                                                height="auto">
+                                                        </a>
+                                                    </div>
+                                                    <div class="job-tittle job-tittle2">
+                                                        <a href="{{ URL::to('/job-details', $job->id) }}">
+                                                            <h4>{{ $job->title }}</h4>
+                                                        </a>
+                                                        <ul>
+                                                            <li>{{ $job->jobcategory->category }}</li>
+                                                            <li><i
+                                                                    class="fas fa-map-marker-alt"></i>{{ $job->job_location }}
+                                                            </li>
+                                                            <li>{{ number_format($job->salary) }}</li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
-                                                <div class="job-tittle job-tittle2">
+                                                <div class="items-link items-link2 f-right">
                                                     <a href="{{ URL::to('/job-details', $job->id) }}">
-
-                                                        <h4>{{ $job->title }}</h4>
-                                                    </a>
-                                                    <ul>
-                                                        <li>{{ $job->jobcategory->category }}</li>
-                                                        <li><i
-                                                                class="fas fa-map-marker-alt"></i>{{ $job->job_location }}
-                                                        </li>
-                                                        <li>{{ number_format($job->salary) }}</li>
-                                                    </ul>
+                                                        {{ $job->jobTime->type }}</a>
+                                                    <span>{{ $job->created_at->diffForHumans() }}</span>
                                                 </div>
                                             </div>
-                                            <div class="items-link items-link2 f-right">
-                                                <a
-                                                    href="{{ URL::to('/job-details', $job->id) }}">{{ $job->jobTime->type }}</a>
-                                                <span>{{ $job->created_at->diffForHumans() }}</span>
-                                            </div>
-                                        </div>
+                                        </a>
                                     @endforeach
                                     <div class="pagination-area pb-115 text-center">
                                         <div class="container">
                                             <div class="row">
                                                 <div class="col-xl-12">
                                                     <div class="single-wrap d-flex justify-content-center">
-                                                        {{ $jobs->links() }}
+                                                        {{-- Memastikan $jobs adalah instance dari LengthAwarePaginator atau Paginator --}}
+                                                        @if ($jobs instanceof \Illuminate\Pagination\LengthAwarePaginator || $jobs instanceof \Illuminate\Pagination\Paginator)
+                                                            {{ $jobs->links() }}
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>

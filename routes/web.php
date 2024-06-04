@@ -58,6 +58,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/register/proses', [RegisterCompanieController::class, 'Register'])->middleware('guest');
 Route::post('/register/job-seekers/proses', [RegisterController::class, 'Register'])->middleware('guest');
 Route::post("/get-requirement", [JobController::class, 'getrequiremen'])->name('get_requrements');
+Route::get('/job_listing', [LandingPageController::class, 'search'])->name('job_listing');
 
 Route::prefix('/')->group(function () {
     Route::get('/', [LandingPageController::class, 'index']);

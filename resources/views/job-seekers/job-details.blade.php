@@ -78,6 +78,7 @@
                                             <li>{{ $requirement->type }}</li>
                                         @endif
                                     @endforeach
+
                                 </ul>
                             </div>
                             {{-- <div class="post-details2  mb-50">
