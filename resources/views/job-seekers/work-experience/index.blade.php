@@ -15,32 +15,32 @@
                     <div class="text-right mt-3">
                         <a href="{{ URL::to('/education-user/create') }}" class="btn-add m-3">+ Tambahkan</a>
                     </div>
-                    @foreach ($educations as $key => $education)
+                    @foreach ($workexperiences as $key => $workexperience)
                         <ul class="list-group  m-3">
                             <li class="list-group-item">
                                 <div class="col-12">
                                     <div class="d-flex">
-                                        <div class="font-weight-bold"> {{ $education->educationlevel->level }}</div>
+                                        <div class="font-weight-bold"> {{ $workexperience->company_name }}</div>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="txt">
-                                        {{ $education->school . ', ' . $education->start_month . '  ' . $education->start_year . ' ' . 'S/D' }}
-                                        @if ($education->ongoing)
+                                        {{ $workexperience->position . ', ' . $workexperience->start_month . '  ' . $workexperience->start_year . ' ' . 'S/D' }}
+                                        @if ($workexperience->ongoing)
                                             Sampai saat ini
                                         @else
-                                            {{ $education->end_month && $education->end_year ? $education->end_month . ' ' . $education->end_year : 'N/A' }}
+                                            {{ $workexperience->end_month && $workexperience->end_year ? $workexperience->end_month . ' ' . $workexperience->end_year : 'N/A' }}
                                         @endif
                                     </div>
                                 </div>
                                 <div class="col-12 d-flex ">
-                                    <a href="{{ URL::to('/education-user/' . $education->id . '/edit') }}"
+                                    <a href="{{ URL::to('/work-experince/' . $workexperience->id . '/edit') }}"
                                         class="btn-btn-edit">Edit</a>
-                                    <form action="{{ URL::to('/education-user/' . $education->id) }}" method="post">
+                                    <form action="{{ URL::to('/work-experince/' . $workexperience->id) }}" method="post">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn-btn-delete ms-2"
-                                            onclick="return confirm('apakah Yakin Ingin Menghapus {{ $education->school }}')">
+                                            onclick="return confirm('apakah Yakin Ingin Menghapus {{ $workexperience->school }}')">
                                             Hapus
                                         </button>
                                     </form>

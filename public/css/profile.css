@@ -129,4 +129,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 .btn-btn-delete {
     text-decoration: none;
     color: rgb(217, 33, 9);
+    background-color: transparent;
+    margin-left: 3px;
+    border: 0;
 }

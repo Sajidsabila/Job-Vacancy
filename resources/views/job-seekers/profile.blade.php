@@ -10,17 +10,30 @@
                         @include('job-seekers.navbar-profile')
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-7">
                     <div class="tab-content">
                         <div class="tab-pane fade active show" id="account-general">
                             <div class="card-body media align-items-center">
                                 <img src="{{ 'storage/' . $jobseeker->photo }}" alt="{{ $jobseeker->first_name }}"
                                     class="d-block ui-w-80">
                                 <div class="media-body ml-4">
-
+                                    <div class="font-weight-bold">
+                                        {{ $jobseeker->first_name . ' ' . $jobseeker->last_name }} <br>
+                                        {{ $jobseeker->user->email }}
+                                    </div>
                                 </div>
                             </div>
                             <hr class="border-light m-0">
+                            <div class="card m-2">
+                                <div class="card-header bg-primary text-white">Data Diri</div>
+
+                                <div class="form-group ml-3">
+                                    <label class="font-weight-bold">{!! $jobseeker->description !!}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card m-2">
+                            <div class="card-header bg-primary text-white">Data Diri</div>
                             <div class="card-body">
                                 <div class="form-group">
                                     <label class="font-weight-bold">First Name</label>
@@ -50,10 +63,6 @@
                                     <label class="font-weight-bold">Alamat Tempat Tinggal</label>
                                     <div class="">{{ $jobseeker->address }}</div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="font-weight-bold">Tentang Diri Anda</label>
-                                    <div class="">{!! $jobseeker->description !!}</div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -63,7 +72,9 @@
                         </a>
                     </div>
                 </div>
+
             </div>
         </div>
+    </div>
     </div>
 @endsection

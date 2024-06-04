@@ -19,11 +19,11 @@ class EducationController extends Controller
     {
         $user = Auth::user();
         $jobseeker = JobSeeker::where('id', $user->id)->first();
-        $educations = Education::where('job_seeker_id', $jobseeker->id)->get();
+        $educations = Education::with('educationlevel')->where('job_seeker_id', $jobseeker->id)->get();
         $data = ([
             "title" => "Profile User",
             "educations" => $educations,
-            "jobseeker" => $jobseeker
+            "jobseeker" => $jobseeker,
         ]);
         if ($educations->isEmpty()) {
             return view('job-seekers.education.education-null', $data);
@@ -57,13 +57,15 @@ class EducationController extends Controller
             'school' => 'required|string',
             'start_year' => 'required|integer|min:1900|max:' . date('Y'),
             'start_month' => 'required',
-            'end_year' => 'nullable|integer|min:1900|max:' . date('Y'),
-            'end_month' => 'nullable',
-            'ongoing' => 'sometimes|boolean',
+            'end_year' => 'sometimes',
+            'end_month' => 'sometimes',
+            // 'ongoing' => 'sometimes|boolean',
         ]);
-
         try {
             $data['job_seeker_id'] = auth()->user()->id;
+            $data['ongoing'] = $request->ongoing == "on" ? 1 : 0;
+            $data['end_month'] = $data['ongoing'] == 1 ? null : $data['end_month'];
+
             $ongoing = $request->has('ongoing') ? true : false;
             $endYear = $ongoing ? null : $request->end_year;
             $endMonth = $ongoing ? null : $request->end_month;
@@ -115,13 +117,14 @@ class EducationController extends Controller
             'ongoing' => 'sometimes|boolean',
         ]);
         try {
-            //code...
-            $education = Education::with(['educationlevel'])->findOrFail($id);
+            $education = Education::findOrFail($id);
+            $data['job_seeker_id'] = auth()->user()->id;
+            $data['ongoing'] = $request->ongoing == "on" ? 1 : 0;
+            $data['end_month'] = $data['ongoing'] == 1 ? null : $data['end_month'];
+
             $ongoing = $request->has('ongoing') ? true : false;
             $endYear = $ongoing ? null : $request->end_year;
             $endMonth = $ongoing ? null : $request->end_month;
-            $data['end_year'] = $endYear;
-            $data["end_month"] = $endMonth;
             $education->update($data);
             Alert::success("Berhasil", "Data Berhasil DiEdit");
             return redirect("/education-user");
@@ -136,6 +139,15 @@ class EducationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+
+            $education = Education::findOrFail($id);
+            $education->delete();
+            Alert::success("Berhasil", "Hapus Data Berhasil");
+            return redirect("/education-user");
+        } catch (\Throwable $th) {
+            Alert::error("Gagal", $th->getMessage());
+            return back();
+        }
     }
 }

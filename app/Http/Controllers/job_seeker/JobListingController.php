@@ -40,5 +40,5 @@ class JobListingController extends Controller
 
     }
 
-    
+
 }

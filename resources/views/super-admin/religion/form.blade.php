@@ -1,19 +1,21 @@
 @extends('adminTemplate.layouts.main')
 @section('container')
+    @include('sweetalert::alert')
     @if (isset($religion))
-        <form method="POST" action="{{ URL::to('admin/religion' . $religion->religion) }}" autocomplete="off">
+        <form method="POST" action="{{ URL::to('admin/religion/' . $religion->id) }}" autocomplete="off">
             @method('put')
-    @else
-        <form method="POST" action="{{ URL::to('admin/religion') }}" autocomplete="off">
+        @else
+            <form method="POST" action="{{ URL::to('admin/religion') }}" autocomplete="off">
     @endif
 
     @csrf
     <div class="row">
         <div class="col-6">
-    
+
             <div class="form-group">
                 <label for="religion">Religion</label>
-                <input type="text" id="religion" name="religion" class="form-control @error('religion')is-invalid @enderror"
+                <input type="text" id="religion" name="religion"
+                    class="form-control @error('religion')is-invalid @enderror"
                     value="{{ isset($religion) ? $religion->religion : old('religion') }}">
                 @error('religion')
                     <div class="invalid-feedback">
