@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\ApplyProcessController;
 use App\Http\Controllers\job_seeker\EducationController;
 use App\Http\Controllers\job_seeker\JobListingController;
 use App\Http\Controllers\job_seeker\ListJobController;
@@ -100,6 +101,8 @@ Route::group([
     Route::resource('/testimoni', TestimoniController::class);
     Route::get('/testimonis', [TestimoniPublicController::class, 'index'])->name('testimonis.index');
     Route::get('/job-seeker/testimoni', [TestimoniPublicController::class, 'jobSeekerIndex'])->name('job-seeker.testimoni.index');
+
+    Route::resource('/applyProcess', ApplyProcessController::class);
 
     Route::resource('/list-perusahaan', CompanyController::class);
     Route::resource('/job-category', JobCategoryController::class);
