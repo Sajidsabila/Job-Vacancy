@@ -52,7 +52,7 @@ class ReligionController extends Controller
 
         Religion::create($data);
         Alert::success('Sukses', 'Add data success.');
-        return redirect()->route('super-admin.religion.index')->with('success', 'Religion added successfully.');
+        return redirect("/admin/religion")->with('success', 'Religion added successfully.');
     }
 
     /**
@@ -76,7 +76,7 @@ class ReligionController extends Controller
     {
         $religion = Religion::find($id);
         if (!$religion) {
-            return redirect('super-admin.religion.index')->with("errorMessage", "Religion Tidak Ditemukan");
+            return view('super-admin.religion.index')->with("errorMessage", "Religion Tidak Ditemukan");
         }
         $data = [
             "title" => "Edit Religion",
@@ -99,7 +99,6 @@ class ReligionController extends Controller
         ];
 
         $data = $request->validate([
-            'id' => 'required|unique:religions,id,' . $id,
             'religion' => 'required|min:3',
         ], $messages);
 
@@ -107,10 +106,10 @@ class ReligionController extends Controller
             $religion = Religion::find($id);
             $religion->update($data);
             Alert::success('Sukses', 'Edit data success.');
-            return redirect()->route('religion.index');
+            return redirect('/admin/religion');
         } catch (\Throwable $th) {
             Alert::error('Error', $th->getMessage());
-            return redirect('super-admin.religion.index');
+            return redirect('/admin/religion');
         }
     }
 

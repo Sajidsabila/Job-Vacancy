@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-md-9">
                     <div class="text-right mt-3">
-                        <a href="" class="btn-add m-3">+ Tambahkan</a>
+                        <a href="{{ URL::to('/work-experince/create') }}" class="btn-add m-3">+ Tambahkan</a>
                     </div>
                     <div class="container d-flex justify-content-center align-items-center my-5">
                         <div class="alert alert-warning text-center" role="alert">
