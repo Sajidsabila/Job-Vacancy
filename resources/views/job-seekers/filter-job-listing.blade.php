@@ -1,4 +1,4 @@
-        <form action="{{ URL::to('listing-job') }}" method="get">
+ <form action="{{ URL::to('listing-job') }}" method="get">
             <div class="job-listing-area pt-120 pb-120">
                 <div class="container">
                     <div class="row">
@@ -45,13 +45,15 @@
                                             <h4>Job Type</h4>
                                         </div>
                                         @foreach ($job_time as $key => $job_time)
-                                            <label class="container">{{ $job_time->type }}
-                                                <input type="checkbox" value="{{ $job_time->id }}"
-                                                    name="job_time_type_id"
-                                                    @if ($jobTimeType == $job_time->id) checked @endif>
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        @endforeach
+    <label class="container">
+        {{ $job_time->type }}
+        <input type="checkbox" value="{{ $job_time->id }}"
+            name="job_time_type_id"
+            @if ($jobTimeType == $job_time->id) checked @endif
+            @if ($jobTimeType == null || in_array($job_time->id, explode(',', $jobTimeType))) checked @endif>
+        <span class="checkmark"></span>
+    </label>
+@endforeach
                                     </div>
                                     <!-- select-Categories End -->
                                 </div>
