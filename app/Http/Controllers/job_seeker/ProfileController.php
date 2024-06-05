@@ -81,6 +81,20 @@ class ProfileController extends Controller
             return back();
         }
     }
+
+    public function deleteskill(string $id)
+    {
+        try {
+            $skill = Skill::findOrFail($id);
+            $skill->delete();
+            Alert::success("Sukses", "Hapus Data Sukses");
+            return redirect("/profile");
+        } catch (\Throwable $th) {
+            Alert::error("Gagal", $th->getMessage());
+            return back();
+        }
+
+    }
     public function store(Request $request)
     {
         $data = $request->validate([

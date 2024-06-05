@@ -87,7 +87,7 @@
                                             <div class="col-12 d-flex mt-3">
                                                 <a href="{{ URL::to('/profile/skills/edit/' . $skill->id) }}"
                                                     class="btn-btn-edit">Edit</a>
-                                                <form action="{{ URL::to('/education-user/' . $skill->id) }}"
+                                                <form action="{{ URL::to('/profile/skills/delete/' . $skill->id) }}"
                                                     method="post">
                                                     @csrf
                                                     @method('delete')
