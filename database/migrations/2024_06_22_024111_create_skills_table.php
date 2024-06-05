@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('job_seeker_id');
             $table->string('skills');
-            $table->foreign('job_seeker_id')->references('id')->on('job_seekers')->onDelete('cascade');
+            $table->foreign('job_seeker_id')->references('id')->on('job_seekers');
             $table->timestamps();
         });
     }

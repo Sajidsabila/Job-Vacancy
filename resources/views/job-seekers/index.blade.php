@@ -1,6 +1,15 @@
 @extends ('landing-page.layouts.main')
 @section('content')
     <main>
+
+        <style>
+            .image {
+                max-width: 10px;
+                /* make the image responsive */
+                height: 10px;
+                /* maintain the image's aspect ratio */
+            }
+        </style>
         <!-- slider Area Start-->
         <div class="slider-area ">
             <!-- Mobile Menu -->
@@ -171,79 +180,54 @@
         </div>
         </div>
         <!-- How  Apply Process End-->
-        <!-- Testimonial Start -->
-
+        <!-- Testimonial Area Start -->
         <div class="testimonial-area testimonial-padding">
             <div class="container">
-                <!-- Testimonial contents -->
                 <div class="row d-flex justify-content-center">
                     <div class="col-xl-8 col-lg-8 col-md-10">
                         <div class="h1-testimonial-active dot-style">
-                            <!-- Single Testimonial -->
-                            @foreach ($testimonis as $testimoni)
+                            @foreach ($testimoni as $item)
                                 <div class="single-testimonial text-center">
-                                    <!-- Testimonial Content -->
                                     <div class="testimonial-caption">
-                                        <!-- founder -->
                                         <div class="testimonial-founder">
                                             <div class="founder-img mb-30">
-                                                <img src="{{ asset('storage/' . $testimoni->image) }}"
-                                                    alt="{{ $testimoni->name }}">
-                                                <span>{{ $testimoni->name }}</span>
-                                                <p>{{ $testimoni->job }}</p>
+                                                <img class="rounded-circle shadow-4-strong" src="{{ asset('storage/' . $item->jobSeeker->photo) }}"
+                                                    alt="">
+                                                <span>{{ $item->jobSeeker->first_name }}
+                                                    {{ $item->jobSeeker->last_name }}</span>
+                                                <p>{{ $item->job }}</p>
                                             </div>
                                         </div>
                                         <div class="testimonial-top-cap">
-                                            <p>{{ $testimoni->quote }}</p>
+                                            <p>{{ $item->quote }}</p>
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
-                            <!-- Single Testimonial -->
-                            {{-- <div class="single-testimonial text-center">
-                                <!-- Testimonial Content -->
-                                <div class="testimonial-caption ">
-                                    <!-- founder -->
-                                    <div class="testimonial-founder  ">
-                                        <div class="founder-img mb-30">
-                                            <img src="{{ asset('img/testmonial/testimonial-founder.png') }}"
-                                                alt="">
-                                            <span>Margaret Lawson</span>
-                                            <p>Creative Director</p>
-                                        </div>
-                                    </div>
-                                    <div class="testimonial-top-cap">
-                                        <p>“I am at an age where I just want to be fit and healthy our bodies are our
-                                            responsibility! So start caring for your body and it will care for you. Eat
-                                            clean it will care for you and workout hard.”</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Testimonial -->
-                            <div class="single-testimonial text-center">
-                                <!-- Testimonial Content -->
-                                <div class="testimonial-caption ">
-                                    <!-- founder -->
-                                    <div class="testimonial-founder  ">
-                                        <div class="founder-img mb-30">
-                                            <img src="{{ asset('img/testmonial/testimonial-founder.png') }}"
-                                                alt="">
-                                            <span>Margaret Lawson</span>
-                                            <p>Creative Director</p>
-                                        </div>
-                                    </div>
-                                    <div class="testimonial-top-cap">
-                                        <p>“I am at an age where I just want to be fit and healthy our bodies are our
-                                            responsibility! So start caring for your body and it will care for you. Eat
-                                            clean it will care for you and workout hard.”</p>
-                                    </div>
-                                </div>
-                            </div> --}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Testimonial Area End -->
+
+        <!-- Hero Area Start-->
+        <div class="slider-area ">
+            <div class="single-slider section-overly slider-height2 d-flex align-items-center"
+                data-background="/img/hero/about.jpg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap text-center">
+                                <h2>About us</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Hero Area End -->
+
         <!-- Testimonial End -->
         <!-- Support Company Start-->
         <div class="support-company-area support-padding fix">

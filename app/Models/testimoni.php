@@ -9,9 +9,13 @@ class Testimoni extends Model
 {
     use HasFactory;
 
-    protected $table = 'testimoni'; // Pastikan nama tabel adalah 'testimonials'
-
     protected $fillable = [
-        'name', 'job', 'quote', 'image'
+        'job_seeker_id',
+        'quote',
+        'job',
     ];
+    public function jobSeeker()
+    {
+        return $this->belongsTo(JobSeeker::class);
+    }
 }

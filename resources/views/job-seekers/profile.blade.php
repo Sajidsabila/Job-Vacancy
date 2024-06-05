@@ -25,7 +25,7 @@
                             </div>
                             <hr class="border-light m-0">
                             <div class="card m-2">
-                                <div class="card-header bg-primary text-white">Data Diri</div>
+                                <div class="card-header bg-primary text-white">Deskripsi Tentang Diri Anda</div>
 
                                 <div class="form-group ml-3">
                                     <label class="font-weight-bold">{!! $jobseeker->description !!}</label>
@@ -33,7 +33,17 @@
                             </div>
                         </div>
                         <div class="card m-2">
-                            <div class="card-header bg-primary text-white">Data Diri</div>
+                            <div class="card-header bg-primary text-white">
+                                <ul class="nav nav-pills card-header-pills d-flex ">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#">Data Diri</a>
+                                    </li>
+                                    <li class="nav-item ml-auto">
+                                        <a class="nav-link"
+                                            href="{{ URL::to('/profile/' . $jobseeker->id . '/edit') }}">Edit Data</a>
+                                    </li>
+                                </ul>
+                            </div>
                             <div class="card-body">
                                 <div class="form-group">
                                     <label class="font-weight-bold">First Name</label>
@@ -65,12 +75,37 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="card m-2">
+                            <div class="card-header bg-primary text-white">Kemampuan</div>
+
+                            <div class="form-group ml-3">
+
+                                <ul class="list-group  m-3">
+                                    @foreach ($skills as $skill)
+                                        <li class="list-group-item">{{ $skill->skill }}
+                                            <div class="col-12 d-flex mt-3">
+                                                <a href="{{ URL::to('/profile/skills/edit/' . $skill->id) }}"
+                                                    class="btn-btn-edit">Edit</a>
+                                                <form action="{{ URL::to('/profile/skills/delete/' . $skill->id) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit" class="btn-btn-delete ms-2"
+                                                        onclick="return confirm('apakah Yakin Ingin Menghapus {{ $skill->skill }}')">
+                                                        Hapus
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </li>
+                                    @endforeach
+
+                                </ul>
+                                <a href="{{ URL::to('/profile/create') }}" class="btn-add m-4">+ Tambahkan</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="text-left m-4">
-                        <a href="{{ URL::to('/profile/' . $jobseeker->id . '/edit') }}" class="btn btn-warning">
-                            Update Data
-                        </a>
-                    </div>
+
                 </div>
 
             </div>

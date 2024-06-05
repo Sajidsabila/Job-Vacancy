@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\admin\ApplyProcessController;
 use App\Http\Controllers\job_seeker\EducationController;
+use App\Http\Controllers\job_seeker\JobHistoryController;
 use App\Http\Controllers\job_seeker\JobListingController;
 use App\Http\Controllers\job_seeker\ListJobController;
 use App\Http\Controllers\admin\RequirementController;
 use App\Http\Controllers\job_seeker\ProfileController;
 use App\Http\Controllers\job_seeker\WorkExperienceController;
 use App\Livewire\JobListNavigation;
+use App\Models\JobHistory;
 use App\Models\User;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
@@ -36,11 +38,10 @@ use App\Http\Controllers\admin\RestoreJobTimeTypeController;
 use App\Http\Controllers\admin\RestoreReligionController;
 
 use App\Http\Controllers\company\CompanyProfilController;
+use App\Http\Controllers\job_seeker\AboutController;
+use App\Http\Controllers\job_seeker\ContactController;
 use App\Http\Controllers\job_seeker\JobDetailsController;
 use App\Http\Controllers\job_seeker\LandingPageController;
-
-use App\Http\Controllers\TestimonialController;
-use App\Http\Controllers\TestimoniPublicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,9 +69,22 @@ Route::prefix('/')->group(function () {
     Route::get('/job-list', [ListJobController::class, 'index']);
     Route::get('/listing-job', [JobListingController::class, 'index']);
     Route::get('/job-details/{id}', [JobDetailsController::class, 'index']);
+    Route::post('/send-letter', [JobDetailsController::class, 'store']);
     Route::resource("/profile", ProfileController::class);
+    Route::get('/about', [AboutController::class, 'index']);
+    Route::post('/contact', [ContactController::class, 'index']);
+    Route::resource('/contact', ContactController::class);
+    Route::get('/job-seekers/contact', [ContactController::class, 'contact'])->name('job-seekers.contact');
+    Route::get('/testimonials', [ProfileController::class, 'showTestimonials'])->name('testimonials');
+    Route::get('job-seekers/contact', [ContactController::class, 'index'])->name('job-seekers.contact');
+    Route::post('job-seekers/contact/store', [ContactController::class, 'store']);
     Route::resource("/work-experince", WorkExperienceController::class);
     Route::resource("/education-user", EducationController::class);
+    Route::post("/profil/skills/create", [ProfileController::class, 'storeskill']);
+    Route::get('/profile/skills/edit/{id}', [ProfileController::class, "editskill"]);
+    Route::put('/profile/skills/update/{id}', [ProfileController::class, "updateskill"]);
+    Route::delete('/profile/skills/delete/{id}', [ProfileController::class, "deleteskill"]);
+    Route::get('/job-history', [JobHistoryController::class, "index"]);
 })->middleware('guest');
 
 
@@ -80,6 +94,7 @@ Route::group([
     'prefix' => 'admin',
     'as' => 'admin.'
 ], function () {
+
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
     Route::resource('/configuration', ConfigurationController::class);
     Route::resource('/job-category', JobCategoryController::class);
@@ -100,8 +115,8 @@ Route::group([
     Route::resource('/user', UserController::class);
 
     Route::resource('/testimoni', TestimoniController::class);
-    Route::get('/testimonis', [TestimoniPublicController::class, 'index'])->name('testimonis.index');
-    Route::get('/job-seeker/testimoni', [TestimoniPublicController::class, 'jobSeekerIndex'])->name('job-seeker.testimoni.index');
+    // Route::get('/testimonis', [TestimoniPublicController::class, 'index'])->name('testimonis.index');
+    // Route::get('/job-seeker/testimoni', [TestimoniPublicController::class, 'jobSeekerIndex'])->name('job-seeker.testimoni.index');
 
     Route::resource('/applyProcess', ApplyProcessController::class);
 
@@ -130,6 +145,7 @@ Route::group([
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/company-profile', CompanyProfilController::class);
     Route::resource('/lowongan-kerja', JobController::class);
+    Route::get('/lowongan-kerja/detail_candidate/{job_seeker_id}', [JobController::class, 'showJobSeeker']);
 });
 
 Route::post('/auth', [AuthController::class, 'login']);

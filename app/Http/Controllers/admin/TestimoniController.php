@@ -54,8 +54,8 @@ class TestimoniController extends Controller
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'job' => 'required|string|max:255',
-        'quote' => 'required|string|max:255',
-        'image' => 'required|mimes:jpg,png,jpeg|max:1024', // Validate image
+            'quote' => 'required|string|max:255',
+            'image' => 'required|mimes:jpg,png,jpeg|max:1024', // Validate image
         ], $messages);
 
         if ($request->hasFile('image')) {
