@@ -9,13 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class ApplyProcess extends Model
 {
     use HasFactory;
-    protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
-
-    protected $fillable = [
-        'icon',
-        'process',
-        'description',
-    ];
+    protected $guarded =[];
     
     use SoftDeletes;
  

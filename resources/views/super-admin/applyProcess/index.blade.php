@@ -8,39 +8,37 @@ ore @extends ('adminTemplate.layouts.main')
     <table class="table table-striped" id="datatable1">
         <thead>
             <tr>
-                <th>No</th>
+                <th width='5%'>No</th>
                 <th>Icon</th>
                 <th>Title</th>
                 <th>Description</th>
-                <th>Action</th>
+                <th width='15%'>Action</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($applyProcesses as $key => $applyProcess)
                 <tr>
                     <td>{{ $key + 1 }}</td>
-                    <td>
+                    <td class="align-middle">
                         <div class="services-ion">
-                            <span class="{{ $applyProcess->icon }}" style = "width: 1000px; "></span>
+                            <span class="{{ $applyProcess->icon }}"></span>
                         </div>
                     </td>
-                    <td>{{ $applyProcess->applyProcess }}</td>
+                    <td class="align-middle">{{ $applyProcess->process }}</td>
+                    <td class="align-middle">{{ $applyProcess->description }}</td>
                     <td>
                         <div class="d-flex">
-                            <a href="{{ URL::to('applyProcess/' . $applyProcess->id) }}"
-                                class="mr-2 btn btn-info btn-sm">Info</a>
                             <a href="{{ URL::to('/admin/applyProcess/' . $applyProcess->id . '/edit') }}"
-                                class="mr-2 btn btn-warning btn-sm">Edit</a>
+                                class="btn btn-sm btn-warning mr-2">Edit</a>
                             <form action="{{ URL::to('/admin/applyProcess/' . $applyProcess->id) }}" method="post">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" class="btn btn-sm btn-danger"
+                                <button type="submit" class="btn btn-danger btn-sm px-2"
                                     onclick="return confirm('apakah Yakin Ingin Menghapus {{ $applyProcess->name }}')">
                                     Hapus
                                 </button>
                             </form>
                         </div>
-
                     </td>
             @endforeach
             </tr>
