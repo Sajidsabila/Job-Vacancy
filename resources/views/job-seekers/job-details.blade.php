@@ -1,6 +1,6 @@
 @extends ('landing-page.layouts.main')
 @section('content')
-    <main>
+    <main> @include('sweetalert::alert')
 
         <!-- Hero Area Start-->
         <div class="slider-area ">
@@ -22,6 +22,42 @@
         <div class="job-post-company pt-120 pb-120">
             <div class="container">
                 <div class="row justify-content-between">
+                    <!-- Button trigger modal -->
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Add Skill File</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Form untuk mengunggah file skill -->
+                                    <form action="{{ URL::to('/send-letter') }}" method="POST"
+                                        enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label for="skillFile">Lampirkan Lamaran</label>
+                                            <input type="hidden" class="form-control" value="{{ $job->id }}"
+                                                id="skillFile" name="job_id" required>
+                                            <input type="file" class="form-control" id="skillFile" name="file"
+                                                required>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     {{-- @foreach ($jobs as $job) --}}
                     <!-- Left Content -->
                     <div class="col-xl-7 col-lg-8">
@@ -114,7 +150,9 @@
                                 {{-- <li>Application date : <span>12 Sep 2020</span></li> --}}
                             </ul>
                             <div class="apply-btn2">
-                                <a href="#" class="btn">Apply Now</a>
+                                <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+                                    Lamar Pekerjaan
+                                </button>
                             </div>
                         </div>
                         <div class="post-details4  mb-50">
