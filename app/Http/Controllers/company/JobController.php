@@ -5,6 +5,8 @@ namespace App\Http\Controllers\company;
 use App\Models\Job;
 use App\Models\Company;
 use App\Models\JobCategory;
+use App\Models\JobHistory;
+use App\Models\JobSeeker;
 use App\Models\JobTimeType;
 use App\Models\requirement;
 use Illuminate\Http\Request;
@@ -97,14 +99,26 @@ class JobController extends Controller
     public function show(string $id)
     {
         $job = Job::with('jobcategory')->findOrFail($id);
+        $jobhistoris = JobHistory::with(['jobseeker', 'job'])->where('job_id', $job->id)->get();
         $data = ([
             "title" => "Detail Data Lowongan",
-            "job" => $job
+            "job" => $job,
+            "jobhistoris" => $jobhistoris
         ]);
 
         return view("company.job.detail", $data);
     }
+    public function showJobSeeker($id)
+    {
+        $jobhistori = JobHistory::with(['job', 'job.company', 'jobseeker'])->where('job_seeker_id', $id)->firstOrFail();
 
+        $jobseeker = JobSeeker::findOrFail($id);
+        $data = ([
+            "jobhistori" => $jobhistori,
+            "jobseeker" => $jobseeker
+        ]);
+        return view("company.job.candidate-detail", $data);
+    }
     /**
      * Show the form for editing the specified resource.
      */

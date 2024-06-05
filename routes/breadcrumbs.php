@@ -225,6 +225,31 @@ Breadcrumbs::for('admin.jobTimeType.show', function (BreadcrumbTrail $trail, $id
     $trail->push('Show', route('admin.jobTimeType.show', $id));
 });
 
+// Admin Home > apply Process
+Breadcrumbs::for('admin.applyProcess.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('apply Process', route('admin.applyProcess.index'));
+});
+
+// Admin Home > applyProcess > Create
+Breadcrumbs::for('admin.applyProcess.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.applyProcess.index');
+    $trail->push('Create', route('admin.applyProcess.create'));
+});
+
+// Admin Home > applyProcess > Edit
+Breadcrumbs::for('admin.applyProcess.edit', function (BreadcrumbTrail $trail, $id) {
+    $trail->parent('admin.applyProcess.index');
+    $trail->push('Edit', route('admin.applyProcess.edit', $id));
+});
+
+// Admin Home > applyProcess > Show
+Breadcrumbs::for('admin.applyProcess.show', function (BreadcrumbTrail $trail, $id) {
+    $trail->parent('admin.applyProcess.index');
+    $trail->push('Show', route('admin.applyProcess.show', $id));
+});
+
+
 // Admin Home > Trash Job Categories
 Breadcrumbs::for('admin.trash-job-category', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.dashboard');
