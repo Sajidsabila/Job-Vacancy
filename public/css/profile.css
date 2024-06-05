@@ -112,3 +112,24 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
     width: 100%;
     max-width: 100%;
 }
+.btn-add {
+    text-decoration: none;
+    color: rgb(76, 76, 203);
+    font-size: 20px;
+}
+
+.btn-add:hover {
+    color: rgb(97, 97, 227);
+}
+
+.btn-btn-edit {
+    text-decoration: none;
+    color: rgb(181, 178, 7);
+}
+.btn-btn-delete {
+    text-decoration: none;
+    color: rgb(217, 33, 9);
+    background-color: transparent;
+    margin-left: 3px;
+    border: 0;
+}

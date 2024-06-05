@@ -4,6 +4,7 @@ namespace App\Http\Controllers\job_seeker;
 
 use App\Models\Religion;
 use App\Models\JobSeeker;
+use App\Models\Skill;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -16,11 +17,14 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $religions = Religion::all();
-        $jobseeker = JobSeeker::where('id', $user->id)->first();
+
+        $jobseeker = JobSeeker::with('user')->where('id', $user->id)->first();
+        $skills = Skill::with('jobseeker')->where('job_seeker_id', $user->id)->get();
         $data = ([
-            "title" => "Profile Perusahaan",
+            "title" => "Profile User",
             "jobseeker" => $jobseeker,
-            "religions" => $religions
+            "religions" => $religions,
+            "skills" => $skills
         ]);
         if (!$jobseeker) {
             return view('job-seekers.form-profile', $data);
@@ -28,6 +32,55 @@ class ProfileController extends Controller
         return view('job-seekers.profile', $data);
     }
 
+    public function create()
+    {
+        return view("job-seekers.skills-form");
+    }
+
+    public function storeskill(Request $request)
+    {
+        $data = $request->validate([
+            "skill" => "required"
+        ]);
+
+        try {
+            $data['job_seeker_id'] = auth()->user()->id;
+            Skill::create($data);
+            Alert::success("Berhasil", "Data Berhasil Ditambahkan");
+            return redirect("/profile");
+        } catch (\Throwable $th) {
+            Alert::error("Berhasil", "Data Berhasil Ditambahkan");
+            return back();
+        }
+    }
+
+    public function editskill(string $id)
+    {
+        $skill = Skill::with(['jobseeker'])->findOrFail($id);
+        $data = ([
+            "skill" => $skill,
+        ]);
+
+        return view('job-seekers.skills-form', $data);
+    }
+
+    public function updateskill(Request $request, string $id)
+    {
+
+        $data = $request->validate([
+            "skill" => "required"
+        ]);
+
+        try {
+            $skill = Skill::findOrFail($id);
+            $skill->update($data);
+            Alert::success("Berhasil", "Data BErhasil Ditambahkan");
+            return redirect("/profile");
+        } catch (\Throwable $th) {
+            Alert::error("Gagal", $th->getMessage());
+            return back();
+        }
+    }
     public function store(Request $request)
     {
         $data = $request->validate([

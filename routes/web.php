@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\admin\ApplyProcessController;
+use App\Http\Controllers\job_seeker\EducationController;
 use App\Http\Controllers\job_seeker\JobListingController;
 use App\Http\Controllers\job_seeker\ListJobController;
 use App\Http\Controllers\admin\RequirementController;
 use App\Http\Controllers\job_seeker\ProfileController;
+use App\Http\Controllers\job_seeker\WorkExperienceController;
 use App\Livewire\JobListNavigation;
 use App\Models\User;
 use GuzzleHttp\Middleware;
@@ -55,17 +58,26 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/register/proses', [RegisterCompanieController::class, 'Register'])->middleware('guest');
 Route::post('/register/job-seekers/proses', [RegisterController::class, 'Register'])->middleware('guest');
 Route::post("/get-requirement", [JobController::class, 'getrequiremen'])->name('get_requrements');
+Route::get('/job_listing', [LandingPageController::class, 'search'])->name('job_listing');
+
 Route::prefix('/')->group(function () {
     Route::get('/', [LandingPageController::class, 'index']);
     Route::get('/job category', [LandingPageController::class, 'getJobCategory']);
     Route::get('/job-list', [ListJobController::class, 'index']);
     Route::get('/listing-job', [JobListingController::class, 'index']);
     Route::get('/job-details/{id}', [JobDetailsController::class, 'index']);
+    Route::post('/send-letter', [JobDetailsController::class, 'store']);
     Route::resource("/profile", ProfileController::class);
     Route::get('/about', [AboutController::class, 'index']);
     Route::post('/contact', [ContactController::class, 'index']);
     Route::resource('/contact', ContactController::class);
     Route::get('/job-seekers/contact', [ContactController::class, 'contact'])->name('job-seekers.contact');
+    Route::resource("/work-experince", WorkExperienceController::class);
+    Route::resource("/education-user", EducationController::class);
+    Route::post("/profil/skills/create", [ProfileController::class, 'storeskill']);
+    Route::get('/profile/skills/edit/{id}', [ProfileController::class, "editskill"]);
+    Route::put('/profile/skills/update/{id}', [ProfileController::class, "updateskill"]);
+})->middleware('guest');
 
 })->middleware('guest');
 
@@ -98,6 +110,8 @@ Route::group([
     Route::resource('/testimoni', TestimoniController::class);
     // Route::get('/testimonis', [TestimoniPublicController::class, 'index'])->name('testimonis.index');
     // Route::get('/job-seeker/testimoni', [TestimoniPublicController::class, 'jobSeekerIndex'])->name('job-seeker.testimoni.index');
+
+    Route::resource('/applyProcess', ApplyProcessController::class);
 
     Route::resource('/list-perusahaan', CompanyController::class);
     Route::resource('/job-category', JobCategoryController::class);

@@ -41,7 +41,7 @@
                             </div>
                             <hr class="border-light m-0">
                             <div class="card-body">
-                                <div class="d-flex flex-row">
+                                <div class="d-flex flex-row ">
                                     <div class="form-group">
                                         <label class="form-label">First Name</label>
                                         <input type="text" name="first_name"
@@ -81,7 +81,7 @@
                                     <label class="form-label">Nik</label>
                                     <input type="number" name="nik"
                                         class="form-control @error('nik')is-invalid @enderror mb-2"
-                                        value="{{ isset($jobseeker) ? $jobseeker->nik : old('nik') }}">
+                                        value="{{ isset($jobseeker) ? $jobseeker->nik : old('nik') }}" maxlength="16">
                                     @error('nik')
                                         <div class="invalid-feedback">
                                             {{ $message }}

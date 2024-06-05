@@ -34,6 +34,7 @@ class ConfigurationController extends Controller
             'company_addres' => 'required',
             'phone' => 'required|numeric',
             'email' => 'required|email',
+            'tagline' => 'required',
             'description' => 'required'
         ]);
         try {
@@ -70,6 +71,7 @@ class ConfigurationController extends Controller
             'company_addres' => 'required',
             'phone' => 'required|numeric',
             'email' => 'required|email',
+            'tagline' => 'required',
             'description' => 'required'
         ]);
         try {

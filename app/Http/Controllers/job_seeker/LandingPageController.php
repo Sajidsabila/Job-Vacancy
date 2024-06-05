@@ -5,6 +5,7 @@ namespace App\Http\Controllers\job_seeker;
 use App\Http\Controllers\Controller;
 use App\Models\JobCategory;
 use App\Models\Job;
+use App\Models\JobTimeType;
 use App\Models\Testimoni;
 use Illuminate\Http\Request;
 
@@ -79,5 +80,38 @@ class LandingPageController extends Controller
     {
         $testimonis = Testimoni::all();
         return view('job-seeker.testimoni.index', compact('testimonis'));
+    }
+
+    public function search(Request $request)
+    {
+        $jobCategoryId = Request()->input("job_category_id");
+        $jobTimeType = Request()->input("job_time_type_id");
+        $job_category = JobCategory::all();
+        $job_time = JobTimeType::all();
+        $jobEloquent = Job::with('jobTime', 'company', 'jobcategory');
+        if ($jobCategoryId) {
+            $jobEloquent->where("job_category_id", $jobCategoryId);
+        } else if ($jobTimeType) {
+            $jobEloquent->where("job_time_type_id", $jobTimeType);
+        }
+        $jobs = $jobEloquent->paginate(10);
+        $totalJob = $jobEloquent->count();
+
+        $data = ([
+            "job_category" => $job_category,
+            "job_time" => $job_time,
+            "jobs" => $jobs,
+            "totalJob" => $totalJob,
+            'jobCategoryId' => $jobCategoryId,
+            "jobTimeType" => $jobTimeType
+
+        ]);
+
+        $keyword = $request->input('keyword');
+        $jobs = Job::where('title', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('description', 'LIKE', '%' . $keyword . '%')
+                    ->get();
+
+        return view('job-seekers.job-listing', ['jobs' => $jobs], $data);
     }
 }
