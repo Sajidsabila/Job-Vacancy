@@ -13,7 +13,7 @@
                 </div>
                 <div class="col-md-9">
                     <div class="text-right mt-3">
-                        <a href="{{ URL::to('/education-user/create') }}" class="btn-add m-3">+ Tambahkan</a>
+                        <a href="{{ URL::to('/work-experince/create') }}" class="btn-add m-3">+ Tambahkan</a>
                     </div>
                     @foreach ($workexperiences as $key => $workexperience)
                         <ul class="list-group  m-3">

@@ -18,12 +18,10 @@ class EducationController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $jobseeker = JobSeeker::where('id', $user->id)->first();
-        $educations = Education::with('educationlevel')->where('job_seeker_id', $jobseeker->id)->get();
+        $educations = Education::with('educationlevel')->where('job_seeker_id', $user->id)->get();
         $data = ([
             "title" => "Profile User",
             "educations" => $educations,
-            "jobseeker" => $jobseeker,
         ]);
         if ($educations->isEmpty()) {
             return view('job-seekers.education.education-null', $data);

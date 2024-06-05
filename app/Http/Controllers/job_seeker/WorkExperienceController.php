@@ -17,12 +17,10 @@ class WorkExperienceController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $jobseeker = JobSeeker::with('user')->where('id', $user->id)->first();
-        $workexperiences = WorkExperience::where('job_seeker_id', $jobseeker->id)->get();
+        $workexperiences = WorkExperience::where('job_seeker_id', $user->id)->get();
         $data = ([
             "title" => "Profile User",
-            "workexperiences" => $workexperiences,
-            "jobseeker" => $jobseeker
+            "workexperiences" => $workexperiences
         ]);
         if ($workexperiences->isEmpty()) {
             return view('job-seekers.work-experience.work-null', $data);
