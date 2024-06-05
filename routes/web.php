@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\admin\ApplyProcessController;
 use App\Http\Controllers\job_seeker\EducationController;
+use App\Http\Controllers\job_seeker\JobHistoryController;
 use App\Http\Controllers\job_seeker\JobListingController;
 use App\Http\Controllers\job_seeker\ListJobController;
 use App\Http\Controllers\admin\RequirementController;
 use App\Http\Controllers\job_seeker\ProfileController;
 use App\Http\Controllers\job_seeker\WorkExperienceController;
 use App\Livewire\JobListNavigation;
+use App\Models\JobHistory;
 use App\Models\User;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
@@ -83,6 +85,8 @@ Route::prefix('/')->group(function () {
     Route::delete('/profile/skills/delete/{id}', [ProfileController::class, "deleteskill"]);
 })->middleware('guest');
 
+})->middleware('guest');
+
 
 Route::group([
     'middleware' => ['auth', 'checkRole:Admin'],
@@ -137,6 +141,7 @@ Route::group([
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/company-profile', CompanyProfilController::class);
     Route::resource('/lowongan-kerja', JobController::class);
+    Route::get('/lowongan-kerja/detail_candidate/{job_seeker_id}', [JobController::class, 'showJobSeeker']);
 });
 
 Route::post('/auth', [AuthController::class, 'login']);

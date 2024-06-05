@@ -11,7 +11,7 @@ class JobHistory extends Model
     protected $guarded = [];
     public function jobseeker()
     {
-        return $this->belongsTo(JobSeeker::class);
+        return $this->belongsTo(JobSeeker::class, 'job_seeker_id');
     }
 
     public function job()
