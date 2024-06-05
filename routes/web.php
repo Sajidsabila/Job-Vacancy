@@ -66,9 +66,13 @@ Route::prefix('/')->group(function () {
     Route::get('/job-list', [ListJobController::class, 'index']);
     Route::get('/listing-job', [JobListingController::class, 'index']);
     Route::get('/job-details/{id}', [JobDetailsController::class, 'index']);
+    Route::post('/send-letter', [JobDetailsController::class, 'store']);
     Route::resource("/profile", ProfileController::class);
     Route::resource("/work-experince", WorkExperienceController::class);
     Route::resource("/education-user", EducationController::class);
+    Route::post("/profil/skills/create", [ProfileController::class, 'storeskill']);
+    Route::get('/profile/skills/edit/{id}', [ProfileController::class, "editskill"]);
+    Route::put('/profile/skills/update/{id}', [ProfileController::class, "updateskill"]);
 })->middleware('guest');
 
 

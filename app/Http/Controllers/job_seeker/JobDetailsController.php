@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\job_seeker;
 
-use App\Http\Controllers\company\CompanyProfilController;
-use App\Http\Controllers\Controller;
-use App\Models\JobCategory;
 use App\Models\Job;
 use App\Models\Company;
+use App\Models\JobHistory;
+use App\Models\JobCategory;
 use App\Models\JobTimeType;
 use App\Models\Requirement;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Controllers\company\CompanyProfilController;
 
 class JobDetailsController extends Controller
 {
@@ -32,7 +34,7 @@ class JobDetailsController extends Controller
         $logoUrl = null;
         if ($company && $company->logo) {
             $logoUrl = asset('storage/' . $company->logo);
-        } 
+        }
 
         $data = ([
             "title" => "Edit Data Lowongan Kerja",
@@ -42,9 +44,31 @@ class JobDetailsController extends Controller
             "jobcategories" => $jobcategories,
             "selectedRequirements" => $selectedRequirements
         ]);
-        
+
         // dd($job);
         return view('job-seekers.job-details', compact('company', 'logoUrl'), $data);
         // return view('job-seekers.job-details');
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'file' => 'required|file|mimes:pdf|max:2048',
+            'job_id' => 'required|integer'
+        ]);
+
+        try {
+            $path = $request->file('file')->store('file_lamaran/pdf', 'public');
+            JobHistory::create([
+                'file' => $path,
+                'job_id' => $request->job_id,
+                'job_seeker_id' => auth()->user()->id
+            ]);
+            Alert::success("Berhasil", "Lamaran Berhasil Dikirim Silahkan Di Cek di riwayat Lamaran");
+            return back();
+        } catch (\Throwable $th) {
+            Alert::error("Error", $th->getMessage());
+            return back();
+        }
     }
 }
