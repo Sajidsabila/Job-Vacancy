@@ -5,16 +5,18 @@ namespace App\Http\Controllers\job_seeker;
 use App\Http\Controllers\Controller;
 use App\Models\JobCategory;
 use App\Models\Job;
+use App\Models\JobSeeker;
 use App\Models\JobTimeType;
 use App\Models\Testimoni;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LandingPageController extends Controller
 {
     public function index()
     {
 
-        $testimonis = Testimoni::all();
+        $testimoni = Testimoni::all();
 
         $categories = JobCategory::limit(8)->get();
         $jobs = Job::all(); // Ambil semua pekerjaan, atau sesuaikan query jika diperlukan
@@ -23,7 +25,7 @@ class LandingPageController extends Controller
             "title" => "Job Category",
             "categories" => $categories,
             "jobs" => $jobs,
-            "testimonis" => $testimonis
+            "testimoni" => $testimoni
         ];
 
         return view('job-seekers.index', $data);
@@ -65,15 +67,27 @@ class LandingPageController extends Controller
         return view('job-seekers.job-details', $data);
     }
 
+    // public function Testimoni()
+    // {
+    //     $testimonis = Testimoni::all();
+    //     $data = [
+    //         "title" => "Data Testimoni",
+    //         "testimonis" => $testimonis,
+    //     ];
+
+    //     return view('job-seekers.index', $data);
+    // }
     public function Testimoni()
     {
+        $user = Auth::user();
+        $jobseeker = JobSeeker::with('user')->where('id', $user->id)->first();
         $testimonis = Testimoni::all();
-        $data = [
-            "title" => "Data Testimoni",
-            "testimonis" => $testimonis,
-        ];
 
-        return view('job-seekers.index', $data);
+        // Mengirim data ke view
+        return view('job-seekers.index', [
+            'jobseeker' => $jobseeker,
+            'testimonis' => $testimonis,
+        ]);
     }
 
     public function jobSeekerIndex()
@@ -91,7 +105,7 @@ class LandingPageController extends Controller
         $jobEloquent = Job::with('jobTime', 'company', 'jobcategory');
         if ($jobCategoryId) {
             $jobEloquent->where("job_category_id", $jobCategoryId);
-        } else if ($jobTimeType) {
+        } elseif ($jobTimeType) {
             $jobEloquent->where("job_time_type_id", $jobTimeType);
         }
         $jobs = $jobEloquent->paginate(10);

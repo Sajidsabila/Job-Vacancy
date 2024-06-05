@@ -1,6 +1,15 @@
 @extends ('landing-page.layouts.main')
 @section('content')
     <main>
+
+        <style>
+            .image {
+                max-width: 10px;
+                /* make the image responsive */
+                height: 10px;
+                /* maintain the image's aspect ratio */
+            }
+        </style>
         <!-- slider Area Start-->
         <div class="slider-area ">
             <!-- Mobile Menu -->
@@ -192,40 +201,36 @@
             </div>
         </div>
         <!-- How  Apply Process End-->
-        <!-- Testimonial Start -->
-
+        <!-- Testimonial Area Start -->
         <div class="testimonial-area testimonial-padding">
             <div class="container">
-                <!-- Testimonial contents -->
                 <div class="row d-flex justify-content-center">
                     <div class="col-xl-8 col-lg-8 col-md-10">
                         <div class="h1-testimonial-active dot-style">
-                            <!-- Single Testimonial -->
-                            @foreach ($testimonis as $testimoni)
+                            @foreach ($testimoni as $item)
                                 <div class="single-testimonial text-center">
-                                    <!-- Testimonial Content -->
                                     <div class="testimonial-caption">
-                                        <!-- founder -->
                                         <div class="testimonial-founder">
-                                            <div class="founder-img mb-30 rounded-circle">
-                                                <img src="{{ asset('storage/' . $testimoni->image) }}"
-                                                    alt="{{ $testimoni->name }}">
-                                                <span>{{ $testimoni->name }}</span>
-                                                <p>{{ $testimoni->job }}</p>
+                                            <div class="founder-img mb-30">
+                                                <img class="rounded-circle shadow-4-strong" src="{{ asset('storage/' . $item->jobSeeker->photo) }}"
+                                                    alt="">
+                                                <span>{{ $item->jobSeeker->first_name }}
+                                                    {{ $item->jobSeeker->last_name }}</span>
+                                                <p>{{ $item->job }}</p>
                                             </div>
                                         </div>
                                         <div class="testimonial-top-cap">
-                                            <p>{{ $testimoni->quote }}</p>
+                                            <p>{{ $item->quote }}</p>
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Testimonial Area End -->
 
         <!-- Hero Area Start-->
         <div class="slider-area ">

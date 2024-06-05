@@ -7,6 +7,7 @@ use App\Models\JobSeeker;
 use App\Models\Skill;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Testimoni;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -141,6 +142,7 @@ class ProfileController extends Controller
 
         return view("job-seekers.form-profile", $data);
     }
+    
 
     public function edit(string $id)
     {
@@ -193,4 +195,24 @@ class ProfileController extends Controller
             return back();
         }
     }
+
+    
+    public function showTestimonials()
+{
+    $user = Auth::user();
+    
+    // Mengambil data job seeker yang sedang login
+    $jobseeker = JobSeeker::with('user')->where('id', $user->id)->first();
+    
+    // Mengambil semua testimoni
+    $testimonis = Testimoni::all();
+
+    // Mengirim data ke view
+    return view('job-seekers.index', [
+        'jobseeker' => $jobseeker,
+        'testimonis' => $testimonis,
+    ]);
+}
+
+    
 }
