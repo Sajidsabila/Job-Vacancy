@@ -74,18 +74,15 @@ Route::prefix('/')->group(function () {
     Route::post('/contact', [ContactController::class, 'index']);
     Route::resource('/contact', ContactController::class);
     Route::get('/job-seekers/contact', [ContactController::class, 'contact'])->name('job-seekers.contact');
-    Route::get('/testimonials', [ProfileController::class, 'showTestimonials'])->name('testimonials');
-    Route::get('job-seekers/contact', [ContactController::class, 'index'])->name('job-seekers.contact');
-    Route::post('job-seekers/contact/store', [ContactController::class, 'store']);
     Route::resource("/work-experince", WorkExperienceController::class);
     Route::resource("/education-user", EducationController::class);
     Route::post("/profil/skills/create", [ProfileController::class, 'storeskill']);
     Route::get('/profile/skills/edit/{id}', [ProfileController::class, "editskill"]);
     Route::put('/profile/skills/update/{id}', [ProfileController::class, "updateskill"]);
     Route::delete('/profile/skills/delete/{id}', [ProfileController::class, "deleteskill"]);
+    Route::get('/job-history', [JobHistoryController::class, "index"]);
 })->middleware('guest');
 
-})->middleware('guest');
 
 
 Route::group([
