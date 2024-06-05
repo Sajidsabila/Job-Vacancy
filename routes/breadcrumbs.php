@@ -128,6 +128,7 @@ Breadcrumbs::for('admin.testimoni.show', function (BreadcrumbTrail $trail, $id) 
     $trail->push('Show', route('admin.testimoni.show', $id));
 });
 
+
 // Admin Home > List Perusahaan
 Breadcrumbs::for('admin.list-perusahaan.index', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.dashboard');
@@ -223,6 +224,63 @@ Breadcrumbs::for('admin.jobTimeType.show', function (BreadcrumbTrail $trail, $id
     $trail->parent('admin.jobTimeType.index');
     $trail->push('Show', route('admin.jobTimeType.show', $id));
 });
+
+// Admin Home > Trash Job Categories
+Breadcrumbs::for('admin.trash-job-category', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Trash Job Category', route('admin.trash-job-category'));
+});
+
+// Admin Home > Trash Religions
+Breadcrumbs::for('admin.trash-religion.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Trash Religions', route('admin.trash-religion.index'));
+});
+
+// Admin Home > Trash Users
+Breadcrumbs::for('admin.trash-user.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Trash Users', route('admin.trash-user.index'));
+});
+
+// Admin Home > Trash Job Categories > Restore
+Breadcrumbs::for('admin.restore-job-category', function (BreadcrumbTrail $trail, $id) {
+    $trail->parent('admin.trash-job-category.index');
+    $trail->push('Restore', route('admin.restore-job-category', $id));
+});
+
+// Admin Home > Trash Religions > Restore
+Breadcrumbs::for('admin.restore-religion', function (BreadcrumbTrail $trail, $id) {
+    $trail->parent('admin.trash-religion.index');
+    $trail->push('Restore', route('admin.restore-religion', $id));
+});
+
+// Admin Home > Trash Users > Restore
+Breadcrumbs::for('admin.restore-user', function (BreadcrumbTrail $trail, $id) {
+    $trail->parent('admin.trash-user.index');
+    $trail->push('Restore', route('admin.restore-user', $id));
+});
+
+// Admin Home > Trash Job Categories > Delete
+Breadcrumbs::for('admin.delete-job-category', function (BreadcrumbTrail $trail, $id) {
+    $trail->parent('admin.trash-job-category.index');
+    $trail->push('Delete', route('admin.delete-job-category', $id));
+});
+
+// Admin Home > Trash Religions > Delete
+Breadcrumbs::for('admin.delete-religion', function (BreadcrumbTrail $trail, $id) {
+    $trail->parent('admin.trash-religion.index');
+    $trail->push('Delete', route('admin.delete-religion', $id));
+});
+
+// Admin Home > Trash Users > Delete
+Breadcrumbs::for('admin.delete-user', function (BreadcrumbTrail $trail, $id) {
+    $trail->parent('admin.trash-user.index');
+    $trail->push('Delete', route('admin.delete-user', $id));
+});
+
+
+
 
 
 //COMPANY BREADCRUMB

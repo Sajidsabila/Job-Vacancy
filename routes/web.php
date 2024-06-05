@@ -32,11 +32,10 @@ use App\Http\Controllers\admin\RestoreJobTimeTypeController;
 use App\Http\Controllers\admin\RestoreReligionController;
 
 use App\Http\Controllers\company\CompanyProfilController;
+use App\Http\Controllers\job_seeker\AboutController;
+use App\Http\Controllers\job_seeker\ContactController;
 use App\Http\Controllers\job_seeker\JobDetailsController;
 use App\Http\Controllers\job_seeker\LandingPageController;
-
-use App\Http\Controllers\TestimonialController;
-use App\Http\Controllers\TestimoniPublicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,8 +62,12 @@ Route::prefix('/')->group(function () {
     Route::get('/listing-job', [JobListingController::class, 'index']);
     Route::get('/job-details/{id}', [JobDetailsController::class, 'index']);
     Route::resource("/profile", ProfileController::class);
-})->middleware('guest');
+    Route::get('/about', [AboutController::class, 'index']);
+    Route::post('/contact', [ContactController::class, 'index']);
+    Route::resource('/contact', ContactController::class);
+    Route::get('/job-seekers/contact', [ContactController::class, 'contact'])->name('job-seekers.contact');
 
+})->middleware('guest');
 
 
 Route::group([
@@ -72,6 +75,7 @@ Route::group([
     'prefix' => 'admin',
     'as' => 'admin.'
 ], function () {
+
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
     Route::resource('/configuration', ConfigurationController::class);
     Route::resource('/job-category', JobCategoryController::class);
@@ -92,8 +96,8 @@ Route::group([
     Route::resource('/user', UserController::class);
 
     Route::resource('/testimoni', TestimoniController::class);
-    Route::get('/testimonis', [TestimoniPublicController::class, 'index'])->name('testimonis.index');
-    Route::get('/job-seeker/testimoni', [TestimoniPublicController::class, 'jobSeekerIndex'])->name('job-seeker.testimoni.index');
+    // Route::get('/testimonis', [TestimoniPublicController::class, 'index'])->name('testimonis.index');
+    // Route::get('/job-seeker/testimoni', [TestimoniPublicController::class, 'jobSeekerIndex'])->name('job-seeker.testimoni.index');
 
     Route::resource('/list-perusahaan', CompanyController::class);
     Route::resource('/job-category', JobCategoryController::class);

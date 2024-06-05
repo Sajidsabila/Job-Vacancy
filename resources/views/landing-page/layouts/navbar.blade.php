@@ -18,7 +18,7 @@
                                      <ul id="navigation">
                                          <li><a href="{{ URL::to('/') }}">Home</a></li>
                                          <li><a href="{{ URL::to('/listing-job') }}">Find a Jobs </a></li>
-                                         <li><a href="about.html">About</a></li>
+                                         <li><a href="{{ URL::to('/about') }}">About</a></li>
                                          <li><a href="#">Page</a>
                                              <ul class="submenu">
                                                  <li><a href="blog.html">Blog</a></li>
@@ -27,7 +27,7 @@
                                                  <li><a href="job_details.html">job Details</a></li>
                                              </ul>
                                          </li>
-                                         <li><a href="contact.html">Contact</a></li>
+                                         <li><a href="{{ URL::to('/contact') }}">Contact</a></li>
                                      </ul>
                                  </nav>
 
