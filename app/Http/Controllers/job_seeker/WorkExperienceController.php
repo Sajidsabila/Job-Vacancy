@@ -138,7 +138,7 @@ class WorkExperienceController extends Controller
         try {
 
             $workexperience = WorkExperience::findOrFail($id);
-            $workexperience > delete();
+            $workexperience->delete();
             Alert::success("Berhasil", "Hapus Data Berhasil");
             return redirect("/work-experience");
         } catch (\Throwable $th) {

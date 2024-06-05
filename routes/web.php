@@ -77,6 +77,7 @@ Route::prefix('/')->group(function () {
     Route::post("/profil/skills/create", [ProfileController::class, 'storeskill']);
     Route::get('/profile/skills/edit/{id}', [ProfileController::class, "editskill"]);
     Route::put('/profile/skills/update/{id}', [ProfileController::class, "updateskill"]);
+    Route::delete('/profile/skills/delete/{id}', [ProfileController::class, "deleteskill"]);
 })->middleware('guest');
 
 })->middleware('guest');
