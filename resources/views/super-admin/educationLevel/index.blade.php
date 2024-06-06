@@ -19,10 +19,10 @@
         <tbody>
             @foreach ($educationLevels as $index => $educationLevel)
                 <tr>
-                    <td class="aligh-middle">{{ $index + 1 }}</td>
-                    <td class="aligh-middle">{{ $educationLevel->level }}</td>
-                    <td class="aligh-middle">{{ $educationLevel->description }}</td>
-                    <td class="aligh-middle">
+                    <td class="align-middle">{{ $index + 1 }}</td>
+                    <td class="align-middle">{{ $educationLevel->level }}</td>
+                    <td class="align-middle">{{ $educationLevel->description }}</td>
+                    <td class="align-middle">
                         <div class="d-flex">
                             <a href="{{ URL::to('admin/educationLevel/' . $educationLevel->id) }}"
                                 class="btn btn-sm btn-info mr-2">Show</a>

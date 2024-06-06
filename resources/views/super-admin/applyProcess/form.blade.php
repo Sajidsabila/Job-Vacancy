@@ -23,7 +23,7 @@
         @enderror
     </div>
     <div class="form-group">
-        <label for="process">process</label>
+        <label for="process">Process</label>
         <input type="text" id="process" placceholder="Masukkan Process" name="process"
             value="{{ isset($applyProcess) ? $applyProcess->process : old('process') }}"
             class="form-control @error('process')is-invalid @enderror">
@@ -35,8 +35,7 @@
     </div>
     <div class="form-group">
         <label for="description">Description</label>
-        <input type="text" id="description" name="description"
-            class="form-control @error('description')is-invalid @enderror"
+        <input type="text" name="description" class="form-control @error('description')is-invalid @enderror"
             value="{{ isset($applyProcess) ? $applyProcess->description : old('description') }}">
         @error('description')
             <div class="invalid-feedback">

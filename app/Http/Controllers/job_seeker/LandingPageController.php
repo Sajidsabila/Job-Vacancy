@@ -22,8 +22,6 @@ class LandingPageController extends Controller
         $jobs = Job::with('jobTime', 'company', 'jobcategory')->get();
         $data = [
             "title" => "Job Category",
-            "categories" => $categories,
-            "jobs" => $jobs,
             "testimonials" => $testimonials // Ganti dari testimoni ke testimonials
         ];
 

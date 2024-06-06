@@ -3,17 +3,21 @@
 namespace App\Http\Controllers\company;
 
 use App\Models\Job;
+use App\Models\Skill;
 use App\Models\Company;
-use App\Models\JobCategory;
-use App\Models\JobHistory;
+use App\Models\education;
 use App\Models\JobSeeker;
+use App\Models\JobHistory;
+use App\Models\JobCategory;
 use App\Models\JobTimeType;
 use App\Models\requirement;
 use Illuminate\Http\Request;
+use App\Models\WorkExperience;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Controllers\job_seeker\WorkExperienceController;
 
 class JobController extends Controller
 {
@@ -113,9 +117,15 @@ class JobController extends Controller
         $jobhistori = JobHistory::with(['job', 'job.company', 'jobseeker'])->where('job_seeker_id', $id)->firstOrFail();
 
         $jobseeker = JobSeeker::findOrFail($id);
+        $workexperience = WorkExperience::where('job_seeker_id', $id)->get();
+        $skill = Skill::where('job_seeker_id', $id)->get();
+        $education = education::where('job_seeker_id', $id)->get();
         $data = ([
             "jobhistori" => $jobhistori,
-            "jobseeker" => $jobseeker
+            "jobseeker" => $jobseeker,
+            "workexperience" => $workexperience,
+            "skill" => $skill,
+            "education" => $education
         ]);
         return view("company.job.candidate-detail", $data);
     }

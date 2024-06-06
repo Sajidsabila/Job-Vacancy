@@ -38,7 +38,7 @@ class ApplyProcessController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+
         $data = $request->validate([
             "icon" => "required",
             "process" => "required",
@@ -47,7 +47,7 @@ class ApplyProcessController extends Controller
 
         try {
             $applyProcesses = ApplyProcess::create($data);
-            dd($applyProcesses); // Cek apakah data sudah tersimpan di dalam database
+            // dd($applyProcesses); // Cek apakah data sudah tersimpan di dalam database
             Alert::success('Sukses', 'Add Data Berhasil success.');
         } catch (\Throwable $th) {
             Alert::error('Error', $th->getMessage());
@@ -89,7 +89,7 @@ class ApplyProcessController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        dd($request->all()); // Dump the entire request payload
+        // dd($request->all()); // Dump the entire request payload
         $data = $request->validate([
             "icon" => "required",
             "process" => "required",
@@ -116,7 +116,7 @@ class ApplyProcessController extends Controller
             $applyProcess = ApplyProcess::find($id);
             $applyProcess->delete();
             Alert::success('Sukses', 'Delete data success.');
-            return redirect('/super-admin/applyProcess');
+            return redirect('/admin/applyProcess');
         } catch (\Throwable $th) {
             Alert::error('Error', $th->getMessage());
             return redirect('/admin/applyProcess');
