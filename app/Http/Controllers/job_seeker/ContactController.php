@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\job_seeker;
 
 use App\Http\Controllers\Controller;
-use App\Models\Testimoni;
 use App\Models\JobCategory;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -16,7 +16,7 @@ class ContactController extends Controller
         $jobcategories = JobCategory::all();
         $user = Auth::user();
 
-        $testimoni = Testimoni::orderby('id')->get();
+        $testimoni = Testimonial::orderby('id')->get();
 
         $data = [
         "title" => "Data Testimoni",
@@ -37,7 +37,7 @@ class ContactController extends Controller
 
      try {
         $data['job_seeker_id'] = auth()->user()->id;
-        Testimoni::create($data);
+        Testimonial::create($data);
         Alert::success('Sukses', "Data Berhasil Ditambahkan");
         return redirect()->route('job-seekers.contact');
         

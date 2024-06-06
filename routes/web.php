@@ -81,6 +81,8 @@ Route::prefix('/')->group(function () {
     Route::put('/profile/skills/update/{id}', [ProfileController::class, "updateskill"]);
     Route::delete('/profile/skills/delete/{id}', [ProfileController::class, "deleteskill"]);
     Route::get('/job-history', [JobHistoryController::class, "index"]);
+        Route::get('/job-seekers/contact', [ContactController::class, 'index'])->name('job-seekers.contact');
+    Route::post('/job-seekers/contact/store', [ContactController::class, 'store'])->name('job-seekers.contact.store');
 })->middleware('guest');
 
 
@@ -127,6 +129,8 @@ Route::group([
     Route::get('/trash-jobTimeType', [RestoreJobTimeTypeController::class, 'index']);
     Route::get('/restore-jobTimeType/{id}', [RestoreJobTimeTypeController::class, 'restore']);
     Route::delete('/delete-jobTimeType/{id}', [RestoreJobTimeTypeController::class, 'destroy']);
+
+
 });
 
 
