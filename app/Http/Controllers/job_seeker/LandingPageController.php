@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers\job_seeker;
 
-use App\Http\Controllers\Controller;
-use App\Models\JobCategory;
 use App\Models\Job;
 use App\Models\JobSeeker;
+use App\Models\JobCategory;
 use App\Models\JobTimeType;
 use App\Models\Testimonial;
+use App\Models\ApplyProcess;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class LandingPageController extends Controller
 {
     public function index()
     {
-       $testimoni = Testimoni::all();
+        $testimonials = Testimonial::all();
         $applyProcesses = ApplyProcess::all();
 
 
@@ -27,7 +28,7 @@ class LandingPageController extends Controller
             "categories" => $categories,
             "jobs" => $jobs,
             "applyProcesses" => $applyProcesses,
-            "testimoni" => $testimoni
+            "testimonials" => $testimonials
         ];
         return view('job-seekers.index', $data);
     }
@@ -115,8 +116,8 @@ class LandingPageController extends Controller
 
         $keyword = $request->input('keyword');
         $jobs = Job::where('title', 'LIKE', '%' . $keyword . '%')
-                    ->orWhere('description', 'LIKE', '%' . $keyword . '%')
-                    ->get();
+            ->orWhere('description', 'LIKE', '%' . $keyword . '%')
+            ->get();
 
         return view('job-seekers.job-listing', ['jobs' => $jobs], $data);
     }

@@ -1,6 +1,7 @@
 @extends ('landing-page.layouts.main')
 @section('content')
-    <main> @include('sweetalert::alert')
+    @include('sweetalert::alert')
+    <main>
 
         <!-- Hero Area Start-->
         <div class="slider-area ">
