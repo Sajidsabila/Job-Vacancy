@@ -112,23 +112,7 @@ class JobController extends Controller
 
         return view("company.job.detail", $data);
     }
-    public function showJobSeeker($id)
-    {
-        $jobhistori = JobHistory::with(['job', 'job.company', 'jobseeker'])->where('job_seeker_id', $id)->firstOrFail();
 
-        $jobseeker = JobSeeker::findOrFail($id);
-        $workexperience = WorkExperience::where('job_seeker_id', $id)->get();
-        $skill = Skill::where('job_seeker_id', $id)->get();
-        $education = education::where('job_seeker_id', $id)->get();
-        $data = ([
-            "jobhistori" => $jobhistori,
-            "jobseeker" => $jobseeker,
-            "workexperience" => $workexperience,
-            "skill" => $skill,
-            "education" => $education
-        ]);
-        return view("company.job.candidate-detail", $data);
-    }
     /**
      * Show the form for editing the specified resource.
      */
@@ -190,5 +174,23 @@ class JobController extends Controller
             Alert::error('Error', $th->getMessage());
             return back();
         }
+    }
+
+    public function showJobSeeker($id)
+    {
+
+        $jobhistori = JobHistory::with('job', 'jobseeker')->where('id', $id)->find($id);
+
+
+        $data = ([
+            "jobhistori" => $jobhistori
+
+        ]);
+        return view("company.job.candidate-detail", $data);
+    }
+    public function viewPDF($id)
+    {
+        $jobhistori = JobHistory::findOrFail($id);
+        return view('company.job.pdf_view', compact('jobhistori'));
     }
 }

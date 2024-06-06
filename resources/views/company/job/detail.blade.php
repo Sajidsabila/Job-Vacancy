@@ -51,7 +51,7 @@
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $jobhistori->jobseeker->first_name }} {{ $jobhistori->jobseeker->last_name }}
                                     </td>
-                                    <td>{{ $jobhistori->file }}</td>
+                                    <td><a href="{{ asset('storage/' . $jobhistori->file) }}">Lihat Lamaran</a></td>
                                     <td>{{ $jobhistori->status }}</td>
                                     <td>
                                         <div class="d-flex">
