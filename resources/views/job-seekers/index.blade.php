@@ -186,12 +186,12 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-xl-8 col-lg-8 col-md-10">
                         <div class="h1-testimonial-active dot-style">
-                            @foreach ($testimoni as $item)
+                            @foreach ($testimonials as $item)
                                 <div class="single-testimonial text-center">
                                     <div class="testimonial-caption">
                                         <div class="testimonial-founder">
                                             <div class="founder-img mb-30">
-                                                <img class="rounded-circle shadow-4-strong" src="{{ asset('storage/' . $item->jobSeeker->photo) }}"
+                                                <img class="rounded-circle shadow-4-strong w-4 h-4" src="{{ asset('storage/' . $item->jobSeeker->photo) }}"
                                                     alt="">
                                                 <span>{{ $item->jobSeeker->first_name }}
                                                     {{ $item->jobSeeker->last_name }}</span>

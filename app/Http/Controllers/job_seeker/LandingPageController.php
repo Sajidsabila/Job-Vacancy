@@ -7,8 +7,7 @@ use App\Models\JobCategory;
 use App\Models\Job;
 use App\Models\JobSeeker;
 use App\Models\JobTimeType;
-use App\Models\Testimoni;
-use App\Models\ApplyProcess;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,20 +15,14 @@ class LandingPageController extends Controller
 {
     public function index()
     {
-
-        $testimoni = Testimoni::all();
-        $applyProcesses = ApplyProcess::all();
-
+        $testimonials = Testimonial::all(); // Ganti dari Testimoni ke Testimonial
 
         $categories = JobCategory::limit(8)->get();
         $jobs = Job::all(); // Ambil semua pekerjaan, atau sesuaikan query jika diperlukan
         $jobs = Job::with('jobTime', 'company', 'jobcategory')->get();
         $data = [
             "title" => "Job Category",
-            "categories" => $categories,
-            "jobs" => $jobs,
-            "applyProcesses" => $applyProcesses,
-            "testimoni" => $testimoni
+            "testimonials" => $testimonials // Ganti dari testimoni ke testimonials
         ];
 
         return view('job-seekers.index', $data);
@@ -71,33 +64,24 @@ class LandingPageController extends Controller
         return view('job-seekers.job-details', $data);
     }
 
-    // public function Testimoni()
-    // {
-    //     $testimonis = Testimoni::all();
-    //     $data = [
-    //         "title" => "Data Testimoni",
-    //         "testimonis" => $testimonis,
-    //     ];
 
-    //     return view('job-seekers.index', $data);
-    // }
     public function Testimoni()
     {
         $user = Auth::user();
         $jobseeker = JobSeeker::with('user')->where('id', $user->id)->first();
-        $testimonis = Testimoni::all();
+        $testimonials = Testimonial::all();
 
         // Mengirim data ke view
         return view('job-seekers.index', [
             'jobseeker' => $jobseeker,
-            'testimonis' => $testimonis,
+            'testimonials' => $testimonials,
         ]);
     }
 
     public function jobSeekerIndex()
     {
-        $testimonis = Testimoni::all();
-        return view('job-seeker.testimoni.index', compact('testimonis'));
+        $testimonials = Testimonial::all();
+        return view('job-seeker.testimoni.index', compact('testimonials'));
     }
 
     public function search(Request $request)
