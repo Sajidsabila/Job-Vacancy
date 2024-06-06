@@ -145,7 +145,8 @@ Route::group([
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/company-profile', CompanyProfilController::class);
     Route::resource('/lowongan-kerja', JobController::class);
-    Route::get('/lowongan-kerja/detail_candidate/{job_seeker_id}', [JobController::class, 'showJobSeeker']);
+    Route::get('/lowongan-kerja/detail_candidate/{job_seeker_id}', [JobController::class, 'showJobSeeker'])->name('lowongan-kerja.detail_candidate');
+    ;
 });
 
 Route::post('/auth', [AuthController::class, 'login']);

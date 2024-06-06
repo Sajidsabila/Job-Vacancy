@@ -362,3 +362,11 @@ Breadcrumbs::for('companie.lowongan-kerja.show', function (BreadcrumbTrail $trai
     $trail->parent('companie.lowongan-kerja.index');
     $trail->push('Show', route('companie.lowongan-kerja.show', $id));
 });
+
+Breadcrumbs::for('companie.lowongan-kerja.detail_candidate', function (BreadcrumbTrail $trail, $job_seeker_id) {
+    // Menyatakan breadcrumb induk
+    $trail->parent('companie.lowongan-kerja.index');
+
+    // Menambahkan breadcrumb untuk detail kandidat
+    $trail->push('Detail Candidate', route('companie.lowongan-kerja.detail_candidate', $job_seeker_id));
+});
