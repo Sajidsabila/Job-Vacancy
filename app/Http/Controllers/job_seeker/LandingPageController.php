@@ -15,9 +15,11 @@ class LandingPageController extends Controller
 {
     public function index()
     {
-        $testimonials = Testimonial::all(); // Ganti dari Testimoni ke Testimonial
+       $testimoni = Testimoni::all();
+        $applyProcesses = ApplyProcess::all();
 
-         $categories = JobCategory::limit(8)->get();
+
+        $categories = JobCategory::limit(8)->get();
         $jobs = Job::all(); // Ambil semua pekerjaan, atau sesuaikan query jika diperlukan
         $jobs = Job::with('jobTime', 'company', 'jobcategory')->get();
         $data = [
@@ -27,7 +29,6 @@ class LandingPageController extends Controller
             "applyProcesses" => $applyProcesses,
             "testimoni" => $testimoni
         ];
-
         return view('job-seekers.index', $data);
     }
 
