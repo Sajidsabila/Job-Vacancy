@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\ApplyProcessController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\job_seeker\EducationController;
 use App\Http\Controllers\job_seeker\JobHistoryController;
 use App\Http\Controllers\job_seeker\JobListingController;
@@ -143,9 +144,11 @@ Route::group([
 ], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/company-profile', CompanyProfilController::class);
+    Route::get('/lowongan-kerja/detail_candidate/{id}', [JobController::class, 'showJobSeeker'])->name('lowongan-kerja.detail_candidate');
+
     Route::resource('/lowongan-kerja', JobController::class);
-    Route::get('/lowongan-kerja/detail_candidate/{job_seeker_id}', [JobController::class, 'showJobSeeker'])->name('lowongan-kerja.detail_candidate');
-    ;
+    Route::get('/lowongan-kerja/view-pdf/{id}', [JobController::class, 'viewPDF'])->name('pdf.view');
+
 });
 
 Route::post('/auth', [AuthController::class, 'login']);

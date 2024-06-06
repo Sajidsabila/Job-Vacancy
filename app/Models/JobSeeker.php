@@ -10,7 +10,7 @@ class JobSeeker extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    
+
     public function user()
     {
         return $this->hasOne(User::class, 'id');
@@ -19,5 +19,20 @@ class JobSeeker extends Model
     public function religion()
     {
         return $this->belongsTo(Religion::class);
+    }
+
+    public function workExperiences()
+    {
+        return $this->hasMany(WorkExperience::class);
+    }
+
+    public function skill()
+    {
+        return $this->hasMany(skill::class);
+    }
+
+    public function education()
+    {
+        return $this->hasMany(education::class);
     }
 }
