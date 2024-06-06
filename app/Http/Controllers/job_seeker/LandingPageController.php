@@ -8,6 +8,7 @@ use App\Models\Job;
 use App\Models\JobSeeker;
 use App\Models\JobTimeType;
 use App\Models\Testimoni;
+use App\Models\ApplyProcess;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,6 +18,8 @@ class LandingPageController extends Controller
     {
 
         $testimoni = Testimoni::all();
+        $applyProcesses = ApplyProcess::all();
+
 
         $categories = JobCategory::limit(8)->get();
         $jobs = Job::all(); // Ambil semua pekerjaan, atau sesuaikan query jika diperlukan
@@ -25,6 +28,7 @@ class LandingPageController extends Controller
             "title" => "Job Category",
             "categories" => $categories,
             "jobs" => $jobs,
+            "applyProcesses" => $applyProcesses,
             "testimoni" => $testimoni
         ];
 

@@ -251,6 +251,13 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a href="{{ URL::to('/admin/trash-applyProcess') }}"
+                                    class="nav-link {{ Request::is('receipt') ? ' active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Apply Process</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{ URL::to('/admin/trash-user') }}"
                                     class="nav-link {{ Request::is('report') ? ' active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>

@@ -31,6 +31,7 @@ use App\Http\Controllers\admin\RestoreDataJobCategory;
 use App\Http\Controllers\admin\ConfigurationController;
 use App\Http\Controllers\admin\EducationLevelController;
 use App\Http\Controllers\admin\JobTimeTypeController;
+use App\Http\Controllers\admin\RestoreApplyProcess;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\admin\RestoreEduLevelController;
 use App\Http\Controllers\admin\RestoreJobTimeTypeController;
@@ -130,6 +131,9 @@ Route::group([
     Route::get('/trash-jobTimeType', [RestoreJobTimeTypeController::class, 'index']);
     Route::get('/restore-jobTimeType/{id}', [RestoreJobTimeTypeController::class, 'restore']);
     Route::delete('/delete-jobTimeType/{id}', [RestoreJobTimeTypeController::class, 'destroy']);
+    Route::get('/trash-applyProcess', [RestoreApplyProcess::class, 'index']);
+    Route::get('/restore-applyProcess/{id}', [RestoreApplyProcess::class, 'restore']);
+    Route::delete('/delete-applyProcess/{id}', [RestoreApplyProcess::class, 'destroy']);
 });
 
 

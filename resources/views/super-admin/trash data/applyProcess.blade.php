@@ -1,9 +1,9 @@
-ore @extends ('adminTemplate.layouts.main')
+@extends ('adminTemplate.layouts.main')
 @section('container')
     @include('sweetalert::alert')
     <h3>{{ $title }}</h3>
     .
-    <a href="{{ URL::to('admin/applyProcess/create') }}" class="my-2 btn btn-primary ">
+    <a href="{{ URL::to('job-category/create') }}" class="my-2 btn btn-primary ">
         <i class="fas fa-plus" aria-hidden="true"> </i> &nbsp; Add</a>
     <table class="table table-striped" id="datatable1">
         <thead>
@@ -28,13 +28,13 @@ ore @extends ('adminTemplate.layouts.main')
                     <td class="align-middle">{{ $applyProcess->description }}</td>
                     <td>
                         <div class="d-flex">
-                            <a href="{{ URL::to('/admin/applyProcess/' . $applyProcess->id . '/edit') }}"
-                                class="btn btn-sm btn-warning mr-2">Edit</a>
-                            <form action="{{ URL::to('/admin/applyProcess/' . $applyProcess->id) }}" method="post">
+                            <a href="{{ URL::to('/admin/applyProcess/' . $applyProcess->id) }}"
+                                class="mr-2 btn btn-success btn-sm">Restore</a>
+                            <form action="{{ URL::to('/admin/delete-applyProcess/' . $applyProcess->id) }}" method="post">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" class="btn btn-danger btn-sm px-2"
-                                    onclick="return confirm('apakah Yakin Ingin Menghapus {{ $applyProcess->name }}')">
+                                <button type="submit" class="btn btn-sm btn-danger"
+                                    onclick="return confirm('apakah Yakin Ingin Menghapus {{ $applyProcess->process }} secara permanen')">
                                     Hapus
                                 </button>
                             </form>
