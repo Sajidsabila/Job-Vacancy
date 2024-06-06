@@ -191,6 +191,8 @@ class JobController extends Controller
     public function viewPDF($id)
     {
         $jobhistori = JobHistory::findOrFail($id);
+        $jobhistori->status = 'Lamaran Dilihat';
+        $jobhistori->save();
         return view('company.job.pdf_view', compact('jobhistori'));
     }
 }

@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('job_id');
             $table->unsignedBigInteger('job_seeker_id');
+            $table->string('file', 100);
             $table->string('status', 50)->nullable()->default('Lamaran Terkrim');
             $table->timestamps();
             $table->softDeletes();
