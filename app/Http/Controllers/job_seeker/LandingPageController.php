@@ -17,12 +17,15 @@ class LandingPageController extends Controller
     {
         $testimonials = Testimonial::all(); // Ganti dari Testimoni ke Testimonial
 
-        $categories = JobCategory::limit(8)->get();
+         $categories = JobCategory::limit(8)->get();
         $jobs = Job::all(); // Ambil semua pekerjaan, atau sesuaikan query jika diperlukan
         $jobs = Job::with('jobTime', 'company', 'jobcategory')->get();
         $data = [
             "title" => "Job Category",
-            "testimonials" => $testimonials // Ganti dari testimoni ke testimonials
+            "categories" => $categories,
+            "jobs" => $jobs,
+            "applyProcesses" => $applyProcesses,
+            "testimoni" => $testimoni
         ];
 
         return view('job-seekers.index', $data);
