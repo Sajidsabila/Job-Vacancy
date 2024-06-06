@@ -6,11 +6,14 @@ use App\Models\Job;
 use App\Models\JobSeeker;
 use App\Models\JobCategory;
 use App\Models\JobTimeType;
+
 use App\Models\Testimonial;
 use App\Models\ApplyProcess;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class LandingPageController extends Controller
 {
@@ -23,11 +26,18 @@ class LandingPageController extends Controller
         $categories = JobCategory::limit(8)->get();
         $jobs = Job::all(); // Ambil semua pekerjaan, atau sesuaikan query jika diperlukan
         $jobs = Job::with('jobTime', 'company', 'jobcategory')->get();
+
+        // Menghitung jumlah pekerjaan per kategori
+        $jobCounts = Job::select('job_category_id', DB::raw('count(*) as total'))
+                        ->groupBy('job_category_id')
+                        ->pluck('total', 'job_category_id');
+
         $data = [
             "title" => "Job Category",
             "categories" => $categories,
             "jobs" => $jobs,
             "applyProcesses" => $applyProcesses,
+            "jobCounts" => $jobCounts,
             "testimonials" => $testimonials
         ];
         return view('job-seekers.index', $data);
@@ -74,7 +84,7 @@ class LandingPageController extends Controller
     {
         $user = Auth::user();
         $jobseeker = JobSeeker::with('user')->where('id', $user->id)->first();
-        $testimonials = Testimonial::all();
+        $testimonials = Testimoni::all();
 
         // Mengirim data ke view
         return view('job-seekers.index', [
@@ -85,7 +95,7 @@ class LandingPageController extends Controller
 
     public function jobSeekerIndex()
     {
-        $testimonials = Testimonial::all();
+        $testimonials = Testimoni::all();
         return view('job-seeker.testimoni.index', compact('testimonials'));
     }
 
