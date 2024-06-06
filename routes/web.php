@@ -84,6 +84,7 @@ Route::prefix('/')->group(function () {
     Route::get('/job-history', [JobHistoryController::class, "index"]);
         Route::get('/job-seekers/contact', [ContactController::class, 'index'])->name('job-seekers.contact');
     Route::post('/job-seekers/contact/store', [ContactController::class, 'store'])->name('job-seekers.contact.store');
+    Route::get('/category/{id}', [JobListingController::class, 'showJobsByCategory'])->name('jobs.by.category');
 })->middleware('guest');
 
 

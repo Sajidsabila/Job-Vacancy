@@ -120,35 +120,38 @@
                              <!-- single-job-content -->
                              <!-- single-job-content -->
                              @foreach ($jobs as $job)
+                                 <!-- single-job-content -->
                                  <div class="single-job-link" data-url="{{ URL::to('/job-details', $job->id) }}">
                                      <div class="single-job-items mb-30">
                                          <div class="job-items">
-                                             <div class="company-img">
-                                                 <a href="{{ URL::to('/job-details', $job->id) }}">
-                                                     <img src="{{ 'storage/' . $job->company->logo }}"
-                                                         alt=" {{ $job->company->company_name }}" width="100"
+                                             <div class="company-img company-img-details">
+                                                 @if ($logoUrl)
+                                                     <img src="{{ $logoUrl }}"
+                                                         alt="Logo {{ $company->company_name }}" width="60"
                                                          height="auto">
-                                                 </a>
+                                                 @else
+                                                     <p>Logo tidak tersedia</p>
+                                                 @endif
                                              </div>
-                                             <div class="job-tittle job-tittle2">
+                                             <div class="job-tittle">
                                                  <a href="{{ URL::to('/job-details', $job->id) }}">
                                                      <h4>{{ $job->title }}</h4>
                                                  </a>
                                                  <ul>
-                                                     <li>{{ $job->jobcategory->category }}</li>
+                                                     <li>{{ $job->company->company_name }}</li>
                                                      <li><i class="fas fa-map-marker-alt"></i>{{ $job->job_location }}
                                                      </li>
                                                      <li>{{ number_format($job->salary) }}</li>
                                                  </ul>
                                              </div>
                                          </div>
-                                         <div class="items-link items-link2 f-right">
-                                             <a href="{{ URL::to('/job-details', $job->id) }}">
-                                                 {{ $job->jobTime->type }}</a>
+                                         <div class="items-link f-right">
+                                             <a
+                                                 href="{{ URL::to('/job-details', $job->id) }}">{{ $job->jobTime->type }}</a>
                                              <span>{{ $job->created_at->diffForHumans() }}</span>
                                          </div>
                                      </div>
-                                     </a>
+                                 </div>
                              @endforeach
                              <div class="pagination-area pb-115 text-center">
                                  <div class="container">
