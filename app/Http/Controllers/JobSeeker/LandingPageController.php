@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\job_seeker;
+namespace App\Http\Controllers\JobSeeker;
 
 use App\Models\Job;
 use App\Models\JobSeeker;
@@ -29,8 +29,8 @@ class LandingPageController extends Controller
 
         // Menghitung jumlah pekerjaan per kategori
         $jobCounts = Job::select('job_category_id', DB::raw('count(*) as total'))
-                        ->groupBy('job_category_id')
-                        ->pluck('total', 'job_category_id');
+            ->groupBy('job_category_id')
+            ->pluck('total', 'job_category_id');
 
         $data = [
             "title" => "Job Category",
@@ -84,7 +84,7 @@ class LandingPageController extends Controller
     {
         $user = Auth::user();
         $jobseeker = JobSeeker::with('user')->where('id', $user->id)->first();
-        $testimonials = Testimoni::all();
+        $testimonials = Testimonial::all();
 
         // Mengirim data ke view
         return view('job-seekers.index', [

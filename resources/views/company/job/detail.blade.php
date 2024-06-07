@@ -30,7 +30,7 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label>Gaji</label>
-                            <input type="text" value="{{ $job->salary }}" class="form-control" disabled>
+                            <input type="text" value="{{ number_format($job->salary) }}" class="form-control" disabled>
                         </div>
                     </div>
                 </div>

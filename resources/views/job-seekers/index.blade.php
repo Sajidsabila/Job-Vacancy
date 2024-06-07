@@ -206,7 +206,7 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-xl-8 col-lg-8 col-md-10">
                         <div class="h1-testimonial-active dot-style">
-                            @foreach ($testimoni as $item)
+                            @foreach ($testimonials as $item)
                                 <div class="single-testimonial text-center">
                                     <div class="testimonial-caption">
                                         <div class="testimonial-founder">

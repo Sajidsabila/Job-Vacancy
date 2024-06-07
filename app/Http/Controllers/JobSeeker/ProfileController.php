@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\job_seeker;
+namespace App\Http\Controllers\JobSeeker;
 
 use App\Models\Religion;
 use App\Models\JobSeeker;
@@ -142,7 +142,7 @@ class ProfileController extends Controller
 
         return view("job-seekers.form-profile", $data);
     }
-    
+
 
     public function edit(string $id)
     {
@@ -196,23 +196,23 @@ class ProfileController extends Controller
         }
     }
 
-    
+
     public function showTestimonials()
-{
-    $user = Auth::user();
-    
-    // Mengambil data job seeker yang sedang login
-    $jobseeker = JobSeeker::with('user')->where('id', $user->id)->first();
-    
-    // Mengambil semua testimoni
-    $testimonis = Testimoni::all();
+    {
+        $user = Auth::user();
 
-    // Mengirim data ke view
-    return view('job-seekers.index', [
-        'jobseeker' => $jobseeker,
-        'testimonis' => $testimonis,
-    ]);
-}
+        // Mengambil data job seeker yang sedang login
+        $jobseeker = JobSeeker::with('user')->where('id', $user->id)->first();
 
-    
+        // Mengambil semua testimoni
+        $testimonis = Testimoni::all();
+
+        // Mengirim data ke view
+        return view('job-seekers.index', [
+            'jobseeker' => $jobseeker,
+            'testimonis' => $testimonis,
+        ]);
+    }
+
+
 }
