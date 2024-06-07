@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\job_seeker;
+namespace App\Http\Controllers\JobSeeker;
 
 use App\Http\Controllers\Controller;
 use App\Models\Job;
@@ -16,8 +16,8 @@ class ListJobController extends Controller
 
         // Menghitung jumlah pekerjaan per kategori
         $jobCounts = Job::select('job_category_id', DB::raw('count(*) as total'))
-                        ->groupBy('job_category_id')
-                        ->pluck('total', 'job_category_id');
+            ->groupBy('job_category_id')
+            ->pluck('total', 'job_category_id');
 
         $jobs = Job::all();
 
