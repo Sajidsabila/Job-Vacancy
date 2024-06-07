@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
@@ -17,7 +17,7 @@ class AdminController extends Controller
         $data = ([
             'title' => 'Data Perusahaan Website',
             'configurations' => $configurations,
-        
+
         ]);
         return view('super-admin.dashboard.index', $data);
     }

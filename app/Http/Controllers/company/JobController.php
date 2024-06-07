@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\company;
+namespace App\Http\Controllers\Company;
 
 use App\Models\Job;
 use App\Models\Skill;
