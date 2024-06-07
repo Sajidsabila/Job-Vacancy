@@ -125,13 +125,9 @@
                                      <div class="single-job-items mb-30">
                                          <div class="job-items">
                                              <div class="company-img company-img-details">
-                                                 @if ($logoUrl)
-                                                     <img src="{{ $logoUrl }}"
-                                                         alt="Logo {{ $company->company_name }}" width="60"
-                                                         height="auto">
-                                                 @else
-                                                     <p>Logo tidak tersedia</p>
-                                                 @endif
+                                                 <img src="{{ asset('storage/' . $job->company->logo) }}"
+                                                     alt="Logo {{ $job->company->company_name }}" width="60"
+                                                     height="auto">
                                              </div>
                                              <div class="job-tittle">
                                                  <a href="{{ URL::to('/job-details', $job->id) }}">
