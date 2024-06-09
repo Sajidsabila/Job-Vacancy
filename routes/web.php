@@ -43,6 +43,7 @@ use App\Http\Controllers\JobSeeker\AboutController;
 use App\Http\Controllers\JobSeeker\ContactController;
 use App\Http\Controllers\JobSeeker\JobDetailsController;
 use App\Http\Controllers\JobSeeker\LandingPageController;
+use App\Http\Controllers\JobSeeker\TestimonialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,7 +74,7 @@ Route::prefix('/')->group(function () {
     Route::post('/send-letter', [JobDetailsController::class, 'store']);
     Route::resource("/profile", ProfileController::class);
     Route::get('/about', [AboutController::class, 'index']);
-    Route::post('/contact', [ContactController::class, 'index']);
+    // Route::post('/contact', [ContactController::class, 'index']);
     Route::resource('/contact', ContactController::class);
     Route::get('/job-seekers/contact', [ContactController::class, 'contact'])->name('job-seekers.contact');
     Route::resource("/work-experince", WorkExperienceController::class);
@@ -83,10 +84,12 @@ Route::prefix('/')->group(function () {
     Route::put('/profile/skills/update/{id}', [ProfileController::class, "updateskill"]);
     Route::delete('/profile/skills/delete/{id}', [ProfileController::class, "deleteskill"]);
     Route::get('/job-history', [JobHistoryController::class, "index"]);
-    Route::get('/job-seekers/contact', [ContactController::class, 'index'])->name('job-seekers.contact');
-    Route::post('/job-seekers/contact/store', [ContactController::class, 'store'])->name('job-seekers.contact.store');
+    Route::post('/testimonial', [TestimoniController::class, 'index']);
+    Route::get('/testimonial', [TestimonialController::class, "index"]);
+    Route::get('/job-seekers/testimonial', [TestimonialController::class, 'index'])->name('job-seekers.testimonial');
+    Route::post('/job-seekers/testimonial/store', [TestimonialController::class, 'store'])->name('job-seekers.testimonial.store');
     Route::get('/category/{id}', [JobListingController::class, 'showJobsByCategory'])->name('jobs.by.category');
-})->middleware('guest');
+ })->middleware('guest');
 
 
 
