@@ -32,14 +32,17 @@ class Job extends Model
     {
         static::saving(function ($job) {
             if (empty($job->slug)) {
-                $job->slug = Str::slug($job->title);
+                $slug = Str::slug($job->title);
+
+                $randomString = Str::random(5);
+                $job->slug = "{$slug}-{$randomString}";
             }
         });
     }
     public function company()
     {
 
-return $this->belongsTo(Company::class, 'company_id', );
+        return $this->belongsTo(Company::class, 'company_id', );
 
     }
     public function requirements()

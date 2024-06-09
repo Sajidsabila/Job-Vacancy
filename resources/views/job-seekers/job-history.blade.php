@@ -12,9 +12,9 @@
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <div class="tab-content m-2 p-2">
+                    <div class="tab-content m-5">
                         <h5>Riwayat Lamaran</h5>
-                        <table class="table table-striped table-bordered m-3 mr-3">
+                        <table class="table table-striped table-bordered">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -24,18 +24,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($jobhistories as $key => $jobhistories)
+                                @foreach ($jobhistories as $key => $jobhistory)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
-                                        <td>{{ $jobhistories->job->title }}</td>
-                                        <td>{{ $jobhistories->job->company->company_name }}</td>
-                                        <td>{{ $jobhistories->status }}</td>
+                                        <td>{{ $jobhistory->job->title }}</td>
+                                        <td>{{ $jobhistory->job->company->company_name }}</td>
+                                        <td>{{ $jobhistory->status }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="single-wrap d-flex justify-content-center">
+                            {{-- Memastikan $jobs adalah instance dari LengthAwarePaginator atau Paginator --}}
+
+                            {{ $jobhistories->links() }}
+                        </div>
                     </div>
-                    </form>
                 </div>
             </div>
         </div>
