@@ -201,7 +201,7 @@
         </div>
         <!-- How  Apply Process End-->
         <!-- Testimonial Area Start -->
-        <div class="testimonial-area testimonial-padding">
+        <div id="testimonials" class="testimonial-area testimonial-padding">
             <div class="container">
                 <div class="row d-flex justify-content-center">
                     <div class="col-xl-8 col-lg-8 col-md-10">
