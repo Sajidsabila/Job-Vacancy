@@ -95,7 +95,7 @@ class LandingPageController extends Controller
 
     public function jobSeekerIndex()
     {
-        $testimonials = Testimoni::all();
+        $testimonials = Testimonial::all();
         return view('job-seeker.testimoni.index', compact('testimonials'));
     }
 

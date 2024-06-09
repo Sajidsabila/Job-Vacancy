@@ -13,8 +13,6 @@ class ListJobController extends Controller
     public function index()
     {
         $categories = JobCategory::all();
-
-        // Menghitung jumlah pekerjaan per kategori
         $jobCounts = Job::select('job_category_id', DB::raw('count(*) as total'))
             ->groupBy('job_category_id')
             ->pluck('total', 'job_category_id');

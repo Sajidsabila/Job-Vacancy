@@ -121,7 +121,7 @@
                              <!-- single-job-content -->
                              @foreach ($jobs as $job)
                                  <!-- single-job-content -->
-                                 <div class="single-job-link" data-url="{{ URL::to('/job-details', $job->id) }}">
+                                 <div class="single-job-link" data-url="{{ URL::to('/job-details', $job->slug) }}">
                                      <div class="single-job-items mb-30">
                                          <div class="job-items">
                                              <div class="company-img company-img-details">
@@ -130,7 +130,7 @@
                                                      height="auto">
                                              </div>
                                              <div class="job-tittle">
-                                                 <a href="{{ URL::to('/job-details', $job->id) }}">
+                                                 <a href="{{ URL::to('/job-details', $job->slug) }}">
                                                      <h4>{{ $job->title }}</h4>
                                                  </a>
                                                  <ul>
@@ -143,7 +143,7 @@
                                          </div>
                                          <div class="items-link f-right">
                                              <a
-                                                 href="{{ URL::to('/job-details', $job->id) }}">{{ $job->jobTime->type }}</a>
+                                                 href="{{ URL::to('/job-details', $job->slug) }}">{{ $job->jobTime->type }}</a>
                                              <span>{{ $job->created_at->diffForHumans() }}</span>
                                          </div>
                                      </div>

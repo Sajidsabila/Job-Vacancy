@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\job_seeker;
+namespace App\Http\Controllers\JobSeeker;
 
 use App\Http\Controllers\Controller;
 use App\Models\Job;
@@ -26,7 +26,7 @@ class JobListingController extends Controller
         } else if ($rangeStart && $rangeEnd) {
             $jobEloquent->whereBetween('salary', $rangeStart, $rangeEnd);
         }
-        $jobs = $jobEloquent->paginate(10);
+        $jobs = $jobEloquent->paginate(7);
         $totalJob = $jobEloquent->count();
 
         $data = ([

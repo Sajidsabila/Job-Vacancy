@@ -69,7 +69,7 @@ Route::prefix('/')->group(function () {
     Route::get('/job category', [LandingPageController::class, 'getJobCategory']);
     Route::get('/job-list', [ListJobController::class, 'index']);
     Route::get('/listing-job', [JobListingController::class, 'index']);
-    Route::get('/job-details/{id}', [JobDetailsController::class, 'index']);
+    Route::get('/job-details/{slug}', [JobDetailsController::class, 'index']);
     Route::post('/send-letter', [JobDetailsController::class, 'store']);
     Route::resource("/profile", ProfileController::class);
     Route::get('/about', [AboutController::class, 'index']);
