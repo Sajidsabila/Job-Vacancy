@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\job_seeker;
+namespace App\Http\Controllers\JobSeeker;
 
 use App\Models\Education;
 use App\Models\EducationLevel;
