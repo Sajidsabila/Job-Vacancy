@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\job_seeker;
+namespace App\Http\Controllers\JobSeeker;
 
 use App\Models\Job;
 use App\Models\Company;
@@ -24,31 +24,23 @@ class JobDetailsController extends Controller
 
     public function index($id)
     {
-        $job = Job::findOrFail($id);
-        $company = $job->company; // Mendapatkan informasi perusahaan terkait
+        $job = Job::where('slug', $id)->firstOrFail();// Mendapatkan informasi perusahaan terkait
         $requirements = Requirement::all();
         $jobcategories = JobCategory::all();
         $job_time = JobTimeType::all();
         $selectedRequirements = is_string($job->requirement_id) ? json_decode($job->requirement_id, true) : $job->requirement_id;
         $selectedRequirements = is_array($selectedRequirements) ? $selectedRequirements : [];
-
-        // Asumsikan bahwa logo disimpan di storage/app/public/companies/logos/
-        $logoUrl = null;
-        if ($company && $company->logo) {
-            $logoUrl = asset('storage/' . $company->logo);
-        }
-
         $data = ([
             "title" => "Edit Data Lowongan Kerja",
             "job" => $job,
             "job_time" => $job_time,
             "requirements" => $requirements,
             "jobcategories" => $jobcategories,
-            "selectedRequirements" => $selectedRequirements
+            "selectedRequirements" => $selectedRequirements,
         ]);
 
         // dd($job);
-        return view('job-seekers.job-details', compact('company', 'logoUrl'), $data);
+        return view('job-seekers.job-details', $data);
         // return view('job-seekers.job-details');
     }
 

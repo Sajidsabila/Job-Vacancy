@@ -51,8 +51,17 @@
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $jobhistori->jobseeker->first_name }} {{ $jobhistori->jobseeker->last_name }}
                                     </td>
-                                    <td><a href="{{ asset('storage/' . $jobhistori->file) }}">Lihat Lamaran</a></td>
-                                    <td>{{ $jobhistori->status }}</td>
+                                    <td><a href="{{ URL::to('/companie/lowongan-kerja/view-pdf/' . $jobhistori->id) }}">Lihat
+                                            Lamaran</a></td>
+                                    <td>
+                                        @if ($jobhistori->status == 'Lamaran Terkrim')
+                                            <span class="badge badge-primary">{{ $jobhistori->status }}</span>
+                                        @elseif($jobhistori->status == 'Lamaran Dilihat')
+                                            <span class="badge badge-info">{{ $jobhistori->status }}</span>
+                                        @else
+                                            <span class="badge badge-secondary">{{ $jobhistori->status }}</span>
+                                        @endif
+                                    </td>
                                     <td>
                                         <div class="d-flex">
                                             <a href="{{ URL::to('/companie/lowongan-kerja/detail_candidate/' . $jobhistori->id) }}"

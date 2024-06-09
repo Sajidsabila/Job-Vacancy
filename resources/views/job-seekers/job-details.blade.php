@@ -66,24 +66,18 @@
                         <div class="single-job-items mb-50">
                             <div class="job-items">
                                 <div class="company-img company-img-details">
-                                    {{-- @if ($job && $job->company && $job->company->logo)
-                                        <a href="#"><img src="{{ 'storage/' . $job->company->logo }}"
-                                                alt=" {{ $job->company->company_name }}" width="100" height="auto"></a>
-                                    @endif --}}
-                                    @if ($logoUrl)
-                                        <img src="{{ $logoUrl }}" alt="Logo {{ $company->company_name }}"
-                                            width="60" height="auto">
-                                    @else
-                                        <p>Logo tidak tersedia</p>
-                                    @endif
+                                    <a href="#"><img src="{{ asset('storage/' . $job->company->logo) }}"
+                                            alt=" {{ $job->company->company_name }}" width="100" height="auto"></a>
+
+
                                 </div>
                                 <div class="job-tittle">
                                     <a href="#">
                                         <h4>{{ $job->title }}</h4>
                                     </a>
                                     <ul>
-                                        <li>{{ $company->company_name }}</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>{{ $company->addres }}</li>
+                                        <li>{{ $job->company->company_name }}</li>
+                                        <li><i class="fas fa-map-marker-alt"></i>{{ $job->company->addres }}</li>
                                         <li>{{ number_format($job->salary) }}</li>
                                     </ul>
                                 </div>
@@ -143,30 +137,36 @@
                             </div>
                             <ul>
                                 <li>Posted date : <span>{{ $job->created_at->format('d M Y') }}</span></li>
-                                <li>Location : <span>{{ $company->addres }}</span></li>
+                                <li>Location : <span>{{ $job->job_location }}</span></li>
                                 @foreach ($job_time as $key => $job_time)
                                     <li>Job nature : <span>{{ $job_time->type }}</span></li>
                                 @endforeach
                                 <li>Salary : <span>{{ number_format($job->salary) }}</span></li>
                                 {{-- <li>Application date : <span>12 Sep 2020</span></li> --}}
                             </ul>
-                            <div class="apply-btn2">
-                                <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
-                                    Lamar Pekerjaan
-                                </button>
-                            </div>
+                            @auth
+
+
+                                @if (auth()->user()->role == 'User')
+                                    <div class="apply-btn2">
+                                        <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+                                            Lamar Pekerjaan
+                                        </button>
+                                    </div>
+                                @endif
+                            @endauth
                         </div>
                         <div class="post-details4  mb-50">
                             <!-- Small Section Tittle -->
                             <div class="small-section-tittle">
                                 <h4>Company Information</h4>
                             </div>
-                            <span>{{ $company->company_name }}</span>
-                            <p>{{ $company->description }}</p>
+                            <span>{{ $job->company->company_name }}</span>
+                            <p>{{ $job->company->description }}</p>
                             <ul>
-                                <li>Name: <span>{{ $company->company_name }}</span></li>
-                                <li>Phone : <span>{{ $company->phone }}</span></li>
-                                <li>Email: <span>{{ $company->email }}</span></li>
+                                <li>Name: <span>{{ $job->company->company_name }}</span></li>
+                                <li>Phone : <span>{{ $job->company->phone }}</span></li>
+                                <li>Email: <span>{{ $job->company->email }}</span></li>
                             </ul>
                         </div>
                     </div>

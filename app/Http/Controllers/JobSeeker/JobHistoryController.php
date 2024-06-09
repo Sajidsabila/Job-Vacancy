@@ -13,7 +13,7 @@ class JobHistoryController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $jobhistories = JobHistory::with(['jobseeker', 'job'])->where('job_seeker_id', $user->id)->get();
+        $jobhistories = JobHistory::with(['jobseeker', 'job'])->where('job_seeker_id', $user->id)->paginate(1);
 
         $data = ([
             "title" => "Data History Lamaran",
