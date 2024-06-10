@@ -12,12 +12,15 @@ class ListJobController extends Controller
 {
     public function index()
     {
-        $categories = JobCategory::all();
+
+        $categories = JobCategory::with('jobs')->get();
+        $jobs = Job::all(); // Ambil semua pekerjaan, atau sesuaikan query jika diperlukan
+
+        // Menghitung jumlah pekerjaan per kategori
+
         $jobCounts = Job::select('job_category_id', DB::raw('count(*) as total'))
             ->groupBy('job_category_id')
             ->pluck('total', 'job_category_id');
-
-        $jobs = Job::all();
 
         $data = [
             "title" => "Job Category",
@@ -26,6 +29,6 @@ class ListJobController extends Controller
             "jobCounts" => $jobCounts
         ];
 
-        return view('job-seekers.job-listing', $data);
+        return view('job-seekers.list-job', $data);
     }
 }
