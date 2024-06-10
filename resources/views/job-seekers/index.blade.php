@@ -55,16 +55,36 @@
                         </div>
                     </div>
                 </div>
-                <div class="row d-flex justify-contnet-center">
+                <div class="row justify-contnet-center">
                     @foreach ($categories as $category)
+                        @php
+                            $categories = $jobs->filter(function ($job) use ($category) {
+                                return $job->job_category_id == $category->id;
+                            });
+                            $jobCount = $jobCounts[$category->id] ?? 0;
+                            // Filter pekerjaan hanya untuk kategori saat ini
+                            $jobsForCategory = $jobs->where('job_category_id', $category->id);
+                        @endphp
                         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                            <div class="single-services text-center mb-30">
+                            <div id="category_{{ $category->id }}" class="single-services text-center mb-30 single-job-link"
+                                data-url="{{ $jobCount > 0 ? route('jobs.by.category', $category->id) : '#' }}">
                                 <div class="services-ion">
                                     <span class="{{ $category->icon }}"></span>
                                 </div>
                                 <div class="services-cap">
-                                    <h5><a href="job_listing.html">{{ $category->category }}</a></h5>
-                                    <span>(653)</span>
+                                    @if ($jobCount > 0)
+                                        <h5><a
+                                                href="{{ route('jobs.by.category', $category->id) }}">{{ $category->category }}</a>
+                                        </h5>
+                                    @else
+                                        <h5>{{ $category->category }}</h5>
+                                    @endif
+                                    {{-- @if ($jobCount > 0) --}}
+                                    <span>{{ $jobCount }} Jobs</span>
+                                    {{-- @else
+                                        <span>0 Jobs</span>
+                                    @endif --}}
+                                    <!-- Tampilkan detail pekerjaan jika ada -->
                                 </div>
                             </div>
                         </div>
@@ -181,7 +201,7 @@
         </div>
         <!-- How  Apply Process End-->
         <!-- Testimonial Area Start -->
-        <div class="testimonial-area testimonial-padding">
+        <div id="testimonials" class="testimonial-area testimonial-padding">
             <div class="container">
                 <div class="row d-flex justify-content-center">
                     <div class="col-xl-8 col-lg-8 col-md-10">
@@ -191,8 +211,8 @@
                                     <div class="testimonial-caption">
                                         <div class="testimonial-founder">
                                             <div class="founder-img mb-30">
-                                                <img class="rounded-circle shadow-4-strong w-4 h-4" src="{{ asset('storage/' . $item->jobSeeker->photo) }}"
-                                                    alt="">
+                                                <img class="rounded-circle shadow-4-strong w-4 h-4"
+                                                    src="{{ asset('storage/' . $item->jobSeeker->photo) }}" alt="">
                                                 <span>{{ $item->jobSeeker->first_name }}
                                                     {{ $item->jobSeeker->last_name }}</span>
                                                 <p>{{ $item->job }}</p>
@@ -329,6 +349,15 @@
                 link.addEventListener('click', function() {
                     window.location.href = link.getAttribute('data-url');
                 });
+            });
+
+            var categories = document.querySelectorAll('.single-job-link');
+            categories.forEach(function(category) {
+                var jobCount = parseInt(category.querySelector('.services-cap span').textContent);
+                if (jobCount === 0) {
+                    category.style.pointerEvents =
+                        'none'; // Menonaktifkan klik pada kategori yang tidak memiliki pekerjaan
+                }
             });
         });
     </script>

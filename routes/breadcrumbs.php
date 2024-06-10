@@ -249,11 +249,17 @@ Breadcrumbs::for('admin.applyProcess.show', function (BreadcrumbTrail $trail, $i
     $trail->push('Show', route('admin.applyProcess.show', $id));
 });
 
+// // Admin Home > Job Categories
+// Breadcrumbs::for('admin.job-category.index', function (BreadcrumbTrail $trail) {
+//     $trail->parent('admin.dashboard');
+//     $trail->push('Job Categories', route('admin.job-category.index'));
+// });
 
-// Admin Home > Trash Job Categories
-Breadcrumbs::for('admin.trash-job-category', function (BreadcrumbTrail $trail) {
-    $trail->parent('admin.dashboard');
-    $trail->push('Trash Job Category', route('admin.trash-job-category'));
+
+// Admin Home > Trash Job Category
+Breadcrumbs::for('trash-job-category.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.job-category.index');
+    $trail->push('Trash Job Category', route('admin.trash-job-category.index'));
 });
 
 // Admin Home > Trash Religions
@@ -303,9 +309,6 @@ Breadcrumbs::for('admin.delete-user', function (BreadcrumbTrail $trail, $id) {
     $trail->parent('admin.trash-user.index');
     $trail->push('Delete', route('admin.delete-user', $id));
 });
-
-
-
 
 
 //COMPANY BREADCRUMB

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\company;
+namespace App\Http\Controllers\Company;
 
+use Exception;
 use App\Models\Job;
 use App\Models\Skill;
 use App\Models\Company;
@@ -14,6 +15,7 @@ use App\Models\requirement;
 use Illuminate\Http\Request;
 use App\Models\WorkExperience;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -190,7 +192,13 @@ class JobController extends Controller
     }
     public function viewPDF($id)
     {
-        $jobhistori = JobHistory::findOrFail($id);
-        return view('company.job.pdf_view', compact('jobhistori'));
+        try {
+            $jobhistori = JobHistory::findOrFail($id);
+            $jobhistori->status = 'Lamaran Dilihat';
+            $jobhistori->save();
+            return redirect()->to(asset('storage/' . $jobhistori->file));
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
     }
 }

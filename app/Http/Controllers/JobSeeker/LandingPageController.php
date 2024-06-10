@@ -1,33 +1,44 @@
 <?php
 
-namespace App\Http\Controllers\job_seeker;
+namespace App\Http\Controllers\JobSeeker;
 
-use App\Http\Controllers\Controller;
-use App\Models\JobCategory;
 use App\Models\Job;
 use App\Models\JobSeeker;
+use App\Models\JobCategory;
 use App\Models\JobTimeType;
+
 use App\Models\Testimonial;
+use App\Models\ApplyProcess;
+
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class LandingPageController extends Controller
 {
     public function index()
     {
-       $testimoni = Testimoni::all();
+        $testimonials = Testimonial::all();
         $applyProcesses = ApplyProcess::all();
 
 
         $categories = JobCategory::limit(8)->get();
         $jobs = Job::all(); // Ambil semua pekerjaan, atau sesuaikan query jika diperlukan
         $jobs = Job::with('jobTime', 'company', 'jobcategory')->get();
+
+        // Menghitung jumlah pekerjaan per kategori
+        $jobCounts = Job::select('job_category_id', DB::raw('count(*) as total'))
+            ->groupBy('job_category_id')
+            ->pluck('total', 'job_category_id');
+
         $data = [
             "title" => "Job Category",
             "categories" => $categories,
             "jobs" => $jobs,
             "applyProcesses" => $applyProcesses,
-            "testimoni" => $testimoni
+            "jobCounts" => $jobCounts,
+            "testimonials" => $testimonials
         ];
         return view('job-seekers.index', $data);
     }
@@ -46,9 +57,18 @@ class LandingPageController extends Controller
     public function listJob()
     {
         $categories = JobCategory::all();
+        $jobs = Job::all(); // Ambil semua pekerjaan, atau sesuaikan query jika diperlukan
+
+        // Menghitung jumlah pekerjaan per kategori
+        $jobCounts = Job::select('job_category_id', DB::raw('count(*) as total'))
+            ->groupBy('job_category_id')
+            ->pluck('total', 'job_category_id');
+
         $data = [
-            "title" => "All Job Categories",
+            "title" => "Job Category",
             "categories" => $categories,
+            "jobs" => $jobs,
+            "jobCounts" => $jobCounts
         ];
 
         return view('job-seekers.list-job', $data);
@@ -115,8 +135,8 @@ class LandingPageController extends Controller
 
         $keyword = $request->input('keyword');
         $jobs = Job::where('title', 'LIKE', '%' . $keyword . '%')
-                    ->orWhere('description', 'LIKE', '%' . $keyword . '%')
-                    ->get();
+            ->orWhere('description', 'LIKE', '%' . $keyword . '%')
+            ->get();
 
         return view('job-seekers.job-listing', ['jobs' => $jobs], $data);
     }

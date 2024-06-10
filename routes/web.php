@@ -1,48 +1,49 @@
 <?php
 
-use App\Http\Controllers\admin\ApplyProcessController;
+use App\Http\Controllers\Admin\ApplyProcessController;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\job_seeker\EducationController;
-use App\Http\Controllers\job_seeker\JobHistoryController;
-use App\Http\Controllers\job_seeker\JobListingController;
-use App\Http\Controllers\job_seeker\ListJobController;
-use App\Http\Controllers\admin\RequirementController;
-use App\Http\Controllers\job_seeker\ProfileController;
-use App\Http\Controllers\job_seeker\WorkExperienceController;
+use App\Http\Controllers\JobSeeker\EducationController;
+use App\Http\Controllers\JobSeeker\JobHistoryController;
+use App\Http\Controllers\JobSeeker\JobListingController;
+use App\Http\Controllers\JobSeeker\ListJobController;
+use App\Http\Controllers\Admin\RequirementController;
+use App\Http\Controllers\JobSeeker\ProfileController;
+use App\Http\Controllers\JobSeeker\WorkExperienceController;
 use App\Livewire\JobListNavigation;
 use App\Models\JobHistory;
 use App\Models\User;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\admin\RestoreUser;
+use App\Http\Controllers\Admin\RestoreUser;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\Admin\UserController;
 
-use App\Http\Controllers\admin\TestimoniController;
+use App\Http\Controllers\Admin\TestimoniController;
 
-use App\Http\Controllers\admin\AdminController;
-use App\Http\Controllers\company\JobController;
-use App\Http\Controllers\admin\CompanyController;
-use App\Http\Controllers\admin\ReligionController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Company\JobController;
+use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\ReligionController;
 use App\Http\Controllers\RegisterCompanieController;
-use App\Http\Controllers\admin\JobCategoryController;
-use App\Http\Controllers\company\DashboardController;
-use App\Http\Controllers\admin\RestoreDataJobCategory;
-use App\Http\Controllers\admin\ConfigurationController;
-use App\Http\Controllers\admin\EducationLevelController;
-use App\Http\Controllers\admin\JobTimeTypeController;
-use App\Http\Controllers\admin\RestoreApplyProcess;
+use App\Http\Controllers\Admin\JobCategoryController;
+use App\Http\Controllers\Company\DashboardController;
+use App\Http\Controllers\Admin\RestoreDataJobCategory;
+use App\Http\Controllers\Admin\ConfigurationController;
+use App\Http\Controllers\Admin\EducationLevelController;
+use App\Http\Controllers\Admin\JobTimeTypeController;
+use App\Http\Controllers\Admin\RestoreApplyProcess;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use App\Http\Controllers\admin\RestoreEduLevelController;
-use App\Http\Controllers\admin\RestoreJobTimeTypeController;
-use App\Http\Controllers\admin\RestoreReligionController;
+use App\Http\Controllers\Admin\RestoreEduLevelController;
+use App\Http\Controllers\Admin\RestoreJobTimeTypeController;
+use App\Http\Controllers\Admin\RestoreReligionController;
 
-use App\Http\Controllers\company\CompanyProfilController;
-use App\Http\Controllers\job_seeker\AboutController;
-use App\Http\Controllers\job_seeker\ContactController;
-use App\Http\Controllers\job_seeker\JobDetailsController;
-use App\Http\Controllers\job_seeker\LandingPageController;
+use App\Http\Controllers\Company\CompanyProfilController;
+use App\Http\Controllers\JobSeeker\AboutController;
+use App\Http\Controllers\JobSeeker\ContactController;
+use App\Http\Controllers\JobSeeker\JobDetailsController;
+use App\Http\Controllers\JobSeeker\LandingPageController;
+use App\Http\Controllers\JobSeeker\TestimonialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,11 +70,11 @@ Route::prefix('/')->group(function () {
     Route::get('/job category', [LandingPageController::class, 'getJobCategory']);
     Route::get('/job-list', [ListJobController::class, 'index']);
     Route::get('/listing-job', [JobListingController::class, 'index']);
-    Route::get('/job-details/{id}', [JobDetailsController::class, 'index']);
+    Route::get('/job-details/{slug}', [JobDetailsController::class, 'index']);
     Route::post('/send-letter', [JobDetailsController::class, 'store']);
     Route::resource("/profile", ProfileController::class);
     Route::get('/about', [AboutController::class, 'index']);
-    Route::post('/contact', [ContactController::class, 'index']);
+    // Route::post('/contact', [ContactController::class, 'index']);
     Route::resource('/contact', ContactController::class);
     Route::get('/job-seekers/contact', [ContactController::class, 'contact'])->name('job-seekers.contact');
     Route::resource("/work-experince", WorkExperienceController::class);
@@ -83,9 +84,12 @@ Route::prefix('/')->group(function () {
     Route::put('/profile/skills/update/{id}', [ProfileController::class, "updateskill"]);
     Route::delete('/profile/skills/delete/{id}', [ProfileController::class, "deleteskill"]);
     Route::get('/job-history', [JobHistoryController::class, "index"]);
-        Route::get('/job-seekers/contact', [ContactController::class, 'index'])->name('job-seekers.contact');
-    Route::post('/job-seekers/contact/store', [ContactController::class, 'store'])->name('job-seekers.contact.store');
-})->middleware('guest');
+    Route::post('/testimonial', [TestimoniController::class, 'index']);
+    Route::get('/testimonial', [TestimonialController::class, "index"]);
+    Route::get('/job-seekers/testimonial', [TestimonialController::class, 'index'])->name('job-seekers.testimonial');
+    Route::post('/job-seekers/testimonial/store', [TestimonialController::class, 'store'])->name('job-seekers.testimonial.store');
+    Route::get('/category/{id}', [JobListingController::class, 'showJobsByCategory'])->name('jobs.by.category');
+ })->middleware('guest');
 
 
 
