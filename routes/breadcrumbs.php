@@ -373,3 +373,11 @@ Breadcrumbs::for('companie.lowongan-kerja.detail_candidate', function (Breadcrum
     // Menambahkan breadcrumb untuk detail kandidat
     $trail->push('Detail Candidate', route('companie.lowongan-kerja.detail_candidate', $job_seeker_id));
 });
+
+Breadcrumbs::for('companie.lowongan-kerja.set_interview', function (BreadcrumbTrail $trail, $jobhistori) {
+    // Menyatakan breadcrumb induk
+    $trail->parent('companie.lowongan-kerja.index');
+
+    // Menambahkan breadcrumb untuk detail kandidat
+    $trail->push('Detail Candidate', route('companie.lowongan-kerja.set_interview', $jobhistori));
+});
