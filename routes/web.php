@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ApplyProcessController;
+use App\Http\Controllers\Company\InterviewScheduleController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\JobSeeker\EducationController;
 use App\Http\Controllers\JobSeeker\JobHistoryController;
@@ -93,6 +94,7 @@ Route::prefix('/')->group(function () {
 
 
 
+
 Route::group([
     'middleware' => ['auth', 'checkRole:Admin'],
     'prefix' => 'admin',
@@ -156,6 +158,8 @@ Route::group([
 
     Route::resource('/lowongan-kerja', JobController::class);
     Route::get('/lowongan-kerja/view-pdf/{id}', [JobController::class, 'viewPDF'])->name('pdf.view');
+    Route::get('/lowongan-kerja/set-interview/{id}', [InterviewScheduleController::class, 'edit'])->name('lowongan-kerja.set_interview');
+    Route::put('/lowongan-kerja/schedule-interview/{id}', [InterviewScheduleController::class, 'update'])->name('schedule.interview');
 
 });
 

@@ -132,12 +132,12 @@
     <!-- Bootstrap 4 -->
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- ChartJS -->
-    <script src="plugins/chart.js/Chart.min.js"></script>
+    {{-- <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script> --}}
     <!-- Sparkline -->
-    <script src="{{ asset('plugins/sparklines/sparkline.js') }} "></script>
+    {{-- <script src="{{ asset('plugins/sparklines/sparkline.js') }} "></script> --}}
     <!-- JQVMap -->
-    <script src="{{ asset('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-    <script src="{{ asset('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+    {{-- <script src="{{ asset('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
+    <script src="{{ asset('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script> --}}
     <!-- jQuery Knob Chart -->
     <script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
     <!-- daterangepicker -->
@@ -152,7 +152,7 @@
     <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/adminlte.js') }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+    {{-- <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script> --}}
     <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -200,33 +200,34 @@
         });
     </script>
     <script>
-        document.querySelectorAll('#description').forEach(editorElement => {
-            ClassicEditor
-                .create(editorElement)
-                .then(editor => {
-                    console.log(editor);
-                })
-                .catch(error => {
-                    console.error(error);
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('#description').forEach(editorElement => {
+                ClassicEditor
+                    .create(editorElement)
+                    .then(editor => {
+                        console.log(editor);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            });
+
+            $(document).ready(function() {
+                $('.nav-link.dropdown-toggle').on('click', function(event) {
+                    event.preventDefault();
+                    $(this).parent().toggleClass('show');
+                    $(this).next('.dropdown-menu').toggleClass('show');
                 });
-        });
 
-        $(document).ready(function() {
-            $('.nav-link.dropdown-toggle').on('click', function(event) {
-                event.preventDefault();
-                $(this).parent().toggleClass('show');
-                $(this).next('.dropdown-menu').toggleClass('show');
+                $(document).click(function(event) {
+                    if (!$(event.target).closest('.nav-item.dropdown').length) {
+                        $('.nav-item.dropdown .dropdown-menu').removeClass('show');
+                        $('.nav-item.dropdown').removeClass('show');
+                    }
+                });
             });
 
-            $(document).click(function(event) {
-                if (!$(event.target).closest('.nav-item.dropdown').length) {
-                    $('.nav-item.dropdown .dropdown-menu').removeClass('show');
-                    $('.nav-item.dropdown').removeClass('show');
-                }
-            });
-        });
-
-        $('.selectpicker').selectpicker('refresh');
+            $('.selectpicker').selectpicker('refresh');
         });
     </script>
 </body>
