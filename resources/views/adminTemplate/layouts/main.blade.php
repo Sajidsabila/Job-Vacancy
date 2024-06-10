@@ -36,6 +36,11 @@
     <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('css/flaticon.css') }}">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+
     <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
 </head>
 
@@ -162,15 +167,11 @@
     <script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!-- Include Bootstrap-Select CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css"
         rel="stylesheet">
-
-    <!-- Include jQuery (required for Bootstrap JS) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
     <!-- Include Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -211,30 +212,21 @@
         });
 
         $(document).ready(function() {
-            $(".requirements").select2({
-                placeholder: 'Pilih Persyaratan',
-                allowClear: true,
-            });
-            $(document).ready(function() {
-                $('.selectpicker').selectpicker();
+            $('.nav-link.dropdown-toggle').on('click', function(event) {
+                event.preventDefault();
+                $(this).parent().toggleClass('show');
+                $(this).next('.dropdown-menu').toggleClass('show');
             });
 
-            $(document).ready(function() {
-                $('.nav-link.dropdown-toggle').on('click', function(event) {
-                    event.preventDefault();
-                    $(this).parent().toggleClass('show');
-                    $(this).next('.dropdown-menu').toggleClass('show');
-                });
-
-                $(document).click(function(event) {
-                    if (!$(event.target).closest('.nav-item.dropdown').length) {
-                        $('.nav-item.dropdown .dropdown-menu').removeClass('show');
-                        $('.nav-item.dropdown').removeClass('show');
-                    }
-                });
+            $(document).click(function(event) {
+                if (!$(event.target).closest('.nav-item.dropdown').length) {
+                    $('.nav-item.dropdown .dropdown-menu').removeClass('show');
+                    $('.nav-item.dropdown').removeClass('show');
+                }
             });
+        });
 
-            $('.selectpicker').selectpicker('refresh');
+        $('.selectpicker').selectpicker('refresh');
         });
     </script>
 </body>
