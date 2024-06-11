@@ -2,9 +2,9 @@
 @section('content')
     <main>
         <!-- Hero Area Start-->
-        <div class="slider-area ">
+        {{-- <div class="slider-area ">
             <div class="single-slider section-overly slider-height2 d-flex align-items-center"
-                data-background="/img/hero/about.jpg">
+                data-background="/img/hero/about.jpg"> --}}
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-12">
