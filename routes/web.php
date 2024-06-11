@@ -21,6 +21,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Admin\UserController;
 
 use App\Http\Controllers\Admin\TestimoniController;
+use App\Http\Controllers\Admin\AdminContactController;
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Company\JobController;
@@ -41,10 +42,10 @@ use App\Http\Controllers\Admin\RestoreReligionController;
 
 use App\Http\Controllers\Company\CompanyProfilController;
 use App\Http\Controllers\JobSeeker\AboutController;
-use App\Http\Controllers\JobSeeker\ContactController;
 use App\Http\Controllers\JobSeeker\JobDetailsController;
 use App\Http\Controllers\JobSeeker\LandingPageController;
 use App\Http\Controllers\JobSeeker\TestimonialController;
+use App\Http\Controllers\JobSeeker\JobSeekerContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,9 +76,6 @@ Route::prefix('/')->group(function () {
     Route::post('/send-letter', [JobDetailsController::class, 'store']);
     Route::resource("/profile", ProfileController::class);
     Route::get('/about', [AboutController::class, 'index']);
-    // Route::post('/contact', [ContactController::class, 'index']);
-    Route::resource('/contact', ContactController::class);
-    Route::get('/job-seekers/contact', [ContactController::class, 'contact'])->name('job-seekers.contact');
     Route::resource("/work-experince", WorkExperienceController::class);
     Route::resource("/education-user", EducationController::class);
     Route::post("/profil/skills/create", [ProfileController::class, 'storeskill']);
@@ -90,7 +88,10 @@ Route::prefix('/')->group(function () {
     Route::get('/job-seekers/testimonial', [TestimonialController::class, 'index'])->name('job-seekers.testimonial');
     Route::post('/job-seekers/testimonial/store', [TestimonialController::class, 'store'])->name('job-seekers.testimonial.store');
     Route::get('/category/{id}', [JobListingController::class, 'showJobsByCategory'])->name('jobs.by.category');
-})->middleware('guest');
+    Route::get('/contact', [JobSeekerContactController::class, 'index'])->name('job-seekers.contact');
+    Route::post('/contact', [JobSeekerContactController::class, 'store'])->name('job-seekers.contact.store');
+ })->middleware('guest');
+
 
 
 
@@ -124,6 +125,10 @@ Route::group([
     // Route::get('/job-seeker/testimoni', [TestimoniPublicController::class, 'jobSeekerIndex'])->name('job-seeker.testimoni.index');
 
     Route::resource('/applyProcess', ApplyProcessController::class);
+
+    // Route::get('/contact', [AdminContactController::class, 'index'])->name('admin.contact.index');
+    Route::resource('/contact', AdminContactController::class);
+    // Route::post('/contact', [AdminContactController::class, 'store'])->name('contact.store');
 
     Route::resource('/list-perusahaan', CompanyController::class);
     Route::resource('/job-category', JobCategoryController::class);
