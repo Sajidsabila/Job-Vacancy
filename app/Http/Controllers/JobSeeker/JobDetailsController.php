@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Controllers\company\CompanyProfilController;
+use App\Models\Configuration;
 
 class JobDetailsController extends Controller
 {
@@ -28,6 +29,7 @@ class JobDetailsController extends Controller
         $requirements = Requirement::all();
         $jobcategories = JobCategory::all();
         $job_time = JobTimeType::all();
+        $configurations = Configuration::first();
         $selectedRequirements = is_string($job->requirement_id) ? json_decode($job->requirement_id, true) : $job->requirement_id;
         $selectedRequirements = is_array($selectedRequirements) ? $selectedRequirements : [];
         $data = ([
@@ -37,6 +39,7 @@ class JobDetailsController extends Controller
             "requirements" => $requirements,
             "jobcategories" => $jobcategories,
             "selectedRequirements" => $selectedRequirements,
+            "configurations" => $configurations
         ]);
 
         // dd($job);

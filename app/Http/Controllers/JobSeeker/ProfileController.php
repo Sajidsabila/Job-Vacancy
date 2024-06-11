@@ -7,7 +7,9 @@ use App\Models\JobSeeker;
 use App\Models\Skill;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Configuration;
 use App\Models\Testimoni;
+use App\Models\Testimonial;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -18,6 +20,7 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $religions = Religion::all();
+        $configurations = Configuration::first();
 
         $jobseeker = JobSeeker::with('user')->where('id', $user->id)->first();
         $skills = Skill::with('jobseeker')->where('job_seeker_id', $user->id)->get();
@@ -25,7 +28,8 @@ class ProfileController extends Controller
             "title" => "Profile User",
             "jobseeker" => $jobseeker,
             "religions" => $religions,
-            "skills" => $skills
+            "skills" => $skills,
+            "configurations" => $configurations
         ]);
         if (!$jobseeker) {
             return view('job-seekers.form-profile', $data);
@@ -205,7 +209,7 @@ class ProfileController extends Controller
         $jobseeker = JobSeeker::with('user')->where('id', $user->id)->first();
 
         // Mengambil semua testimoni
-        $testimonis = Testimoni::all();
+        $testimonis = Testimonial::all();
 
         // Mengirim data ke view
         return view('job-seekers.index', [

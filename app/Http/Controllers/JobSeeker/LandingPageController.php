@@ -12,6 +12,7 @@ use App\Models\ApplyProcess;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Configuration;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -26,7 +27,7 @@ class LandingPageController extends Controller
         $categories = JobCategory::limit(8)->get();
         $jobs = Job::all(); // Ambil semua pekerjaan, atau sesuaikan query jika diperlukan
         $jobs = Job::with('jobTime', 'company', 'jobcategory')->get();
-
+        $configurations = Configuration::first();
         // Menghitung jumlah pekerjaan per kategori
         $jobCounts = Job::select('job_category_id', DB::raw('count(*) as total'))
             ->groupBy('job_category_id')
@@ -38,7 +39,9 @@ class LandingPageController extends Controller
             "jobs" => $jobs,
             "applyProcesses" => $applyProcesses,
             "jobCounts" => $jobCounts,
-            "testimonials" => $testimonials
+            "testimonials" => $testimonials,
+            "configurations" => $configurations
+          
         ];
         return view('job-seekers.index', $data);
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\JobSeeker;
 
 use App\Http\Controllers\Controller;
+use App\Models\Configuration;
 use App\Models\Job;
 use App\Models\JobCategory;
 use App\Models\JobTimeType;
@@ -30,8 +31,12 @@ class AboutController extends Controller
         //     'jobCategoryId' => $jobCategoryId
 
         // ]);
-
-        return view('job-seekers.about');
+        $configurations = Configuration::first();
+        $data = [
+           
+            "configurations" => $configurations
+        ];
+        return view('job-seekers.about', $data);
 
 
     }
