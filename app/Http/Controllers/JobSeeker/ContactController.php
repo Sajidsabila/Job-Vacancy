@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\JobSeeker;
 
 use App\Http\Controllers\Controller;
-use App\Models\Configuration;
 use App\Models\JobCategory;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;

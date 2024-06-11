@@ -42,6 +42,7 @@
                                 <th>Nama Kandidat</th>
                                 <th>File Lamaran</th>
                                 <th>Status</th>
+                                <th>Tangga Interview</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -63,11 +64,27 @@
                                         @endif
                                     </td>
                                     <td>
+                                        @if (!is_null($jobhistori->interview_date))
+                                            {{ $jobhistori->interview_date }}
+                                        @else
+                                            Tanggal Interview Disetting
+                                        @endif
+                                    </td>
+                                    <td>
                                         <div class="d-flex">
                                             <a href="{{ URL::to('/companie/lowongan-kerja/detail_candidate/' . $jobhistori->id) }}"
                                                 class="mr-2 btn btn-info btn-sm">Lihat Pelamar</a>
-                                            <a href="{{ URL::to('/companie/lowongan-kerja/' . $job->id . '/edit') }}"
-                                                class="mr-2 btn btn-warning btn-sm">Edit</a>
+                                            @if ($jobhistori->status == 'Lamaran Dilihat')
+                                                <a href="{{ URL::to('/companie/lowongan-kerja/set-interview/' . $jobhistori->id) }}"
+                                                    class="mr-2 btn btn-warning btn-sm">Interview</a>
+                                            @endif
+
+                                            @if (!is_null($jobhistori->interview_date))
+                                                <a href="{{ URL::to('/companie/lowongan-kerja/tolak_lamaran/' . $jobhistori->id) }}"
+                                                    class="mr-2 btn btn-danger btn-sm">Tolak Lamaran</a>
+                                                <a href="{{ URL::to('/companie/lowongan-kerja/terima_lamaran/' . $jobhistori->id) }}"
+                                                    class="mr-2 btn btn-success btn-sm">Terima Lamaran</a>
+                                            @endif
                                         </div>
                                     </td>
                             @endforeach

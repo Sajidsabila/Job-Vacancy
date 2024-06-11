@@ -163,6 +163,17 @@
 
                     <li class="nav-item">
 
+                        <a href="{{ URL::to('/admin/contact') }}"
+                            class="nav-link {{ Request::is('admin/contact') ? ' active' : '' }}">
+                            <i class="nav-icon fas fa-address-book"></i>
+                            <p>
+                                Contact
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+
                         <a href="{{ URL::to('/admin/applyProcess') }}"
                             class="nav-link {{ Request::is('applyProcess') ? ' active' : '' }}">
                             <i class="nav-icon fas fa-solid fa-briefcase"></i>

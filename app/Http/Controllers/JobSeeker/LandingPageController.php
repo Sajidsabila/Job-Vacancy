@@ -60,9 +60,18 @@ class LandingPageController extends Controller
     public function listJob()
     {
         $categories = JobCategory::all();
+        $jobs = Job::all(); // Ambil semua pekerjaan, atau sesuaikan query jika diperlukan
+
+        // Menghitung jumlah pekerjaan per kategori
+        $jobCounts = Job::select('job_category_id', DB::raw('count(*) as total'))
+            ->groupBy('job_category_id')
+            ->pluck('total', 'job_category_id');
+
         $data = [
-            "title" => "All Job Categories",
+            "title" => "Job Category",
             "categories" => $categories,
+            "jobs" => $jobs,
+            "jobCounts" => $jobCounts
         ];
 
         return view('job-seekers.list-job', $data);
