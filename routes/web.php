@@ -61,6 +61,7 @@ Route::get('/login-page', [AuthController::class, 'index'])
     ->name('login')->middleware('guest');
 Route::get('/register/job-seekers', [RegisterController::class, 'index'])->middleware('guest');
 Route::get('/register/companies', [RegisterCompanieController::class, 'index'])->middleware('guest');
+Route::get('/verify-email/{token}', [RegisterController::class, 'verifyEmail'])->name('verify.email');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/register/proses', [RegisterCompanieController::class, 'Register'])->middleware('guest');
 Route::post('/register/job-seekers/proses', [RegisterController::class, 'Register'])->middleware('guest');
@@ -94,7 +95,7 @@ Route::prefix('/')->group(function () {
     Route::get('/category/{id}', [JobListingController::class, 'showJobsByCategory'])->name('jobs.by.category');
     Route::get('/contact', [JobSeekerContactController::class, 'index'])->name('job-seekers.contact');
     Route::post('/contact', [JobSeekerContactController::class, 'store'])->name('job-seekers.contact.store');
- })->middleware('guest');
+})->middleware('guest');
 
 
 
@@ -123,13 +124,13 @@ Route::group([
     Route::delete('/delete-religion/{id}', [RestoreReligionController::class, 'destroy']);
     Route::delete('/delete-user/{id}', [RestoreUser::class, 'destroy']);
 
-Route::resource('/user', UserController::class);
+    Route::resource('/user', UserController::class);
 
 
-Route::resource('/testimoni', TestimoniController::class);
+    Route::resource('/testimoni', TestimoniController::class);
 
 
-Route::resource('/applyProcess', ApplyProcessController::class);
+    Route::resource('/applyProcess', ApplyProcessController::class);
 
     // Route::get('/contact', [AdminContactController::class, 'index'])->name('admin.contact.index');
     Route::resource('/contact', AdminContactController::class);
@@ -165,7 +166,7 @@ Route::group([
     Route::get('/lowongan-kerja/view-pdf/{id}', [JobController::class, 'viewPDF'])->name('pdf.view');
     Route::get('/lowongan-kerja/set-interview/{id}', [InterviewScheduleController::class, 'edit'])->name('lowongan-kerja.set_interview');
     Route::put('/lowongan-kerja/schedule-interview/{id}', [InterviewScheduleController::class, 'update'])->name('schedule.interview');
-
+    Route::get('/lowongan-kerja/reject/{id}', [JobController::class, 'reject']);
 });
 
 Route::post('/auth', [AuthController::class, 'login']);

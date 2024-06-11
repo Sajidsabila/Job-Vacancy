@@ -58,8 +58,8 @@
                                             <span class="badge badge-primary">{{ $jobhistori->status }}</span>
                                         @elseif($jobhistori->status == 'Lamaran Dilihat')
                                             <span class="badge badge-info">{{ $jobhistori->status }}</span>
-                                        @else
-                                            <span class="badge badge-secondary">{{ $jobhistori->status }}</span>
+                                        @elseif($jobhistori->status == 'Lamaran Ditolak')
+                                            <span class="badge badge-danger">{{ $jobhistori->status }}</span>
                                         @endif
                                     </td>
                                     <td>
@@ -72,7 +72,7 @@
                                             @endif
 
                                             @if (!is_null($jobhistori->interview_date))
-                                                <a href="{{ URL::to('/companie/lowongan-kerja/tolak_lamaran/' . $jobhistori->id) }}"
+                                                <a href="{{ URL::to('/companie/lowongan-kerja/reject/' . $jobhistori->id) }}"
                                                     class="mr-2 btn btn-danger btn-sm">Tolak Lamaran</a>
                                                 <a href="{{ URL::to('/companie/lowongan-kerja/terima_lamaran/' . $jobhistori->id) }}"
                                                     class="mr-2 btn btn-success btn-sm">Terima Lamaran</a>

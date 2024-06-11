@@ -201,4 +201,18 @@ class JobController extends Controller
             return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
     }
+    public function reject($id)
+    {
+        try {
+            $jobhistori = JobHistory::findOrFail($id);
+            $jobhistori->status = 'Lamaran Ditolak';
+            $jobhistori->save();
+            Alert::success("Berhasil", "status lamaran ditolak");
+            return back();
+        } catch (Exception $e) {
+
+            Alert::error("Gagal", $e->getMessage());
+            return back();
+        }
+    }
 }
