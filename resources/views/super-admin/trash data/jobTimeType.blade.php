@@ -5,6 +5,7 @@
     <h3>{{ $title }}</h3>
     <table id="datatable1" class="table table-bordered table-stripped">
         <thead>
+            
             <tr>
                 <th width='5%'>No</th>
                 <th>Type</th>
