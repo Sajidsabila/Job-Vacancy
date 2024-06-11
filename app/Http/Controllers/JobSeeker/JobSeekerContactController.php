@@ -15,27 +15,29 @@ class JobSeekerContactController extends Controller
 {
     public function index()
     {
-        $contacts = Contact::all();
+        $configurations = Configuration::first();
         $data = [
             "title" => "Contact",
-            "contacts" => $contacts
+            'configurations' => $configurations
         ];
         return view('job-seekers.contact', $data);  // Path ke view contact.blade.php
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        $configurations = Configuration::all();
+        $data = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
             'description' => 'required',
+            'configurations' => $configurations
         ]);
 
         // Simpan data ke database
-        Contact::create($request->all());
+        Contact::create($data);
 
         // Redirect kembali ke halaman kontak dengan pesan sukses
         return redirect()->route('job-seekers.contact')->with('success', 'Message sent successfully!');
     }
-    
+
 }

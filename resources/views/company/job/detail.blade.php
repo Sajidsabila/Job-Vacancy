@@ -42,6 +42,7 @@
                                 <th>Nama Kandidat</th>
                                 <th>File Lamaran</th>
                                 <th>Status</th>
+                                <th>Tangga Interview</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -60,6 +61,13 @@
                                             <span class="badge badge-info">{{ $jobhistori->status }}</span>
                                         @else
                                             <span class="badge badge-secondary">{{ $jobhistori->status }}</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if (!is_null($jobhistori->interview_date))
+                                            {{ $jobhistori->interview_date }}
+                                        @else
+                                            Tanggal Interview Disetting
                                         @endif
                                     </td>
                                     <td>
