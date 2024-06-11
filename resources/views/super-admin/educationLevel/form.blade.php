@@ -24,8 +24,7 @@
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <input type="text" id="description" name="description"
-                    class="form-control @error('description')is-invalid @enderror"
+                <input type="text" name="description" class="form-control @error('description')is-invalid @enderror"
                     value="{{ isset($educationLevel) ? $educationLevel->description : old('description') }}">
                 @error('description')
                     <div class="invalid-feedback">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Testimoni;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -16,8 +17,8 @@ class TestimoniController extends Controller
      */
     public function index()
     {
-        $testimoni = Testimoni::all();
-        $testimoni = Testimoni::orderby('id')->get();
+        $testimoni = Testimonial::all();
+        $testimoni = Testimonial::orderby('id')->get();
         $data = [
             "title" => "Data Testimoni",
             "testimoni" => $testimoni,
@@ -63,7 +64,7 @@ class TestimoniController extends Controller
             $data['image'] = $imagePath;
         }
 
-        Testimoni::create($data);
+        Testimonial::create($data);
 
         Alert::success('Sukses', 'Add data success.');
         return redirect()->route('admin.testimoni.index')->with('success', 'Religion added successfully.');

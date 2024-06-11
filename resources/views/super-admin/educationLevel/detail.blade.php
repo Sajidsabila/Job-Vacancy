@@ -11,8 +11,8 @@
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <input type="text" id="description" name="description" class="form-control"
-                    value="{{ $educationLevel->description }}" readonly>
+                <input type="text" name="description" class="form-control" value="{{ $educationLevel->description }}"
+                    readonly>
             </div>
             <a href="{{ URL::to('admin/educationLevel') }}" class="btn btn-sm btn-secondary">Back</a>
         </div>

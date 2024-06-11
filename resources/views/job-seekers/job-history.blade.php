@@ -21,6 +21,7 @@
                                     <th>Posisi Yang Dilamar</th>
                                     <th>Perusahaan</th>
                                     <th>Status</th>
+                                    <th>Jadwal Wawancara</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -29,7 +30,16 @@
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $jobhistory->job->title }}</td>
                                         <td>{{ $jobhistory->job->company->company_name }}</td>
-                                        <td>{{ $jobhistory->status }}</td>
+                                        <td>
+                                            @if ($jobhistory->status == 'Lamaran Terkrim')
+                                                <span class="badge badge-primary">{{ $jobhistory->status }}</span>
+                                            @elseif($jobhistory->status == 'Lamaran Dilihat')
+                                                <span class="badge badge-info">{{ $jobhistory->status }}</span>
+                                            @else
+                                                <span class="badge badge-secondary">{{ $jobhistory->status }}</span>
+                                            @endif
+                                        </td>
+                                        <td>{{ $jobhistory->interview_date }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
