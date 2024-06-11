@@ -7,7 +7,7 @@
         <thead>
             <tr>
                 <th width='5%'>No</th>
-                <th>Level</th>
+                <th>Type</th>
                 <th width='10%'>Action</th>
             </tr>
         </thead>

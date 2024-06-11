@@ -33,8 +33,10 @@ use App\Http\Controllers\Admin\ConfigurationController;
 use App\Http\Controllers\Admin\EducationLevelController;
 use App\Http\Controllers\Admin\JobTimeTypeController;
 use App\Http\Controllers\Admin\RestoreApplyProcess;
+use App\Http\Controllers\Admin\RestoreCompanyController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Admin\RestoreEduLevelController;
+use App\Http\Controllers\Admin\RestoreJobSeeker;
 use App\Http\Controllers\Admin\RestoreJobTimeTypeController;
 use App\Http\Controllers\Admin\RestoreReligionController;
 
@@ -111,36 +113,33 @@ Route::group([
     Route::resource('/user', UserController::class);
     Route::resource('/list-perusahaan', CompanyController::class);
     Route::resource('/job-category', JobCategoryController::class);
-    Route::get('/trash-job-category', [RestoreDataJobCategory::class, 'index']);
-    Route::get('/trash-religion', [RestoreReligionController::class, 'index']);
-    Route::get('/trash-user', [RestoreUser::class, 'index']);
-    Route::get('/restore-job-category/{id}', [RestoreDataJobCategory::class, 'restore']);
+    Route::get('/trash-job-category', [RestoreDataJobCategory::class, 'index'])->name('trashcategory');
+    Route::get('/trash-job-seeker', [RestoreJobSeeker::class, 'index'])->name('trashjobseeker');
+    Route::get('/trash-company', [RestoreCompanyController::class, 'index'])->name('trashcompany');
+
+    Route::get('/trash-religion', [RestoreReligionController::class, 'index'])->name('trashreligion');
+    Route::get('/trash-user', [RestoreUser::class, 'index'])->name('trashuser');
+    Route::get('/restore-job-category/{id}', [RestoreDataJobCategory::class, 'restore'])->name('restorejobcategory');
     Route::get('/restore-religion/{id}', [RestoreReligionController::class, 'restore']);
     Route::get('/user/{id}', [RestoreUser::class, 'restore']);
     Route::delete('/delete-job-category/{id}', [RestoreDataJobCategory::class, 'destroy']);
     Route::delete('/delete-religion/{id}', [RestoreReligionController::class, 'destroy']);
     Route::delete('/delete-user/{id}', [RestoreUser::class, 'destroy']);
-
-Route::resource('/user', UserController::class);
-
-
-Route::resource('/testimoni', TestimoniController::class);
-
-
-Route::resource('/applyProcess', ApplyProcessController::class);
-
+    Route::resource('/user', UserController::class);
+    Route::resource('/testimoni', TestimoniController::class);
+    Route::resource('/applyProcess', ApplyProcessController::class);
     Route::resource('/list-perusahaan', CompanyController::class);
     Route::resource('/job-category', JobCategoryController::class);
     Route::resource('/educationLevel', EducationLevelController::class);
     Route::resource('/requirement', RequirementController::class);
-    Route::get('/trash-educationLevel', [RestoreEduLevelController::class, 'index']);
+    Route::get('/trash-educationLevel', [RestoreEduLevelController::class, 'index'])->name('educationlevel');
     Route::get('/restore-educationLevel/{id}', [RestoreEduLevelController::class, 'restore']);
     Route::delete('/delete-educationLevel/{id}', [RestoreEduLevelController::class, 'destroy']);
     Route::resource('/jobTimeType', JobTimeTypeController::class);
-    Route::get('/trash-jobTimeType', [RestoreJobTimeTypeController::class, 'index']);
+    Route::get('/trash-jobTimeType', [RestoreJobTimeTypeController::class, 'index'])->name('jobtyme');
     Route::get('/restore-jobTimeType/{id}', [RestoreJobTimeTypeController::class, 'restore']);
     Route::delete('/delete-jobTimeType/{id}', [RestoreJobTimeTypeController::class, 'destroy']);
-    Route::get('/trash-applyProcess', [RestoreApplyProcess::class, 'index']);
+    Route::get('/trash-applyProcess', [RestoreApplyProcess::class, 'index'])->name('applyprocess');
     Route::get('/restore-applyProcess/{id}', [RestoreApplyProcess::class, 'restore']);
     Route::delete('/delete-applyProcess/{id}', [RestoreApplyProcess::class, 'destroy']);
 });

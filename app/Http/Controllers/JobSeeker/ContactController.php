@@ -18,13 +18,12 @@ class ContactController extends Controller
         $user = Auth::user();
 
         $testimoni = Testimonial::orderby('id')->get();
-        $configurations = Configuration::first();
         $data = [
             "title" => "Data Testimoni",
             "testimoni" => $testimoni,
             "jobcategories" => $jobcategories,
             "user" => $user,
-            "configurations" => $configurations
+           
         ];
 
         return view('job-seekers.contact', $data);

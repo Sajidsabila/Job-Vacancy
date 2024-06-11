@@ -249,30 +249,65 @@ Breadcrumbs::for('admin.applyProcess.show', function (BreadcrumbTrail $trail, $i
     $trail->push('Show', route('admin.applyProcess.show', $id));
 });
 
-// // Admin Home > Job Categories
-// Breadcrumbs::for('admin.job-category.index', function (BreadcrumbTrail $trail) {
-//     $trail->parent('admin.dashboard');
-//     $trail->push('Job Categories', route('admin.job-category.index'));
-// });
+
+;
 
 
-// Admin Home > Trash Job Category
-Breadcrumbs::for('trash-job-category.index', function (BreadcrumbTrail $trail) {
-    $trail->parent('admin.job-category.index');
-    $trail->push('Trash Job Category', route('admin.trash-job-category.index'));
+// Admin Home > (Trash Job Category)
+Breadcrumbs::for('admin.trashcategory', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Trash Job Category', route('admin.trashcategory'));
 });
 
 // Admin Home > Trash Religions
-Breadcrumbs::for('admin.trash-religion.index', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('admin.trashreligion', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.dashboard');
-    $trail->push('Trash Religions', route('admin.trash-religion.index'));
+    $trail->push('Trash Religion', route('admin.trashreligion'));
 });
 
 // Admin Home > Trash Users
-Breadcrumbs::for('admin.trash-user.index', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('admin.trashuser', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.dashboard');
-    $trail->push('Trash Users', route('admin.trash-user.index'));
+    $trail->push('Trash User', route('admin.trashuser'));
 });
+
+// Admin Home > Trash Apply Process
+Breadcrumbs::for('admin.applyprocess', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Trash Apply Process', route('admin.applyprocess'));
+});
+
+
+// Admin Home > Trash Education Level
+Breadcrumbs::for('admin.educationlevel', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Trash Education Level', route('admin.educationlevel'));
+});
+
+// Admin Home > Trash Job Time Type
+Breadcrumbs::for('admin.jobtyme', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Trash Job Time Type', route('admin.jobtyme'));
+});
+
+// Admin Home > Trash List Perusahaan
+Breadcrumbs::for('admin.trashcompany', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Trash Company', route('admin.trashcompany'));
+});
+
+
+// Admin Home > Trash Job Seeker
+Breadcrumbs::for('admin.trashjobseeker', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Trash Job Seeker', route('admin.trashjobseeker'));
+});
+
+// // Admin Home > (Trash Job Category)
+// Breadcrumbs::for('admin.trashcategory', function (BreadcrumbTrail $trail) {
+//     $trail->parent('admin.dashboard');
+//     $trail->push('Trash Job Category', route('admin.trashcategory'));
+// });
 
 // Admin Home > Trash Job Categories > Restore
 Breadcrumbs::for('admin.restore-job-category', function (BreadcrumbTrail $trail, $id) {
@@ -291,6 +326,8 @@ Breadcrumbs::for('admin.restore-user', function (BreadcrumbTrail $trail, $id) {
     $trail->parent('admin.trash-user.index');
     $trail->push('Restore', route('admin.restore-user', $id));
 });
+
+
 
 // Admin Home > Trash Job Categories > Delete
 Breadcrumbs::for('admin.delete-job-category', function (BreadcrumbTrail $trail, $id) {

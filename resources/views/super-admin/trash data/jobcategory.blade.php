@@ -27,7 +27,7 @@
                 <div class="d-flex">
     
                     <a href="{{ URL::to('/admin/restore-job-category/' . $category->id)}}"
-                        class="mr-2 btn btn-success btn-sm">Edit</a>
+                        class="mr-2 btn btn-success btn-sm">Restore</a>
                     <form action="{{URL::to('/admin/delete-job-category/' . $category->id)}}" method="post">
                         @csrf
                         @method('delete')

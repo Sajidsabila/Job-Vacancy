@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Testimoni;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -16,8 +16,8 @@ class TestimoniController extends Controller
      */
     public function index()
     {
-        $testimoni = Testimoni::all();
-        $testimoni = Testimoni::orderby('id')->get();
+        $testimoni = Testimonial::all();
+        $testimoni = Testimonial::orderby('id')->get();
         $data = [
             "title" => "Data Testimoni",
             "testimoni" => $testimoni,
@@ -63,7 +63,7 @@ class TestimoniController extends Controller
             $data['image'] = $imagePath;
         }
 
-        Testimoni::create($data);
+        Testimonial::create($data);
 
         Alert::success('Sukses', 'Add data success.');
         return redirect()->route('admin.testimoni.index')->with('success', 'Religion added successfully.');
@@ -74,7 +74,7 @@ class TestimoniController extends Controller
      */
     public function show(string $id)
     {
-        $testimoni = Testimoni::find($id);
+        $testimoni = Testimonial::find($id);
         $data = [
             "title" => "Testimoni Detail",
             "testimoni" => $testimoni,
@@ -87,7 +87,7 @@ class TestimoniController extends Controller
      */
     public function edit(string $id)
     {
-        $testimoni = Testimoni::find($id);
+        $testimoni = Testimonial::find($id);
         if (!$testimoni) {
             return redirect('testimoni')->with("errorMessage", "Testimoni Tidak DItemukan");
         }
@@ -115,7 +115,7 @@ class TestimoniController extends Controller
         ], $messages);
 
         try {
-            $testimoni = Testimoni::find($id);
+            $testimoni = Testimonial::find($id);
 
             if ($request->hasFile('image')) {
                 if ($testimoni->image) {
@@ -143,7 +143,7 @@ class TestimoniController extends Controller
     public function destroy(string $id)
     {
         try {
-            $testimoni = Testimoni::find($id);
+            $testimoni = Testimonial::find($id);
             if ($testimoni->image) {
                 Storage::disk('public')->delete($testimoni->image);
             }

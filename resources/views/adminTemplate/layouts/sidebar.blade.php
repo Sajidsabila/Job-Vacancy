@@ -185,9 +185,9 @@
                     <li class="nav-item">
                         <a href="{{ URL::to('/admin/requirement') }}"
                             class="nav-link {{ Request::is('user') ? ' active' : '' }}">
-                            <i class="nav-icon fas fa-cog"></i>
+                            <i class="nav-icon fas fa-check-circle"></i>
                             <p>
-                                Konfigurasi
+                                Requirement
                             </p>
                         </a>
                     </li>
@@ -236,7 +236,7 @@
                     <li class="nav-item {{ Request::is('receipt') || Request::is('report') ? ' menu-open' : '' }}">
                         <a href="#"
                             class="nav-link {{ Request::is('/admin/trash-job-category') || Request::is('report') ? ' active' : '' }}">
-                            <i class="fa fa-solid fa-address-book"></i>
+                            <i class="fa fa-solid fa-trash"></i>
                             <p>
                                 Restore Data
                                 <i class="right fas fa-angle-down"></i>
@@ -279,26 +279,26 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ URL::to('/admin/trash-educationLevel') }}"
+                                <a href="{{ URL::to('/admin/trash-job-seeker') }}"
                                     class="nav-link {{ Request::is('report') ? ' active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Job Seeker</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ URL::to('/admin/trash-educationLevel') }}"
+                                <a href="{{ URL::to('/admin/trash-company') }}"
                                     class="nav-link {{ Request::is('report') ? ' active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>List Perusahaan</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a href="{{ URL::to('/admin/trash-educationLevel') }}"
                                     class="nav-link {{ Request::is('report') ? ' active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Lowongan Kerja</p>
                                 </a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item">
                                 <a href="{{ URL::to('/admin/trash-jobTimeType') }}"
                                     class="nav-link {{ Request::is('report') ? ' active' : '' }}">
