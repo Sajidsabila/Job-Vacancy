@@ -22,7 +22,8 @@ class LandingPageController extends Controller
     {
         $testimonials = Testimonial::all();
         $applyProcesses = ApplyProcess::all();
-
+        $user = Auth::user();
+        $profilexist = JobSeeker::where('id', $user->id)->exists();
 
         $categories = JobCategory::limit(8)->get();
         $jobs = Job::all(); // Ambil semua pekerjaan, atau sesuaikan query jika diperlukan
@@ -40,8 +41,9 @@ class LandingPageController extends Controller
             "applyProcesses" => $applyProcesses,
             "jobCounts" => $jobCounts,
             "testimonials" => $testimonials,
-            "configurations" => $configurations
-          
+            "configurations" => $configurations,
+            "profilexist" => $profilexist
+
         ];
         return view('job-seekers.index', $data);
     }
