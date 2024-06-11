@@ -57,17 +57,6 @@
                 @enderror
             </div>
 
-            {{-- <div class="form-group">
-                <label for="role">Role</label>
-                <select class="form-control @error('role')is-invalid @enderror" name="role" id="role">
-                    <option
-                        value="Testimoni {{ isset($testimoni) ? ($testimoni->role === 'Testimoni' ? 'selected' : '') : '' }}">
-                        Testimoni</option>
-                    <option value="Admin {{ isset($testimoni) ? ($testimoni->role === 'Admin' ? 'selected' : '') : '' }}">
-                        Admin
-                    </option>
-                </select> --}}
-            {{-- </div> --}}
             <button type="submit" class="btn btn-sm btn-primary">Save</button>
             <a href="{{ URL::to('admin/testimoni') }}" class="btn btn-sm btn-secondary">Back</a>
         </div>

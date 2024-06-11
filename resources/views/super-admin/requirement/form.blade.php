@@ -12,7 +12,7 @@
         <div class="col-6">
 
             <div class="form-group">
-                <label for="religion">Requiremen</label>
+                <label for="religion">Requirement</label>
                 <input type="text" id="type" name="type"
                     class="form-control @error('requirements')is-invalid @enderror"
                     value="{{ isset($requirement) ? $requirement->type : old('requirements') }}">

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Testimoni;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -75,7 +74,7 @@ class TestimoniController extends Controller
      */
     public function show(string $id)
     {
-        $testimoni = Testimoni::find($id);
+        $testimoni = Testimonial::find($id);
         $data = [
             "title" => "Testimoni Detail",
             "testimoni" => $testimoni,
@@ -88,7 +87,7 @@ class TestimoniController extends Controller
      */
     public function edit(string $id)
     {
-        $testimoni = Testimoni::find($id);
+        $testimoni = Testimonial::find($id);
         if (!$testimoni) {
             return redirect('testimoni')->with("errorMessage", "Testimoni Tidak DItemukan");
         }
@@ -116,7 +115,7 @@ class TestimoniController extends Controller
         ], $messages);
 
         try {
-            $testimoni = Testimoni::find($id);
+            $testimoni = Testimonial::find($id);
 
             if ($request->hasFile('image')) {
                 if ($testimoni->image) {
@@ -144,7 +143,7 @@ class TestimoniController extends Controller
     public function destroy(string $id)
     {
         try {
-            $testimoni = Testimoni::find($id);
+            $testimoni = Testimonial::find($id);
             if ($testimoni->image) {
                 Storage::disk('public')->delete($testimoni->image);
             }
