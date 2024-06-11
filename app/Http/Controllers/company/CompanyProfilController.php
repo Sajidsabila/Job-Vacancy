@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Company;
 
+use App\Models\Job;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\JobHistory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -15,9 +17,13 @@ class CompanyProfilController extends Controller
     {
         $user = Auth::user();
         $company = Company::where('id', $user->id)->first();
+        $job= Job::with('company')->where('company_id', $user->id)->count();
+        $job_histories= JobHistory::with('company')->where('company_id', $user->id)->count();
         $data = ([
             "title" => "Profile Perusahaan",
-            "company" => $company
+            "company" => $company,
+            "job" => $job,
+            "job_histories" => $job_histories
         ]);
         if (!$company) {
             return view('company.profil-company.form');
