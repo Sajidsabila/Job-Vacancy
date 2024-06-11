@@ -36,6 +36,11 @@
     <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('css/flaticon.css') }}">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+
     <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
 </head>
 
@@ -66,7 +71,7 @@
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                {{ Breadcrumbs::render() }}
+                                {{-- {{ Breadcrumbs::render() }} --}}
                                 {{-- {!! Breadcrumbs::render() !!} --}}
                             </ol>
                         </div><!-- /.col -->
@@ -127,12 +132,12 @@
     <!-- Bootstrap 4 -->
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- ChartJS -->
-    <script src="plugins/chart.js/Chart.min.js"></script>
+    {{-- <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script> --}}
     <!-- Sparkline -->
-    <script src="{{ asset('plugins/sparklines/sparkline.js') }} "></script>
+    {{-- <script src="{{ asset('plugins/sparklines/sparkline.js') }} "></script> --}}
     <!-- JQVMap -->
-    <script src="{{ asset('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-    <script src="{{ asset('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+    {{-- <script src="{{ asset('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
+    <script src="{{ asset('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script> --}}
     <!-- jQuery Knob Chart -->
     <script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
     <!-- daterangepicker -->
@@ -147,7 +152,7 @@
     <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/adminlte.js') }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+    {{-- <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script> --}}
     <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -162,15 +167,11 @@
     <script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!-- Include Bootstrap-Select CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css"
         rel="stylesheet">
-
-    <!-- Include jQuery (required for Bootstrap JS) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
     <!-- Include Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -199,24 +200,16 @@
         });
     </script>
     <script>
-        document.querySelectorAll('#description').forEach(editorElement => {
-            ClassicEditor
-                .create(editorElement)
-                .then(editor => {
-                    console.log(editor);
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        });
-
-        $(document).ready(function() {
-            $(".requirements").select2({
-                placeholder: 'Pilih Persyaratan',
-                allowClear: true,
-            });
-            $(document).ready(function() {
-                $('.selectpicker').selectpicker();
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('#description').forEach(editorElement => {
+                ClassicEditor
+                    .create(editorElement)
+                    .then(editor => {
+                        console.log(editor);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
             });
 
             $(document).ready(function() {

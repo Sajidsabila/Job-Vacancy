@@ -66,8 +66,17 @@
                                         <div class="d-flex">
                                             <a href="{{ URL::to('/companie/lowongan-kerja/detail_candidate/' . $jobhistori->id) }}"
                                                 class="mr-2 btn btn-info btn-sm">Lihat Pelamar</a>
-                                            <a href="{{ URL::to('/companie/lowongan-kerja/' . $job->id . '/edit') }}"
-                                                class="mr-2 btn btn-warning btn-sm">Edit</a>
+                                            @if ($jobhistori->status == 'Lamaran Dilihat')
+                                                <a href="{{ URL::to('/companie/lowongan-kerja/set-interview/' . $jobhistori->id) }}"
+                                                    class="mr-2 btn btn-warning btn-sm">Interview</a>
+                                            @endif
+
+                                            @if (!is_null($jobhistori->interview_date))
+                                                <a href="{{ URL::to('/companie/lowongan-kerja/tolak_lamaran/' . $jobhistori->id) }}"
+                                                    class="mr-2 btn btn-danger btn-sm">Tolak Lamaran</a>
+                                                <a href="{{ URL::to('/companie/lowongan-kerja/terima_lamaran/' . $jobhistori->id) }}"
+                                                    class="mr-2 btn btn-success btn-sm">Terima Lamaran</a>
+                                            @endif
                                         </div>
                                     </td>
                             @endforeach
