@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\JobSeeker;
 
 use App\Http\Controllers\Controller;
+use App\Models\Configuration;
 use App\Models\Job;
 use App\Models\JobCategory;
 use App\Models\JobTimeType;
@@ -18,6 +19,7 @@ class JobListingController extends Controller
         $rangeEnd = Request()->input("range_end");
         $job_category = JobCategory::all();
         $job_time = JobTimeType::all();
+        $configurations = Configuration::first();
         $jobEloquent = Job::with('jobTime', 'company', 'jobcategory');
         if ($jobCategoryId) {
             $jobEloquent->where("job_category_id", $jobCategoryId);
@@ -37,7 +39,8 @@ class JobListingController extends Controller
             'jobCategoryId' => $jobCategoryId,
             "jobTimeType" => $jobTimeType,
             "rangeStart" => $rangeStart,
-            "rangeEnd" => $rangeEnd
+            "rangeEnd" => $rangeEnd,
+            "configurations" => $configurations
 
         ]);
 

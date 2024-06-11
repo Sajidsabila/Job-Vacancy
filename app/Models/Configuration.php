@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Configuration extends Model
 {
-    protected $guarded = [];
-    use HasFactory;
+    protected $fillable = [
+        'company_name',
+        'logo',
+        'company_address',
+        'phone',
+        'email',
+        'tagline',
+        'description',
+    ];
 }

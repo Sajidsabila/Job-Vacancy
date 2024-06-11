@@ -8,11 +8,11 @@
                 data-background="/img/hero/about.jpg">
                 <div class="container">
                     <div class="row">
-                        <div class="col-xl-12">
+                        {{-- <div class="col-xl-12">
                             <div class="hero-cap text-center">
                                 <h2>Contact us</h2>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

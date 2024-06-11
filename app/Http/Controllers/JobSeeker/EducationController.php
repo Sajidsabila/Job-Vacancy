@@ -7,6 +7,7 @@ use App\Models\EducationLevel;
 use App\Models\JobSeeker;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Configuration;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -18,10 +19,13 @@ class EducationController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $configurations = Configuration::first();
+
         $educations = Education::with('educationlevel')->where('job_seeker_id', $user->id)->get();
         $data = ([
             "title" => "Profile User",
             "educations" => $educations,
+            "configurations" => $configurations
         ]);
         if ($educations->isEmpty()) {
             return view('job-seekers.education.education-null', $data);

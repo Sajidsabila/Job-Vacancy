@@ -5829,7 +5829,7 @@ del {
 }
 
  .hero-cap h2 {
-     color: #ffffff;
+    color: #28395a;
      margin-top: 3px;
     font-size: 50px;
     font-weight: 700;
@@ -6717,20 +6717,20 @@ form.search-box .search-form a {
 }
 
 .testimonial-area .testimonial-caption .testimonial-top-cap img {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     width: auto;
     display: inline-block
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .testimonial-area .testimonial-caption .testimonial-top-cap img {
-        margin-bottom: 30px
+        margin-bottom: 20px
     }
 }
 
 @media (max-width: 767px) {
     .testimonial-area .testimonial-caption .testimonial-top-cap img {
-        margin-bottom: 30px
+        margin-bottom: 20px
     }
 }
 

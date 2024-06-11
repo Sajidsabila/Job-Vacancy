@@ -6,6 +6,7 @@ use App\Models\JobSeeker;
 use Illuminate\Http\Request;
 use App\Models\WorkExperience;
 use App\Http\Controllers\Controller;
+use App\Models\Configuration;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -17,10 +18,12 @@ class WorkExperienceController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $configurations = Configuration::first();
         $workexperiences = WorkExperience::where('job_seeker_id', $user->id)->get();
         $data = ([
             "title" => "Profile User",
-            "workexperiences" => $workexperiences
+            "workexperiences" => $workexperiences,
+            "configurations" => $configurations
         ]);
         if ($workexperiences->isEmpty()) {
             return view('job-seekers.work-experience.work-null', $data);

@@ -76,6 +76,10 @@ Route::prefix('/')->group(function () {
     Route::post('/send-letter', [JobDetailsController::class, 'store']);
     Route::resource("/profile", ProfileController::class);
     Route::get('/about', [AboutController::class, 'index']);
+
+    Route::get('landing-page/layouts/footer', [ConfigurationController::class, 'footer'])->name('landing-page.layouts.footer');
+    Route::resource('/landing-page/layouts/footer', ConfigurationController::class);
+
     Route::resource("/work-experince", WorkExperienceController::class);
     Route::resource("/education-user", EducationController::class);
     Route::post("/profil/skills/create", [ProfileController::class, 'storeskill']);
@@ -118,13 +122,14 @@ Route::group([
     Route::delete('/delete-job-category/{id}', [RestoreDataJobCategory::class, 'destroy']);
     Route::delete('/delete-religion/{id}', [RestoreReligionController::class, 'destroy']);
     Route::delete('/delete-user/{id}', [RestoreUser::class, 'destroy']);
-    Route::resource('/user', UserController::class);
 
-    Route::resource('/testimoni', TestimoniController::class);
-    // Route::get('/testimonis', [TestimoniPublicController::class, 'index'])->name('testimonis.index');
-    // Route::get('/job-seeker/testimoni', [TestimoniPublicController::class, 'jobSeekerIndex'])->name('job-seeker.testimoni.index');
+Route::resource('/user', UserController::class);
 
-    Route::resource('/applyProcess', ApplyProcessController::class);
+
+Route::resource('/testimoni', TestimoniController::class);
+
+
+Route::resource('/applyProcess', ApplyProcessController::class);
 
     // Route::get('/contact', [AdminContactController::class, 'index'])->name('admin.contact.index');
     Route::resource('/contact', AdminContactController::class);
@@ -172,5 +177,3 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 Route::get('/email/verify', function () {
     return view('register.verify-email');
 })->middleware('auth')->name('verification.notice');
-
-Route::get('/job-seekers/list-job', [LandingPageController::class, 'listJob'])->name('job-seekers.list-job');
