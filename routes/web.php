@@ -35,6 +35,7 @@ use App\Http\Controllers\Admin\ConfigurationController;
 use App\Http\Controllers\Admin\EducationLevelController;
 use App\Http\Controllers\Admin\JobTimeTypeController;
 use App\Http\Controllers\Admin\RestoreApplyProcess;
+use App\Http\Controllers\Admin\RestoreContactController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Admin\RestoreEduLevelController;
 use App\Http\Controllers\Admin\RestoreJobTimeTypeController;
@@ -123,16 +124,20 @@ Route::group([
     Route::delete('/delete-religion/{id}', [RestoreReligionController::class, 'destroy']);
     Route::delete('/delete-user/{id}', [RestoreUser::class, 'destroy']);
 
-Route::resource('/user', UserController::class);
+    Route::resource('/user', UserController::class);
 
 
-Route::resource('/testimoni', TestimoniController::class);
+    Route::resource('/testimoni', TestimoniController::class);
 
 
-Route::resource('/applyProcess', ApplyProcessController::class);
+    Route::resource('/applyProcess', ApplyProcessController::class);
 
     // Route::get('/contact', [AdminContactController::class, 'index'])->name('admin.contact.index');
     Route::resource('/contact', AdminContactController::class);
+    Route::delete('/contact/{id}', [AdminContactController::class, 'destroy']);
+    Route::get('/trash-contact', [RestoreContactController::class, 'index']);
+    Route::get('/restore-contact/{id}', [RestoreContactController::class, 'restore']);
+    Route::delete('/delete-contact/{id}', [RestoreContactController::class, 'destroy']);
     // Route::post('/contact', [AdminContactController::class, 'store'])->name('contact.store');
 
     Route::resource('/list-perusahaan', CompanyController::class);

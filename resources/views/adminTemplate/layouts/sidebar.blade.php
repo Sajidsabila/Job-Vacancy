@@ -317,6 +317,13 @@
                                     <p>Job Time Type</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ URL::to('/admin/trash-contact') }}"
+                                    class="nav-link {{ Request::is('report') ? ' active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Contact </p>
+                                </a>
+                            </li>
 
 
                         </ul>
