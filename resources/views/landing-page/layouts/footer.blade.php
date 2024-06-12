@@ -1,5 +1,5 @@
   <footer>
-   
+
       <!-- Footer Start-->
       <div class="footer-area footer-bg footer-padding">
           <div class="container">
@@ -10,31 +10,31 @@
                               <div class="footer-tittle">
                                   <h4>About Us</h4>
                                   <div class="footer-pera">
-                                      <p>{{ $configurations->description}}</p>
+                                      <p>{{ $configuration->description }}</p>
                                   </div>
                               </div>
                           </div>
 
                       </div>
                   </div>
-    
-           
+
+
                   <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
                       <div class="single-footer-caption mb-50">
                           <div class="footer-tittle">
                               <h4>Contact Info</h4>
                               <ul>
                                   <li>
-                                      <p>{{ $configurations->company_addres}}</p>
+                                      <p>{{ $configuration->company_addres }}</p>
                                   </li>
-                                  <li><a href="#">Phone : {{ $configurations->phone }}</a></li>
-                                  <li><a href="#">Email : {{ $configurations->email }}</a></li>
+                                  <li><a href="#">Phone : {{ $configuration->phone }}</a></li>
+                                  <li><a href="#">Email : {{ $configuration->email }}</a></li>
                               </ul>
                           </div>
 
                       </div>
                   </div>
-             
+
                   <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
                       <div class="single-footer-caption mb-50">
                           <div class="footer-tittle">
@@ -54,7 +54,7 @@
                           <div class="footer-tittle">
                               <h4>Newsletter</h4>
                               <div class="footer-pera footer-pera2">
-                                  <p>{{ $configurations->tagline }}</p>
+                                  <p>{{ $configuration->tagline }}</p>
                               </div>
                               <!-- Form -->
                               <div class="footer-form">
