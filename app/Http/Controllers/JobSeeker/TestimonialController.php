@@ -17,7 +17,7 @@ class TestimonialController extends Controller
         $jobcategories = JobCategory::all();
         $user = Auth::user();
 
-        $testimoni = Testimonial::orderby('id')->get();
+        $testimoni = Testimonial::limit(2)->get();
         $configurations = Configuration::first();
         $data = [
             "title" => "Data Testimoni",

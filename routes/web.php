@@ -119,6 +119,7 @@ Route::group([
 ], function () {
 
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::resource('/configuration', ConfigurationController::class);
     Route::resource('/job-category', JobCategoryController::class);
     Route::resource('/religion', ReligionController::class);
@@ -129,7 +130,6 @@ Route::group([
     Route::get('/trash-job-category', [RestoreDataJobCategory::class, 'index'])->name('trashcategory');
     Route::get('/trash-job-seeker', [RestoreJobSeeker::class, 'index'])->name('trashjobseeker');
     Route::get('/trash-company', [RestoreCompanyController::class, 'index'])->name('trashcompany');
-
     Route::get('/trash-religion', [RestoreReligionController::class, 'index'])->name('trashreligion');
     Route::get('/trash-user', [RestoreUser::class, 'index'])->name('trashuser');
     Route::get('/restore-job-category/{id}', [RestoreDataJobCategory::class, 'restore'])->name('restorejobcategory');

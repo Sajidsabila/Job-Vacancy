@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-
 use App\Models\Configuration;
 
 use Illuminate\Support\Facades\Schema;
