@@ -9,6 +9,7 @@ use App\Models\JobCategory;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminContactController extends Controller
@@ -59,15 +60,16 @@ class AdminContactController extends Controller
 
     public function destroy(string $id)
     {
+        // dd("Reached destroy method with ID: $id");
         try {
+            // Log::info("Attempting to delete contact with ID: $id");
             $contact = Contact::find($id);
             $contact->delete();
-
             Alert::success('Sukses', 'Delete data success.');
-            return redirect('super-admin/contact');
+            return redirect('/admin/contact');
         } catch (\Throwable $th) {
             Alert::error('Error', $th->getMessage());
-            return redirect('super-admin/contact');
         }
+        return redirect('/admin/contact');
     }
 }
