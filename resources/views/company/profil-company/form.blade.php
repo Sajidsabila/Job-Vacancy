@@ -21,7 +21,7 @@
                             <div class="form-group">
                                 <label for="name">Logo Perusahaan</label>
                                 <input type="file" id="logo" name="logo"
-                                    value=" {{ isset($company) ? $company->logo : old('logo') }}"
+                                    value="{{ isset($company) ? $company->logo : old('logo') }}"
                                     placeholder="Masukkan Dengan Class ion Icon"
                                     class="form-control @error('logo')is-invalid @enderror">
 
