@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Mail\CustomVerifyEmail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Auth\Events\Registered;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -23,18 +26,25 @@ class RegisterCompanieController extends Controller
             'password' => 'required|min:8',
             'password_confirmation' => 'required|same:password',
         ]);
-        try {
-            $user = User::create([
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'role' => 'Company'
-            ]);
+        $user = $request->validate([
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8',
+            'password_confirmation' => 'required|same:password',
+        ]);
+        $verificationToken = Str::random(mt_rand(4, 5));
 
-            event(new Registered($user));
-            return back()->with("success", "Registrasi Berhasi Silahkan Login");
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
+        // Create the user with email verification token
+        $user = User::create([
+            'email' => $user['email'],
+            'password' => Hash::make($user['password']),
+            'role' => 'Company',
+            'email_verification_token' => $verificationToken,
+        ]);
 
+        // Send verification email
+        Mail::to($user->email)->send(new CustomVerifyEmail($user));
+
+        event(new Registered($user));
+        return back()->with("success", "Registrasi Berhasil Silahkan Cek Email Untuk Verifikasi");
     }
 }

@@ -40,7 +40,7 @@ class RegisterController extends Controller
         Mail::to($user->email)->send(new CustomVerifyEmail($user));
 
         event(new Registered($user));
-        return back()->with("success", "Registrasi Berhasi Silahkan Login");
+        return back()->with("success", "Registrasi Berhasil Silahkan Cek Email Untuk Verifikasi");
     }
 
     public function verifyEmail($token)
