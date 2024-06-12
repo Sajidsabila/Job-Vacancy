@@ -31,7 +31,7 @@ class JobSeeker extends Model
 
     public function skill()
     {
-        return $this->hasMany(skill::class);
+        return $this->hasMany(Skill::class);
     }
 
     public function education()
