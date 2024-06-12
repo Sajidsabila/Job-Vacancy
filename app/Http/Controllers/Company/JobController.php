@@ -195,6 +195,7 @@ class JobController extends Controller
         try {
             $jobhistori = JobHistory::findOrFail($id);
             $jobhistori->status = 'Lamaran Dilihat';
+            $update = JobHistory::latest()->get();
             $jobhistori->save();
             return redirect()->to(asset('storage/' . $jobhistori->file));
         } catch (Exception $e) {
