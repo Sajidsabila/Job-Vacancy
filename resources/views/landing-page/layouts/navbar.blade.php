@@ -7,7 +7,8 @@
                      <div class="col-lg-3 col-md-2">
                          <!-- Logo -->
                          <div class="logo">
-                             <a href="index.html"><img src="{{ asset('img/logo/logo.png') }}" alt=""></a>
+                             <a href="index.html"><img src="{{ asset('storage/' . $configuration->logo) }}" alt=""
+                                     width="100px"></a>
                          </div>
                      </div>
                      <div class="col-lg-9 col-md-9">

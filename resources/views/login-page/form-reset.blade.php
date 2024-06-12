@@ -36,7 +36,7 @@
                     <div class="card shadow-lg">
                         <div class="card-body p-5">
                             <h1 class="fs-4 card-title fw-bold mb-4">Forgot Password</h1>
-                            <form method="POST" action={{ URL::to('/forgot-password/send') }} class="needs-validation"
+                            <form method="POST" action={{ URL::to('/password/reset') }} class="needs-validation"
                                 novalidate="" autocomplete="off">
                                 @csrf
                                 <div class="mb-3">

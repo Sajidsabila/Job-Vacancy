@@ -76,18 +76,21 @@ class ConfigurationController extends Controller
         ]);
         try {
 
-            $configartion = Configuration::find($id);
+            $configartion = Configuration::findOrFail($id);
+            $data = $request->all();
 
-            if ($request->hasFile('image')) {
+            if ($request->hasFile('logo')) { // Pastikan nama field sesuai
+                // Hapus logo lama jika ada
                 if ($configartion->logo) {
-                    Storage::delete($configartion->logo);
+                    Storage::disk('public')->delete($configartion->logo);
                 }
 
+                // Simpan logo baru
                 $data['logo'] = $request->file('logo')->store('img', 'public');
             } else {
                 $data['logo'] = $configartion->logo;
             }
-            $configartion->update($data);
+
 
             Alert::success('Sukses', 'Edit data success.');
         } catch (\Throwable $th) {

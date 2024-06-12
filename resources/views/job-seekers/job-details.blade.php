@@ -62,6 +62,19 @@
                     {{-- @foreach ($jobs as $job) --}}
                     <!-- Left Content -->
                     <div class="col-xl-7 col-lg-8">
+                        @auth
+
+                            @if (auth()->user()->role === 'User')
+                                @if (!$profilexist)
+                                    <div class="alert alert-warning" role="alert">
+                                        Profil Anda Masih Kosong Segera Lengkapi Untuk Bisa Melamar Kerja
+                                        <br>
+                                        <a href="{{ URL::to('/profile') }}" class="m-2 btn btn-primary btn-sm">Lengkapi
+                                            Profile</a>
+                                    </div>
+                                @endif
+                            @endif
+                        @endauth
                         <!-- job single -->
                         <div class="single-job-items mb-50">
                             <div class="job-items">
