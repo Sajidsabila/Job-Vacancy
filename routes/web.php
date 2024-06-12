@@ -142,17 +142,14 @@ Route::group([
     Route::resource('/applyProcess', ApplyProcessController::class);
 
 
-    // Route untuk AdminContactController
+
     Route::get('/contact', [AdminContactController::class, 'index'])->name('contact.index');
     Route::post('/contact', [AdminContactController::class, 'store'])->name('contact.store');
     Route::delete('/contact/{id}', [AdminContactController::class, 'destroy'])->name('contact.destroy');
-    // Route::get('/contact', [AdminContactController::class, 'index'])->name('admin.contact.index');
-    // Route::resource('/contact', AdminContactController::class);
-    // Route::delete('/contact/{id}', [AdminContactController::class, 'destroy'])->name('admin.contact.destroy');
     Route::get('/trash-contact', [RestoreContactController::class, 'index']);
     Route::get('/restore-contact/{id}', [RestoreContactController::class, 'restore']);
     Route::delete('/delete-contact/{id}', [RestoreContactController::class, 'destroy']);
-    // Route::post('/contact', [AdminContactController::class, 'store'])->name('contact.store');
+
 
     Route::resource('/list-perusahaan', CompanyController::class);
     Route::resource('/job-category', JobCategoryController::class);
