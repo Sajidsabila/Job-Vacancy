@@ -23,8 +23,11 @@ class LandingPageController extends Controller
         $testimonials = Testimonial::all();
         $applyProcesses = ApplyProcess::all();
         $user = Auth::user();
-        $profilexist = JobSeeker::where('id', $user->id)->exists();
+        $profilexist = false;
 
+        if (Auth::check()) {
+            $profilexist = JobSeeker::where('id', $user->id)->exists();
+        }
         $categories = JobCategory::limit(8)->get();
         $jobs = Job::all(); // Ambil semua pekerjaan, atau sesuaikan query jika diperlukan
         $jobs = Job::with('jobTime', 'company', 'jobcategory')->get();

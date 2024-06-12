@@ -172,6 +172,7 @@ Route::group([
     Route::get('/lowongan-kerja/set-interview/{id}', [InterviewScheduleController::class, 'edit'])->name('lowongan-kerja.set_interview');
     Route::put('/lowongan-kerja/schedule-interview/{id}', [InterviewScheduleController::class, 'update'])->name('schedule.interview');
     Route::get('/lowongan-kerja/reject/{id}', [JobController::class, 'reject']);
+    Route::get('/lowongan-kerja/accept/{id}', [JobController::class, 'accept']);
 });
 
 Route::post('/auth', [AuthController::class, 'login']);

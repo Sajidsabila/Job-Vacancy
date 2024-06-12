@@ -215,4 +215,18 @@ class JobController extends Controller
             return back();
         }
     }
+    public function accept($id)
+    {
+        try {
+            $jobhistori = JobHistory::findOrFail($id);
+            $jobhistori->status = 'Lamaran Diterima';
+            $jobhistori->save();
+            Alert::success("Berhasil", "status lamaran ditolak");
+            return back();
+        } catch (Exception $e) {
+
+            Alert::error("Gagal", $e->getMessage());
+            return back();
+        }
+    }
 }

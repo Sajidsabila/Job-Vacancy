@@ -31,16 +31,19 @@
                                         <td>{{ $jobhistory->job->title }}</td>
                                         <td>{{ $jobhistory->job->company->company_name }}</td>
                                         <td>
-                                            @if ($jobhistory->status == 'Lamaran Terkrim')
-                                                <span class="badge badge-primary">{{ $jobhistory->status }}</span>
-                                            @elseif($jobhistory->status == 'Lamaran Dilihat')
-                                                <span class="badge badge-info">{{ $jobhistory->status }}</span>
+                                            @if ($jobhistori->status == 'Lamaran Terkrim')
+                                                <span class="badge badge-primary">{{ $jobhistori->status }}</span>
+                                            @elseif($jobhistori->status == 'Lamaran Dilihat')
+                                                <span class="badge badge-info">{{ $jobhistori->status }}</span>
+                                            @elseif($jobhistori->status == 'Lamaran Ditolak')
+                                                <span class="badge badge-danger">{{ $jobhistori->status }}</span>
                                             @else
-                                                <span class="badge badge-secondary">{{ $jobhistory->status }}</span>
+                                                <span class="badge badge-success">{{ $jobhistori->status }}</span>
                                             @endif
-                                        </td>
-                                        <td>{{ $jobhistory->interview_date }}</td>
-                                    </tr>
+                                @endif
+                                </td>
+                                <td>{{ $jobhistory->interview_date }}</td>
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>

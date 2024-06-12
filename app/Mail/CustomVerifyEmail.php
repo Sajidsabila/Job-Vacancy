@@ -13,17 +13,16 @@ class CustomVerifyEmail extends Mailable
     use Queueable, SerializesModels;
 
     public $user;
-    public $verificationToken;
+
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user, $verificationToken)
+    public function __construct($user)
     {
         $this->user = $user;
-        $this->verificationToken = $verificationToken;
     }
 
     /**
@@ -33,6 +32,7 @@ class CustomVerifyEmail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Verifikasi Email')->view('register.emails.verify_email');
+        return $this->subject('Verifikasi Email')
+            ->view('register.emails.verify_email');
     }
 }
