@@ -9,9 +9,12 @@
 
 <body>
     <h1>Jadwal Interview</h1>
-    <p>Halo,</p>
-    <p>Anda telah dijadwalkan untuk interview pada posisi <strong>{{ $jobTitle }}</strong>.</p>
+    <p>Halo, <strong> {{ $jobSeekerName }}</strong></p>
+    <p>Anda telah dijadwalkan di <strong>{{ $companyName }}</strong> untuk interview pada posisi
+        <strong>{{ $jobTitle }}</strong>.</p>
     <p>Tanggal interview: <strong>{{ $interviewDate }}</strong></p>
+    <p>Jam : <strong>{{ $interviewTime }}</strong></p>
+    <p>Tempat : <strong>{{ $interviewLocation }}</strong><strong></strong></p>
     <p>Terima kasih.</p>
 </body>
 

@@ -22,6 +22,17 @@
                                     </div>
                                 @enderror
                             </div>
+
+                            <div class="form-group">
+                                <label>Input Waktu Interview</label>
+                                <input type="time" class="form-control @error('interview_time') is-invalid @enderror"
+                                    id="interview_time" name="interview_time" value="{{ old('interview_date') }}">
+                                @error('interview_time')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Simpan</button>

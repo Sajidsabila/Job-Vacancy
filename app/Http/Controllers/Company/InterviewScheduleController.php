@@ -27,10 +27,12 @@ class InterviewScheduleController extends Controller
     {
         $request->validate([
             'interview_date' => 'required|date',
+            'interview_time' => 'required'
         ]);
         try {
             $jobHistory = JobHistory::findOrFail($id);
             $jobHistory->interview_date = $request->input('interview_date');
+            $jobHistory->interview_time = $request->input('interview_time');
             $jobHistory->save();
 
             Mail::to($jobHistory->jobseeker->user->email)->send(new InteviewSchedule($jobHistory));

@@ -35,9 +35,14 @@ use App\Http\Controllers\Admin\ConfigurationController;
 use App\Http\Controllers\Admin\EducationLevelController;
 use App\Http\Controllers\Admin\JobTimeTypeController;
 use App\Http\Controllers\Admin\RestoreApplyProcess;
+
 use App\Http\Controllers\Admin\RestoreContactController;
+
+use App\Http\Controllers\Admin\RestoreCompanyController;
+
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Admin\RestoreEduLevelController;
+use App\Http\Controllers\Admin\RestoreJobSeeker;
 use App\Http\Controllers\Admin\RestoreJobTimeTypeController;
 use App\Http\Controllers\Admin\RestoreReligionController;
 
@@ -62,6 +67,7 @@ Route::get('/login-page', [AuthController::class, 'index'])
     ->name('login')->middleware('guest');
 Route::get('/register/job-seekers', [RegisterController::class, 'index'])->middleware('guest');
 Route::get('/register/companies', [RegisterCompanieController::class, 'index'])->middleware('guest');
+Route::get('/verify-email/{token}', [RegisterController::class, 'verifyEmail'])->name('verify.email');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/register/proses', [RegisterCompanieController::class, 'Register'])->middleware('guest');
 Route::post('/register/job-seekers/proses', [RegisterController::class, 'Register'])->middleware('guest');
@@ -95,7 +101,7 @@ Route::prefix('/')->group(function () {
     Route::get('/category/{id}', [JobListingController::class, 'showJobsByCategory'])->name('jobs.by.category');
     Route::get('/contact', [JobSeekerContactController::class, 'index'])->name('job-seekers.contact');
     Route::post('/contact', [JobSeekerContactController::class, 'store'])->name('job-seekers.contact.store');
- })->middleware('guest');
+})->middleware('guest');
 
 
 
@@ -114,10 +120,13 @@ Route::group([
     Route::resource('/user', UserController::class);
     Route::resource('/list-perusahaan', CompanyController::class);
     Route::resource('/job-category', JobCategoryController::class);
-    Route::get('/trash-job-category', [RestoreDataJobCategory::class, 'index']);
-    Route::get('/trash-religion', [RestoreReligionController::class, 'index']);
-    Route::get('/trash-user', [RestoreUser::class, 'index']);
-    Route::get('/restore-job-category/{id}', [RestoreDataJobCategory::class, 'restore']);
+    Route::get('/trash-job-category', [RestoreDataJobCategory::class, 'index'])->name('trashcategory');
+    Route::get('/trash-job-seeker', [RestoreJobSeeker::class, 'index'])->name('trashjobseeker');
+    Route::get('/trash-company', [RestoreCompanyController::class, 'index'])->name('trashcompany');
+
+    Route::get('/trash-religion', [RestoreReligionController::class, 'index'])->name('trashreligion');
+    Route::get('/trash-user', [RestoreUser::class, 'index'])->name('trashuser');
+    Route::get('/restore-job-category/{id}', [RestoreDataJobCategory::class, 'restore'])->name('restorejobcategory');
     Route::get('/restore-religion/{id}', [RestoreReligionController::class, 'restore']);
     Route::get('/user/{id}', [RestoreUser::class, 'restore']);
     Route::delete('/delete-job-category/{id}', [RestoreDataJobCategory::class, 'destroy']);
@@ -144,14 +153,14 @@ Route::group([
     Route::resource('/job-category', JobCategoryController::class);
     Route::resource('/educationLevel', EducationLevelController::class);
     Route::resource('/requirement', RequirementController::class);
-    Route::get('/trash-educationLevel', [RestoreEduLevelController::class, 'index']);
+    Route::get('/trash-educationLevel', [RestoreEduLevelController::class, 'index'])->name('educationlevel');
     Route::get('/restore-educationLevel/{id}', [RestoreEduLevelController::class, 'restore']);
     Route::delete('/delete-educationLevel/{id}', [RestoreEduLevelController::class, 'destroy']);
     Route::resource('/jobTimeType', JobTimeTypeController::class);
-    Route::get('/trash-jobTimeType', [RestoreJobTimeTypeController::class, 'index']);
+    Route::get('/trash-jobTimeType', [RestoreJobTimeTypeController::class, 'index'])->name('jobtyme');
     Route::get('/restore-jobTimeType/{id}', [RestoreJobTimeTypeController::class, 'restore']);
     Route::delete('/delete-jobTimeType/{id}', [RestoreJobTimeTypeController::class, 'destroy']);
-    Route::get('/trash-applyProcess', [RestoreApplyProcess::class, 'index']);
+    Route::get('/trash-applyProcess', [RestoreApplyProcess::class, 'index'])->name('applyprocess');
     Route::get('/restore-applyProcess/{id}', [RestoreApplyProcess::class, 'restore']);
     Route::delete('/delete-applyProcess/{id}', [RestoreApplyProcess::class, 'destroy']);
 });
@@ -170,7 +179,8 @@ Route::group([
     Route::get('/lowongan-kerja/view-pdf/{id}', [JobController::class, 'viewPDF'])->name('pdf.view');
     Route::get('/lowongan-kerja/set-interview/{id}', [InterviewScheduleController::class, 'edit'])->name('lowongan-kerja.set_interview');
     Route::put('/lowongan-kerja/schedule-interview/{id}', [InterviewScheduleController::class, 'update'])->name('schedule.interview');
-
+    Route::get('/lowongan-kerja/reject/{id}', [JobController::class, 'reject']);
+    Route::get('/lowongan-kerja/accept/{id}', [JobController::class, 'accept']);
 });
 
 Route::post('/auth', [AuthController::class, 'login']);
