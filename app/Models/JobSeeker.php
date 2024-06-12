@@ -38,4 +38,8 @@ class JobSeeker extends Model
     {
         return $this->hasMany(education::class);
     }
+    protected $fillable = [
+        'religion_id', 'photo', 'nik', 'birth_date', 'first_name',
+        'gender', 'last_name', 'address', 'phone', 'description'
+    ];
 }

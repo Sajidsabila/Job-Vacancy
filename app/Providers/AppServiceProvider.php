@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-
 use App\Models\Configuration;
 
 use Illuminate\Support\Facades\Schema;
@@ -28,9 +27,9 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         Paginator::useBootstrap();
 
-view()->share('configurations', Configuration::first());
+        view()->share('configuration', Configuration::first());
 
     }
 
-    
+
 }
