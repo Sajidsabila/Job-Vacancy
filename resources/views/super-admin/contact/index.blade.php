@@ -2,9 +2,9 @@
 @section('container')
     @include('sweetalert::alert')
     <h3>{{ $title }}</h3>
-    .
-    <a href="{{ URL::to('admin/applyProcess/create') }}" class="my-2 btn btn-primary ">
-        <i class="fas fa-plus" aria-hidden="true"> </i> &nbsp; Add</a>
+
+    {{-- <a href="{{ URL::to('admin/applyProcess/create') }}" class="my-2 btn btn-primary ">
+        <i class="fas fa-plus" aria-hidden="true"> </i> &nbsp; Add</a> --}}
     <table class="table table-striped" id="datatable1">
         <thead>
             <tr>
@@ -28,14 +28,11 @@
                         <div class="d-flex">
                             {{-- <a href="{{ URL::to('/admin/contact/' . $contact->id . '/edit') }}"
                                 class="btn btn-sm btn-warning mr-2">Edit</a> --}}
-                            <form id="delete-form-{{ $contact->id }}"
-                                action="{{ URL::to('/admin/contact/' . $contact->id) }}" method="post">
+                            <form action="{{ URL::to('admin/contact', $contact->id) }}" method="POST"
+                                onsubmit="return confirm('Are you sure you want to delete this contact?');">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" class="btn btn-danger btn-sm px-2"
-                                    onclick="return confirm('apakah Yakin Ingin Menghapus {{ $contact->name }}')">
-                                    Hapus
-                                </button>
+                                <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
                         </div>
                     </td>

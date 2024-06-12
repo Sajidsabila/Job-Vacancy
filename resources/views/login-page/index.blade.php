@@ -28,7 +28,7 @@
                             @endif
 
                             @if (session()->has('success'))
-                                <div class="alert alert-danger">
+                                <div class="alert alert-success">
                                     {{ session('errorMessage') }}
                                 </div>
                             @endif
@@ -51,7 +51,7 @@
                                 <div class="mb-3">
                                     <div class="mb-2 w-100">
                                         <label class="text-muted" for="password">Password</label>
-                                        <a href="forgot.html" class="float-end">
+                                        <a href="{{ url::to('/forgot-password') }}" class="float-end">
                                             Forgot Password?
                                         </a>
                                     </div>

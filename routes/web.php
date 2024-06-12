@@ -1,56 +1,58 @@
 <?php
 
-use App\Http\Controllers\Admin\ApplyProcessController;
-use App\Http\Controllers\Company\InterviewScheduleController;
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\JobSeeker\EducationController;
-use App\Http\Controllers\JobSeeker\JobHistoryController;
-use App\Http\Controllers\JobSeeker\JobListingController;
-use App\Http\Controllers\JobSeeker\ListJobController;
-use App\Http\Controllers\Admin\RequirementController;
-use App\Http\Controllers\JobSeeker\ProfileController;
-use App\Http\Controllers\JobSeeker\WorkExperienceController;
-use App\Livewire\JobListNavigation;
-use App\Models\JobHistory;
 use App\Models\User;
+use App\Models\JobHistory;
 use GuzzleHttp\Middleware;
+use App\Livewire\JobListNavigation;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\RestoreUser;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Admin\UserController;
-
-use App\Http\Controllers\Admin\TestimoniController;
-use App\Http\Controllers\Admin\AdminContactController;
-
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Company\JobController;
+use App\Http\Controllers\Admin\RestoreJobSeeker;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\ReligionController;
-use App\Http\Controllers\RegisterCompanieController;
-use App\Http\Controllers\Admin\JobCategoryController;
-use App\Http\Controllers\Company\DashboardController;
-use App\Http\Controllers\Admin\RestoreDataJobCategory;
-use App\Http\Controllers\Admin\ConfigurationController;
-use App\Http\Controllers\Admin\EducationLevelController;
-use App\Http\Controllers\Admin\JobTimeTypeController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Admin\RestoreApplyProcess;
+use App\Http\Controllers\Admin\TestimoniController;
+use App\Http\Controllers\JobSeeker\AboutController;
+use App\Http\Controllers\RegisterCompanieController;
+
+use App\Http\Controllers\Admin\JobCategoryController;
+use App\Http\Controllers\Admin\JobTimeTypeController;
+
+use App\Http\Controllers\Admin\RequirementController;
+use App\Http\Controllers\Company\DashboardController;
+use App\Http\Controllers\JobSeeker\ListJobController;
+use App\Http\Controllers\JobSeeker\ProfileController;
+use App\Http\Controllers\Admin\AdminContactController;
+use App\Http\Controllers\Admin\ApplyProcessController;
+use App\Http\Controllers\Admin\RestoreDataJobCategory;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Admin\ConfigurationController;
+use App\Http\Controllers\JobSeeker\EducationController;
+use App\Http\Controllers\Admin\EducationLevelController;
+use App\Http\Controllers\Admin\RestoreCompanyController;
 
 use App\Http\Controllers\Admin\RestoreContactController;
 
-use App\Http\Controllers\Admin\RestoreCompanyController;
+use App\Http\Controllers\JobSeeker\JobDetailsController;
 
+use App\Http\Controllers\JobSeeker\JobHistoryController;
+use App\Http\Controllers\JobSeeker\JobListingController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Admin\RestoreEduLevelController;
-use App\Http\Controllers\Admin\RestoreJobSeeker;
-use App\Http\Controllers\Admin\RestoreJobTimeTypeController;
 use App\Http\Controllers\Admin\RestoreReligionController;
 
 use App\Http\Controllers\Company\CompanyProfilController;
-use App\Http\Controllers\JobSeeker\AboutController;
-use App\Http\Controllers\JobSeeker\JobDetailsController;
 use App\Http\Controllers\JobSeeker\LandingPageController;
 use App\Http\Controllers\JobSeeker\TestimonialController;
+use App\Http\Controllers\Admin\RestoreJobTimeTypeController;
+use App\Http\Controllers\JobSeeker\WorkExperienceController;
+use App\Http\Controllers\Company\InterviewScheduleController;
 use App\Http\Controllers\JobSeeker\JobSeekerContactController;
 
 /*
@@ -65,6 +67,10 @@ use App\Http\Controllers\JobSeeker\JobSeekerContactController;
 */
 Route::get('/login-page', [AuthController::class, 'index'])
     ->name('login')->middleware('guest');
+Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->middleware('guest');
+Route::post('/forgot-password/send', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('forgot-password.email');
+Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 Route::get('/register/job-seekers', [RegisterController::class, 'index'])->middleware('guest');
 Route::get('/register/companies', [RegisterCompanieController::class, 'index'])->middleware('guest');
 Route::get('/verify-email/{token}', [RegisterController::class, 'verifyEmail'])->name('verify.email');
@@ -141,13 +147,15 @@ Route::group([
 
     Route::resource('/applyProcess', ApplyProcessController::class);
 
-    // Route::get('/contact', [AdminContactController::class, 'index'])->name('admin.contact.index');
-    Route::resource('/contact', AdminContactController::class);
-    Route::delete('/contact/{id}', [AdminContactController::class, 'destroy']);
+
+
+    Route::get('/contact', [AdminContactController::class, 'index'])->name('contact.index');
+    Route::post('/contact', [AdminContactController::class, 'store'])->name('contact.store');
+    Route::delete('/contact/{id}', [AdminContactController::class, 'destroy'])->name('contact.destroy');
     Route::get('/trash-contact', [RestoreContactController::class, 'index']);
     Route::get('/restore-contact/{id}', [RestoreContactController::class, 'restore']);
     Route::delete('/delete-contact/{id}', [RestoreContactController::class, 'destroy']);
-    // Route::post('/contact', [AdminContactController::class, 'store'])->name('contact.store');
+
 
     Route::resource('/list-perusahaan', CompanyController::class);
     Route::resource('/job-category', JobCategoryController::class);
