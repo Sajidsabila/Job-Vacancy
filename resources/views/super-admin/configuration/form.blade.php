@@ -23,8 +23,8 @@
                 <br>
                 <label for="name">Logo Perusahaan</label>
                 <input type="file" id="logo" name="logo"
-                    value="{{ isset($configuration) ? $configuration->logo : old('logo') }}"placeholder="Masukkan Dengan Class ion Icon"
-                    class="form-control @error('logo')is-invalid @enderror">
+                    value="{{ isset($configuration) ? $configuration->logo : old('logo') }}"
+                    placeholder="Masukkan Dengan Class ion Icon" class="form-control @error('logo')is-invalid @enderror">
 
                 @error('logo')
                     <div class="invalid-feedback">
@@ -71,7 +71,7 @@
 
                 {{-- pada name juga salah itu yangm embuat validassinya salah nanti saja, join met lagi ka .k --}}
                 <input type="text" id="company_addres" name="company_addres"
-                    value="{{ isset($configuration) ? $configuration->company_name : old('company_addres') }}"
+                    value="{{ isset($configuration) ? $configuration->company_addres : old('company_addres') }}"
                     class="form-control @error('company_addres')is-invalid @enderror">
                 @error('company_addres')
                     <div class="invalid-feedback">

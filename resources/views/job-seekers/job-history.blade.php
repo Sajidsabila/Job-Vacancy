@@ -40,10 +40,9 @@
                                             @else
                                                 <span class="badge badge-success">{{ $jobhistori->status }}</span>
                                             @endif
-                                @endif
-                                </td>
-                                <td>{{ $jobhistory->interview_date }}</td>
-                                </tr>
+                                        </td>
+                                        <td>{{ $jobhistory->interview_date }}</td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
