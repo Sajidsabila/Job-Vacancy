@@ -16,7 +16,7 @@ class AdminContactController extends Controller
     public function index()
     {
         // dd('AdminContactController index method called'); // Debugging
-        $contacts = Contact::all();
+        $contacts = Contact::orderBy('created_at', 'desc')->get();
         $data = [
             "title" => "Contact",
             "contacts" => $contacts
@@ -47,13 +47,27 @@ class AdminContactController extends Controller
 
     public function show(string $id)
     {
-        //select * from JobTimeTypes where role
-        $contacts = Contact::find($id);
+    
+        $contact = Contact::find($id);
 
         $data = [
-            "title" => "JobTimeType Detail",
-            "contacts" => $contacts
+            "title" => "Contact",
+            "contact" => $contact
         ];
         return view('super-admin.contact.detail', $data);
+    }
+
+    public function destroy(string $id)
+    {
+        try {
+            $contact = Contact::find($id);
+            $contact->delete();
+
+            Alert::success('Sukses', 'Delete data success.');
+            return redirect('super-admin/contact');
+        } catch (\Throwable $th) {
+            Alert::error('Error', $th->getMessage());
+            return redirect('super-admin/contact');
+        }
     }
 }
