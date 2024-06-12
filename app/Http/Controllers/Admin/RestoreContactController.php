@@ -14,7 +14,7 @@ class RestoreContactController extends Controller
         //
         $contacts = Contact::onlyTrashed()->get();
         $data = ([
-            "title" => "Trash Education Level",
+            "title" => "Trash Contact",
             "contacts" => $contacts
         ]);
 
