@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('job_category_id');
             $table->unsignedBigInteger('job_time_type_id');
             $table->json('requirement_id');
+            $table->json('benefit_id');
             $table->string('title');
             $table->string('slug')->unique();
             $table->string('description');
