@@ -29,7 +29,7 @@ class InteviewSchedule extends Mailable
             ->view('company.job.mail-interview')
             ->with([
                 'jobTitle' => $this->jobHistory->job->title,
-                'interviewDate' => $this->jobHistory->interview_date,
+                'interviewDate' => formatIndonesianDate($this->jobHistory->interview_date),
                 'interviewTime' => $this->jobHistory->interview_time,
                 'jobSeekerName' => $this->jobHistory->jobseeker->first_name . ' ' . $this->jobHistory->jobseeker->last_name,
                 'interviewLocation' => $this->jobHistory->job->company->addres,

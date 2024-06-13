@@ -9,6 +9,9 @@ class JobHistory extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected $dates = [
+        'interview_date',
+    ];
     public function jobseeker()
     {
         return $this->belongsTo(JobSeeker::class, 'job_seeker_id');

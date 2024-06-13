@@ -15,13 +15,23 @@ class JobHistoryController extends Controller
     {
         $user = Auth::user();
         $configurations = Configuration::first();
-
-        $jobhistories = JobHistory::with(['jobseeker', 'job'])->where('job_seeker_id', $user->id)->paginate(1);
+        $query = JobHistory::with(['jobseeker', 'job'])->where('job_seeker_id', $user->id);
+        $jobhistories = $query->paginate(5);
+        $historycount = $query->count();
+        $countviewed = $query->where('status', 'Lamaran Dilihat')->count();
+        $countreject = $query->where('status', 'Lamaran Ditolak')->count();
+        $countinterview = $query->where('status', 'Proses Interview')->count();
+        $countaccept = $query->where('status', 'Lamaran Diterima')->count();
 
         $data = ([
             "title" => "Data History Lamaran",
             "jobhistories" => $jobhistories,
-            "configurations" => $configurations
+            "configurations" => $configurations,
+            "historycount" => $historycount,
+            'countviewed' => $countviewed,
+            'countreject' => $countreject,
+            'countinterview' => $countinterview,
+            'countaccept' => $countaccept,
         ]);
 
         return view("job-seekers.job-history", $data);

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\requirement;
+use App\Models\Requirement;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -14,7 +14,7 @@ class RequirementController extends Controller
      */
     public function index()
     {
-        $requirements = requirement::all();
+        $requirements = Requirement::all();
         $data = ([
             "title" => "Data Requirement",
             "requirements" => $requirements
@@ -47,7 +47,7 @@ class RequirementController extends Controller
                 'type' => 'required|min:3',
             ], $messages);
 
-            requirement::create($data);
+            Requirement::create($data);
             Alert::success('Sukses', 'Add data success.');
             return redirect('/admin/requirement')->with('success', 'Religion added successfully.');
         }
@@ -66,16 +66,16 @@ class RequirementController extends Controller
      */
     public function edit(string $id)
     {
-        $requirement = requirement::find($id);
+        $requirement = Requirement::find($id);
         if (!$requirement) {
             return redirect('/admin/requirement')->with("errorMessage", "Religion Tidak Ditemukan");
         }
         $data = [
             "title" => "Edit Religion",
-            "religion" => $requirement,
+            "requirement" => $requirement,
         ];
 
-        return view('super-admin.religion.form', $data);
+        return view('super-admin.requirement.form', $data);
     }
 
     /**
@@ -83,19 +83,14 @@ class RequirementController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $messages = [
-            'religion.required' => 'Isi Religion dengan benar.',
-            'religion.min' => 'Religion kurang panjang minimal 3 karakter.',
-        ];
 
         $data = $request->validate([
-            'id' => 'required|unique:religions,id,' . $id,
             'type' => 'required|min:3',
-        ], $messages);
+        ]);
 
         try {
-            $religion = requirement::find($id);
-            $religion->update($data);
+            $requirement = Requirement::find($id);
+            $requirement->update($data);
             Alert::success('Sukses', 'Edit data success.');
             return redirect('/admin/requirement');
         } catch (\Throwable $th) {
