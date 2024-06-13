@@ -39,6 +39,7 @@
                             <form method="POST" action={{ URL::to('/password/reset') }} class="needs-validation"
                                 novalidate="" autocomplete="off">
                                 @csrf
+                                <input type="hidden" name="token" value="{{ $token }}">
                                 <div class="mb-3">
                                     <label class="mb-2 text-muted" for="email">E-Mail Address</label>
                                     <input id="email" type="email" name="email"

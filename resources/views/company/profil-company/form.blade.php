@@ -8,7 +8,7 @@
                 <div class="card-body">
                     @if (isset($company))
                         <form method="post" action="{{ URL::to('/companie/company-profile/' . $company->id) }}"
-                            autocomplete="off">
+                            autocomplete="off" enctype="multipart/form-data">
                             @method('put')
                         @else
                             <form method="post" action="{{ URL::to('/companie/company-profile') }}" autocomplete="off"
