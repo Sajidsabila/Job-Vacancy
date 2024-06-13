@@ -20,7 +20,7 @@
         <!-- Hero Area End -->
         <section class="contact-section">
             <div class="container">
-                <div class="d-none d-sm-block mb-5 pb-4" data-aos="fade-up" data-aos-duration="1000">
+                <div class="d-none d-sm-block mb-5 pb-4" data-aos="fade-down" data-aos-duration="1000">
                     <div>
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15840.927964172803!2d110.4524767!3d-6.9819278!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708cc855dcb68f%3A0x740068fbacb464bc!2sUniversity%20of%20Semarang!5e0!3m2!1sen!2sid!4v1718032382473!5m2!1sen!2sid"
