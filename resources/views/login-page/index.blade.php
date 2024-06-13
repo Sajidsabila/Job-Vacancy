@@ -21,6 +21,19 @@
                     </div>
                     <div class="card shadow-lg">
                         <div class="card-body p-5">
+                            @if (session('status'))
+                                <div class="alert alert-success">{{ session('status') }}</div>
+                            @endif
+
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             @if (session()->has('errorMessage'))
                                 <div class="alert alert-danger">
                                     {{ session('errorMessage') }}

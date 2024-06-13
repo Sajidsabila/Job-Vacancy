@@ -22,10 +22,12 @@ class Job extends Model
         'salary',
         'job_location',
         'requirement_id', // Pastikan requirement_id termasuk dalam $fillable
-        'slug'
+        'slug',
+        'benefit_id'
     ];
     protected $casts = [
-        'requirement_id' => 'array',  // Cast requirement_id to array
+        'requirement_id' => 'array',
+        'benefit_id' => 'array',   // Cast requirement_id to array
     ];
 
     protected static function booted()

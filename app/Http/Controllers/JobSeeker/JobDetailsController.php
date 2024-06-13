@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\JobSeeker;
 
+use App\Models\Benefit;
 use App\Models\Job;
 use App\Models\Company;
 use App\Models\JobSeeker;
@@ -32,6 +33,9 @@ class JobDetailsController extends Controller
         $configurations = Configuration::first();
         $selectedRequirements = is_string($job->requirement_id) ? json_decode($job->requirement_id, true) : $job->requirement_id;
         $selectedRequirements = is_array($selectedRequirements) ? $selectedRequirements : [];
+        $selectedBenefits = is_string($job->benefit_id) ? json_decode($job->benefit_id, true) : $job->benefit_id;
+        $selectedBenefits = is_array($selectedBenefits) ? $selectedBenefits : [];
+        $benefits = Benefit::all();
         $data = ([
             "title" => "Edit Data Lowongan Kerja",
             "job" => $job,
@@ -39,7 +43,9 @@ class JobDetailsController extends Controller
             "requirements" => $requirements,
             "jobcategories" => $jobcategories,
             "selectedRequirements" => $selectedRequirements,
-            "configurations" => $configurations
+            "configurations" => $configurations,
+            "benefits" => $benefits,
+            "selectedBenefits" => $selectedBenefits
         ]);
 
         // dd($job);
