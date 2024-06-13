@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Company;
 
+use App\Models\Benefit;
 use Exception;
 use App\Models\Job;
 use App\Models\Skill;
@@ -52,14 +53,18 @@ class JobController extends Controller
         $company = Company::where('id', $user->id)->first();
         $jobtimtypes = JobTimeType::all();
         $jobcategories = JobCategory::all();
-        $requirements = requirement::all();
+        $requirements = Requirement::all();
+        $benefits = Benefit::all();
         $selectedRequirements = [];
+        $selectedBenefits = [];
         $data = ([
             "title" => "Tambah Lowongan Pekerjaan",
             "jobtimtypes" => $jobtimtypes,
             "jobcategories" => $jobcategories,
             "requirements" => $requirements,
-            "selectedRequirements" => $selectedRequirements
+            "selectedRequirements" => $selectedRequirements,
+            "benefits" => $benefits,
+            "selectedBenefits" => $selectedBenefits
 
         ]);
         if (!$company) {
@@ -83,6 +88,8 @@ class JobController extends Controller
             "job_location" => "required",
             'requirement_id' => 'required|array',
             'requirement_id.*' => 'exists:requirements,id',
+            'benefit_id' => 'required|array',
+            'benefit_id.*' => 'exists:benefits,id',
         ]);
 
         try {
@@ -102,27 +109,40 @@ class JobController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id, Request $request)
     {
         $job = Job::with('jobcategory')->findOrFail($id);
-        $query = JobHistory::with(['jobseeker', 'job']);
-        $jobhistoris = $query->where('job_id', $job->id)->get();
-        $countreject = $query->where('job_id', $job->id)
-            ->where('status', 'Lamaran Ditolak')
-            ->count();
-        $countaccept = $query->where('job_id', $job->id)
-            ->where('status', 'Lamaran Diterima')
-            ->count();
-        $countinterview = $query->where('job_id', $job->id)
-            ->where('status', 'Proses Interview')
-            ->count();
+
+        // Get all job histories related to the job, optionally filtering by status
+        $query = JobHistory::with(['jobseeker', 'job'])->where('job_id', $job->id);
+        if ($request->has('statusFilter') && $request->statusFilter !== '') {
+            $query->where('status', $request->statusFilter);
+        }
+        $jobhistoris = $query->get();
+
+        // Calculate counts based on the retrieved job histories
+        $countreject = $jobhistoris->filter(function ($jobhistory) {
+            return $jobhistory->status == 'Lamaran Ditolak';
+        })->count();
+
+        $countaccept = $jobhistoris->filter(function ($jobhistory) {
+            return $jobhistory->status == 'Lamaran Diterima';
+        })->count();
+
+        $countinterview = $jobhistoris->filter(function ($jobhistory) {
+            return $jobhistory->status == 'Proses Interview';
+        })->count();
+        $statuses = JobHistory::select('status')->distinct()->get();
         $data = ([
             "title" => "Detail Data Lowongan",
             "job" => $job,
             "jobhistoris" => $jobhistoris,
             "countreject" => $countreject,
             "countaccept" => $countaccept,
-            "countinterview" => $countinterview
+            "countinterview" => $countinterview,
+            "statuses" => $statuses,
+            "selectedStatus" => $request->statusFilter
+
         ]);
 
         return view("company.job.detail", $data);
@@ -135,17 +155,25 @@ class JobController extends Controller
     {
         $job = Job::findOrFail($id);
         $requirements = Requirement::all();
+        $benefits = Benefit::all();
         $jobcategories = JobCategory::all();
         $selectedRequirements = is_string($job->requirement_id) ? json_decode($job->requirement_id, true) : $job->requirement_id;
         $selectedRequirements = is_array($selectedRequirements) ? $selectedRequirements : [];
+        $selectedBenefits = is_string($job->benefit_id) ? json_decode($job->benefit_id, true) : $job->benefit_id;
+        $selectedBenefits = is_array($selectedBenefits) ? $selectedBenefits : [];
         $jobtimtypes = JobTimeType::all();
+
         $data = ([
             "title" => "Edit Data Lowongan Kerja",
             "job" => $job,
             "requirements" => $requirements,
             "jobcategories" => $jobcategories,
             "jobtimtypes" => $jobtimtypes,
-            "selectedRequirements" => $selectedRequirements
+            "selectedRequirements" => $selectedRequirements,
+            "benefits" => $benefits,
+            "selectedBenefits" => $selectedBenefits,
+
+
         ]);
         return view('company.job.form', $data);
     }
@@ -164,6 +192,8 @@ class JobController extends Controller
             "job_location" => "required",
             'requirement_id' => 'required|array',
             'requirement_id.*' => 'exists:requirements,id',
+            'benefit_id' => 'required|array',
+            'benefit_id.*' => 'exists:benefits,id',
         ]);
         try {
             $job = Job::findOrFail($id);

@@ -125,19 +125,26 @@
 
                                 </ul>
                             </div>
-                            {{-- <div class="post-details2  mb-50">
-                                    <!-- Small Section Tittle -->
-                                    <div class="small-section-tittle">
-                                        <h4>Education + Experience</h4>
-                                    </div>
-                                    <ul>
-                                        <li>3 or more years of professional design experience</li>
-                                        <li>Direct response email experience</li>
-                                        <li>Ecommerce website design experience</li>
-                                        <li>Familiarity with mobile and web apps preferred</li>
-                                        <li>Experience using Invision a plus</li>
-                                    </ul>
-                                </div> --}}
+
+
+
+                            <div class="post-details2  mb-50">
+                                <!-- Small Section Tittle -->
+                                <div class="small-section-tittle">
+                                    <h4>Benefit / Fasilitas</h4>
+                                </div>
+                                <ul>
+                                    @foreach ($selectedBenefits as $requirementId)
+                                        @php
+                                            $benefit = $benefits->firstWhere('id', $requirementId);
+                                        @endphp
+                                        @if ($benefit)
+                                            <li>{{ $benefit->benefit }}</li>
+                                        @endif
+                                    @endforeach
+
+                                </ul>
+                            </div>
                         </div>
 
                     </div>

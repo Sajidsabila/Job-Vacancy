@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BenefitController;
 use App\Models\User;
 use App\Models\JobHistory;
 use GuzzleHttp\Middleware;
@@ -139,25 +140,16 @@ Route::group([
     Route::delete('/delete-job-category/{id}', [RestoreDataJobCategory::class, 'destroy']);
     Route::delete('/delete-religion/{id}', [RestoreReligionController::class, 'destroy']);
     Route::delete('/delete-user/{id}', [RestoreUser::class, 'destroy']);
-
     Route::resource('/user', UserController::class);
-
-
+    Route::resource('/benefit', BenefitController::class);
     Route::resource('/testimoni', TestimoniController::class);
-
-
     Route::resource('/applyProcess', ApplyProcessController::class);
-
-
-
     Route::get('/contact', [AdminContactController::class, 'index'])->name('contact.index');
     Route::post('/contact', [AdminContactController::class, 'store'])->name('contact.store');
     Route::delete('/contact/{id}', [AdminContactController::class, 'destroy'])->name('contact.destroy');
     Route::get('/trash-contact', [RestoreContactController::class, 'index']);
     Route::get('/restore-contact/{id}', [RestoreContactController::class, 'restore']);
     Route::delete('/delete-contact/{id}', [RestoreContactController::class, 'destroy']);
-
-
     Route::resource('/list-perusahaan', CompanyController::class);
     Route::resource('/job-category', JobCategoryController::class);
     Route::resource('/educationLevel', EducationLevelController::class);

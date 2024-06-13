@@ -77,6 +77,26 @@
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
+                    <div class="col-12">
+                        <div class="col-3">
+                            <form action="" method="GET">
+                                <div class="form-group">
+                                    <label for="statusFilter">Filter</label>
+                                    <select name="statusFilter" id="statusFilter" class="form-control">
+                                        <option value="" {{ is_null($selectedStatus) ? 'selected' : '' }}>Semua Status
+                                        </option>
+                                        @foreach ($statuses as $status)
+                                            <option value="{{ $status->status }}"
+                                                {{ $selectedStatus == $status->status ? 'selected' : '' }}>
+                                                {{ $status->status }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <button class="btn btn-primary btn-sm mt-2">Filter</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                     <table id="datatable2" class="table table-striped">
                         <thead>
                             <tr>
@@ -92,7 +112,8 @@
                             @foreach ($jobhistoris as $key => $jobhistori)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td>{{ $jobhistori->jobseeker->first_name }} {{ $jobhistori->jobseeker->last_name }}
+                                    <td>{{ $jobhistori->jobseeker->first_name }}
+                                        {{ $jobhistori->jobseeker->last_name }}
                                     </td>
                                     <td><a href="{{ URL::to('/companie/lowongan-kerja/view-pdf/' . $jobhistori->id) }}">Lihat
                                             Lamaran</a></td>
@@ -109,7 +130,7 @@
                                     </td>
                                     <td>
                                         @if (!is_null($jobhistori->interview_date))
-                                            {{ $jobhistori->interview_date }}
+                                            {{ formatIndonesianDate($jobhistori->interview_date) }}
                                         @else
                                             Tanggal Interview Disetting
                                         @endif

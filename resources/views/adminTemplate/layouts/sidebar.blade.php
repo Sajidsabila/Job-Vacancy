@@ -202,6 +202,16 @@
                             </p>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="{{ URL::to('/admin/benefit') }}"
+                            class="nav-link {{ Request::is('user') ? ' active' : '' }}">
+                            <i class="nav-icon fas fa-check-circle"></i>
+                            <p>
+                                Benefit
+                            </p>
+                        </a>
+                    </li>
                     <li class="nav-item {{ Request::is('receipt') || Request::is('report') ? ' menu-open' : '' }}">
                         <a href="#"
                             class="nav-link {{ Request::is('receipt') || Request::is('report') ? ' active' : '' }}">
