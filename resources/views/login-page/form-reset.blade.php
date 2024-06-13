@@ -13,48 +13,62 @@
 
 <body>
     <section class="h-100">
+        @if (session('status'))
+            <div>{{ session('status') }}</div>
+        @endif
 
+        @if ($errors->any())
+            <div>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="container h-100">
-
             <div class="row justify-content-sm-center h-100">
-
                 <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
-
                     <div class="text-center my-5">
                         <img src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" alt="logo"
                             width="100">
                     </div>
                     <div class="card shadow-lg">
                         <div class="card-body p-5">
-                            @if (session('status'))
-                                <div class="alert alert-success">{{ session('status') }}</div>
-                            @endif
-
-                            @if ($errors->any())
-                                <div>
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
                             <h1 class="fs-4 card-title fw-bold mb-4">Forgot Password</h1>
-                            <form method="POST" action={{ URL::to('/forgot-password/send') }} class="needs-validation"
+                            <form method="POST" action={{ URL::to('/password/reset') }} class="needs-validation"
                                 novalidate="" autocomplete="off">
                                 @csrf
+                                <input type="hidden" name="token" value="{{ $token }}">
                                 <div class="mb-3">
                                     <label class="mb-2 text-muted" for="email">E-Mail Address</label>
-                                    <input id="email" type="email" class="form-control" name="email"
-                                        value="" required autofocus>
+                                    <input id="email" type="email" name="email"
+                                        value="{{ $email ?? old('email') }}" class="form-control" required autofocus>
                                     <div class="invalid-feedback">
                                         Email is invalid
                                     </div>
                                 </div>
 
+                                <div class="mb-3">
+                                    <label class="mb-2 text-muted" for="email">New Password:</label>
+                                    <input id="email" type="password" name="password" class="form-control" required
+                                        autofocus>
+                                    <div class="invalid-feedback">
+                                        Email is invalid
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="mb-2 text-muted" for="email">Konfirmasi Password:</label>
+                                    <input id="email" type="password" name="password_confirmation"
+                                        class="form-control" required autofocus>
+                                    <div class="invalid-feedback">
+                                        Email is invalid
+                                    </div>
+                                </div>
                                 <div class="d-flex align-items-center">
                                     <button type="submit" class="btn btn-primary ms-auto">
-                                        Send Link
+                                        Ubah
                                     </button>
                                 </div>
                             </form>

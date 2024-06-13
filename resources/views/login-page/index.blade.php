@@ -17,18 +17,24 @@
             <div class="row justify-content-sm-center h-100">
                 <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
                     <div class="text-center my-5">
-                       <h4>Job Vacancy 1.0</h4>
+                        <h4>Job Vacancy 1.0</h4>
                     </div>
                     <div class="card shadow-lg">
                         <div class="card-body p-5">
-                                @if(session()->has("errorMessage"))
+                            @if (session()->has('errorMessage'))
                                 <div class="alert alert-danger">
-                                {{ session("errorMessage") }}
+                                    {{ session('errorMessage') }}
                                 </div>
-                                @endif
+                            @endif
+
+                            @if (session()->has('success'))
+                                <div class="alert alert-success">
+                                    {{ session('errorMessage') }}
+                                </div>
+                            @endif
                             <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
-                            <form method="POST" action="{{ URL::to('/auth') }}" class="needs-validation"
-                                novalidate="" autocomplete="off">
+                            <form method="POST" action="{{ URL::to('/auth') }}" class="needs-validation" novalidate=""
+                                autocomplete="off">
                                 @csrf
                                 <div class="mb-3">
                                     <label class="mb-2 text-muted" for="email">E-Mail Address</label>
@@ -45,7 +51,7 @@
                                 <div class="mb-3">
                                     <div class="mb-2 w-100">
                                         <label class="text-muted" for="password">Password</label>
-                                        <a href="forgot.html" class="float-end">
+                                        <a href="{{ url::to('/forgot-password') }}" class="float-end">
                                             Forgot Password?
                                         </a>
                                     </div>

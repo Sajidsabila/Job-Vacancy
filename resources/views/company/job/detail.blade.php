@@ -35,6 +35,48 @@
                     </div>
                 </div>
                 <div class="row m-3">
+
+                    <div class="col-3">
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>{{ $countinterview }}</h3>
+                                <p>Proses Interview</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person-add"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>{{ $countaccept }}</h3>
+                                <p>Lamaran Diterima</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person-add"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3>{{ $countreject }}</h3>
+                                <p>Lamaran Ditolak</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person-add"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
                     <table id="datatable2" class="table table-striped">
                         <thead>
                             <tr>
@@ -59,8 +101,10 @@
                                             <span class="badge badge-primary">{{ $jobhistori->status }}</span>
                                         @elseif($jobhistori->status == 'Lamaran Dilihat')
                                             <span class="badge badge-info">{{ $jobhistori->status }}</span>
+                                        @elseif($jobhistori->status == 'Lamaran Ditolak')
+                                            <span class="badge badge-danger">{{ $jobhistori->status }}</span>
                                         @else
-                                            <span class="badge badge-secondary">{{ $jobhistori->status }}</span>
+                                            <span class="badge badge-success">{{ $jobhistori->status }}</span>
                                         @endif
                                     </td>
                                     <td>
@@ -80,9 +124,9 @@
                                             @endif
 
                                             @if (!is_null($jobhistori->interview_date))
-                                                <a href="{{ URL::to('/companie/lowongan-kerja/tolak_lamaran/' . $jobhistori->id) }}"
+                                                <a href="{{ URL::to('/companie/lowongan-kerja/reject/' . $jobhistori->id) }}"
                                                     class="mr-2 btn btn-danger btn-sm">Tolak Lamaran</a>
-                                                <a href="{{ URL::to('/companie/lowongan-kerja/terima_lamaran/' . $jobhistori->id) }}"
+                                                <a href="{{ URL::to('/companie/lowongan-kerja/accept/' . $jobhistori->id) }}"
                                                     class="mr-2 btn btn-success btn-sm">Terima Lamaran</a>
                                             @endif
                                         </div>

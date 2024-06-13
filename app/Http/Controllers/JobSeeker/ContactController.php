@@ -3,31 +3,29 @@
 namespace App\Http\Controllers\JobSeeker;
 
 use App\Http\Controllers\Controller;
-use App\Models\Configuration;
 use App\Models\JobCategory;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class TestimonialController extends Controller
+class ContactController extends Controller
 {
     public function index()
     {
         $jobcategories = JobCategory::all();
         $user = Auth::user();
 
-        $testimoni = Testimonial::limit(2)->get();
-        $configurations = Configuration::first();
+        $testimoni = Testimonial::orderby('id')->get();
         $data = [
             "title" => "Data Testimoni",
             "testimoni" => $testimoni,
             "jobcategories" => $jobcategories,
             "user" => $user,
-            "configurations" => $configurations
+           
         ];
 
-        return view('job-seekers.testimonial', $data);
+        return view('job-seekers.contact', $data);
     }
 
     public function store(Request $request)
@@ -41,7 +39,7 @@ class TestimonialController extends Controller
             $data['job_seeker_id'] = auth()->user()->id;
             Testimonial::create($data);
             Alert::success('Sukses', "Data Berhasil Ditambahkan");
-            return redirect()->route('job-seekers.testimonial', ['#testimonials']);
+            return redirect()->route('job-seekers.contact');
 
         } catch (\Throwable $th) {
 

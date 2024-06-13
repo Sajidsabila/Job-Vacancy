@@ -4,15 +4,12 @@
 
         <!-- Hero Area Start-->
         <div class="slider-area ">
-            <div class="single-slider section-overly slider-height2 d-flex align-items-center"
-                data-background="/img/hero/about.jpg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12 text-white">
-                            <div class="hero-cap text-center text-white">
-                                <h2>About Us</h2>
-                            </div>
-                        </div>
+            <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="/img/hero/about.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2 style="color: white">About Us</h2>
                     </div>
                 </div>
             </div>

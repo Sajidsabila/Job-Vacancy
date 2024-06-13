@@ -5,10 +5,13 @@ namespace App\Models;
 use Dotenv\Repository\Adapter\GuardedWriter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class JobSeeker extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+
     protected $guarded = [];
 
     public function user()
@@ -28,11 +31,15 @@ class JobSeeker extends Model
 
     public function skill()
     {
-        return $this->hasMany(skill::class);
+        return $this->hasMany(Skill::class);
     }
 
     public function education()
     {
         return $this->hasMany(education::class);
     }
+    protected $fillable = [
+        'religion_id', 'photo', 'nik', 'birth_date', 'first_name',
+        'gender', 'last_name', 'address', 'phone', 'description'
+    ];
 }

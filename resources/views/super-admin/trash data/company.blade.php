@@ -15,25 +15,25 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($categories as $key => $category)
+        @foreach($companies as $key => $company)
         <tr>
             <td>{{ $key + 1}}</td>
             <td>
                 <div class="services-ion">
-                    <span class="{{ $category->icon }}" style="width: 1000px; "></span>
+                    <span class="{{ $company->icon }}" style="width: 1000px; "></span>
                 </div>
             </td>
-            <td>{{ $category->category }}</td>
+            <td>{{ $company->category }}</td>
             <td>
                 <div class="d-flex">
 
-                    <a href="{{ URL::to('/admin/restore-job-category/' . $category->id)}}"
-                        class="mr-2 btn btn-success btn-sm">Edit</a>
-                    <form action="{{URL::to('/admin/delete-job-category/' . $category->id)}}" method="post">
+                    <a href="{{ URL::to('/admin/restore-company/' . $company->id)}}"
+                        class="mr-2 btn btn-success btn-sm">Restore</a>
+                    <form action="{{URL::to('/admin/delete-company/' . $company->id)}}" method="post">
                         @csrf
                         @method('delete')
                         <button type="submit" class="btn btn-sm btn-danger"
-                            onclick="return confirm('apakah Yakin Ingin Menghapus {{ $category->category }} secara permanen')">
+                            onclick="return confirm('apakah Yakin Ingin Menghapus {{ $company->category }} secara permanen')">
                             Hapus
                         </button>
                     </form>

@@ -105,11 +105,24 @@ class JobController extends Controller
     public function show(string $id)
     {
         $job = Job::with('jobcategory')->findOrFail($id);
-        $jobhistoris = JobHistory::with(['jobseeker', 'job'])->where('job_id', $job->id)->get();
+        $query = JobHistory::with(['jobseeker', 'job']);
+        $jobhistoris = $query->where('job_id', $job->id)->get();
+        $countreject = $query->where('job_id', $job->id)
+            ->where('status', 'Lamaran Ditolak')
+            ->count();
+        $countaccept = $query->where('job_id', $job->id)
+            ->where('status', 'Lamaran Diterima')
+            ->count();
+        $countinterview = $query->where('job_id', $job->id)
+            ->where('status', 'Proses Interview')
+            ->count();
         $data = ([
             "title" => "Detail Data Lowongan",
             "job" => $job,
-            "jobhistoris" => $jobhistoris
+            "jobhistoris" => $jobhistoris,
+            "countreject" => $countreject,
+            "countaccept" => $countaccept,
+            "countinterview" => $countinterview
         ]);
 
         return view("company.job.detail", $data);
@@ -195,10 +208,39 @@ class JobController extends Controller
         try {
             $jobhistori = JobHistory::findOrFail($id);
             $jobhistori->status = 'Lamaran Dilihat';
+            $update = JobHistory::latest()->get();
             $jobhistori->save();
             return redirect()->to(asset('storage/' . $jobhistori->file));
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
+    public function reject($id)
+    {
+        try {
+            $jobhistori = JobHistory::findOrFail($id);
+            $jobhistori->status = 'Lamaran Ditolak';
+            $jobhistori->save();
+            Alert::success("Berhasil", "status lamaran ditolak");
+            return back();
+        } catch (Exception $e) {
+
+            Alert::error("Gagal", $e->getMessage());
+            return back();
+        }
+    }
+    public function accept($id)
+    {
+        try {
+            $jobhistori = JobHistory::findOrFail($id);
+            $jobhistori->status = 'Lamaran Diterima';
+            $jobhistori->save();
+            Alert::success("Berhasil", "status lamaran ditolak");
+            return back();
+        } catch (Exception $e) {
+
+            Alert::error("Gagal", $e->getMessage());
+            return back();
         }
     }
 }

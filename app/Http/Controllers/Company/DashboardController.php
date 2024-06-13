@@ -7,6 +7,8 @@ use App\Models\Company;
 use App\Models\JobHistory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Job;
+use App\Models\JobHistory;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -14,6 +16,8 @@ class DashboardController extends Controller
     public function index()
     {
 
+        $jobCount = Job::count();
+        $jobHistoryCount = JobHistory::count();
         $user = Auth::user();
         $company = Company::where('id', $user->id)->first();
         $job= Job::with('company')->where('company_id', $user->id)->count();
@@ -21,8 +25,13 @@ class DashboardController extends Controller
         $data = ([
             "title" => "Profile Perusahaan",
             "company" => $company,
+<<<<<<< HEAD
             "job" => $job,
             "job_histories" => $job_histories
+=======
+            'jobCount' => $jobCount,
+            'jobHistoryCount' => $jobHistoryCount
+>>>>>>> esa/master
         ]);
         //dd($company);
         if (!$company) {

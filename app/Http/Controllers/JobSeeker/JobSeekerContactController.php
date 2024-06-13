@@ -15,10 +15,10 @@ class JobSeekerContactController extends Controller
 {
     public function index()
     {
-        $configurations = Configuration::first();
+        $configurations = Configuration::all();
         $data = [
             "title" => "Contact",
-            'configurations' => $configurations
+            "configurations" => $configurations
         ];
         return view('job-seekers.contact', $data);  // Path ke view contact.blade.php
     }
@@ -30,7 +30,7 @@ class JobSeekerContactController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
             'description' => 'required',
-            'configurations' => $configurations
+            'configurations' => $configurations,      
         ]);
 
         // Simpan data ke database
@@ -38,6 +38,22 @@ class JobSeekerContactController extends Controller
 
         // Redirect kembali ke halaman kontak dengan pesan sukses
         return redirect()->route('job-seekers.contact')->with('success', 'Message sent successfully!');
+    }
+
+    public function destroy(string $id)
+    {
+        try {
+            $contacts = Contact::find($id);
+            $contacts->delete();
+
+            Alert::success('Sukses', 'Delete data success.');
+
+            return redirect('super-admin/contact');
+        } catch (\Throwable $th) {
+
+            Alert::error('Error', $th->getMessage());
+            return redirect('super-admin/contact');
+        }
     }
 
 }

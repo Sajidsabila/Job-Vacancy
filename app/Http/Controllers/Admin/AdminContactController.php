@@ -9,6 +9,7 @@ use App\Models\JobCategory;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminContactController extends Controller
@@ -16,7 +17,7 @@ class AdminContactController extends Controller
     public function index()
     {
         // dd('AdminContactController index method called'); // Debugging
-        $contacts = Contact::all();
+        $contacts = Contact::orderBy('created_at', 'desc')->get();
         $data = [
             "title" => "Contact",
             "contacts" => $contacts
@@ -47,13 +48,28 @@ class AdminContactController extends Controller
 
     public function show(string $id)
     {
-        //select * from JobTimeTypes where role
-        $contacts = Contact::find($id);
+    
+        $contact = Contact::find($id);
 
         $data = [
-            "title" => "JobTimeType Detail",
-            "contacts" => $contacts
+            "title" => "Contact",
+            "contact" => $contact
         ];
         return view('super-admin.contact.detail', $data);
+    }
+
+    public function destroy(string $id)
+    {
+        // dd("Reached destroy method with ID: $id");
+        try {
+            // Log::info("Attempting to delete contact with ID: $id");
+            $contact = Contact::find($id);
+            $contact->delete();
+            Alert::success('Sukses', 'Delete data success.');
+            return redirect('/admin/contact');
+        } catch (\Throwable $th) {
+            Alert::error('Error', $th->getMessage());
+        }
+        return redirect('/admin/contact');
     }
 }

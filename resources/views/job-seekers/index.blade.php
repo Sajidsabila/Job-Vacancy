@@ -50,6 +50,19 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-tittle text-center">
+                            @auth
+
+                                @if (auth()->user()->role === 'User')
+                                    @if ($profilexist)
+                                        <div class="alert alert-warning" role="alert">
+                                            Profil Anda Masih Kosong Segera Lengkapi Untuk Bisa Melamar Kerja
+                                            <br>
+                                            <a href="{{ URL::to('/profile') }}" class="m-2 btn btn-primary btn-sm">Lengkapi
+                                                Profile</a>
+                                        </div>
+                                    @endif
+                                @endif
+                            @endauth
                             <span>FEATURED TOURS Packages</span>
                             <h2>Browse Top Categories </h2>
                         </div>
@@ -202,13 +215,13 @@
         <!-- How  Apply Process End-->
         <!-- Testimonial Area Start -->
 
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="hero-cap text-center">
-                        <h2>Testimonial</h2>
-                    </div>
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="hero-cap text-center">
+                    <h2>Testimonial</h2>
                 </div>
             </div>
+        </div>
 
         <div id="testimonials" class="testimonial-area testimonial-padding">
             <div class="container">
@@ -221,7 +234,8 @@
                                         <div class="testimonial-founder">
                                             <div class="founder-img mb-30">
                                                 <img class="rounded-circle shadow-4-strong w-4 h-4"
-                                                    src="{{ asset('storage/' . $item->jobSeeker->photo) }}" alt="">
+                                                    src="{{ asset('storage/' . $item->jobSeeker->photo) }}"
+                                                    alt="">
                                                 <span>{{ $item->jobSeeker->first_name }}
                                                     {{ $item->jobSeeker->last_name }}</span>
                                                 <p>{{ $item->job }}</p>
@@ -244,22 +258,22 @@
         {{-- <div class="slider-area ">
             <div class="single-slider section-overly slider-height2 d-flex align-items-center"
                 data-background="/img/hero/about.jpg"> --}}
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="hero-cap text-center">
-                                <h2>About us</h2>
-                            </div>
-                        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2>About us</h2>
                     </div>
                 </div>
-            {{-- </div>
+            </div>
+        </div>
+        {{-- </div>
         </div> --}}
         <!-- Hero Area End -->
 
         <!-- Testimonial End -->
         <!-- Support Company Start-->
-        
+
         <div class="support-company-area support-padding fix">
             <div class="container">
                 <div class="row align-items-center">

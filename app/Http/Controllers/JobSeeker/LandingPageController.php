@@ -20,10 +20,9 @@ class LandingPageController extends Controller
 {
     public function index()
     {
+        // $testimonials = Testimonial::orderby('id')->limit(2);
         $testimonials = Testimonial::all();
         $applyProcesses = ApplyProcess::all();
-
-
         $categories = JobCategory::limit(8)->get();
         $jobs = Job::all(); // Ambil semua pekerjaan, atau sesuaikan query jika diperlukan
         $jobs = Job::with('jobTime', 'company', 'jobcategory')->get();
@@ -40,8 +39,8 @@ class LandingPageController extends Controller
             "applyProcesses" => $applyProcesses,
             "jobCounts" => $jobCounts,
             "testimonials" => $testimonials,
-            "configurations" => $configurations
-          
+            "configurations" => $configurations,
+
         ];
         return view('job-seekers.index', $data);
     }
@@ -96,7 +95,7 @@ class LandingPageController extends Controller
     {
         $user = Auth::user();
         $jobseeker = JobSeeker::with('user')->where('id', $user->id)->first();
-        $testimonials = Testimonial::all();
+        $testimonials = Testimonial::limit(2)->get();
 
         // Mengirim data ke view
         return view('job-seekers.index', [
@@ -107,7 +106,8 @@ class LandingPageController extends Controller
 
     public function jobSeekerIndex()
     {
-        $testimonials = Testimonial::all();
+        // $testimonials = Testimonial::all();
+        $testimonials = Testimonial::limit(2)->get();
         return view('job-seeker.testimoni.index', compact('testimonials'));
     }
 
