@@ -103,6 +103,23 @@
                                 </div>
                             @enderror
                         </div>
+
+                        <div class="form-group">
+                            <label>Requirement</label>
+                            <select class="form-control selectpicker" id="benefit_id" name="benefit_id[]" multiple
+                                data-style="btn-primary" title="Requirement">
+                                @foreach ($benefits as $key => $benefit)
+                                    <option value="{{ $benefit->id }}"
+                                        {{ in_array($benefit->id, $selectedBenefits) ? 'selected' : '' }}>
+                                        {{ $benefit->benefit }}</option>
+                                @endforeach
+                            </select>
+                            @error('requirement')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
                         <div class="form-group">
                             <label for="name">Deskripsi Pekerjaan</label>
                             <textarea id="description" name="description" cols="40" rows="30"

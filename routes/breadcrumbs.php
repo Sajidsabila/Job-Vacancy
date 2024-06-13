@@ -86,6 +86,25 @@ Breadcrumbs::for('admin.user.index', function (BreadcrumbTrail $trail) {
     $trail->push('Users', route('admin.user.index'));
 });
 
+// Admin Home > Benefit
+Breadcrumbs::for('admin.benefit.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Benefit', route('admin.benefit.index'));
+});
+
+// Admin Home > Benefit
+Breadcrumbs::for('admin.benefit.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.benefit.index');
+    $trail->push('Benefit', route('admin.benefit.index'));
+});
+
+// Admin Home > Benefit
+Breadcrumbs::for('admin.benefit.edit', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.benefit.index');
+    $trail->push('Benefit', route('admin.benefit.index'));
+});
+
+
 // Admin Home > Users > Create
 Breadcrumbs::for('admin.user.create', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.user.index');
@@ -164,6 +183,7 @@ Breadcrumbs::for('admin.educationLevel.create', function (BreadcrumbTrail $trail
     $trail->parent('admin.educationLevel.index');
     $trail->push('Create', route('admin.educationLevel.create'));
 });
+
 
 // Admin Home > Education Levels > Edit
 Breadcrumbs::for('admin.educationLevel.edit', function (BreadcrumbTrail $trail, $id) {
