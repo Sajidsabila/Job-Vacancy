@@ -11,6 +11,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
 </head>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
 <!-- Google Fonts Roboto -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
@@ -73,6 +74,7 @@
     <!-- JS here -->
 
     <!-- All JS Custom Plugins Link Here here -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('js/vendor/modernizr-3.5.0.min.js') }}"></script>
     <script src="{{ asset('js/vendor/jquery-1.12.4.min.js') }}"></script>
@@ -147,6 +149,9 @@
                 "responsive": true,
             });
         });
+    </script>
+    <script>
+        AOS.init();
     </script>
 </body>
 

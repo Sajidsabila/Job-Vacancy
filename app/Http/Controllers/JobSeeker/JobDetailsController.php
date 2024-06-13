@@ -33,7 +33,7 @@ class JobDetailsController extends Controller
         $selectedRequirements = is_string($job->requirement_id) ? json_decode($job->requirement_id, true) : $job->requirement_id;
         $selectedRequirements = is_array($selectedRequirements) ? $selectedRequirements : [];
         $data = ([
-            "title" => "Edit Data Lowongan Kerja",
+            "title" => "Data Lowongan Kerja",
             "job" => $job,
             "job_time" => $job_time,
             "requirements" => $requirements,

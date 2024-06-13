@@ -40,8 +40,8 @@ class JobListingController extends Controller
             "jobTimeType" => $jobTimeType,
             "rangeStart" => $rangeStart,
             "rangeEnd" => $rangeEnd,
-            "configurations" => $configurations
-
+            "configurations" => $configurations,
+            "title" => "Get Your Job"
         ]);
 
         return view('job-seekers.job-listing', $data);
@@ -77,7 +77,7 @@ class JobListingController extends Controller
             "totalJob" => $totalJob,
             "jobCategoryId" => $jobCategoryId,
             "jobTimeType" => $jobTimeType,
-
+            "title" => "Get Your Job"
         ]);
         return view('job-seekers.job-listing', $data);
     }

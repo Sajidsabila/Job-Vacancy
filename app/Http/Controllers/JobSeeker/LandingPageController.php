@@ -113,8 +113,8 @@ class LandingPageController extends Controller
 
     public function search(Request $request)
     {
-        $jobCategoryId = Request()->input("job_category_id");
-        $jobTimeType = Request()->input("job_time_type_id");
+        $jobCategoryId = $request->input("job_category_id");
+        $jobTimeType = $request->input("job_time_type_id");
         $job_category = JobCategory::all();
         $job_time = JobTimeType::all();
         $jobEloquent = Job::with('jobTime', 'company', 'jobcategory');
@@ -124,23 +124,23 @@ class LandingPageController extends Controller
             $jobEloquent->where("job_time_type_id", $jobTimeType);
         }
         $jobs = $jobEloquent->paginate(10);
-        $totalJob = $jobEloquent->count();
-
-        $data = ([
-            "job_category" => $job_category,
-            "job_time" => $job_time,
-            "jobs" => $jobs,
-            "totalJob" => $totalJob,
-            'jobCategoryId' => $jobCategoryId,
-            "jobTimeType" => $jobTimeType
-
-        ]);
+        // $totalJob = $jobEloquent->count();
 
         $keyword = $request->input('keyword');
         $jobs = Job::where('title', 'LIKE', '%' . $keyword . '%')
             ->orWhere('description', 'LIKE', '%' . $keyword . '%')
             ->get();
 
-        return view('job-seekers.job-listing', ['jobs' => $jobs], $data);
+        $data = [
+            "job_category" => $job_category,
+            "job_time" => $job_time,
+            "jobs" => $jobs,
+            "totalJob" => $jobs->count(),
+            'jobCategoryId' => $jobCategoryId,
+            "jobTimeType" => $jobTimeType,
+        ];
+
+        return view('job-seekers.job-listing', $data);
     }
+
 }

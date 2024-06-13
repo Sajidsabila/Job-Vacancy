@@ -5,12 +5,12 @@
         <!-- Hero Area Start-->
         <div class="slider-area ">
             <div class="single-slider section-overly slider-height2 d-flex align-items-center"
-                data-background="assets/img/hero/about.jpg">
+                data-background="{{ asset('img/hero/about.jpg') }}">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="hero-cap text-center">
-                                <h2 style="color: white">Get your job</h2>
+                                <h2 style="color: white">{{ $title }}</h2>
                             </div>
                         </div>
                     </div>
