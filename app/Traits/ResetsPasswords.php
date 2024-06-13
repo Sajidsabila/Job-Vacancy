@@ -10,7 +10,6 @@ trait ResetsPasswords
     // Menampilkan form reset password
     public function showResetForm(Request $request, $token = null)
     {
-        dd($token);
         return view('auth.passwords.reset')->with(
             ['token' => $token, 'email' => $request->email]
         );
@@ -24,7 +23,7 @@ trait ResetsPasswords
             'password' => 'required|min:8|confirmed',
             'token' => 'required'
         ]);
-        dd($request);
+
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user, $password) {

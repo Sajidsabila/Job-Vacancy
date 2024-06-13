@@ -115,9 +115,10 @@ class CompanyProfilController extends Controller
             } else {
                 $data['logo'] = $company->logo;
             }
+            dd($data);
             $company->update($data);
             Alert::success('Sukses', 'Edit Data success.');
-            return redirect('/companie');
+            return redirect('companie/company-profile');
         } catch (\Throwable $th) {
             Alert::error('Gagal', $th->getMessage());
             return back();

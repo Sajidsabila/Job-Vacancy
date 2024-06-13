@@ -35,48 +35,6 @@
                     </div>
                 </div>
                 <div class="row m-3">
-
-                    <div class="col-3">
-                        <div class="small-box bg-info">
-                            <div class="inner">
-                                <h3>{{ $countinterview }}</h3>
-                                <p>Proses Interview</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-person-add"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-3">
-                        <div class="small-box bg-info">
-                            <div class="inner">
-                                <h3>{{ $countaccept }}</h3>
-                                <p>Lamaran Diterima</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-person-add"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-3">
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                <h3>{{ $countreject }}</h3>
-                                <p>Lamaran Ditolak</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-person-add"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
                     <table id="datatable2" class="table table-striped">
                         <thead>
                             <tr>

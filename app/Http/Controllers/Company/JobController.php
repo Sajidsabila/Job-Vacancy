@@ -105,24 +105,11 @@ class JobController extends Controller
     public function show(string $id)
     {
         $job = Job::with('jobcategory')->findOrFail($id);
-        $query = JobHistory::with(['jobseeker', 'job']);
-        $jobhistoris = $query->where('job_id', $job->id)->get();
-        $countreject = $query->where('job_id', $job->id)
-            ->where('status', 'Lamaran Ditolak')
-            ->count();
-        $countaccept = $query->where('job_id', $job->id)
-            ->where('status', 'Lamaran Diterima')
-            ->count();
-        $countinterview = $query->where('job_id', $job->id)
-            ->where('status', 'Proses Interview')
-            ->count();
+        $jobhistoris = JobHistory::with(['jobseeker', 'job'])->where('job_id', $job->id)->get();
         $data = ([
             "title" => "Detail Data Lowongan",
             "job" => $job,
-            "jobhistoris" => $jobhistoris,
-            "countreject" => $countreject,
-            "countaccept" => $countaccept,
-            "countinterview" => $countinterview
+            "jobhistoris" => $jobhistoris
         ]);
 
         return view("company.job.detail", $data);
