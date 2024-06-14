@@ -17,7 +17,7 @@ class JobSeekerContactController extends Controller
     {
         $configurations = Configuration::all();
         $data = [
-            "title" => "Contact",
+            "title" => "Contact Us",
             "configurations" => $configurations
         ];
         return view('job-seekers.contact', $data);  // Path ke view contact.blade.php

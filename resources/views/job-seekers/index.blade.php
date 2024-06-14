@@ -11,37 +11,39 @@
             }
         </style>
         <!-- slider Area Start-->
-        <div class="slider-area ">
+        <div class="slider-area">
             <!-- Mobile Menu -->
             <div class="slider-active">
                 <div class="single-slider slider-height d-flex align-items-center"
-                    data-background="{{ asset('img/hero/h1_hero.jpg') }}">
+                    style="background-image: url('{{ asset('img/hero/h1_hero.jpg') }}');">
                     <div class="container">
-                        <div class="row">
+                        <div class="row align-items-center">
                             <div class="col-xl-6 col-lg-9 col-md-10">
                                 <div class="hero__caption">
                                     <h1>Find the most exciting startup jobs</h1>
                                 </div>
-                            </div>
-                        </div>
-                        <!-- Search Box -->
-                        <div class="row">
-                            <div class="col-xl-8">
-                                <form action="{{ route('job_listing') }}" method="GET"
-                                    class="search-box d-flex align-items-block">
-                                    <div class="input-form input-group col-9">
-                                        <input type="text" name="keyword" placeholder="Job Title or keyword">
-                                    </div>
-                                    <div class="search-form input-group-append col-3">
-                                        <button type="submit" class="btn btn-primary btn-block">Find job</button>
-                                    </div>
-                                </form>
+                                <!-- Search Box -->
+                                <div class="mt-4">
+                                    <form action="{{ route('job_listing') }}" method="GET"
+                                        class="search-box d-flex flex-column flex-md-row align-items-stretch">
+                                        <div class="input-form input-group flex-fill mb-2 mb-md-0">
+                                            <input type="text" name="keyword" class="form-control"
+                                                placeholder="Job Title or keyword">
+                                        </div>
+                                        <div class="search-form input-group-append ml-md-2">
+                                            <button type="submit" class="btn btn-primary btn-block"
+                                                style="display: flex; align-items: center; justify-content: center;">Find
+                                                job</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- slider Area End-->
         <!-- Our Services Start -->
         <div class="our-services section-pad-t30">
@@ -49,7 +51,7 @@
                 <!-- Section Tittle -->
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="section-tittle text-center">
+                        <div class="section-tittle text-center" data-aos="fade-down" data-aos-duration="500">
                             @auth
 
                                 @if (auth()->user()->role === 'User')
@@ -78,7 +80,7 @@
                             // Filter pekerjaan hanya untuk kategori saat ini
                             $jobsForCategory = $jobs->where('job_category_id', $category->id);
                         @endphp
-                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6" data-aos="flip-left" data-aos-duration="2000">
                             <div id="category_{{ $category->id }}" class="single-services text-center mb-30 single-job-link"
                                 data-url="{{ $jobCount > 0 ? route('jobs.by.category', $category->id) : '#' }}">
                                 <div class="services-ion">
@@ -107,7 +109,7 @@
                 <!-- Section Button -->
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="browse-btn2 text-center mt-50">
+                        <div class="browse-btn2 text-center mt-50" data-aos="zoom-in" data-aos-duration="1000">
                             <a href="{{ URL::to('/job-seekers/list-job') }}" class="border-btn2">Lihat Semua Kategori
                                 Pekerjaan</a>
                         </div>
@@ -121,10 +123,11 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-xl-10">
-                        <div class="cv-caption text-center">
+                        <div class="cv-caption text-center" data-aos="fade-down" data-aos-duration="1000">
                             <p class="pera1">FEATURED TOURS Packages</p>
                             <p class="pera2"> Make a Difference with Your Online Resume!</p>
-                            <a href="#" class="border-btn2 border-btn4">Upload your cv</a>
+                            <a href="#" class="border-btn2 border-btn4" data-aos="fade-up"
+                                data-aos-duration="1000">Upload your cv</a>
                         </div>
                     </div>
                 </div>
@@ -136,7 +139,7 @@
             <div class="container">
                 <!-- Section Tittle -->
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12" data-aos="fade-down" data-aos-duration="1000">
                         <div class="section-tittle text-center">
                             <span>Recent Job</span>
                             <h2>Featured Jobs</h2>
@@ -147,17 +150,18 @@
                     <div class="col-xl-10">
                         @foreach ($jobs as $job)
                             <!-- single-job-content -->
-                            <div class="single-job-link" data-url="{{ URL::to('/job-details', $job->id) }}">
+                            <div class="single-job-link" data-url="{{ URL::to('/job-details', $job->slug) }}"
+                                data-aos="zoom-in" data-aos-duration="1000">
                                 <div class="single-job-items mb-30">
                                     <div class="job-items">
                                         <div class="company-img">
-                                            <a href="{{ URL::to('/job-details', $job->id) }}"><img
+                                            <a href="{{ URL::to('/job-details', $job->slug) }}"><img
                                                     src="{{ 'storage/' . $job->company->logo }}"
                                                     alt=" {{ $job->company->company_name }}" width="100"
                                                     height="auto"></a>
                                         </div>
                                         <div class="job-tittle">
-                                            <a href="{{ URL::to('/job-details', $job->id) }}">
+                                            <a href="{{ URL::to('/job-details', $job->slug) }}">
                                                 <h4>{{ $job->title }}</h4>
                                             </a>
                                             <ul>
@@ -185,7 +189,7 @@
             <div class="container">
                 <!-- Section Tittle -->
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12" data-aos="fade-down" data-aos-duration="1000">
                         <div class="section-tittle white-text text-center">
                             <span>Apply process</span>
                             <h2> How it works</h2>
@@ -195,7 +199,7 @@
                 <!-- Apply Process Caption -->
                 <div class="row flex-wrap">
                     @foreach ($applyProcesses as $applyProcess)
-                        <div class="col-lg-4 col-md-6">
+                        <div class="col-lg-4 col-md-6" data-aos="flip-left" data-aos-duration="2000">
                             <div class="single-process text-center mb-30">
                                 <div class="process-ion">
                                     <span class="{{ $applyProcess->icon }}"></span>
@@ -216,7 +220,7 @@
         <!-- Testimonial Area Start -->
 
         <div class="row">
-            <div class="col-xl-12">
+            <div class="col-xl-12" data-aos="fade-down" data-aos-duration="1000">
                 <div class="hero-cap text-center">
                     <h2>Testimonial</h2>
                 </div>
@@ -229,7 +233,7 @@
                     <div class="col-xl-8 col-lg-8 col-md-10">
                         <div class="h1-testimonial-active dot-style">
                             @foreach ($testimonials as $item)
-                                <div class="single-testimonial text-center">
+                                <div class="single-testimonial text-center" data-aos="zoom-in" data-aos-duration="1000">
                                     <div class="testimonial-caption">
                                         <div class="testimonial-founder">
                                             <div class="founder-img mb-30">
@@ -261,7 +265,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
-                    <div class="hero-cap text-center">
+                    <div class="hero-cap text-center" data-aos="fade-down" data-aos-duration="1000">
                         <h2>About us</h2>
                     </div>
                 </div>
@@ -277,7 +281,7 @@
         <div class="support-company-area support-padding fix">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-xl-6 col-lg-6">
+                    <div class="col-xl-6 col-lg-6" data-aos="fade-right" data-aos-duration="1000">
                         <div class="right-caption">
                             <!-- Section Tittle -->
                             <div class="section-tittle section-tittle2">
@@ -294,10 +298,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-6 col-lg-6">
+                    <div class="col-xl-6 col-lg-6" data-aos="fade-left" data-aos-duration="1000">
                         <div class="support-location-img">
                             <img src="{{ asset('img/service/support-img.jpg') }}" alt="">
-                            <div class="support-img-cap text-center">
+                            <div class="support-img-cap text-center" data-aos="fade-up" data-aos-duration="1000">
                                 <p>Since</p>
                                 <span>1994</span>
                             </div>
@@ -312,7 +316,7 @@
             <div class="container">
                 <!-- Section Tittle -->
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12" data-aos="fade-down" data-aos-duration="1000">
                         <div class="section-tittle text-center">
                             <span>Our latest blog</span>
                             <h2>Our recent news</h2>
@@ -320,7 +324,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-6">
+                    <div class="col-xl-6 col-lg-6 col-md-6" data-aos="flip-right" data-aos-duration="1000">
                         <div class="home-blog-single mb-30">
                             <div class="blog-img-cap">
                                 <div class="blog-img">
@@ -340,7 +344,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6">
+                    <div class="col-xl-6 col-lg-6 col-md-6" data-aos="flip-right" data-aos-duration="1000">
                         <div class="home-blog-single mb-30">
                             <div class="blog-img-cap">
                                 <div class="blog-img">

@@ -5,21 +5,22 @@
         <!-- Hero Area Start-->
         <div class="slider-area ">
             <div class="single-slider section-overly slider-height2 d-flex align-items-center"
-                data-background="/img/hero/about.jpg">
+                data-background="{{ asset('img/hero/about.jpg') }}">
                 <div class="container">
                     <div class="row">
-                        {{-- <div class="col-xl-12">
+                        <div class="col-xl-12">
                             <div class="hero-cap text-center">
-                                <h2 style="color: white">Contact us</h2>
+                                <h2 style="color: white">{{ $title }}</h2>
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Hero Area End -->
         <section class="contact-section">
             <div class="container">
-                <div class="d-none d-sm-block mb-5 pb-4">
+                <div class="d-none d-sm-block mb-5 pb-4" data-aos="fade-down" data-aos-duration="1000">
                     <div>
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15840.927964172803!2d110.4524767!3d-6.9819278!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708cc855dcb68f%3A0x740068fbacb464bc!2sUniversity%20of%20Semarang!5e0!3m2!1sen!2sid!4v1718032382473!5m2!1sen!2sid"
@@ -28,10 +29,10 @@
                     </div><!-- End Google Maps -->
                 </div>
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-12" data-aos="fade-right" data-aos-duration="1000">
                         <h2 class="contact-title">Get in Touch</h2>
                     </div>
-                    <div class="col-lg-8">
+                    <div class="col-lg-8" data-aos="fade-right" data-aos-duration="1000">
                         <form class="form-contact contact_form" action="{{ URL::to('/contact') }}" method="post"
                             enctype="multipart/form-data">
                             @csrf
@@ -77,7 +78,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-lg-3 offset-lg-1">
+                    <div class="col-lg-3 offset-lg-1" data-aos="fade-left" data-aos-duration="1000">
                         @foreach ($configurations as $configuration)
                             <div class="media contact-info">
                                 <span class="contact-info__icon"><i class="ti-home"></i></span>

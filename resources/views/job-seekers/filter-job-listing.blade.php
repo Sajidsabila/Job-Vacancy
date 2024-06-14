@@ -121,7 +121,8 @@
                              <!-- single-job-content -->
                              @foreach ($jobs as $job)
                                  <!-- single-job-content -->
-                                 <div class="single-job-link" data-url="{{ URL::to('/job-details', $job->slug) }}">
+                                 <div class="single-job-link" data-url="{{ URL::to('/job-details', $job->slug) }}" data-aos="zoom-in"
+                                    data-aos-duration="1000">
                                      <div class="single-job-items mb-30">
                                          <div class="job-items">
                                              <div class="company-img company-img-details">

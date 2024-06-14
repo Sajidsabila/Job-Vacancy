@@ -37,7 +37,7 @@ class JobDetailsController extends Controller
         $selectedBenefits = is_array($selectedBenefits) ? $selectedBenefits : [];
         $benefits = Benefit::all();
         $data = ([
-            "title" => "Edit Data Lowongan Kerja",
+            "title" => "Data Lowongan Kerja",
             "job" => $job,
             "job_time" => $job_time,
             "requirements" => $requirements,

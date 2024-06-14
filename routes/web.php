@@ -108,6 +108,7 @@ Route::prefix('/')->group(function () {
     Route::get('/category/{id}', [JobListingController::class, 'showJobsByCategory'])->name('jobs.by.category');
     Route::get('/contact', [JobSeekerContactController::class, 'index'])->name('job-seekers.contact');
     Route::post('/contact', [JobSeekerContactController::class, 'store'])->name('job-seekers.contact.store');
+    Route::get("/job-seekers/list-job", [LandingPageController::class, "listjob"]);
 })->middleware('guest');
 
 
