@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::create('job_seekers', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->unique(); 
+
             $table->unsignedBigInteger('religion_id');
             $table->string("photo");
             $table->integer("nik");

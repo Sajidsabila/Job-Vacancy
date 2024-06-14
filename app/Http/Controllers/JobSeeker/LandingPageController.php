@@ -20,8 +20,9 @@ class LandingPageController extends Controller
 {
     public function index()
     {
-        // $testimonials = Testimonial::orderby('id')->limit(2);
-        $testimonials = Testimonial::all();
+        // $testimonials = Testimonial::orderby('id');
+        //edited by trainer
+        $testimonials = Testimonial::with('jobSeeker')->limit(2)->get();
         $applyProcesses = ApplyProcess::all();
         $categories = JobCategory::limit(8)->get();
         $jobs = Job::all(); // Ambil semua pekerjaan, atau sesuaikan query jika diperlukan
