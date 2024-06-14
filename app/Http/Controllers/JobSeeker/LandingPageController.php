@@ -138,6 +138,7 @@ class LandingPageController extends Controller
             "totalJob" => $jobs->count(),
             'jobCategoryId' => $jobCategoryId,
             "jobTimeType" => $jobTimeType,
+            "title" => "Get Your Job"
         ];
 
         return view('job-seekers.job-listing', $data);
