@@ -227,18 +227,17 @@
             </div>
         </div>
 
-        <div id="testimonials" class="testimonial-area testimonial-padding">
+        <div id="testimoni" class="testimonial-area testimonial-padding">
             <div class="container">
                 <div class="row d-flex justify-content-center">
                     <div class="col-xl-8 col-lg-8 col-md-10">
                         <div class="h1-testimonial-active dot-style">
                             @foreach ($testimonials as $item)
-                                <div class="single-testimonial text-center" data-aos="zoom-in" data-aos-duration="1000">
+                                <div class="single-testimonial text-center">
                                     <div class="testimonial-caption">
                                         <div class="testimonial-founder">
                                             <div class="founder-img mb-30">
-                                                <img class="rounded-circle shadow-4-strong w-4 h-4"
-                                                    src="{{ asset('storage/' . $item->jobSeeker->photo) }}"
+                                                <img src="{{ asset('storage/' . $item->jobSeeker->photo) }}"
                                                     alt="">
                                                 <span>{{ $item->jobSeeker->first_name }}
                                                     {{ $item->jobSeeker->last_name }}</span>
@@ -251,6 +250,7 @@
                                     </div>
                                 </div>
                             @endforeach
+
                         </div>
                     </div>
                 </div>

@@ -38,4 +38,11 @@ class JobSeeker extends Model
     {
         return $this->hasMany(Education::class);
     }
+
+    public function testimonials()
+    {
+        return $this->hasMany(Testimonial::class);
+    }
+}
+
 }

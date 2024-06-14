@@ -10,9 +10,9 @@ class Testimonial extends Model
     use HasFactory;
 
     protected $fillable = [
-        'job_seeker_id',
-        'quote',
-        'job',
+    'job_seeker_id',
+    'quote',
+    'job',
     ];
 
     public function jobSeeker()
