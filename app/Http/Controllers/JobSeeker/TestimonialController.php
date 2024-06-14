@@ -5,6 +5,7 @@ namespace App\Http\Controllers\JobSeeker;
 use App\Http\Controllers\Controller;
 use App\Models\Configuration;
 use App\Models\JobCategory;
+use App\Models\JobSeeker;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,15 +17,17 @@ class TestimonialController extends Controller
     {
         $jobcategories = JobCategory::all();
         $user = Auth::user();
+        $jobseeker = JobSeeker::with('user')->where('id', $user->id)->first();
 
-        $testimoni = Testimonial::limit(2)->get();
+        $testimonials = Testimonial::get();
         $configurations = Configuration::first();
         $data = [
             "title" => "Data Testimoni",
-            "testimoni" => $testimoni,
+            "testimonials" => $testimonials,
             "jobcategories" => $jobcategories,
             "user" => $user,
-            "configurations" => $configurations
+            "configurations" => $configurations,
+            'jobseeker' => $jobseeker,
         ];
 
         return view('job-seekers.testimonial', $data);

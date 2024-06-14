@@ -46,6 +46,7 @@
                                 </div>
                             @endif
                             <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
+                       
                             <form method="POST" action="{{ URL::to('/auth') }}" class="needs-validation" novalidate=""
                                 autocomplete="off">
                                 @csrf
@@ -83,7 +84,9 @@
                                         <input type="checkbox" name="remember" id="remember" class="form-check-input">
                                         <label for="remember" class="form-check-label">Remember Me</label>
                                     </div>
-                                    <button type="submit" class="btn btn-primary ms-auto">
+                                </div>
+                                    <a href="{{ route('redirect') }}" class="btn btn-danger">Login With Google</a>
+                                    <button type="submit" class="btn btn-primary ms-max">
                                         Login
                                     </button>
                                 </div>

@@ -197,5 +197,7 @@ return [
     */
 
     'same_site' => 'lax',
+    'driver' => env('SESSION_DRIVER', 'file'),
+
 
 ];

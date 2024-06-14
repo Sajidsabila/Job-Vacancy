@@ -56,6 +56,9 @@ use App\Http\Controllers\JobSeeker\WorkExperienceController;
 use App\Http\Controllers\Company\InterviewScheduleController;
 use App\Http\Controllers\JobSeeker\JobSeekerContactController;
 
+
+use App\Http\Controllers\SocialiteController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -193,3 +196,12 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 Route::get('/email/verify', function () {
     return view('register.verify-email');
 })->middleware('auth')->name('verification.notice');
+
+Route::get('login/google/redirect', [SocialiteController::class, 'redirect'])
+    ->middleware(['guest'])
+    ->name('redirect');
+
+// Untuk callback dari Google
+Route::get('/google/callback', [SocialiteController::class, 'callback'])
+    ->middleware(['guest'])
+    ->name('callback');
