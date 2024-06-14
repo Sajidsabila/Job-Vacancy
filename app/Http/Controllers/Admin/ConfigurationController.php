@@ -90,7 +90,7 @@ class ConfigurationController extends Controller
             } else {
                 $data['logo'] = $configartion->logo;
             }
-
+  $configartion->update($data);
 
             Alert::success('Sukses', 'Edit data success.');
         } catch (\Throwable $th) {

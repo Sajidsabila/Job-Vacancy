@@ -42,7 +42,7 @@
 
                             @if (session()->has('success'))
                                 <div class="alert alert-success">
-                                    {{ session('errorMessage') }}
+                                    {{ session('success') }}
                                 </div>
                             @endif
                             <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
