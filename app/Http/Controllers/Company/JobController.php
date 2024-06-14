@@ -112,11 +112,11 @@ class JobController extends Controller
     public function show(string $id, Request $request)
     {
         $job = Job::with('jobcategory')->findOrFail($id);
-
+  $filterstatus = Request()->input("statusFilter");
         // Get all job histories related to the job, optionally filtering by status
         $query = JobHistory::with(['jobseeker', 'job'])->where('job_id', $job->id);
-        if ($request->has('statusFilter') && $request->statusFilter !== '') {
-            $query->where('status', $request->statusFilter);
+       if ($filterstatus) {
+            $query->where('statusFilter', $filterstatus);
         }
         $jobhistoris = $query->get();
 
@@ -141,7 +141,7 @@ class JobController extends Controller
             "countaccept" => $countaccept,
             "countinterview" => $countinterview,
             "statuses" => $statuses,
-            "selectedStatus" => $request->statusFilter
+            "selectedStatus" => $filterstatus
 
         ]);
 
