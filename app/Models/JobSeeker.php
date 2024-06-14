@@ -36,7 +36,7 @@ class JobSeeker extends Model
 
     public function education()
     {
-        return $this->hasMany(education::class);
+        return $this->hasMany(Education::class);
     }
     protected $fillable = [
         'religion_id', 'photo', 'nik', 'birth_date', 'first_name',
