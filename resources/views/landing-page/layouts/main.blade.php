@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-     <link rel="icon" type="image/x-icon" href="{{ URL::to('/storage') }}/{{ $configuration->logo }}">
+     <link rel="icon" type="image/x-icon" href="{{ URL::to asset('('/storage') }}/{{ $configuration->logo }}')">
     <title>{{ config('app.name') }}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
