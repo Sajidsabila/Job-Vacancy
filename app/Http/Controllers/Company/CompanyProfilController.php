@@ -62,7 +62,7 @@ class CompanyProfilController extends Controller
             }
             Company::create($data);
             Alert::success('Sukses', 'Add data success.');
-            return redirect('companie/company-profile');
+            return redirect('/companie');
         } catch (\Throwable $th) {
             Alert::error('Gagal', $th->getMessage());
             return back();
