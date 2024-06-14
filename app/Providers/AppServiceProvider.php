@@ -27,7 +27,15 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         Paginator::useBootstrap();
 
-        view()->share('configuration', Configuration::first());
+        Schema::defaultStringLength(191);
+        Paginator::useBootstrap();
+
+        // Get the first configuration record
+        $configuration = Configuration::first();
+
+        // Share the configuration if it exists
+        view()->share('configuration', $configuration);
+
 
         // Tentukan variabel $profilexist berdasarkan kondisi autentikasi
         $profilexist = false;
