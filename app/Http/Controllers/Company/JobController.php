@@ -116,6 +116,9 @@ class JobController extends Controller
         // Get all job histories related to the job, optionally filtering by status
         $query = JobHistory::with(['jobseeker', 'job'])->where('job_id', $job->id);
         if ($filterstatus) {
+        // Get all job histories related to the job, optionally filtering by status
+        $query = JobHistory::with(['jobseeker', 'job'])->where('job_id', $job->id);
+       if ($filterstatus) {
             $query->where('statusFilter', $filterstatus);
         }
         $jobhistoris = $query->get();
