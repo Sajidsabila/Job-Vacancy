@@ -18,13 +18,15 @@ class DashboardController extends Controller
         $jobHistoryCount = JobHistory::count();
         $user = Auth::user();
          $job= Job::with('company')->where('company_id', $user->id)->count();
+        $job_histories= JobHistory::with('company')->where('company_id', $user->id)->count();
         $company = Company::where('id', $user->id)->first();
         $data = ([
             "title" => "Profile Perusahaan",
             "company" => $company,
             'jobCount' => $jobCount,
             'jobHistoryCount' => $jobHistoryCount,
-            'job' => $job
+            'job' => $job,
+            'job_histories' => $job_histories
         ]);
         //dd($company);
         if (!$company) {
