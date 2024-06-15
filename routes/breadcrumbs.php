@@ -444,3 +444,27 @@ Breadcrumbs::for('companie.lowongan-kerja.set_interview', function (BreadcrumbTr
     // Menambahkan breadcrumb untuk detail kandidat
     $trail->push('Detail Candidate', route('companie.lowongan-kerja.set_interview', $jobhistori));
 });
+
+// Admin Home > Requirements
+Breadcrumbs::for('companie.requirement.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('companie.dashboard');
+    $trail->push('Requirements', route('admin.requirement.index'));
+});
+
+// Admin Home > Requirements > Create
+Breadcrumbs::for('companie.requirement.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('companie.requirement.index');
+    $trail->push('Create', route('companie.requirement.create'));
+});
+
+// Admin Home > Requirements > Edit
+Breadcrumbs::for('companie.requirement.edit', function (BreadcrumbTrail $trail, $id) {
+    $trail->parent('companie.requirement.index');
+    $trail->push('Edit', route('admin.requirement.edit', $id));
+});
+
+// Admin Home > Requirements > Show
+Breadcrumbs::for('companie.requirement.show', function (BreadcrumbTrail $trail, $id) {
+    $trail->parent('companie.requirement.index');
+    $trail->push('Show', route('admin.requirement.show', $id));
+});
