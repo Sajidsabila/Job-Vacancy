@@ -24,7 +24,8 @@ use App\Http\Controllers\RegisterCompanieController;
 
 use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\JobTimeTypeController;
-
+use App\Http\Controllers\Company\CompanyRequirementController;
+use App\Http\Controllers\Company\CompanyBenefitController;
 use App\Http\Controllers\Admin\RequirementController;
 use App\Http\Controllers\Company\DashboardController;
 use App\Http\Controllers\JobSeeker\ListJobController;
@@ -181,7 +182,8 @@ Route::group([
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/company-profile', CompanyProfilController::class);
     Route::get('/lowongan-kerja/detail_candidate/{id}', [JobController::class, 'showJobSeeker'])->name('lowongan-kerja.detail_candidate');
-
+    Route::resource('/requirement', CompanyRequirementController::class);
+    Route::resource('/benefit', CompanyBenefitController::class);
     Route::resource('/lowongan-kerja', JobController::class);
     Route::get('/lowongan-kerja/view-pdf/{id}', [JobController::class, 'viewPDF'])->name('pdf.view');
     Route::get('/lowongan-kerja/set-interview/{id}', [InterviewScheduleController::class, 'edit'])->name('lowongan-kerja.set_interview');

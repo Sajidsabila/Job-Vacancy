@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Job;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CompanyController extends Controller
 {
@@ -43,7 +44,18 @@ class CompanyController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $company = Company::findOrFail($id);
+        $query = Job::with('company')->where('company_id', $company->id);
+        $jobs = $query->get();
+        $countjob = $query->count();
+        $data = ([
+            "title" => "Detail Company",
+            "company" => $company,
+            "jobs" => $jobs,
+            "countjob" => $countjob
+        ]);
+
+        return view("super-admin.listcompany.detail", $data);
     }
 
     /**
