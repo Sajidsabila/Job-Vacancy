@@ -41,7 +41,7 @@
                                 <input type="hidden" name="token" value="{{ $token }}">
                                 <div class="mb-3">
                                     <label class="mb-2 text-muted" for="email">E-Mail Address</label>
-                                    <input id="email" type="email" name="email"
+                                    <input id="email" type="hidden" name="email"
                                         value="{{ $email ?? old('email') }}" class="form-control" required autofocus>
                                     <div class="invalid-feedback">
                                         Email is invalid
