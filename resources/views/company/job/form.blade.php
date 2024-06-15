@@ -105,7 +105,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Requirement</label>
+                            <label>Benefit</label>
                             <select class="form-control selectpicker" id="benefit_id" name="benefit_id[]" multiple
                                 data-style="btn-primary" title="Requirement">
                                 @foreach ($benefits as $key => $benefit)

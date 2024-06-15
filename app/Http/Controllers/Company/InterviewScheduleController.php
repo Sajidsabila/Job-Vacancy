@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Company;
 use App\Models\Job;
 use App\Models\JobHistory;
 use Illuminate\Http\Request;
+use App\Mail\InteviewSchedule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\InteviewSchedule;
+use Illuminate\Support\Facades\Redirect;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -38,7 +39,7 @@ class InterviewScheduleController extends Controller
             Mail::to($jobHistory->jobseeker->user->email)->send(new InteviewSchedule($jobHistory));
 
             Alert::success("Berhasil", "Input Data Tanggal Interview Berhasil dan email telah dikirim.");
-            return back();
+            return Redirect::to('companie/lowongan-kerja/' . $jobHistory->job_id);
         } catch (\Throwable $th) {
             Alert::error("Error", $th->getMessage());
             return back();
