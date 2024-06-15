@@ -37,14 +37,14 @@
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-               <li class="nav-item">
-    <a href="{{ URL::to('/admin') }}" class="nav-link {{ Request::is('admin') ? ' active' : '' }}">
-        <i class="nav-icon fas fa-tachometer-alt"></i>
-        <p>
-            Dashboard
-        </p>
-    </a>
-</li>
+                <li class="nav-item">
+                    <a href="{{ URL::to('/admin') }}" class="nav-link {{ Request::is('admin') ? ' active' : '' }}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     </a>
                     <ul class="nav nav-treeview">
@@ -122,23 +122,23 @@
                 </li>
 
                 @if (auth()->user()->role == 'Admin')
-                <li class="nav-item">
-        <a href="{{ URL::to('/admin/job-category') }}"
-            class="nav-link {{ Request::is('admin/job-category') ? ' active' : '' }}">
-            <i class="nav-icon fas fa-list-alt"></i>
-            <p>
-                Category
-            </p>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="{{ URL::to('/admin/list-perusahaan') }}"
-            class="nav-link {{ Request::is('admin/list-perusahaan') ? ' active' : '' }}">
-            <i class="nav-icon fas fa-building"></i>
-            <p>
-                List Perusahaan
-            </p>
-        </a>
+                    <li class="nav-item">
+                        <a href="{{ URL::to('/admin/job-category') }}"
+                            class="nav-link {{ Request::is('admin/job-category') ? ' active' : '' }}">
+                            <i class="nav-icon fas fa-list-alt"></i>
+                            <p>
+                                Category
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ URL::to('/admin/list-perusahaan') }}"
+                            class="nav-link {{ Request::is('admin/list-perusahaan') ? ' active' : '' }}">
+                            <i class="nav-icon fas fa-building"></i>
+                            <p>
+                                List Perusahaan
+                            </p>
+                        </a>
                     <li class="nav-item">
 
                         <a href="{{ URL::to('/admin/user') }}"
@@ -212,7 +212,8 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item {{ Request::is('receipt') || Request::is('/admin/report') ? ' menu-open' : '' }}">
+                    <li
+                        class="nav-item {{ Request::is('receipt') || Request::is('/admin/report') ? ' menu-open' : '' }}">
                         <a href="#"
                             class="nav-link {{ Request::is('receipt') || Request::is('admin/report') ? ' active' : '' }}">
                             <i class="fa fa-solid fa-address-book"></i>
@@ -353,7 +354,25 @@
                         </a>
                 @endif
                 </li>
+                <li class="nav-item">
+                    <a href="{{ URL::to('/admin/requirement') }}"
+                        class="nav-link {{ Request::is('admin/requirement') ? ' active' : '' }}">
+                        <i class="nav-icon fas fa-check-circle"></i>
+                        <p>
+                            Requirement
+                        </p>
+                    </a>
+                </li>
 
+                <li class="nav-item">
+                    <a href="{{ URL::to('/admin/benefit') }}"
+                        class="nav-link {{ Request::is('admin/benefit') ? ' active' : '' }}">
+                        <i class="nav-icon fas fa-check-circle"></i>
+                        <p>
+                            Benefit
+                        </p>
+                    </a>
+                </li>
                 </li>
             </ul>
         </nav>
