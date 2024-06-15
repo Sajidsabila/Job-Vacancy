@@ -237,7 +237,7 @@
                                     <div class="testimonial-caption">
                                         <div class="testimonial-founder">
                                             <div class="founder-img mb-30">
-                                                <img src="{{ asset('storage/' . $item->jobSeeker->photo) }}"
+                                                <img class="rounded-circle" src="{{ asset('storage/' . $item->jobSeeker->photo) }}"
                                                     alt="">
                                                 <span>{{ $item->jobSeeker->first_name }}
                                                     {{ $item->jobSeeker->last_name }}</span>

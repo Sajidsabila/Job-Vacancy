@@ -1,6 +1,6 @@
 @extends ('adminTemplate.layouts.main')
 @section('container')
-<!-- Small boxes (Stat box) -->
+{{-- <!-- Small boxes (Stat box) -->
 <div class="row justify-content-center">
     <div class="col-lg-3 col-6">
         <!-- small box -->
@@ -29,7 +29,7 @@
             <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
-</div>
+</div> --}}
     @include('sweetalert::alert')
 
 
@@ -40,7 +40,8 @@
 
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ $jobCount }}</h3>
+                            {{-- <h3>{{ $jobCount }}</h3> --}}
+                            <h3>{{ $job }}</h3>
                             <p>Jobs</p>
                         </div>
                         <div class="icon">
@@ -54,7 +55,8 @@
                 <div class="col-lg-6 col-6">
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3>{{ $jobHistoryCount }}</h3>
+                            {{-- <h3>{{ $jobHistoryCount }}</h3> --}}
+                            <h3>{{ $job_histories }}</h3>
                             <p>Job Histories</p>
                         </div>
                         <div class="icon">

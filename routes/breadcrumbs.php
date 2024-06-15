@@ -8,6 +8,12 @@ Breadcrumbs::for('admin.dashboard', function (BreadcrumbTrail $trail) {
     $trail->push('Home', route('admin.dashboard'));
 });
 
+// Admin Home > Contact
+Breadcrumbs::for('admin.contact.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Contact', route('admin.contact.index'));
+});
+
 // Admin Home > Configuration
 Breadcrumbs::for('admin.configuration.index', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.dashboard');
@@ -270,9 +276,6 @@ Breadcrumbs::for('admin.applyProcess.show', function (BreadcrumbTrail $trail, $i
 });
 
 
-;
-
-
 // Admin Home > (Trash Job Category)
 Breadcrumbs::for('admin.trashcategory', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.dashboard');
@@ -295,6 +298,13 @@ Breadcrumbs::for('admin.trashuser', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('admin.applyprocess', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.dashboard');
     $trail->push('Trash Apply Process', route('admin.applyprocess'));
+});
+
+
+// Admin Home > Trash Contact
+Breadcrumbs::for('admin.trashcontact', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Trash Contact', route('admin.trashcontact'));
 });
 
 
@@ -323,11 +333,7 @@ Breadcrumbs::for('admin.trashjobseeker', function (BreadcrumbTrail $trail) {
     $trail->push('Trash Job Seeker', route('admin.trashjobseeker'));
 });
 
-// // Admin Home > (Trash Job Category)
-// Breadcrumbs::for('admin.trashcategory', function (BreadcrumbTrail $trail) {
-//     $trail->parent('admin.dashboard');
-//     $trail->push('Trash Job Category', route('admin.trashcategory'));
-// });
+
 
 // Admin Home > Trash Job Categories > Restore
 Breadcrumbs::for('admin.restore-job-category', function (BreadcrumbTrail $trail, $id) {
