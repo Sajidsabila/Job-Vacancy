@@ -32,8 +32,14 @@ class AuthController extends Controller
         if (Auth::attempt($data)) {
             $request->session()->regenerate();
 
-            $role = Auth::user()->role;
-            switch ($role) {
+            $user = Auth::user();
+
+            if ($user->role !== 'Admin' && is_null($user->email_verified_at)) {
+                Auth::logout();
+                return back()->with('errorMessage', 'Akun belum terverifikasi.');
+            }
+
+            switch ($user->role) {
                 case 'Admin':
                     return redirect()->route('admin.dashboard');
                 case 'Superadmin':

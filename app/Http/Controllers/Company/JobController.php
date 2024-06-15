@@ -112,44 +112,44 @@ class JobController extends Controller
     public function show(string $id, Request $request)
     {
         $job = Job::with('jobcategory')->findOrFail($id);
-        $filterstatus = Request()->input("statusFilter");
+        $filterstatus = $request->input("statusFilter");
+
         // Get all job histories related to the job, optionally filtering by status
         $query = JobHistory::with(['jobseeker', 'job'])->where('job_id', $job->id);
+
         if ($filterstatus) {
-            // Get all job histories related to the job, optionally filtering by status
-            $query = JobHistory::with(['jobseeker', 'job'])->where('job_id', $job->id);
-            if ($filterstatus) {
-                $query->where('statusFilter', $filterstatus);
-            }
-            $jobhistoris = $query->get();
-
-            // Calculate counts based on the retrieved job histories
-            $countreject = $jobhistoris->filter(function ($jobhistory) {
-                return $jobhistory->status == 'Lamaran Ditolak';
-            })->count();
-
-            $countaccept = $jobhistoris->filter(function ($jobhistory) {
-                return $jobhistory->status == 'Lamaran Diterima';
-            })->count();
-
-            $countinterview = $jobhistoris->filter(function ($jobhistory) {
-                return $jobhistory->status == 'Proses Interview';
-            })->count();
-            $statuses = JobHistory::select('status')->distinct()->get();
-            $data = ([
-                "title" => "Detail Data Lowongan",
-                "job" => $job,
-                "jobhistoris" => $jobhistoris,
-                "countreject" => $countreject,
-                "countaccept" => $countaccept,
-                "countinterview" => $countinterview,
-                "statuses" => $statuses,
-                "selectedStatus" => $filterstatus
-
-            ]);
-
-            return view("company.job.detail", $data);
+            $query->where('status', $filterstatus);
         }
+
+        $jobhistoris = $query->get();
+
+        // Calculate counts based on the retrieved job histories
+        $countreject = $jobhistoris->filter(function ($jobhistory) {
+            return $jobhistory->status == 'Lamaran Ditolak';
+        })->count();
+
+        $countaccept = $jobhistoris->filter(function ($jobhistory) {
+            return $jobhistory->status == 'Lamaran Diterima';
+        })->count();
+
+        $countinterview = $jobhistoris->filter(function ($jobhistory) {
+            return $jobhistory->status == 'Proses Interview';
+        })->count();
+
+        $statuses = JobHistory::select('status')->distinct()->get();
+
+        $data = [
+            "title" => "Detail Data Lowongan",
+            "job" => $job,
+            "jobhistoris" => $jobhistoris,
+            "countreject" => $countreject,
+            "countaccept" => $countaccept,
+            "countinterview" => $countinterview,
+            "statuses" => $statuses,
+            "selectedStatus" => $filterstatus
+        ];
+
+        return view("company.job.detail", $data);
     }
 
     /**

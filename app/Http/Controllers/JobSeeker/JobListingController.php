@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class JobListingController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $jobCategoryId = Request()->input("job_category_id");
         $jobTimeType = Request()->input("job_time_type_id");
@@ -20,13 +20,19 @@ class JobListingController extends Controller
         $job_category = JobCategory::all();
         $job_time = JobTimeType::all();
         $configurations = Configuration::first();
+        $keyword = $request->input("keyword");
+
         $jobEloquent = Job::with('jobTime', 'company', 'jobcategory');
         if ($jobCategoryId) {
             $jobEloquent->where("job_category_id", $jobCategoryId);
-        } else if ($jobTimeType) {
+        }
+
+        if ($jobTimeType) {
             $jobEloquent->where("job_time_type_id", $jobTimeType);
-        } else if ($rangeStart && $rangeEnd) {
-            $jobEloquent->whereBetween('salary', $rangeStart, $rangeEnd);
+        }
+
+        if ($keyword) {
+            $jobEloquent->where('title', 'LIKE', '%' . $keyword . '%');
         }
         $jobs = $jobEloquent->paginate(7);
         $totalJob = $jobEloquent->count();
@@ -41,7 +47,8 @@ class JobListingController extends Controller
             "rangeStart" => $rangeStart,
             "rangeEnd" => $rangeEnd,
             "configurations" => $configurations,
-            "title" => "Get Your Job"
+            "title" => "Get Your Job",
+            "keyword" => $keyword,
         ]);
 
         return view('job-seekers.job-listing', $data);
