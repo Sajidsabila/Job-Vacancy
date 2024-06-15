@@ -10,7 +10,7 @@
         <thead>
             <tr>
                 <th>No.</th>
-                <th>Requirement</th>
+                <th>Benefit</th>
                 <th>Action</th>
             </tr>
         </thead>

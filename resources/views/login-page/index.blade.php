@@ -46,7 +46,7 @@
                                 </div>
                             @endif
                             <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
-                       
+
                             <form method="POST" action="{{ URL::to('/auth') }}" class="needs-validation" novalidate=""
                                 autocomplete="off">
                                 @csrf
@@ -85,24 +85,29 @@
                                         <label for="remember" class="form-check-label">Remember Me</label>
                                     </div>
                                 </div>
-                                    <a href="{{ route('redirect') }}" class="btn btn-danger">Login With Google</a>
-                                    <button type="submit" class="btn btn-primary ms-max">
-                                        Login
-                                    </button>
-                                </div>
-                            </form>
+                                <button type="submit" style="width: 100%; padding: 5px 0; margin: 4px 0;"
+                                    class="btn btn-primary ms-max">
+                                    Login
+                                </button>
+                                <a href="{{ route('redirect') }}" style="width: 100%; padding: 5px 0; margin: 4px 0; align-items: center;" class="btn btn-danger">
+                                    <img class="rounded-circle" src="https://www.webrankinfo.com/dossiers/wp-content/uploads/google-logo-carre-2015-09-400.png" alt="Google Logo" style="width: 20px; height: 20px; margin-right: 8px;">
+                                    Login With Google
+                                </a>
+                                
                         </div>
-                        <div class="card-footer py-3 border-0">
-                            <div class="text-center">
-                                Don't have an account? <a href="{{ URL::to('/register/job-seekers') }}"
-                                    class="text-dark">Create One</a>
-                            </div>
-                        </div>
+                        </form>
                     </div>
-                    <div class="text-center mt-5 text-muted">
+                    <div class="card-footer py-3 border-0">
+                        <div class="text-center">
+                            Don't have an account? <a href="{{ URL::to('/register/job-seekers') }}"
+                                class="text-dark">Create One</a>
+                        </div>
                     </div>
                 </div>
+                <div class="text-center mt-5 text-muted">
+                </div>
             </div>
+        </div>
         </div>
     </section>
 

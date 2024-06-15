@@ -162,6 +162,9 @@ Route::group([
     Route::delete('/delete-educationLevel/{id}', [RestoreEduLevelController::class, 'destroy']);
     Route::resource('/jobTimeType', JobTimeTypeController::class);
     Route::get('/trash-jobTimeType', [RestoreJobTimeTypeController::class, 'index'])->name('jobtyme');
+
+    Route::get('/trash-contact', [RestoreContactController::class, 'index'])->name('trashcontact');
+
     Route::get('/restore-jobTimeType/{id}', [RestoreJobTimeTypeController::class, 'restore']);
     Route::delete('/delete-jobTimeType/{id}', [RestoreJobTimeTypeController::class, 'destroy']);
     Route::get('/trash-applyProcess', [RestoreApplyProcess::class, 'index'])->name('applyprocess');

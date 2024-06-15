@@ -25,13 +25,13 @@ ore @extends ('adminTemplate.layouts.main')
             <td>{{ $category->category }}</td>
             <td>
                 <div class="d-flex">
-                    <a href="{{ URL::to('category/' . $category->id)}}" class="mr-2 btn btn-info btn-sm">Info</a>
+                    <a href="{{ URL::to('category/' . $category->id)}}" class="mr-2 btn btn-info btn-sm ">Info</a>
                     <a href="{{ URL::to('/admin/job-category/' . $category->id . '/edit')}}"
                         class="mr-2 btn btn-warning btn-sm">Edit</a>
                     <form action="{{URL::to('/admin/job-category/' . $category->id)}}" method="post">
                         @csrf
                         @method('delete')
-                        <button type="submit" class="btn btn-sm btn-danger"
+                        <button type="submit" class="mr-2 btn btn-sm btn-danger"
                             onclick="return confirm('apakah Yakin Ingin Menghapus {{ $category->name }}')">
                             Hapus
                         </button>

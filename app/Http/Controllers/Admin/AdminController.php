@@ -15,6 +15,7 @@ class AdminController extends Controller
     //
     public function index()
     {
+        
         $jobSeekerCount = JobSeeker::count();
         $companies = Company::count();
         $configurations = Configuration::all();
