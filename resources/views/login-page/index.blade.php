@@ -46,7 +46,7 @@
                                 </div>
                             @endif
                             <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
-                       
+
                             <form method="POST" action="{{ URL::to('/auth') }}" class="needs-validation" novalidate=""
                                 autocomplete="off">
                                 @csrf
@@ -85,24 +85,24 @@
                                         <label for="remember" class="form-check-label">Remember Me</label>
                                     </div>
                                 </div>
-                                    <a href="{{ route('redirect') }}" class="btn btn-danger">Login With Google</a>
-                                    <button type="submit" class="btn btn-primary ms-max">
-                                        Login
-                                    </button>
-                                </div>
-                            </form>
+                                <a href="{{ route('redirect') }}" class="btn btn-danger">Login With Google</a>
+                                <button type="submit" class="btn btn-primary ms-max">
+                                    Login
+                                </button>
                         </div>
-                        <div class="card-footer py-3 border-0">
-                            <div class="text-center">
-                                Don't have an account? <a href="{{ URL::to('/register/job-seekers') }}"
-                                    class="text-dark">Create One</a>
-                            </div>
-                        </div>
+                        </form>
                     </div>
-                    <div class="text-center mt-5 text-muted">
+                    <div class="card-footer py-3 border-0">
+                        <div class="text-center">
+                            Don't have an account? <a href="{{ URL::to('/register/job-seekers') }}"
+                                class="text-dark">Create One</a>
+                        </div>
                     </div>
                 </div>
+                <div class="text-center mt-5 text-muted">
+                </div>
             </div>
+        </div>
         </div>
     </section>
 

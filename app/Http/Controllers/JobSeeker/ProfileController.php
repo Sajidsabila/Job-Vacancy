@@ -54,7 +54,7 @@ class ProfileController extends Controller
             Alert::success("Berhasil", "Data Berhasil Ditambahkan");
             return redirect("/profile");
         } catch (\Throwable $th) {
-            Alert::error("Berhasil", "Data Berhasil Ditambahkan");
+            Alert::error("Gagal", $th->getMessage());
             return back();
         }
     }
