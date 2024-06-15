@@ -22,7 +22,11 @@ class LandingPageController extends Controller
     {
         // $testimonials = Testimonial::orderby('id');
         //edited by trainer
-        $testimonials = Testimonial::get();
+    $testimonials = Testimonial::with('jobSeeker')
+    ->orderBy('created_at', 'desc')
+    ->limit(4)
+    ->get();
+
         $applyProcesses = ApplyProcess::all();
         $categories = JobCategory::limit(8)->get();
         $jobs = Job::all(); // Ambil semua pekerjaan, atau sesuaikan query jika diperlukan
