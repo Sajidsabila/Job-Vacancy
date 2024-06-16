@@ -40,5 +40,20 @@ class CheckRole
             default:
                 return redirect('/');
         }
+
+        if (Auth::check()) {
+            $user = Auth::user();
+
+            // Arahkan berdasarkan role
+            if ($user->role == 'company') {
+                return redirect('/company-dashboard');
+            } elseif ($user->role == 'jobseeker') {
+                return redirect('/jobseeker-dashboard');
+            }
+        }
+
+        return $next($request);
     }
+
+    
 }
