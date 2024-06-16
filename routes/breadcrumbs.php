@@ -276,9 +276,6 @@ Breadcrumbs::for('admin.applyProcess.show', function (BreadcrumbTrail $trail, $i
 });
 
 
-;
-
-
 // Admin Home > (Trash Job Category)
 Breadcrumbs::for('admin.trashcategory', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.dashboard');
@@ -301,6 +298,13 @@ Breadcrumbs::for('admin.trashuser', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('admin.applyprocess', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.dashboard');
     $trail->push('Trash Apply Process', route('admin.applyprocess'));
+});
+
+
+// Admin Home > Trash Contact
+Breadcrumbs::for('admin.trashcontact', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Trash Contact', route('admin.trashcontact'));
 });
 
 
@@ -329,11 +333,7 @@ Breadcrumbs::for('admin.trashjobseeker', function (BreadcrumbTrail $trail) {
     $trail->push('Trash Job Seeker', route('admin.trashjobseeker'));
 });
 
-// // Admin Home > (Trash Job Category)
-// Breadcrumbs::for('admin.trashcategory', function (BreadcrumbTrail $trail) {
-//     $trail->parent('admin.dashboard');
-//     $trail->push('Trash Job Category', route('admin.trashcategory'));
-// });
+
 
 // Admin Home > Trash Job Categories > Restore
 Breadcrumbs::for('admin.restore-job-category', function (BreadcrumbTrail $trail, $id) {
@@ -443,4 +443,28 @@ Breadcrumbs::for('companie.lowongan-kerja.set_interview', function (BreadcrumbTr
 
     // Menambahkan breadcrumb untuk detail kandidat
     $trail->push('Detail Candidate', route('companie.lowongan-kerja.set_interview', $jobhistori));
+});
+
+// Admin Home > Requirements
+Breadcrumbs::for('companie.requirement.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('companie.dashboard');
+    $trail->push('Requirements', route('admin.requirement.index'));
+});
+
+// Admin Home > Requirements > Create
+Breadcrumbs::for('companie.requirement.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('companie.requirement.index');
+    $trail->push('Create', route('companie.requirement.create'));
+});
+
+// Admin Home > Requirements > Edit
+Breadcrumbs::for('companie.requirement.edit', function (BreadcrumbTrail $trail, $id) {
+    $trail->parent('companie.requirement.index');
+    $trail->push('Edit', route('admin.requirement.edit', $id));
+});
+
+// Admin Home > Requirements > Show
+Breadcrumbs::for('companie.requirement.show', function (BreadcrumbTrail $trail, $id) {
+    $trail->parent('companie.requirement.index');
+    $trail->push('Show', route('admin.requirement.show', $id));
 });

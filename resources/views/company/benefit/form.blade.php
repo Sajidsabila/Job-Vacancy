@@ -1,10 +1,10 @@
 @extends('adminTemplate.layouts.main')
 @section('container')
     @if (isset($benefit))
-        <form method="POST" action="{{ URL::to('admin/benefit/' . $benefit->id) }}" autocomplete="off">
+        <form method="POST" action="{{ URL::to('companie/benefit/' . $benefit->id) }}" autocomplete="off">
             @method('put')
         @else
-            <form method="POST" action="{{ URL::to('admin/benefit') }}" autocomplete="off">
+            <form method="POST" action="{{ URL::to('companie/benefit') }}" autocomplete="off">
     @endif
 
     @csrf
@@ -23,7 +23,7 @@
                 @enderror
             </div>
             <button benefit="submit" class="btn btn-sm btn-primary">Save</button>
-            <a href="{{ URL::to('admin/benefit') }}" class="btn btn-sm btn-secondary">Back</a>
+            <a href="{{ URL::to('companie/benefit') }}" class="btn btn-sm btn-secondary">Back</a>
         </div>
     </div>
     </form>

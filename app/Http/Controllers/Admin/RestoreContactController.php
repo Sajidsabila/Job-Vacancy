@@ -14,25 +14,25 @@ class RestoreContactController extends Controller
         //
         $contacts = Contact::onlyTrashed()->get();
         $data = ([
-            "title" => "Trash Contact",
+            "title" => "Trash Data Contact",
             "contacts" => $contacts
         ]);
 
         return view('super-admin.trash data.contact', $data);
     }
+
     public function restore($id)
     {
         try {
-            $restore_contact = Contact::withTrashed()->where('id', $id)->restore();
+            $restore_jobcategory = Contact::withTrashed()->where('id', $id)->restore();
             Alert::success("Sukses", "Restore Data Sukses");
-            return redirect('/admin/trash-contact');
         } catch (\Throwable $th) {
             Alert::error("Gagal", $th->getMessage());
-            return redirect("/admin/trash-contact");
+        } finally {
+            return redirect("/admin/contact");
         }
 
     }
-
     public function destroy($id)
     {
         try {
@@ -42,7 +42,7 @@ class RestoreContactController extends Controller
         } catch (\Throwable $th) {
             Alert::error('Error', $th->getMessage());
         } finally {
-            return redirect('/admin/trash-contact');
+            return redirect("/admin/trash-contact");
         }
     }
 }

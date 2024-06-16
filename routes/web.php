@@ -24,7 +24,8 @@ use App\Http\Controllers\RegisterCompanieController;
 
 use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\JobTimeTypeController;
-
+use App\Http\Controllers\Company\CompanyRequirementController;
+use App\Http\Controllers\Company\CompanyBenefitController;
 use App\Http\Controllers\Admin\RequirementController;
 use App\Http\Controllers\Company\DashboardController;
 use App\Http\Controllers\JobSeeker\ListJobController;
@@ -55,6 +56,9 @@ use App\Http\Controllers\Admin\RestoreJobTimeTypeController;
 use App\Http\Controllers\JobSeeker\WorkExperienceController;
 use App\Http\Controllers\Company\InterviewScheduleController;
 use App\Http\Controllers\JobSeeker\JobSeekerContactController;
+
+
+use App\Http\Controllers\SocialiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -159,6 +163,9 @@ Route::group([
     Route::delete('/delete-educationLevel/{id}', [RestoreEduLevelController::class, 'destroy']);
     Route::resource('/jobTimeType', JobTimeTypeController::class);
     Route::get('/trash-jobTimeType', [RestoreJobTimeTypeController::class, 'index'])->name('jobtyme');
+
+    Route::get('/trash-contact', [RestoreContactController::class, 'index'])->name('trashcontact');
+
     Route::get('/restore-jobTimeType/{id}', [RestoreJobTimeTypeController::class, 'restore']);
     Route::delete('/delete-jobTimeType/{id}', [RestoreJobTimeTypeController::class, 'destroy']);
     Route::get('/trash-applyProcess', [RestoreApplyProcess::class, 'index'])->name('applyprocess');
@@ -175,7 +182,8 @@ Route::group([
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/company-profile', CompanyProfilController::class);
     Route::get('/lowongan-kerja/detail_candidate/{id}', [JobController::class, 'showJobSeeker'])->name('lowongan-kerja.detail_candidate');
-
+    Route::resource('/requirement', CompanyRequirementController::class);
+    Route::resource('/benefit', CompanyBenefitController::class);
     Route::resource('/lowongan-kerja', JobController::class);
     Route::get('/lowongan-kerja/view-pdf/{id}', [JobController::class, 'viewPDF'])->name('pdf.view');
     Route::get('/lowongan-kerja/set-interview/{id}', [InterviewScheduleController::class, 'edit'])->name('lowongan-kerja.set_interview');
@@ -193,3 +201,14 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 Route::get('/email/verify', function () {
     return view('register.verify-email');
 })->middleware('auth')->name('verification.notice');
+
+Route::get('login/google/redirect', [SocialiteController::class, 'redirect'])
+    ->middleware(['guest'])
+    ->name('redirect');
+
+// Untuk callback dari Google
+Route::get('/google/callback', [SocialiteController::class, 'callback'])
+    ->middleware(['guest'])
+    ->name('callback');
+
+    Route::post('login/google', [SocialiteController::class, 'redirect'])->name('login.google.post');
