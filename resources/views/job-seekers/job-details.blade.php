@@ -65,7 +65,7 @@
                         @auth
 
                             @if (auth()->user()->role === 'User')
-                                @if (!$profilexist)
+                                @if ($profilexist)
                                     <div class="alert alert-warning" role="alert">
                                         Profil Anda Masih Kosong Segera Lengkapi Untuk Bisa Melamar Kerja
                                         <br>
