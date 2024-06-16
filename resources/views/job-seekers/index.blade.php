@@ -53,16 +53,16 @@
                     <div class="col-lg-12">
                         <div class="section-tittle text-center" data-aos="fade-down" data-aos-duration="500">
                             @auth
-
                                 @if (auth()->user()->role === 'User')
-                                    @if ($profilexist)
+                                    @if (!$jobseekerExists)
                                         <div class="alert alert-warning" role="alert">
-                                            Profil Anda Masih Kosong Segera Lengkapi Untuk Bisa Melamar Kerja
+                                            Profil Anda Masih Kosong. Segera lengkapi untuk bisa melamar kerja.
                                             <br>
                                             <a href="{{ URL::to('/profile') }}" class="m-2 btn btn-primary btn-sm">Lengkapi
                                                 Profile</a>
                                         </div>
                                     @endif
+                                    {{-- Debugging: Tampilkan nilai $jobseekerExists --}}
                                 @endif
                             @endauth
                             <span>FEATURED TOURS Packages</span>
