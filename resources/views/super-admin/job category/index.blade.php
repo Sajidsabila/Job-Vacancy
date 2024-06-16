@@ -1,3 +1,5 @@
+@extends ('adminTemplate.layouts.main')
+@section('container')
 @section ('container')
 @include('sweetalert::alert')
 <h3>{{ $title }}</h3>
