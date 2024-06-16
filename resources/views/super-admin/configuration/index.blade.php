@@ -52,14 +52,14 @@
                 </div>
 
             </div>
-            <form action="{{ URL::to('configuration/' . $configuration->id) }}" method="post">
+            {{-- <form action="{{ URL::to('configuration/' . $configuration->id) }}" method="post">
                 @csrf
                 @method('delete')
                 <button type="submit" class="btn btn-md btn-danger m-2"
                     onclick="return confirm('apakah Yakin Ingin Menghapus {{ $configuration->company_id }}')">
                     Hapus
                 </button>
-            </form>
+            </form> --}}
             <a href="{{ URL::to('/admin/configuration/' . $configuration->id . '/edit') }}"
                 class="btn btn-warning btn-md m-2">Edit</a>
         @endforeach

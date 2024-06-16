@@ -25,11 +25,11 @@
                                 class="mr-2 btn btn-info btn-sm">Info</a>
                             <a href="{{ URL::to('/companie/lowongan-kerja/' . $job->id . '/edit') }}"
                                 class="mr-2 btn btn-warning btn-sm">Edit</a>
-                            <form action="{{ URL::to('/admin/job-category/' . $job->id) }}" method="post">
+                            <form action="{{ URL::to('/companie/lowongan-kerja/' . $job->id) }}" method="post">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" class="btn btn-sm btn-danger"
-                                    onclick="return confirm('apakah Yakin Ingin Menghapus {{ $job->name }}')">
+                                    onclick="return confirm('apakah Yakin Ingin Menghapus {{ $job->slug }}')">
                                     Hapus
                                 </button>
                             </form>

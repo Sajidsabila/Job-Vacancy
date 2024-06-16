@@ -115,7 +115,7 @@
                                 <td><a href="{{ URL::to('/companie/lowongan-kerja/view-pdf/' . $jobhistori->id) }}">Lihat
                                         Lamaran</a></td>
                                 <td>
-                                    @if ($jobhistori->status == 'Lamaran Terkrim')
+                                    @if ($jobhistori->status == 'Lamaran Terkirim')
                                         <span class="badge badge-primary">{{ $jobhistori->status }}</span>
                                     @elseif($jobhistori->status == 'Lamaran Dilihat')
                                         <span class="badge badge-info">{{ $jobhistori->status }}</span>
@@ -136,7 +136,7 @@
                                     <div class="d-flex">
                                         <a href="{{ URL::to('/companie/lowongan-kerja/detail_candidate/' . $jobhistori->id) }}"
                                             class="mr-2 btn btn-info btn-sm">Lihat Pelamar</a>
-                                        @if ($jobhistori->status == 'Lamaran Dilihat')
+                                        @if ($jobhistori->status == 'Lamaran Dilihat' || $jobhistori->status == 'Proses Interview')
                                             <a href="{{ URL::to('/companie/lowongan-kerja/set-interview/' . $jobhistori->id) }}"
                                                 class="mr-2 btn btn-warning btn-sm">Interview</a>
                                         @endif

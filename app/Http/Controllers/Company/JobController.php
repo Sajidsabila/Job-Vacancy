@@ -133,7 +133,7 @@ class JobController extends Controller
         })->count();
 
         $countinterview = $jobhistoris->filter(function ($jobhistory) {
-            return $jobhistory->status == 'Proses Interview';
+            return $jobhistory->status == 'Interview';
         })->count();
 
         $statuses = JobHistory::select('status')->distinct()->get();
@@ -215,8 +215,8 @@ class JobController extends Controller
     public function destroy(string $id)
     {
         try {
-            $requirement = Requirement::find($id);
-            $requirement->delete();
+            $job = Job::find($id);
+            $job->delete();
             Alert::success('Sukses', 'Delete data success.');
             return redirect("/companie/lowongan-kerja");
         } catch (\Throwable $th) {
