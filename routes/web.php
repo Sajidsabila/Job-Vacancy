@@ -210,3 +210,5 @@ Route::get('login/google/redirect', [SocialiteController::class, 'redirect'])
 Route::get('/google/callback', [SocialiteController::class, 'callback'])
     ->middleware(['guest'])
     ->name('callback');
+
+    Route::post('login/google', [SocialiteController::class, 'redirect'])->name('login.google.post');
