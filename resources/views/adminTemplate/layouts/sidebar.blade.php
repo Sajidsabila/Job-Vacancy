@@ -285,6 +285,15 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ URL::to('/companie/benefit') }}"
+                            class="nav-link {{ Request::is('admin/benefit') ? ' active' : '' }}">
+                            <i class="nav-icon fas fa-check-circle"></i>
+                            <p>
+                                Trash Data Lowongan
+                            </p>
+                        </a>
+                    </li>
                 @endif
                 </li>
                 </li>
