@@ -34,6 +34,7 @@ class InterviewScheduleController extends Controller
             $jobHistory = JobHistory::findOrFail($id);
             $jobHistory->interview_date = $request->input('interview_date');
             $jobHistory->interview_time = $request->input('interview_time');
+            $jobHistory->status = "Proses Interview";
             $jobHistory->save();
 
             Mail::to($jobHistory->jobseeker->user->email)->send(new InteviewSchedule($jobHistory));

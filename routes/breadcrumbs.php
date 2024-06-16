@@ -466,5 +466,23 @@ Breadcrumbs::for('companie.requirement.edit', function (BreadcrumbTrail $trail, 
 // Admin Home > Requirements > Show
 Breadcrumbs::for('companie.requirement.show', function (BreadcrumbTrail $trail, $id) {
     $trail->parent('companie.requirement.index');
-    $trail->push('Show', route('admin.requirement.show', $id));
+    $trail->push('Show', route('companie.requirement.show', $id));
+});
+
+// Admin Home > Benefit
+Breadcrumbs::for('companie.benefit.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('companie.dashboard');
+    $trail->push('Benefit', route('companie.benefit.index'));
+});
+
+// Admin Home > Benefit
+Breadcrumbs::for('companie.benefit.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('companie.benefit.index');
+    $trail->push('Benefit', route('companie.benefit.index'));
+});
+
+// Admin Home > Benefit
+Breadcrumbs::for('companie.benefit.edit', function (BreadcrumbTrail $trail) {
+    $trail->parent('companie.benefit.index');
+    $trail->push('Benefit', route('companie.benefit.index'));
 });

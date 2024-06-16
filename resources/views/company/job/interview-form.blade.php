@@ -26,7 +26,8 @@
                             <div class="form-group">
                                 <label>Input Waktu Interview</label>
                                 <input type="time" class="form-control @error('interview_time') is-invalid @enderror"
-                                    id="interview_time" name="interview_time" value="{{ old('interview_date') }}">
+                                    id="interview_time" name="interview_time"
+                                    value="{{ isset($jobHistory) ? $jobHistory->interview_time : old('interview_time') }}">
                                 @error('interview_time')
                                     <div class="invalid-feedback">
                                         {{ $message }}
