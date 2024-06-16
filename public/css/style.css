@@ -7560,3 +7560,37 @@ form.search-box .search-form a {
     background: #242b5e;
     color: #fff
 }
+
+.btn-custom-size {
+    width: 80px; /* Set the desired width */
+    padding: 5px 10px; /* Set the desired padding */
+    text-align: center; /* Ensure text is centered */
+    /* Optional: Ensure uniform height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.job-history-card {
+    border: 2px;
+    border-radius: 20px; /* Membuat sudut membulat */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Menambahkan bayangan */
+    padding: 20px; /* Menambahkan padding di dalam kartu */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.2s; /* Animasi saat hover */
+}
+
+.job-history-card:hover {
+    transform: scale(1.05); /* Membesarkan kartu saat hover */
+}
+
+/* .highlight {
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 10px; /* Ubah nilai ini untuk menyesuaikan tingkat kecurvaturan */
+    display: inline-block;
+} */

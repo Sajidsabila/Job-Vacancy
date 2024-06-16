@@ -7,7 +7,8 @@
                      <div class="col-lg-3 col-md-2">
                          <!-- Logo -->
                          <div class="logo">
-                             <a href="index.html"><img src="{{ asset('storage/' . $configuration->logo) }}" alt="" width="100px"></a>
+                             <a href="index.html"><img src="{{ asset('storage/' . $configuration->logo) }}" alt=""
+                                     width="100px"></a>
                          </div>
                      </div>
                      <div class="col-lg-9 col-md-9">
@@ -42,17 +43,19 @@
 
 
                                  <!-- Header-btn -->
-                                 <div class="header-btn flex-end my-3 align-self-end lg-ms-5 f-right d-lg-block">
+                                 <div class="header-btn flex-end my-3 align-self-end lg-ms-5 f-right d-lg-block ml-5">
                                      @guest
-                                     <a href="{{ URL::to('/register/job-seekers') }}" class="btn head-btn1">Register</a>
-                                     <a href="{{ URL::to('/login-page') }}" class="btn head-btn2">Login</a>
+                                         <a href="{{ URL::to('/register/job-seekers') }}"
+                                             class="btn head-btn1">Register</a>
+                                         <a href="{{ URL::to('/login-page') }}" class="btn head-btn2">Login</a>
                                      @endguest
                                      @auth
-                                     @if (auth()->user()->role == 'User')
-                                     <a class="btn btn-primary" href="{{ URL::to('/profile') }}" role="button"><i class="fa-solid fa-user"></i>
-                                         {{ auth()->user()->email }}
-                                     </a>
-                                     @endif
+                                         @if (auth()->user()->role == 'User')
+                                             <a class="btn btn-primary" href="{{ URL::to('/profile') }}" role="button"><i
+                                                     class="fa-solid fa-user"></i>
+                                                 {{ auth()->user()->email }}
+                                             </a>
+                                         @endif
                                      @endauth
                                  </div>
                              </div>

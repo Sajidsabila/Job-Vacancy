@@ -18,7 +18,7 @@
                         <!-- Cards -->
                         <div class="row mb-4">
                             <div class="col-md-3 col-sm-6 mb-3">
-                                <div class="card text-center">
+                                <div class="text-center job-history-card">
                                     <div class="card-body">
                                         <h5 class="card-title">Jumlah Semua Lamaran</h5>
                                         <p class="card-text display-4">{{ $historycount }}</p>
@@ -26,7 +26,7 @@
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-6 mb-3">
-                                <div class="card text-center">
+                                <div class="text-center job-history-card">
                                     <div class="card-body">
                                         <h5 class="card-title">Lamaran Dilihat</h5>
                                         <p class="card-text display-4">{{ $countviewed }}</p>
@@ -34,7 +34,7 @@
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-6 mb-3">
-                                <div class="card text-center">
+                                <div class="text-center job-history-card">
                                     <div class="card-body">
                                         <h5 class="card-title">Lamaran Ditolak</h5>
                                         <p class="card-text display-4">{{ $countreject }}</p>
@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-6 mb-3">
-                                <div class="card text-center">
+                                <div class="text-center job-history-card">
                                     <div class="card-body">
                                         <h5 class="card-title">Proses Interview</h5>
                                         <p class="card-text display-4">{{ $countinterview }}</p>
@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-6 mb-3">
-                                <div class="card text-center">
+                                <div class="text-center job-history-card">
                                     <div class="card-body">
                                         <h5 class="card-title">Lamaran Diterima</h5>
                                         <p class="card-text display-4">{{ $countaccept }}</p>
@@ -60,45 +60,47 @@
                         </div>
 
                         <!-- Tabel Riwayat Lamaran -->
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Posisi Yang Dilamar</th>
-                                        <th>Perusahaan</th>
-                                        <th>Status</th>
-                                        <th>Jadwal Wawancara</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($jobhistories as $key => $jobhistory)
+                        <div class="card">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $key + 1 }}</td>
-                                            <td>{{ $jobhistory->job->title }}</td>
-                                            <td>{{ $jobhistory->job->company->company_name }}</td>
-                                            <td>
-                                                @if ($jobhistory->status == 'Lamaran Terkirim')
-                                                    <span class="badge badge-primary">{{ $jobhistory->status }}</span>
-                                                @elseif($jobhistory->status == 'Lamaran Dilihat')
-                                                    <span class="badge badge-info">{{ $jobhistory->status }}</span>
-                                                @elseif($jobhistory->status == 'Lamaran Ditolak')
-                                                    <span class="badge badge-danger">{{ $jobhistory->status }}</span>
-                                                @else
-                                                    <span class="badge badge-success">{{ $jobhistory->status }}</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if (!is_null($jobhistory->interview_date))
-                                                    {{ formatIndonesianDate($jobhistory->interview_date) }}
-                                                @else
-                                                    Anda Belum Dapat Jadwal Interview
-                                                @endif
-                                            </td>
+                                            <th>No</th>
+                                            <th>Posisi Yang Dilamar</th>
+                                            <th>Perusahaan</th>
+                                            <th>Status</th>
+                                            <th>Jadwal Wawancara</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($jobhistories as $key => $jobhistory)
+                                            <tr>
+                                                <td>{{ $key + 1 }}</td>
+                                                <td>{{ $jobhistory->job->title }}</td>
+                                                <td>{{ $jobhistory->job->company->company_name }}</td>
+                                                <td>
+                                                    @if ($jobhistory->status == 'Lamaran Terkirim')
+                                                        <span class="badge badge-primary">{{ $jobhistory->status }}</span>
+                                                    @elseif($jobhistory->status == 'Lamaran Dilihat')
+                                                        <span class="badge badge-info">{{ $jobhistory->status }}</span>
+                                                    @elseif($jobhistory->status == 'Lamaran Ditolak')
+                                                        <span class="badge badge-danger">{{ $jobhistory->status }}</span>
+                                                    @else
+                                                        <span class="badge badge-success">{{ $jobhistory->status }}</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if (!is_null($jobhistory->interview_date))
+                                                        {{ formatIndonesianDate($jobhistory->interview_date) }}
+                                                    @else
+                                                        Anda Belum Dapat Jadwal Interview
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="single-wrap d-flex justify-content-center">
                             {{-- Memastikan $jobs adalah instance dari LengthAwarePaginator atau Paginator --}}

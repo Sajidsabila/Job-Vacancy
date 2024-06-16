@@ -1,4 +1,3 @@
-ore @extends ('adminTemplate.layouts.main')
 @section ('container')
 @include('sweetalert::alert')
 <h3>{{ $title }}</h3>
@@ -40,8 +39,6 @@ ore @extends ('adminTemplate.layouts.main')
 
             </td>
             @endforeach
-        </tr>
-    </tbody>
-</table>
-
+        </tbody>
+    </table>
 @endsection
