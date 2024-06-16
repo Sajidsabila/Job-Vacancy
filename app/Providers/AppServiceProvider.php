@@ -2,12 +2,14 @@
 
 namespace App\Providers;
 
-use App\Models\Configuration;
 use App\Models\JobSeeker;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\ServiceProvider;
+use App\Models\Configuration;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -36,17 +38,17 @@ class AppServiceProvider extends ServiceProvider
         // Share the configuration if it exists
         view()->share('configuration', $configuration);
 
+        View::composer('*', function ($view) {
+            $jobseekerExists = false;
+            if (Auth::check()) {
+                $user = Auth::user();
+                $jobseekerExists = JobSeeker::where('id', $user->id)->exists();
+            }
 
-        // Tentukan variabel $profilexist berdasarkan kondisi autentikasi
-        $profilexist = false;
-        $user = Auth::user();
+            // Log to check the value of jobseekerExists
+            \Log::info('jobseekerExists: ' . ($jobseekerExists ? 'true' : 'false'));
 
-        if (Auth::check()) {
-            $profilexist = JobSeeker::where('id', $user->id)->exists();
-        }
-
-        // Bagikan variabel $profilexist dan $user ke semua view
-        view()->share('profilexist', $profilexist);
-        view()->share('user', $user);
+            $view->with('jobseekerExists', $jobseekerExists);
+        });
     }
 }

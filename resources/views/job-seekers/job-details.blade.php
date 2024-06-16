@@ -62,139 +62,138 @@
                     {{-- @foreach ($jobs as $job) --}}
                     <!-- Left Content -->
                     <div class="col-xl-7 col-lg-8">
+                        @if (auth()->user()->role === 'User')
+                            @if (!$jobseekerExists)
+                                <div class="alert alert-warning" role="alert">
+                                    Profil Anda Masih Kosong. Segera lengkapi untuk bisa melamar kerja.
+                                    <br>
+                                    <a href="{{ URL::to('/profile') }}" class="m-2 btn btn-primary btn-sm">Lengkapi
+                                        Profile</a>
+                                </div>
+                            @endif
+                            {{-- Debugging: Tampilkan nilai $jobseekerExists --}}
+                        @endif
+                    @endauth
+                    <!-- job single -->
+                    <div class="single-job-items mb-50">
+                        <div class="job-items">
+                            <div class="company-img company-img-details">
+                                <a href="#"><img src="{{ asset('storage/' . $job->company->logo) }}"
+                                        alt=" {{ $job->company->company_name }}" width="100" height="auto"></a>
+
+
+                            </div>
+                            <div class="job-tittle">
+                                <a href="#">
+                                    <h4>{{ $job->title }}</h4>
+                                </a>
+                                <ul>
+                                    <li>{{ $job->company->company_name }}</li>
+                                    <li><i class="fas fa-map-marker-alt"></i>{{ $job->company->addres }}</li>
+                                    <li>{{ number_format($job->salary) }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- job single End -->
+
+                    <div class="job-post-details">
+                        <div class="post-details1 mb-50">
+                            <!-- Small Section Tittle -->
+                            <div class="small-section-tittle">
+                                <h4>Job Description</h4>
+                            </div>
+                            <p>{{ strip_tags($job->description) }}</p>
+                        </div>
+
+                        <div class="post-details2  mb-50">
+                            <!-- Small Section Tittle -->
+
+                            <div class="small-section-tittle">
+                                <h4>Required Knowledge, Skills, and Abilities</h4>
+                            </div>
+                            <ul>
+                                @foreach ($selectedRequirements as $requirementId)
+                                    @php
+                                        $requirement = $requirements->firstWhere('id', $requirementId);
+                                    @endphp
+                                    @if ($requirement)
+                                        <li>{{ $requirement->type }}</li>
+                                    @endif
+                                @endforeach
+
+                            </ul>
+                        </div>
+
+
+
+                        <div class="post-details2  mb-50">
+                            <!-- Small Section Tittle -->
+                            <div class="small-section-tittle">
+                                <h4>Benefit / Fasilitas</h4>
+                            </div>
+                            <ul>
+                                @foreach ($selectedBenefits as $requirementId)
+                                    @php
+                                        $benefit = $benefits->firstWhere('id', $requirementId);
+                                    @endphp
+                                    @if ($benefit)
+                                        <li>{{ $benefit->benefit }}</li>
+                                    @endif
+                                @endforeach
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Right Content -->
+                <div class="col-xl-4 col-lg-4">
+                    <div class="post-details3  mb-50">
+                        <!-- Small Section Tittle -->
+                        <div class="small-section-tittle">
+                            <h4>Job Overview</h4>
+                        </div>
+                        <ul>
+                            <li>Posted date : <span>{{ $job->created_at->format('d M Y') }}</span></li>
+                            <li>Location : <span>{{ $job->job_location }}</span></li>
+                            @foreach ($job_time as $key => $job_time)
+                                <li>Job nature : <span>{{ $job_time->type }}</span></li>
+                            @endforeach
+                            <li>Salary : <span>{{ number_format($job->salary) }}</span></li>
+                            {{-- <li>Application date : <span>12 Sep 2020</span></li> --}}
+                        </ul>
                         @auth
 
-                            @if (auth()->user()->role === 'User')
-                                @if (!$profilexist)
-                                    <div class="alert alert-warning" role="alert">
-                                        Profil Anda Masih Kosong Segera Lengkapi Untuk Bisa Melamar Kerja
-                                        <br>
-                                        <a href="{{ URL::to('/profile') }}" class="m-2 btn btn-primary btn-sm">Lengkapi
-                                            Profile</a>
-                                    </div>
-                                @endif
+
+                            @if (auth()->user()->role == 'User')
+                                <div class="apply-btn2">
+                                    <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+                                        Lamar Pekerjaan
+                                    </button>
+                                </div>
                             @endif
                         @endauth
-                        <!-- job single -->
-                        <div class="single-job-items mb-50">
-                            <div class="job-items">
-                                <div class="company-img company-img-details">
-                                    <a href="#"><img src="{{ asset('storage/' . $job->company->logo) }}"
-                                            alt=" {{ $job->company->company_name }}" width="100" height="auto"></a>
-
-
-                                </div>
-                                <div class="job-tittle">
-                                    <a href="#">
-                                        <h4>{{ $job->title }}</h4>
-                                    </a>
-                                    <ul>
-                                        <li>{{ $job->company->company_name }}</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>{{ $job->company->addres }}</li>
-                                        <li>{{ number_format($job->salary) }}</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- job single End -->
-
-                        <div class="job-post-details">
-                            <div class="post-details1 mb-50">
-                                <!-- Small Section Tittle -->
-                                <div class="small-section-tittle">
-                                    <h4>Job Description</h4>
-                                </div>
-                                <p>{{ strip_tags($job->description) }}</p>
-                            </div>
-
-                            <div class="post-details2  mb-50">
-                                <!-- Small Section Tittle -->
-
-                                <div class="small-section-tittle">
-                                    <h4>Required Knowledge, Skills, and Abilities</h4>
-                                </div>
-                                <ul>
-                                    @foreach ($selectedRequirements as $requirementId)
-                                        @php
-                                            $requirement = $requirements->firstWhere('id', $requirementId);
-                                        @endphp
-                                        @if ($requirement)
-                                            <li>{{ $requirement->type }}</li>
-                                        @endif
-                                    @endforeach
-
-                                </ul>
-                            </div>
-
-
-
-                            <div class="post-details2  mb-50">
-                                <!-- Small Section Tittle -->
-                                <div class="small-section-tittle">
-                                    <h4>Benefit / Fasilitas</h4>
-                                </div>
-                                <ul>
-                                    @foreach ($selectedBenefits as $requirementId)
-                                        @php
-                                            $benefit = $benefits->firstWhere('id', $requirementId);
-                                        @endphp
-                                        @if ($benefit)
-                                            <li>{{ $benefit->benefit }}</li>
-                                        @endif
-                                    @endforeach
-
-                                </ul>
-                            </div>
-                        </div>
-
                     </div>
-                    <!-- Right Content -->
-                    <div class="col-xl-4 col-lg-4">
-                        <div class="post-details3  mb-50">
-                            <!-- Small Section Tittle -->
-                            <div class="small-section-tittle">
-                                <h4>Job Overview</h4>
-                            </div>
-                            <ul>
-                                <li>Posted date : <span>{{ $job->created_at->format('d M Y') }}</span></li>
-                                <li>Location : <span>{{ $job->job_location }}</span></li>
-                                @foreach ($job_time as $key => $job_time)
-                                    <li>Job nature : <span>{{ $job_time->type }}</span></li>
-                                @endforeach
-                                <li>Salary : <span>{{ number_format($job->salary) }}</span></li>
-                                {{-- <li>Application date : <span>12 Sep 2020</span></li> --}}
-                            </ul>
-                            @auth
-
-
-                                @if (auth()->user()->role == 'User')
-                                    <div class="apply-btn2">
-                                        <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
-                                            Lamar Pekerjaan
-                                        </button>
-                                    </div>
-                                @endif
-                            @endauth
+                    <div class="post-details4  mb-50">
+                        <!-- Small Section Tittle -->
+                        <div class="small-section-tittle">
+                            <h4>Company Information</h4>
                         </div>
-                        <div class="post-details4  mb-50">
-                            <!-- Small Section Tittle -->
-                            <div class="small-section-tittle">
-                                <h4>Company Information</h4>
-                            </div>
-                            <span>{{ $job->company->company_name }}</span>
-                            <p>{{ $job->company->description }}</p>
-                            <ul>
-                                <li>Name: <span>{{ $job->company->company_name }}</span></li>
-                                <li>Phone : <span>{{ $job->company->phone }}</span></li>
-                                <li>Email: <span>{{ $job->company->email }}</span></li>
-                            </ul>
-                        </div>
+                        <span>{{ $job->company->company_name }}</span>
+                        <p>{{ $job->company->description }}</p>
+                        <ul>
+                            <li>Name: <span>{{ $job->company->company_name }}</span></li>
+                            <li>Phone : <span>{{ $job->company->phone }}</span></li>
+                            <li>Email: <span>{{ $job->company->email }}</span></li>
+                        </ul>
                     </div>
-                    {{-- @endforeach --}}
                 </div>
+                {{-- @endforeach --}}
             </div>
         </div>
-        <!-- job post company End -->
+    </div>
+    <!-- job post company End -->
 
-    </main>
+</main>
 @endsection

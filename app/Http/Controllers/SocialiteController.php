@@ -33,13 +33,13 @@ class SocialiteController extends Controller
 
         // Jika tidak ada user, buat user baru
         if (!$userFromDatabase) {
-            $role = session('role', 'jobseeker'); // Default role jika tidak ada dalam session
+
             $verificationToken = Str::random(mt_rand(4, 5));
 
             $newUser = new User([
                 'email' => $userFromGoogle->getEmail(),
                 'password' => Hash::make('1'),
-                'role' => $role,
+                'role' => 'User',
                 'email_verification_token' => $verificationToken,
             ]);
 
@@ -53,7 +53,7 @@ class SocialiteController extends Controller
             Auth::login($newUser);
             session()->regenerate();
 
-            return $this->redirectToDashboard($role);
+            return $this->redirectToDashboard($userFromDatabase->role);
         }
 
         // Jika user sudah ada, langsung login
