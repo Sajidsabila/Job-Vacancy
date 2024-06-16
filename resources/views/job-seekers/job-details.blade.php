@@ -70,6 +70,17 @@
                                     <a href="{{ URL::to('/profile') }}" class="m-2 btn btn-primary btn-sm">Lengkapi
                                         Profile</a>
                                 </div>
+                        @auth
+
+                            @if (auth()->user()->role === 'User')
+                                @if ($profilexist)
+                                    <div class="alert alert-warning" role="alert">
+                                        Profil Anda Masih Kosong Segera Lengkapi Untuk Bisa Melamar Kerja
+                                        <br>
+                                        <a href="{{ URL::to('/profile') }}" class="m-2 btn btn-primary btn-sm">Lengkapi
+                                            Profile</a>
+                                    </div>
+                                @endif
                             @endif
                             {{-- Debugging: Tampilkan nilai $jobseekerExists --}}
                         @endif

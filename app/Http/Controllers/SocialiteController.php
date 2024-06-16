@@ -33,7 +33,7 @@ class SocialiteController extends Controller
 
         // Jika tidak ada user, buat user baru
         if (!$userFromDatabase) {
-
+            $role = session('role', 'User'); // Default role jika tidak ada dalam session
             $verificationToken = Str::random(mt_rand(4, 5));
 
             $newUser = new User([
