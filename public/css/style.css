@@ -7560,3 +7560,13 @@ form.search-box .search-form a {
     background: #242b5e;
     color: #fff
 }
+
+.btn-custom-size {
+    width: 80px; /* Set the desired width */
+    padding: 5px 10px; /* Set the desired padding */
+    text-align: center; /* Ensure text is centered */
+    /* Optional: Ensure uniform height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

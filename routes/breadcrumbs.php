@@ -8,6 +8,12 @@ Breadcrumbs::for('admin.dashboard', function (BreadcrumbTrail $trail) {
     $trail->push('Home', route('admin.dashboard'));
 });
 
+// Admin Home > Contact
+Breadcrumbs::for('admin.contact.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Contact', route('admin.contact.index'));
+});
+
 // Admin Home > Configuration
 Breadcrumbs::for('admin.configuration.index', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.dashboard');
