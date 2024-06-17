@@ -10,7 +10,7 @@
                               <div class="footer-tittle">
                                   <h4>About Us</h4>
                                   <div class="footer-pera">
-                                      <p>{{ !!$configuration->description }}</p>
+                                      <p>{{ strip_tags($configuration->description) }}</p>
                                   </div>
                               </div>
                           </div>
