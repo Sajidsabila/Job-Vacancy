@@ -61,6 +61,10 @@ class Job extends Model
         // $this->hasMany(JobTimeType::class);
         return $this->belongsTo(JobTimeType::class, 'job_time_type_id');
     }
+    public function order()
+    {
+        return $this->hasOne(Order::class, 'job_id');
+    }
 
 
 }
