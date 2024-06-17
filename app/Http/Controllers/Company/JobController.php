@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Company;
 
-use App\Models\Benefit;
 use Exception;
 use App\Models\Job;
+use App\Models\Order;
 use App\Models\Skill;
+use App\Models\Benefit;
 use App\Models\Company;
+use App\Models\Package;
 use App\Models\education;
 use App\Models\JobSeeker;
 use App\Models\JobHistory;
@@ -14,6 +16,7 @@ use App\Models\JobCategory;
 use App\Models\JobTimeType;
 use App\Models\requirement;
 use Illuminate\Http\Request;
+use App\Models\Configuration;
 use App\Models\WorkExperience;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -181,10 +184,107 @@ class JobController extends Controller
         ]);
         return view('company.job.form', $data);
     }
+    public function createpublishedjob(string $id)
+    {
+        $job = Job::with('company')->findOrFail($id);
+        $configuration = Configuration::first();
 
+        // Periksa apakah job_id sudah ada di tabel orders
+        $order = Order::where('job_id', $id)->first();
+
+        if ($order) {
+            // Jika sudah ada, generate snapToken dan arahkan ke halaman index
+            \Midtrans\Config::$serverKey = config('midtrans.server_key');
+            \Midtrans\Config::$isProduction = config('midtrans.is_production', false);
+            \Midtrans\Config::$isSanitized = config('midtrans.is_sanitized', true);
+            \Midtrans\Config::$is3ds = config('midtrans.is_3ds', true);
+
+            $params = [
+                'transaction_details' => [
+                    'order_id' => $order->id,
+                    'gross_amount' => $order->price,
+                ],
+                'customer_details' => [
+                    'name' => $job->company->name,
+                ],
+            ];
+
+            $snapToken = \Midtrans\Snap::getSnapToken($params);
+
+            return view('company.job.order-checkout', [
+                'order' => $order,
+                'job' => $job,
+                'snapToken' => $snapToken
+            ]);
+        } else {
+            // Jika belum ada, tampilkan halaman form
+            $data = [
+                "title" => "Publish Lowongan",
+                "configuration" => $configuration,
+                "job" => $job
+            ];
+
+            return view("company.job.form-publish", $data);
+        }
+    }
+
+
+    public function order(Request $request)
+    {
+        $data = $request->validate([
+            'job_id' => 'required|integer|exists:jobs,id',
+            'price' => 'required|numeric'
+        ]);
+
+        try {
+
+            $data['status'] = "Unpaid";
+            $order = Order::create($data);
+            $order = $order->fresh();
+            // Jika sudah ada, generate snapToken dan arahkan ke halaman index
+            \Midtrans\Config::$serverKey = config('midtrans.server_key');
+            \Midtrans\Config::$isProduction = config('midtrans.is_production', false);
+            \Midtrans\Config::$isSanitized = config('midtrans.is_sanitized', true);
+            \Midtrans\Config::$is3ds = config('midtrans.is_3ds', true);
+            $job = Job::with('company')->findOrFail($data['job_id']);
+            $params = array(
+                'transaction_details' => array(
+                    'order_id' => $order->id,
+                    'gross_amount' => $order->price,
+                ),
+                'customer_details' => array(
+                    'name' => $job->company->name,
+                ),
+            );
+
+            $snapToken = \Midtrans\Snap::getSnapToken($params);
+            Alert::success("Berhasil", "Anda BErhasil Order");
+            return back();
+        } catch (\Throwable $th) {
+            Alert::error("Gagal", $th->getMessage());
+            return back();
+        }
+    }
+
+    public function callback(Request $request)
+    {
+        $serverKey = config('midtrans.server_key');
+        $hashed = hash("sha512", $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
+        if ($hashed == $request->signature_key) {
+            if ($request->transaction_status == 'capture') {
+                $order = Order::find($request->order_id);
+                $order->update(['status' => 'Paid']);
+            }
+        }
+    }
     /**
      * Update the specified resource in storage.
      */
+    public function invoice($id)
+    {
+        $order = Order::findOrFail($id);
+        return view("company.job.invoice", comapct('order'));
+    }
     public function update(Request $request, string $id)
     {
         $data = $request->validate([

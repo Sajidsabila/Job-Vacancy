@@ -412,6 +412,14 @@ Breadcrumbs::for('companie.lowongan-kerja.index', function (BreadcrumbTrail $tra
 });
 
 // Company Home > Lowongan Kerja > Create
+Breadcrumbs::for('companie.lowongan-kerja.set_publish', function (BreadcrumbTrail $trail, $job) {
+    // Menyatakan breadcrumb induk
+    $trail->parent('companie.lowongan-kerja.index');
+
+    // Menambahkan breadcrumb untuk detail kandidat
+    $trail->push('Pilih Paket Publish', route('companie.lowongan-kerja.set_publish', $job));
+});
+
 Breadcrumbs::for('companie.lowongan-kerja.create', function (BreadcrumbTrail $trail) {
     $trail->parent('companie.lowongan-kerja.index');
     $trail->push('Create', route('companie.lowongan-kerja.create'));

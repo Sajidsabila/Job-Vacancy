@@ -186,6 +186,10 @@ Route::group([
     Route::resource('/requirement', CompanyRequirementController::class);
     Route::resource('/benefit', CompanyBenefitController::class);
     Route::resource('/lowongan-kerja', JobController::class);
+    Route::post('/lowongan-kerja/order', [JobController::class, 'order']);
+    Route::get('/lowongan-kerja/invoice/{id}', [JobController::class, 'invoice']);
+    // Route::post('/lowongan-kerja/order/midtrans-calback', [JobController::class, 'callback']);
+    Route::get('/lowongan-kerja/create-publish/{id}', [JobController::class, 'createpublishedjob'])->name('lowongan-kerja.set_publish');
     Route::get('/lowongan-kerja/view-pdf/{id}', [JobController::class, 'viewPDF'])->name('pdf.view');
     Route::get('/lowongan-kerja/set-interview/{id}', [InterviewScheduleController::class, 'edit'])->name('lowongan-kerja.set_interview');
     Route::put('/lowongan-kerja/schedule-interview/{id}', [InterviewScheduleController::class, 'update'])->name('schedule.interview');
@@ -212,4 +216,4 @@ Route::get('/google/callback', [SocialiteController::class, 'callback'])
     ->middleware(['guest'])
     ->name('callback');
 
-    Route::post('login/google', [SocialiteController::class, 'redirect'])->name('login.google.post');
+Route::post('login/google', [SocialiteController::class, 'redirect'])->name('login.google.post');

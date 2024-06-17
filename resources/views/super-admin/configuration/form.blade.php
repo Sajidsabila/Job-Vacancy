@@ -69,7 +69,7 @@
             <div class="form-group">
                 <label for="name">Alamat Perusahaan</label>
 
-                {{-- pada name juga salah itu yangm embuat validassinya salah nanti saja, join met lagi ka .k 9+--}}
+                {{-- pada name juga salah itu yangm embuat validassinya salah nanti saja, join met lagi ka .k 9+ --}}
                 <input type="text" id="company_addres" name="company_addres"
                     value="{{ isset($configuration) ? $configuration->company_name : old('company_addres') }}"
                     class="form-control @error('company_addres')is-invalid @enderror">
@@ -87,6 +87,19 @@
                     value="{{ isset($configuration) ? $configuration->tagline : old('tagline') }}"
                     class="form-control @error('tagline')is-invalid @enderror">
                 @error('tagline')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="name">Harga Per Postingan Lowongan</label>
+
+                {{-- pada name juga salah itu yangm embuat validassinya salah nanti saja, join met lagi ka .k --}}
+                <input type="text" id="price_post" name="price_post"
+                    value="{{ isset($configuration) ? $configuration->price_post : old('price_post') }}"
+                    class="form-control @error('price_post')is-invalid @enderror">
+                @error('price_post')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
