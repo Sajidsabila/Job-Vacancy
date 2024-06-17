@@ -290,11 +290,10 @@
                                 <h2>24k Talented people are getting Jobs</h2>
                             </div>
                             <div class="support-caption">
-                                <p class="pera-top">Mollit anim laborum duis au dolor in voluptate velit ess cillum dolore
-                                    eu lore dsu quality mollit anim laborumuis au dolor in voluptate velit cillum.</p>
-                                <p>Mollit anim laborum.Duis aute irufg dhjkolohr in re voluptate velit esscillumlore eu
-                                    quife nrulla parihatur. Excghcepteur signjnt occa cupidatat non inulpadeserunt mollit
-                                    aboru. temnthp incididbnt ut labore mollit anim laborum suis aute.</p>
+                                <p class="pera-top">At Job Vacancy, we believe in connecting talented individuals with
+                                    opportunities that can transform their lives and careers. Our platform serves as a
+                                    bridge between job seekers and employers, making the job search process efficient,
+                                    transparent, and rewarding.</p>
                                 <a href="about.html" class="btn post-btn">Post a job</a>
                             </div>
                         </div>
@@ -304,7 +303,7 @@
                             <img src="{{ asset('img/service/support-img.jpg') }}" alt="">
                             <div class="support-img-cap text-center" data-aos="fade-up" data-aos-duration="1000">
                                 <p>Since</p>
-                                <span>1994</span>
+                                <span>2024</span>
                             </div>
                         </div>
                     </div>

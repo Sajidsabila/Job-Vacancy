@@ -89,4 +89,56 @@ class JobListingController extends Controller
         return view('job-seekers.job-listing', $data);
     }
 
+    public function filteredjob(Request $request)
+    {
+        // Ambil semua kategori dan tipe pekerjaan
+        $job_category = JobCategory::all();
+        $job_time = JobTimeType::all();
+
+        // Query dasar untuk job
+        $query = Job::query();
+
+        // Filter berdasarkan kategori pekerjaan
+        if ($request->filled('job_category_id')) {
+            $query->where('job_category_id', $request->job_category_id);
+        }
+
+        // Filter berdasarkan tipe pekerjaan
+        if ($request->filled('job_time_type_id')) {
+            $job_time_type_ids = $request->job_time_type_id;
+            $query->whereIn('job_time_type_id', $job_time_type_ids);
+        } else {
+            // Jika tidak ada filter job_time_type_id, ambil semua job type ids
+            $job_time_type_ids = $job_time->pluck('id')->toArray();
+            $query->whereIn('job_time_type_id', $job_time_type_ids);
+        }
+
+        // Filter berdasarkan keyword
+        if ($request->filled('keyword')) {
+            $query->where(function ($q) use ($request) {
+                $q->where('title', 'like', '%' . $request->keyword . '%')
+                ->orWhereHas('company', function ($q) use ($request) {
+                    $q->where('company_name', 'like', '%' . $request->keyword . '%');
+                });
+            });
+        }
+
+        // Dapatkan hasil pencarian
+        $jobs = $query->paginate(10);
+
+        $data = [
+            "title" => "Get Your Job",
+            'jobs' => $jobs,
+            'totalJob' => $jobs->total(),
+            'job_category' => $job_category,
+            'job_time' => $job_time,
+            'jobCategoryId' => $request->job_category_id,
+            'jobTimeType' => implode(',', $job_time_type_ids),
+            'keyword' => $request->keyword,
+        ];
+
+        return view('job-seekers.job-listing', $data);
+    }
+
+
 }

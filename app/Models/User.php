@@ -1,45 +1,89 @@
 <?php
 
-namespace App\Models;
+namespace App\Http\Controllers;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;  // Tambahkan ini
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CustomVerifyEmail;
+use Illuminate\Auth\Events\Registered;
 
-class User extends Authenticatable implements MustVerifyEmail
+class SocialiteController extends Controller
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'email',
-        'password',
-        'role',
-        'email_verification_token'
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    use SoftDeletes;
-    protected $dates = ['deleted_at'];
-    public function company()
+    public function redirect(Request $request)
     {
-        return $this->hasOne(Company::class);
+        // Simpan peran dalam session sebelum redirect ke Google
+        $role = $request->input('role');
+        session(['role' => $role]);
+
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function callback()
+    {
+        // Ambil objek user dari Google
+        $userFromGoogle = Socialite::driver('google')->stateless()->user();
+
+        // Ambil user dari database berdasarkan email dari Google
+        $userFromDatabase = User::where('email', $userFromGoogle->getEmail())->first();
+
+        // Jika tidak ada user, buat user baru
+        if (!$userFromDatabase) {
+
+            $verificationToken = Str::random(mt_rand(4, 5));
+
+            $newUser = new User([
+                'email' => $userFromGoogle->getEmail(),
+                'password' => Hash::make('1'),
+                'role' => 'User',
+                'email_verification_token' => $verificationToken,
+            ]);
+
+            $newUser->save();
+
+            // Kirim email verifikasi
+            Mail::to($newUser->email)->send(new CustomVerifyEmail($newUser));
+            event(new Registered($newUser));
+
+            // Login user yang baru dibuat
+            Auth::login($newUser);
+            session()->regenerate();
+
+            return $this->redirectToDashboard($userFromDatabase->role);
+        }
+
+        // Jika user sudah ada, langsung login
+        Auth::login($userFromDatabase);
+        request()->session()->regenerate();
+
+        return $this->redirectToDashboard($userFromDatabase->role);
+    }
+
+    private function redirectToDashboard($role)
+    {
+        switch ($role) {
+            case 'Admin':
+                return redirect()->route('admin.dashboard');
+            case 'Superadmin':
+                return redirect()->route('superadmin.dashboard');
+            case 'Company':
+                return redirect()->route('companie.dashboard');
+            default:
+                return redirect('/');
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 
     public function jobseeker()

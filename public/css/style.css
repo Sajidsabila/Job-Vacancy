@@ -7587,10 +7587,3 @@ form.search-box .search-form a {
 .job-history-card:hover {
     transform: scale(1.05); /* Membesarkan kartu saat hover */
 }
-
-/* .highlight {
-    background-color: white;
-    padding: 5px 10px;
-    border-radius: 10px; /* Ubah nilai ini untuk menyesuaikan tingkat kecurvaturan */
-    display: inline-block;
-} */

@@ -27,12 +27,11 @@
                              <!-- Select job items start -->
                              <div class="select-job-items2">
                                  <select name="job_category_id">
-                                     <option value="" {{ $jobCategoryId == '' ? 'selected' : '' }}>All
-                                         Category</option>
-                                     @foreach ($job_category as $key => $job_category)
-                                         <option value="{{ $job_category->id }}"
-                                             {{ $jobCategoryId == $job_category->id ? 'selected' : '' }}>
-                                             {{ $job_category->category }}
+                                     <option value="">All Category</option>
+                                     @foreach ($job_category as $category)
+                                         <option value="{{ $category->id }}"
+                                             {{ request('job_category_id') == $category->id ? 'selected' : '' }}>
+                                             {{ $category->category }}
                                          </option>
                                      @endforeach
                                  </select>
@@ -43,12 +42,14 @@
                                  <div class="small-section-tittle2">
                                      <h4>Job Type</h4>
                                  </div>
-                                 @foreach ($job_time as $key => $job_time)
+                                 @php
+                                     $selectedJobTimes = request('job_time_type_id', $job_time->pluck('id')->toArray());
+                                 @endphp
+                                 @foreach ($job_time as $time)
                                      <label class="container">
-                                         {{ $job_time->type }}
-                                         <input type="checkbox" value="{{ $job_time->id }}" name="job_time_type_id"
-                                             @if ($jobTimeType == $job_time->id) checked @endif
-                                             @if ($jobTimeType == null || in_array($job_time->id, explode(',', $jobTimeType))) checked @endif>
+                                         {{ $time->type }}
+                                         <input type="checkbox" value="{{ $time->id }}" name="job_time_type_id[]"
+                                             {{ in_array($time->id, (array) $selectedJobTimes) ? 'checked' : '' }}>
                                          <span class="checkmark"></span>
                                      </label>
                                  @endforeach
@@ -80,18 +81,16 @@
                                      <div class="count-job mb-35">
                                          <span>{{ $totalJob }} Jobs found</span>
                                          <!-- Select job items start -->
-                                         <form action="{{ url::to('/listing-job') }}" method="GET">
-                                             <div class="select-job-items d-flex flex-row gap-2">
-                                                 <div class="form-group m-3">
-                                                     <input type="text" class="form-control" name="keyword"
-                                                         placeholder="masukkan kata kunci ....." style="height: 50px;">
-                                                 </div>
-                                                 <div class="form-group m-3">
-                                                     <button type="submit" class="btn btn-primary btn-sm">Cari</button>
-                                                 </div>
+                                         <div class="select-job-items d-flex flex-row gap-2">
+                                             <div class="form-group m-3">
+                                                 <input type="text" class="form-control" name="keyword"
+                                                     id="keyword" placeholder="Masukkan kata kunci ....."
+                                                     value="{{ request('keyword') }}" style="height: 50px;">
                                              </div>
-                                         </form>
-                                         <!--  Select job items End-->
+                                             <div class="form-group m-3">
+                                                 <button type="submit" class="btn btn-primary btn-sm">Cari</button>
+                                             </div>
+                                         </div>
                                      </div>
                                  </div>
                              </div>
@@ -161,6 +160,13 @@
              link.addEventListener('click', function() {
                  window.location.href = link.getAttribute('data-url');
              });
+         });
+
+         // Clear search keyword after form submission
+         var form = document.getElementById('filterForm');
+         form.addEventListener('submit', function() {
+             var keywordInput = document.getElementById('keyword');
+             keywordInput.value = '';
          });
      });
  </script>
