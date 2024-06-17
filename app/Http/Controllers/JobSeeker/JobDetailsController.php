@@ -26,7 +26,7 @@ class JobDetailsController extends Controller
 
     public function index($id)
     {
-        $job = Job::where('slug', $id)->firstOrFail();// Mendapatkan informasi perusahaan terkait
+        $job = Job::with('jobTime')->where('slug', $id)->firstOrFail();// Mendapatkan informasi perusahaan terkait
         $requirements = Requirement::all();
         $jobcategories = JobCategory::all();
         $job_time = JobTimeType::all();
