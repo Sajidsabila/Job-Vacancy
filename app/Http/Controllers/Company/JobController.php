@@ -37,7 +37,7 @@ class JobController extends Controller
         $jobs = [];
 
         if ($company) {
-            $jobs = Job::with("company")->where('company_id', $company->id)->get();
+            $jobs = Job::with("company", "order")->where('company_id', $company->id)->get();
         }
         //  dd($jobs[0]->company);
         $data = [
@@ -254,12 +254,12 @@ class JobController extends Controller
                 ),
                 'customer_details' => array(
                     'name' => $job->company->name,
-                  
+
                 ),
             );
 
             $snapToken = \Midtrans\Snap::getSnapToken($params);
-            Alert::success("Berhasil", "Anda BErhasil Order");
+            Alert::success("Berhasil", "Anda Berhasil Order");
             return back();
         } catch (\Throwable $th) {
             Alert::error("Gagal", $th->getMessage());
@@ -272,9 +272,16 @@ class JobController extends Controller
         $serverKey = config('midtrans.server_key');
         $hashed = hash("sha512", $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
         if ($hashed == $request->signature_key) {
-            if ($request->transaction_status == 'capture' or $request->transaction_status == 'settlement' ) {
+            if ($request->transaction_status == 'capture' or $request->transaction_status == 'settlement') {
                 $order = Order::find($request->order_id);
                 $order->update(['status' => 'Paid']);
+
+                $job = Job::find($order->job_id);
+
+                if ($job) {
+                    // Update status job menjadi 'Active'
+                    $job->update(['status' => 'Active']);
+                }
             }
         }
     }

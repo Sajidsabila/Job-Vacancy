@@ -89,21 +89,21 @@
                   </div>
                   <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
                       <div class="footer-tittle-bottom">
-                          <span>5000+</span>
-                          <p>Talented Hunter</p>
+                          <span>{{ $countuser }}</span>
+                          <p>Pencari Kerjar</p>
                       </div>
                   </div>
                   <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
                       <div class="footer-tittle-bottom">
-                          <span>451</span>
-                          <p>Talented Hunter</p>
+                          <span>{{ $countcompany }}</span>
+                          <p>Perusahaan</p>
                       </div>
                   </div>
                   <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
                       <!-- Footer Bottom Tittle -->
                       <div class="footer-tittle-bottom">
-                          <span>568</span>
-                          <p>Talented Hunter</p>
+                          <span>{{ $countjob }}</span>
+                          <p>Lowongan Publish</p>
                       </div>
                   </div>
               </div>

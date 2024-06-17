@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Job;
+use App\Models\Company;
 use App\Models\JobSeeker;
 use App\Models\Configuration;
 use Illuminate\Support\Facades\Log;
@@ -34,9 +36,16 @@ class AppServiceProvider extends ServiceProvider
 
         // Get the first configuration record
         $configuration = Configuration::first();
-
-        // Share the configuration if it exists
-        view()->share('configuration', $configuration);
+        $countuser = JobSeeker::count();
+        $countcompany = Company::count();
+        $countjob = Job::where('status', 'Active')->count();
+        $data = ([
+            "configuration" => $configuration,
+            "countuser" => $countuser,
+            "countcompany" => $countcompany,
+            "countjob" => $countjob
+        ]);
+        view()->share($data);
 
         View::composer('*', function ($view) {
             $jobseekerExists = false;
