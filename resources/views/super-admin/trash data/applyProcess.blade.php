@@ -1,8 +1,8 @@
 @extends ('adminTemplate.layouts.main')
 @section('container')
     @include('sweetalert::alert')
-    <h3>{{ $title }}</h3>
-    .
+    <h3>Trash {{ $title }}</h3>
+    
     <a href="{{ URL::to('job-category/create') }}" class="my-2 btn btn-primary ">
         <i class="fas fa-plus" aria-hidden="true"> </i> &nbsp; Add</a>
     <table class="table table-striped" id="datatable1">

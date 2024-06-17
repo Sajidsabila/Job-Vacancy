@@ -285,15 +285,64 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ URL::to('/companie/benefit') }}"
-                            class="nav-link {{ Request::is('admin/benefit') ? ' active' : '' }}">
-                            <i class="nav-icon fas fa-check-circle"></i>
+                    {{-- <li class="nav-item {{ Request::is('receipt') || Request::is('report') ? ' menu-open' : '' }}">
+                        <a href="#"
+                            class="nav-link {{ Request::is('/admin/trash-job-category') || Request::is('report') ? ' active' : '' }}">
+                            <i class="fa fa-solid fa-trash"></i>
                             <p>
-                                Trash Data Lowongan
+                                Restore Data
+                                <i class="right fas fa-angle-down"></i>
                             </p>
                         </a>
-                    </li>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ URL::to('/admin/trash-job-category') }}"
+                                    class="nav-link {{ Request::is('admin/trash-job-category') ? ' active' : '' }}">
+                                    <i class="nav-icon fas fa-list-alt"></i>
+                                    <p>Category</p>
+                                </a>
+                            </li> --}}
+
+                            {{-- <li class="nav-item">
+                                <a href="{{ URL::to('/companie/lowongan-kerja') }}"
+                                    class="nav-link {{ Request::is('companie/lowongan-kerja') ? ' active' : '' }}">
+                                    <i class="nav-icon fas fa-list-alt"></i>
+                                    <p>
+                                        List Lowongan Pekerjaan
+                                    </p>
+                                </a> --}}
+
+                    
+                    
+                    <li class="nav-item {{ Request::is('receipt') || Request::is('report') ? ' menu-open' : '' }}">
+                        <a href="#"
+                            class="nav-link {{ Request::is('/companie/job/trash-job') || Request::is('report') ? ' active' : '' }}">
+                            <i class="fa fa-solid fa-trash"></i>
+                            <p>
+                                Restore Data
+                                <i class="right fas fa-angle-down"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ URL::to('/companie/job/trash-job') }}"
+                                    class="nav-link {{ Request::is('company/job/trash-job') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-list-alt"></i>
+                                    <p>
+                                        Trash Lowongan Kerja
+                                    </p>
+                                </a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a href="{{ URL::to('/companie/benefit/trash-benefit') }}"
+                                    class="nav-link {{ Request::is('companie/trash-benefit') ? ' active' : '' }}">
+                                    <i class="nav-icon fas fa-thumbs-up"></i>
+                                    <p>
+                                        Trash Benefit
+                                    </p>
+                                </a>
+                            </li>
                 @endif
                 </li>
                 </li>
