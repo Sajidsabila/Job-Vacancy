@@ -58,11 +58,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-3">
-                            <form action="" method="GET">
-                                <div class="form-group">
-                                    <label for="statusFilter">Filter</label>
-                                    <select name="statusFilter" id="statusFilter" class="form-control">
+                        <div class="col-12">
+                            <form action="" method="GET" class="d-flex align-items-center">
+                                <label for="statusFilter" class="form-label mb-0 mr-3">Filter</label>
+                                <div class="form-group mb-0 mr-2 flex-grow-1 form-select form-select-lg">
+                                    <select name="statusFilter" id="statusFilter" class="form-control form-select">
                                         <option value="" {{ is_null($selectedStatus) ? 'selected' : '' }}>Semua Status
                                         </option>
                                         @foreach ($statuses as $status)
@@ -72,12 +72,12 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                    <button class="btn btn-primary btn-sm mt-2">Filter</button>
                                 </div>
+                                <button class="btn btn-primary btn-sm ml-3">Filter</button>
                             </form>
                         </div>
                         <!-- Tabel Riwayat Lamaran -->
-                        <div class="card">
+                        <div class="card mt-4">
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered">
                                     <thead>

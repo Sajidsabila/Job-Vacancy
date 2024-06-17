@@ -2,7 +2,8 @@
 @section('container')
     @include('sweetalert::alert')
     <h3>{{ $title }}</h3>
-    <a href={{ URL::to('/companie/lowongan-kerja/create') }} class="btn btn-primary">ADD</a>
+    <a href={{ URL::to('/companie/lowongan-kerja/create') }} class="btn btn-primary mb-3"><i class="fas fa-plus"
+        aria-hidden="true"></i>ADD</a>
     <table id="datatable1" class="table table-striped">
         <thead>
             <tr>
