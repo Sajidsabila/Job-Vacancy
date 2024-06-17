@@ -154,6 +154,30 @@ Breadcrumbs::for('admin.testimoni.show', function (BreadcrumbTrail $trail, $id) 
 });
 
 
+// Admin Home > order
+Breadcrumbs::for('admin.order.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Order', route('admin.order.index'));
+});
+
+// Admin Home > order > Create
+Breadcrumbs::for('admin.order.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.order.index');
+    $trail->push('Create', route('admin.order.create'));
+});
+
+// Admin Home > order > Edit
+Breadcrumbs::for('admin.order.edit', function (BreadcrumbTrail $trail, $id) {
+    $trail->parent('admin.order.index');
+    $trail->push('Edit', route('admin.order.edit', $id));
+});
+
+// Admin Home > order > Show
+Breadcrumbs::for('admin.order.show', function (BreadcrumbTrail $trail, $id) {
+    $trail->parent('admin.order.index');
+    $trail->push('Show', route('admin.order.show', $id));
+});
+
 // Admin Home > List Perusahaan
 Breadcrumbs::for('admin.list-perusahaan.index', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.dashboard');
@@ -282,10 +306,10 @@ Breadcrumbs::for('admin.trashcategory', function (BreadcrumbTrail $trail) {
     $trail->push('Trash Job Category', route('admin.trashcategory'));
 });
 
-// Admin Home > Trash Religions
-Breadcrumbs::for('admin.trashreligion', function (BreadcrumbTrail $trail) {
+// Admin Home > Trash orders
+Breadcrumbs::for('admin.trashorder', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.dashboard');
-    $trail->push('Trash Religion', route('admin.trashreligion'));
+    $trail->push('Trash Order', route('admin.trashorder'));
 });
 
 // Admin Home > Trash Users

@@ -24,6 +24,7 @@ return new class extends Migration {
             $table->time('interview_time');
             $table->string('description');
             $table->float('salary', 10, 2);
+            $table->enum('status', ['Active', 'Unactive']);
             $table->string('job_location', 50);
 
             $table->foreign('company_id')->references('id')->on('companies');

@@ -98,6 +98,7 @@ class JobController extends Controller
         try {
             // Menambahkan company_id dari user yang sedang login
             $data['company_id'] = auth()->user()->id;
+            $data['status'] = 'Nonactive';
 
             $job = Job::create($data);
             Alert::success("Sukses", "Upload Lowongan Berhasil");
@@ -186,7 +187,7 @@ class JobController extends Controller
     }
     public function createpublishedjob(string $id)
     {
-        $job = Job::with('company')->findOrFail($id);
+        $job = Job::with('company')->where('status', 'Nonactive')->findOrFail($id);
         $configuration = Configuration::first();
 
         // Periksa apakah job_id sudah ada di tabel orders
@@ -283,6 +284,7 @@ class JobController extends Controller
                     $job->update(['status' => 'Active']);
                 }
             }
+        }
         }
     }
     /**

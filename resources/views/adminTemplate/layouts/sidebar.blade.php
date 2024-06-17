@@ -125,6 +125,18 @@
                                     </p>
                                 </a>
                             </li>
+
+                            <li class="nav-item">
+
+                                <a href="{{ URL::to('/admin/order') }}"
+                                    class="nav-link {{ Request::is('admin/order') ? ' active' : '' }}">
+                                    <i class="nav-icon fas fa-shopping-cart"></i> 
+                                    <p>
+                                        Order
+                                    </p>
+                                </a>
+                            </li>
+
                         </ul>
                     <li
                         class="nav-item {{ Request::is('receipt') || Request::is('/admin/report') ? ' menu-open' : '' }}">
@@ -249,7 +261,13 @@
                                     <p>Contact </p>
                                 </a>
                             </li>
-
+                            <li class="nav-item">
+                                <a href="{{ URL::to('/admin/trash-order') }}"
+                                    class="nav-link {{ Request::is('admin/trash-order') ? ' active' : '' }}">
+                                    <i class="nav-icon fas fa-shopping-cart"></i> 
+                                    <p>Order </p>
+                                </a>
+                            </li>
 
                         </ul>
                     </li>

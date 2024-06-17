@@ -1,0 +1,61 @@
+<?php
+
+namespace App\Http\Controllers\Company;
+
+use App\Models\Benefit;
+use App\Models\Company;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
+
+class TrashBenefitController extends Controller
+{
+    public function index()
+    {
+        $user = Auth::user();
+        $company = Company::where('id', $user->id)->first();
+        $benefits = [];
+
+        if ($company) {
+            $benefits = Benefit::with("company")->where('company_id', $company->id)->onlyTrashed()->get();
+        }
+
+        $data = [
+            "title" => "List Lowongan Kerja",
+            "benefits" => $benefits
+        ];
+
+        return view("company.benefit.trash-benefit", $data);
+    }
+
+    public function restore($id)
+    {
+        try {
+            $restored = Benefit::withTrashed()->where('id', $id)->restore();
+
+            if ($restored) {
+                Alert::success("Sukses", "Restore Data Sukses");
+            } else {
+                Alert::error("Gagal", "Restore Data Gagal");
+            }
+        } catch (\Throwable $th) {
+            Alert::error("Gagal", $th->getMessage());
+        }
+
+        return redirect("/companie/benefit");
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $benefit = Benefit::withTrashed()->findOrFail($id);
+            $benefit->forceDelete();
+            Alert::success('Sukses', 'Delete data success.');
+        } catch (\Throwable $th) {
+            Alert::error('Error', $th->getMessage());
+        }
+
+        return redirect("/companie/benefit/trash-benefit");
+    }
+}

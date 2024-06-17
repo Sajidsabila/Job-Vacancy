@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->timestamps();
             $table->foreign('job_id')->references('id')->on('jobs');
             $table->foreign('package_id')->references('id')->on('packages');
+            $table->dateTime('deleted_at')->nullable();
         });
     }
 
