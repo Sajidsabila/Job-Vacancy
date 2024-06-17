@@ -37,6 +37,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\ConfigurationController;
 use App\Http\Controllers\JobSeeker\EducationController;
 use App\Http\Controllers\Admin\EducationLevelController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\RestoreCompanyController;
 
 use App\Http\Controllers\Admin\RestoreContactController;
@@ -53,7 +54,7 @@ use App\Http\Controllers\Company\CompanyProfilController;
 use App\Http\Controllers\JobSeeker\LandingPageController;
 use App\Http\Controllers\JobSeeker\TestimonialController;
 use App\Http\Controllers\Admin\RestoreJobTimeTypeController;
-
+use App\Http\Controllers\Admin\RestoreOrder;
 use App\Http\Controllers\Company\TrashBenefitController;
 
 use App\Http\Controllers\JobSeeker\WorkExperienceController;
@@ -135,7 +136,7 @@ Route::group([
     Route::resource('/job-category', JobCategoryController::class);
     Route::resource('/religion', ReligionController::class);
     Route::resource('/user', UserController::class);
-    Route::resource('/user', UserController::class);
+    Route::resource('/order', OrderController::class);
     Route::resource('/list-perusahaan', CompanyController::class);
     Route::resource('/job-category', JobCategoryController::class);
     Route::get('/trash-job-category', [RestoreDataJobCategory::class, 'index'])->name('trashcategory');
@@ -168,14 +169,15 @@ Route::group([
     Route::delete('/delete-educationLevel/{id}', [RestoreEduLevelController::class, 'destroy']);
     Route::resource('/jobTimeType', JobTimeTypeController::class);
     Route::get('/trash-jobTimeType', [RestoreJobTimeTypeController::class, 'index'])->name('jobtyme');
-
     Route::get('/trash-contact', [RestoreContactController::class, 'index'])->name('trashcontact');
-
     Route::get('/restore-jobTimeType/{id}', [RestoreJobTimeTypeController::class, 'restore']);
     Route::delete('/delete-jobTimeType/{id}', [RestoreJobTimeTypeController::class, 'destroy']);
     Route::get('/trash-applyProcess', [RestoreApplyProcess::class, 'index'])->name('applyprocess');
     Route::get('/restore-applyProcess/{id}', [RestoreApplyProcess::class, 'restore']);
     Route::delete('/delete-applyProcess/{id}', [RestoreApplyProcess::class, 'destroy']);
+    Route::delete('/delete-order/{id}', [RestoreOrder::class, 'destroy']);
+        Route::get('/order/{id}', [RestoreOrder::class, 'restore']);
+    Route::get('/trash-order', [RestoreOrder::class, 'index'])->name('trashorder');
 });
 
 

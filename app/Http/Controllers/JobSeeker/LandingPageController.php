@@ -22,19 +22,23 @@ class LandingPageController extends Controller
     {
         // $testimonials = Testimonial::orderby('id');
         //edited by trainer
-    $testimonials = Testimonial::with('jobSeeker')
-    ->orderBy('created_at', 'desc')
-    ->limit(4)
-    ->get();
+        $testimonials = Testimonial::with('jobSeeker')
+        ->orderBy('created_at', 'desc')
+        ->limit(4)
+        ->get();
+
+        $jobs = Job::with('jobTime', 'company', 'jobcategory')
+        ->where('status', 'Active')
+        ->get();
 
         $applyProcesses = ApplyProcess::all();
         $categories = JobCategory::limit(8)->get();
         $jobs = Job::all(); // Ambil semua pekerjaan, atau sesuaikan query jika diperlukan
-        $jobs = Job::with('jobTime', 'company', 'jobcategory')->get();
         $configurations = Configuration::first();
         // Menghitung jumlah pekerjaan per kategori
         $jobCounts = Job::select('job_category_id', DB::raw('count(*) as total'))
-            ->groupBy('job_category_id')
+        ->where('status', 'active')
+        ->groupBy('job_category_id')
             ->pluck('total', 'job_category_id');
 
         $data = [
