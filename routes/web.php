@@ -53,8 +53,12 @@ use App\Http\Controllers\Company\CompanyProfilController;
 use App\Http\Controllers\JobSeeker\LandingPageController;
 use App\Http\Controllers\JobSeeker\TestimonialController;
 use App\Http\Controllers\Admin\RestoreJobTimeTypeController;
+
+use App\Http\Controllers\Company\TrashBenefitController;
+
 use App\Http\Controllers\JobSeeker\WorkExperienceController;
 use App\Http\Controllers\Company\InterviewScheduleController;
+use App\Http\Controllers\Company\TrashJobController;
 use App\Http\Controllers\JobSeeker\JobSeekerContactController;
 
 
@@ -195,6 +199,23 @@ Route::group([
     Route::put('/lowongan-kerja/schedule-interview/{id}', [InterviewScheduleController::class, 'update'])->name('schedule.interview');
     Route::get('/lowongan-kerja/reject/{id}', [JobController::class, 'reject']);
     Route::get('/lowongan-kerja/accept/{id}', [JobController::class, 'accept']);
+
+
+// Route::get('/trash-benefit', [TrashBenefitController::class, 'index'])->name('trashbenefit');
+// Route::get('/benefit/{id}', [TrashBenefitController::class, 'restore']);
+// Route::delete('/delete-benefit/{id}', [TrashBenefitController::class, 'destroy']);
+// Restore Job
+Route::get('/job/trash-job', [TrashJobController::class, 'index'])->name('trashjob');
+Route::resource('/company/job', JobController::class);
+Route::get('/restore-lowongan-kerja/{id}', [TrashJobController::class, 'restore']);
+Route::delete('/delete-lowongan-kerja/{id}', [TrashJobController::class, 'destroy']);
+
+//Restore Benefit
+Route::get('/benefit/trash-benefit', [TrashJobController::class, 'index'])->name('trashbenefit');
+Route::resource('/company/benefit', JobController::class);
+Route::get('/restore-benefit/{id}', [TrashJobController::class, 'restore']);
+Route::delete('/delete-benefit/{id}', [TrashJobController::class, 'destroy']);
+
 });
 
 Route::post('/auth', [AuthController::class, 'login']);

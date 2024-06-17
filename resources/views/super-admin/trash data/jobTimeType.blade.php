@@ -2,7 +2,7 @@
 @section('container')
     @include('sweetalert::alert')
 
-    <h3>{{ $title }}</h3>
+    <h3>Trash {{ $title }}</h3>
     <table id="datatable1" class="table table-bordered table-stripped">
         <thead>
             

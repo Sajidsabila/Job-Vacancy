@@ -453,6 +453,19 @@ Breadcrumbs::for('companie.lowongan-kerja.set_interview', function (BreadcrumbTr
     $trail->push('Detail Candidate', route('companie.lowongan-kerja.set_interview', $jobhistori));
 });
 
+//TRASH DATA COMPANY
+
+// Company Home > Trash Lowongan Pekerjaan
+Breadcrumbs::for('companie.trashjob', function (BreadcrumbTrail $trail) {
+    $trail->parent('companie.dashboard');
+    $trail->push('Trash Lowongan Pekerjaan', route('companie.trashjob'));
+});
+
+// Company Home > Trash Benefit
+Breadcrumbs::for('companie.trashbenefit', function (BreadcrumbTrail $trail) {
+    $trail->parent('companie.dashboard');
+    $trail->push('Trash Benefit', route('companie.trashbenefit'));
+});
 // Admin Home > Requirements
 Breadcrumbs::for('companie.requirement.index', function (BreadcrumbTrail $trail) {
     $trail->parent('companie.dashboard');
