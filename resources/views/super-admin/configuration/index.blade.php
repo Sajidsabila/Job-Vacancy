@@ -51,6 +51,14 @@
                     </div>
                 </div>
 
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="name">Alamat Perusahaan</label>
+                        <input type="number" id="email" name="email" value="{{ $configuration->price_post }}"
+                            class="form-control @error('email')is-invalid @enderror" readonly>
+                    </div>
+                </div>
+
             </div>
             {{-- <form action="{{ URL::to('configuration/' . $configuration->id) }}" method="post">
                 @csrf
