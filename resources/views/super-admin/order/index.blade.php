@@ -16,6 +16,7 @@
                     <th>Job</th>
                     <th>Price</th>
                     <th>Status</th>
+             
                 </tr>
             </thead>
             <tbody>
