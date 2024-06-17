@@ -17,8 +17,11 @@ return new class extends Migration {
             $table->unsignedBigInteger('job_time_type_id');
             $table->json('requirement_id');
             $table->json('benefit_id');
+            $table->date("endDate");
             $table->string('title');
             $table->string('slug')->unique();
+            $table->date('interview_date');
+            $table->time('interview_time');
             $table->string('description');
             $table->float('salary', 10, 2);
             $table->string('job_location', 50);

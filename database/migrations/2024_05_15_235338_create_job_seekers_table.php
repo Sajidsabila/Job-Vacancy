@@ -11,11 +11,11 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('job_seekers', function (Blueprint $table) {
-            $table->unsignedBigInteger('id')->unique(); 
+            $table->unsignedBigInteger('id')->unique();
 
             $table->unsignedBigInteger('religion_id');
             $table->string("photo");
-            $table->integer("nik");
+            $table->string("nik");
             $table->date("birth_date");
             $table->string('first_name');
             $table->string('gender');
