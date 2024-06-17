@@ -85,4 +85,9 @@ class SocialiteController extends Controller
 
         return redirect('/');
     }
+
+    public function jobseeker()
+    {
+        return $this->hasOne(Company::class);
+    }
 }

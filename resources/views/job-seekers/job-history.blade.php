@@ -58,7 +58,24 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="col-3">
+                            <form action="" method="GET">
+                                <div class="form-group">
+                                    <label for="statusFilter">Filter</label>
+                                    <select name="statusFilter" id="statusFilter" class="form-control">
+                                        <option value="" {{ is_null($selectedStatus) ? 'selected' : '' }}>Semua Status
+                                        </option>
+                                        @foreach ($statuses as $status)
+                                            <option value="{{ $status->status }}"
+                                                {{ $selectedStatus == $status->status ? 'selected' : '' }}>
+                                                {{ $status->status }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <button class="btn btn-primary btn-sm mt-2">Filter</button>
+                                </div>
+                            </form>
+                        </div>
                         <!-- Tabel Riwayat Lamaran -->
                         <div class="card">
                             <div class="table-responsive">
