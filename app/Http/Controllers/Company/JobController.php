@@ -187,7 +187,7 @@ class JobController extends Controller
     }
     public function createpublishedjob(string $id)
     {
-        $job = Job::with('company')->where('status', 'Nonactive')->findOrFail($id);
+        $job = Job::with('company')->findOrFail($id);
         $configuration = Configuration::first();
 
         // Periksa apakah job_id sudah ada di tabel orders
@@ -275,13 +275,16 @@ class JobController extends Controller
         if ($hashed == $request->signature_key) {
             if ($request->transaction_status == 'capture' or $request->transaction_status == 'settlement') {
                 $order = Order::find($request->order_id);
-                $order->update(['status' => 'Paid']);
 
-                $job = Job::find($order->job_id);
+                if ($order) {
+                    $job = Job::find($order->job_id);
 
-                if ($job) {
-                    // Update status job menjadi 'Active'
-                    $job->update(['status' => 'Active']);
+                    $order->update(['status' => 'Paid']);
+
+                    if ($job) {
+                        $job->update(['status' => 'Active']);
+                    }
+
                 }
             }
         }

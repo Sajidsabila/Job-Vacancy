@@ -7,12 +7,17 @@
         <div class="card-header">Invoice</div>
         <div class="card-body">
             <center>
-
-                <h5>Jumlah Pembayaran</h5>
+                <div class="alert alert-success">
+                    Pembayaran Berhasil
+                </div>
+                <h5 class="fw-bold">Jumlah Pembayaran</h5>
                 <h5>{{ number_format($order->price) }}</h5>
 
                 <h5>Status Pembayaran</h5>
-                <h5>{{ number_format($order->price) }}</h5>
+                <h5 class="fw-bold">{{ $order->status }}</h5>
+
+                <h5>Tanggal Transaksi</h5>
+                <h5 class="fw-bold">{{ formatIndonesianDate($order->updated_at) }}</h5>
 
             </center>
         </div>

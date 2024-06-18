@@ -444,6 +444,13 @@ Breadcrumbs::for('companie.lowongan-kerja.set_publish', function (BreadcrumbTrai
     $trail->push('Pilih Paket Publish', route('companie.lowongan-kerja.set_publish', $job));
 });
 
+Breadcrumbs::for('companie.lowongan-kerja.invoice', function (BreadcrumbTrail $trail, $job) {
+    // Menyatakan breadcrumb induk
+    $trail->parent('companie.lowongan-kerja.index');
+
+    // Menambahkan breadcrumb untuk detail kandidat
+    $trail->push('Invoice Pembayaran', route('companie.lowongan-kerja.invoice', $job));
+});
 Breadcrumbs::for('companie.lowongan-kerja.create', function (BreadcrumbTrail $trail) {
     $trail->parent('companie.lowongan-kerja.index');
     $trail->push('Create', route('companie.lowongan-kerja.create'));
