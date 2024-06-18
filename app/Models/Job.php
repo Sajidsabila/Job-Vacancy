@@ -23,7 +23,8 @@ class Job extends Model
         'job_location',
         'requirement_id', // Pastikan requirement_id termasuk dalam $fillable
         'slug',
-        'benefit_id'
+        'benefit_id',
+        'status'
     ];
     protected $casts = [
         'requirement_id' => 'array',
