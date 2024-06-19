@@ -19,7 +19,7 @@ class JobHistory extends Model
 
     public function job()
     {
-        return $this->belongsTo(Job::class, 'id');
+        return $this->belongsTo(Job::class);
     }
 
 }

@@ -92,6 +92,7 @@
                                     <tbody>
                                         @foreach ($jobhistories as $key => $jobhistory)
                                             <tr>
+
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>{{ $jobhistory->job->title }}</td>
                                                 <td>{{ $jobhistory->job->company->company_name }}</td>
