@@ -109,7 +109,7 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label for="name">Alamat Perusahaan</label>
-                            <input type="text" id="email" name="email" value="{{ $company->address }}" class="form-control @error('email') is-invalid @enderror" readonly>
+                            <input type="text" id="email" name="email" value="{{ $company->addres }}" class="form-control @error('email') is-invalid @enderror" readonly>
                         </div>
                     </div>
 
