@@ -45,7 +45,7 @@ return array(
          * Times-Roman, Times-Bold, Times-BoldItalic, Times-Italic,
          * Symbol, ZapfDingbats.
          */
-        "font_dir" => storage_path('fonts'), // advised by dompdf (https://github.com/dompdf/dompdf/pull/782)
+        "font_dir" => storage_path('fonts'),
 
         /**
          * The location of the DOMPDF font cache directory
@@ -84,7 +84,7 @@ return array(
          * Protocol whitelist
          *
          * Protocols and PHP wrappers allowed in URIs, and the validation rules
-         * that determine if a resouce may be loaded. Full support is not guaranteed
+         * that determine if a resource may be loaded. Full support is not guaranteed
          * for the protocols/wrappers specified
          * by this array.
          *
@@ -96,9 +96,12 @@ return array(
             "https://" => ["rules" => []]
         ],
 
-         /**
-          * @var string
-          */
+        /**
+         * Log output file
+         *
+         * This can be used to save the log output of dompdf. If set to null, logging
+         * will be disabled.
+         */
         'log_output_file' => null,
 
         /**
@@ -145,7 +148,7 @@ return array(
          *
          * @link http://www.pdflib.com
          *
-         * If pdflib present in web server and auto or selected explicitely above,
+         * If pdflib present in web server and auto or selected explicitly above,
          * a real license code must exist!
          */
         //"DOMPDF_PDFLIB_LICENSE" => "your license key here",
@@ -171,13 +174,13 @@ return array(
          */
         "default_paper_size" => "a4",
 
-         /**
-          * The default paper orientation.
-          *
-          * The orientation of the page (portrait or landscape).
-          *
-          * @var string
-          */
+        /**
+         * The default paper orientation.
+         *
+         * The orientation of the page (portrait or landscape).
+         *
+         * @var string
+         */
         'default_paper_orientation' => "portrait",
 
         /**
@@ -192,11 +195,11 @@ return array(
          * Image DPI setting
          *
          * This setting determines the default DPI setting for images and fonts.  The
-         * DPI may be overridden for inline images by explictly setting the
+         * DPI may be overridden for inline images by explicitly setting the
          * image's width & height style attributes (i.e. if the image's native
          * width is 600 pixels and you specify the image's width as 72 points,
          * the image will have a DPI of 600 in the rendered PDF.  The DPI of
-         * background images can not be overridden and is controlled entirely
+         * background images cannot be overridden and is controlled entirely
          * via this parameter.
          *
          * For the purposes of DOMPDF, pixels per inch (PPI) = dots per inch (DPI).
@@ -209,7 +212,8 @@ return array(
          *
          * Rendering resolution of various browsers in px per inch:
          * Windows Firefox and Internet Explorer:
-         *   SystemControl->Display properties->FontResolution: Default:96, largefonts:120, custom:?
+         *   SystemControl->Display properties->FontResolution: Default:96, largefonts:120, custom
+         * 96, custom:?
          * Linux Firefox:
          *   about:config *resolution: Default:96
          *   (xorg screen dimension in mm and Desktop font dpi settings are ignored)
@@ -278,7 +282,77 @@ return array(
          * @var bool
          */
         "enable_html5_parser" => true,
+
+        /**
+         * Image Base Path
+         *
+         * Set this to a base path that dompdf can use when resolving relative paths
+         * to images, fonts or CSS files. This should be either an absolute path
+         * beginning with a slash, or a path relative to the DOMPDF_HOME constant.
+         * For example: "/var/www/dompdf" or "../../dompdf" for a development server.
+         *
+         * This is useful if your web server does not allow access to the DOCUMENT_ROOT
+         * or if you want to develop with a different directory structure than your
+         * production server.
+         *
+         * @var string|null
+         */
+        'image_base_path' => null,
+
+        /**
+         * Whether to enable CSS float
+         *
+         * If this is set to true, DOMPDF will convert CSS floats into page elements.
+         * This is useful for some complex layouts.
+         *
+         * @var bool
+         */
+        'enable_css_float' => true,
+
+        /**
+         * Whether to enable HTML5 form elements
+         *
+         * If this is set to true, DOMPDF will allow rendering of HTML5 form elements.
+         * These may not be fully implemented yet and may not all render correctly.
+         *
+         * @var bool
+         */
+        'enable_html5_form' => false,
+
+        /**
+         * Whether to enable font fallback
+         *
+         * If this is set to true, DOMPDF will enable font fallback mechanism.
+         * This feature allows rendering of characters not present in any of the
+         * loaded fonts.
+         *
+         * @var bool
+         */
+        'enable_font_fallback' => false,
+
+        /**
+         * Enable debug output
+         *
+         * If this is set to true, DOMPDF will enable debug output messages.
+         *
+         * @var bool
+         */
+        'debug' => false,
+
+        /**
+         * Custom HTML renderer
+         *
+         * If this is set to a callable function, DOMPDF will use it to generate the
+         * HTML output instead of its own built-in renderer.
+         *
+         * The function should have the following signature:
+         *
+         *   function custom_html_renderer($html) {
+         *       // Custom rendering logic here
+         *   }
+         *
+         * @var callable|null
+         */
+        'custom_html_renderer' => null,
     ),
-
-
 );

@@ -133,3 +133,9 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
     margin-left: 3px;
     border: 0;
 }
+
+.btn-generate {
+    background-color: #3b5998;
+    padding: 10px;
+    border-radius: 10px;
+}

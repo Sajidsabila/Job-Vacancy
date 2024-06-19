@@ -24,8 +24,8 @@
                         <div class="tab-pane fade active show" id="account-general">
                             <div class="card-body media align-items-center">
                                 @if (isset($jobseeker))
-                                    <img src="{{ 'storage/' . $jobseeker->photo }}" alt="{{ $jobseeker->first_name }}"
-                                        class="d-block ui-w-80">
+                                    <img src="{{ asset('storage/' . $jobseeker->photo) }}"
+                                        alt="{{ $jobseeker->first_name }}" class="d-block ui-w-80">
                                 @endif
                                 <div class="media-body ml-4">
                                     <div class="form-group">
@@ -163,7 +163,7 @@
                     </div>
                     <div class="text-left m-4">
                         <button type="submit" class="btn btn-primary">Save changes</button>
-                        <button type="reset" class="btn btn-default">Cancel</button>
+                        <a href="{{ URL::to('/profile') }}" type="reset" class="btn btn-default">Cancel</a>
                     </div>
                     </form>
                 </div>

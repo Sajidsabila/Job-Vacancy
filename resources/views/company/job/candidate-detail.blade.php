@@ -12,9 +12,13 @@
                         {{ $jobhistori->jobseeker->user->email }}
                     </div>
                 </div>
+
             </div>
             <hr class="border-light m-0">
+            <a href="{{ URL::to('/companie/generate-cv/' . $jobhistori->job_seeker_id) }}"
+                class="btn btn-primary m-3">Generate Cv</a>
         </div>
+
         <div class="col-12">
             <div class="card">
                 <div class="card-header bg-primary">Deskripsi Pelamar</div>

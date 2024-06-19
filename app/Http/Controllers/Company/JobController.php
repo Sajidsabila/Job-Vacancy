@@ -406,4 +406,24 @@ class JobController extends Controller
             return back();
         }
     }
+
+    public function generateCV($id)
+    {
+        $jobseeker = JobSeeker::with('user')->where('id', $id)->first();
+        $skills = Skill::with('jobseeker')->where('job_seeker_id', $id)->get();
+        $workexperiences = WorkExperience::where('job_seeker_id', $id)->get();
+        $educations = Education::with('educationlevel')->where('job_seeker_id', $id)->get();
+
+        $data = ([
+            "jobseeker" => $jobseeker,
+            "skills" => $skills,
+            "educations" => $educations,
+            "workexperiences" => $workexperiences,
+
+        ]);
+
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadview('job-seekers.generate-cv', $data);
+
+        return $pdf->download('curriculum-vitae-' . $jobseeker->first_name . ' ' . $jobseeker->last_name . '.pdf');
+    }
 }
