@@ -188,7 +188,7 @@
                 "lengthChange": false,
                 "autoWidth": false,
                 "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#datatable2_wrapper .col-md-6:eq(0)');
+            }).buttons().container().appendTo('#datatable1_wrapper .col-md-6:eq(0)');
             $('#datatable2').DataTable({
                 "paging": true,
                 "lengthChange": false,

@@ -98,9 +98,6 @@ Route::prefix('/')->group(function () {
     Route::get('/job-details/{slug}', [JobDetailsController::class, 'index']);
     Route::post('/send-letter', [JobDetailsController::class, 'store']);
     Route::resource("/profile", ProfileController::class);
-
-Route::get("/generate-cv", [ProfileController::class,'generateCV']);
-
     Route::get('/about', [AboutController::class, 'index']);
 
     Route::get('landing-page/layouts/footer', [ConfigurationController::class, 'footer'])->name('landing-page.layouts.footer');
@@ -180,6 +177,7 @@ Route::group([
     Route::delete('/delete-applyProcess/{id}', [RestoreApplyProcess::class, 'destroy']);
     Route::delete('/delete-order/{id}', [RestoreOrder::class, 'destroy']);
     Route::get('/order/{id}', [RestoreOrder::class, 'restore']);
+    Route::get('/generate-cv/{id}', [RestoreOrder::class, 'generateCV']);
     Route::get('/trash-order', [RestoreOrder::class, 'index'])->name('trashorder');
 });
 
@@ -205,7 +203,7 @@ Route::group([
     Route::put('/lowongan-kerja/schedule-interview/{id}', [InterviewScheduleController::class, 'update'])->name('schedule.interview');
     Route::get('/lowongan-kerja/reject/{id}', [JobController::class, 'reject']);
     Route::get('/lowongan-kerja/accept/{id}', [JobController::class, 'accept']);
-
+    Route::get('/generate-cv/{id}', [JobController::class, 'generateCV']);
 
     // Route::get('/trash-benefit', [TrashBenefitController::class, 'index'])->name('trashbenefit');
 // Route::get('/benefit/{id}', [TrashBenefitController::class, 'restore']);

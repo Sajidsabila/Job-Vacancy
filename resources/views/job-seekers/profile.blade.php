@@ -21,8 +21,10 @@
                                         {{ $jobseeker->first_name . ' ' . $jobseeker->last_name }} <br>
                                         {{ $jobseeker->user->email }}
                                     </div>
-                                    <a href="{{ URL::to('/generate-cv') }}" class="btn-add m-4">Generate Your CV</a>
+                                    <br>
+
                                 </div>
+                                <a href="{{ URL::to('/generate-cv') }}" class="btn-generate m-4">Generate Your CV</a>
                             </div>
                             <hr class="border-light m-0">
                             <div class="card m-2">
@@ -52,7 +54,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="font-weight-bold">Tanggal Lahir</label>
-                                    <div class="">{{ $jobseeker->birth_date }}</div>
+                                    <div class="">{{ DateFormat($jobseeker->birth_date) }}</div>
                                 </div>
                                 <div class="form-group">
                                     <label class="font-weight-bold">Nik</label>
