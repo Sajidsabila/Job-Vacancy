@@ -217,6 +217,16 @@ class ProfileController extends Controller
             'testimonis' => $testimonis,
         ]);
     }
+    public function generatecv()
+    {
+        $user = Auth::user();
+        $jobseeker = JobSeeker::with('user')->where('id', $user->id)->first();
 
+        $data = ([
+            "jobseeker" => $jobseeker
+        ]);
+
+
+    }
 
 }

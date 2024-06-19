@@ -194,6 +194,7 @@ Route::group([
     Route::resource('/lowongan-kerja', JobController::class);
     Route::post('/lowongan-kerja/order', [JobController::class, 'order']);
     Route::get('/lowongan-kerja/invoice/{id}', [JobController::class, 'invoice'])->name('lowongan-kerja.invoice');
+    Route::get('/lowongan-kerja/show-invoice/{id}', [JobController::class, 'showInvoice'])->name('lowongan-kerja.showInvoice');
     // Route::post('/lowongan-kerja/order/midtrans-calback', [JobController::class, 'callback']);
     Route::get('/lowongan-kerja/create-publish/{id}', [JobController::class, 'createpublishedjob'])->name('lowongan-kerja.set_publish');
     Route::get('/lowongan-kerja/view-pdf/{id}', [JobController::class, 'viewPDF'])->name('pdf.view');

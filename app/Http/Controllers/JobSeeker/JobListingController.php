@@ -22,9 +22,9 @@ class JobListingController extends Controller
         $configurations = Configuration::first();
         $keyword = $request->input("keyword");
 
+
         $jobEloquent = Job::with('jobTime', 'company', 'jobcategory')
         ->where('status', 'Active'); // Filter hanya yang statusnya 'Active'
-
         if ($jobCategoryId) {
             $jobEloquent->where("job_category_id", $jobCategoryId);
         }
@@ -123,9 +123,9 @@ class JobListingController extends Controller
         if ($request->filled('keyword')) {
             $query->where(function ($q) use ($request) {
                 $q->where('title', 'like', '%' . $request->keyword . '%')
-                ->orWhereHas('company', function ($q) use ($request) {
-                    $q->where('company_name', 'like', '%' . $request->keyword . '%');
-                });
+                    ->orWhereHas('company', function ($q) use ($request) {
+                        $q->where('company_name', 'like', '%' . $request->keyword . '%');
+                    });
             });
         }
 
