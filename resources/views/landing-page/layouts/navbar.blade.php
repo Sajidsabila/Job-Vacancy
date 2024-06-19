@@ -43,7 +43,7 @@
 
 
                                 <!-- Header-btn -->
-                                <div class="header-btn flex-end my-3 align-self-end lg-ms-5 f-right d-lg-block ml-5">
+                                <div class="header-btn flex-end my-3 align-self-end lg-ms-5 f-right d-lg-block sm-ml-5">
                                     @guest
                                         <a href="{{ URL::to('/register/job-seekers') }}" class="btn head-btn1">Register</a>
                                         <a href="{{ URL::to('/login-page') }}" class="btn head-btn2">Login</a>

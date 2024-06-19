@@ -6,13 +6,31 @@
     <div class="card">
         <div class="card-header">Tagihan</div>
         <div class="card-body">
-            <center>
-
-                <h5>Jumlah Tagihan</h5>
-
-                <h5>{{ number_format($order->price) }}</h5>
-                <button class="btn btn-success" id="pay-button">Bayar</button>
-            </center>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="name">Nama Perusahaan</label>
+                        <input type="text" value="{{ $job->company->company_name }}"
+                            class="form-control @error('email') is-invalid @enderror" readonly>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="name">Pekerjaan</label>
+                        <input type="text" value="{{ $order->job->title }}"
+                            class="form-control @error('email') is-invalid @enderror" readonly>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="name">Jumlah Tagihan</label>
+                        <input type="text" value="{{ number_format($order->price) }}"
+                            class="form-control @error('email') is-invalid @enderror" readonly>
+                    </div>
+                </div>
+                <button class="btn btn-success m-2" id="pay-button">Bayar</button>
+                <a href="{{ URL::to('/companie/lowongan-kerja') }}" class="btn btn-warning m-2">Kembali</a>
+            </div>
         </div>
     </div>
     <script type="text/javascript">
