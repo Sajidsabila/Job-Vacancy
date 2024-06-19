@@ -297,6 +297,23 @@ class JobController extends Controller
         $order = Order::findOrFail($id);
         return view("company.job.invoice", compact('order'));
     }
+
+    public function showInvoice($id)
+    {
+        // Find the job by its ID
+        $job = Job::find($id);
+
+        // Check if the job exists
+        if (!$job) {
+            return redirect()->back()->with('error', 'Job not found');
+        }
+
+        // Find the order by the order_id in the job
+        $order = Order::where('job_id', $job->id)->first();
+
+        // Pass the job and order to the view
+        return view('company.job.invoice', compact('job', 'order'));
+    }
     public function update(Request $request, string $id)
     {
         $data = $request->validate([
