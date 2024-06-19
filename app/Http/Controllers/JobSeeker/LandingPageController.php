@@ -72,8 +72,10 @@ class LandingPageController extends Controller
 
         // Menghitung jumlah pekerjaan per kategori
         $jobCounts = Job::select('job_category_id', DB::raw('count(*) as total'))
-            ->groupBy('job_category_id')
+        ->where('status', 'active')
+        ->groupBy('job_category_id')
             ->pluck('total', 'job_category_id');
+
 
         $data = [
             "title" => "Job Category",

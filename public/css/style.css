@@ -7588,3 +7588,11 @@ form.search-box .search-form a {
     transform: scale(1.05); /* Membesarkan kartu saat hover */
 }
 
+.select-wrapper {
+    overflow-y: hidden;
+  }
+  
+  .select-wrapper:focus-within {
+    overflow-y: auto;
+    height: 200px; /* adjust the height to your liking */
+  }
