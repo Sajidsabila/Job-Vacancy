@@ -50,7 +50,7 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTELogo"
+            <img class="animation__shake" src="{{ asset('storage/' . $configuration->logo) }}" alt="AdminLTELogo"
                 height="60" width="60">
         </div>
 
@@ -188,7 +188,7 @@
                 "lengthChange": false,
                 "autoWidth": false,
                 "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#datatable1_wrapper .col-md-6:eq(0)');
+            }).buttons().container().appendTo('#datatable2_wrapper .col-md-6:eq(0)');
             $('#datatable2').DataTable({
                 "paging": true,
                 "lengthChange": false,
