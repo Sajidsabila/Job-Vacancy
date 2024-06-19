@@ -34,9 +34,9 @@
                                     </div>
                                 </div>
                                 <div class="col-12 d-flex ">
-                                    <a href="{{ URL::to('/work-experince/' . $workexperience->id . '/edit') }}"
+                                    <a href="{{ URL::to('/work-experince' . $workexperience->id . '/edit') }}"
                                         class="btn-btn-edit">Edit</a>
-                                    <form action="{{ URL::to('/work-experince/' . $workexperience->id) }}" method="post">
+                                    <form action="{{ URL::to('/work-experince' . $workexperience->id) }}" method="post">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn-btn-delete ms-2"

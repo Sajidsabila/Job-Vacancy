@@ -21,6 +21,7 @@
                                         {{ $jobseeker->first_name . ' ' . $jobseeker->last_name }} <br>
                                         {{ $jobseeker->user->email }}
                                     </div>
+                                    <a href="{{ URL::to('/generate-cv') }}" class="btn-add m-4">Generate Your CV</a>
                                 </div>
                             </div>
                             <hr class="border-light m-0">

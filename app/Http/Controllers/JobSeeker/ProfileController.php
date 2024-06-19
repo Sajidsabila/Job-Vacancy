@@ -7,12 +7,16 @@ use App\Models\JobSeeker;
 use App\Models\Skill;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 use App\Models\Configuration;
-use App\Models\Testimoni;
+
 use App\Models\Testimonial;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\Education;
+use App\Models\EducationLevel;
+use App\Models\WorkExperience;
 
 class ProfileController extends Controller
 {
@@ -217,16 +221,25 @@ class ProfileController extends Controller
             'testimonis' => $testimonis,
         ]);
     }
-    public function generatecv()
+    public function generateCV()
     {
         $user = Auth::user();
         $jobseeker = JobSeeker::with('user')->where('id', $user->id)->first();
+        $skills = Skill::with('jobseeker')->where('job_seeker_id', $user->id)->get();
+        $workexperiences = WorkExperience::where('job_seeker_id', $user->id)->get();
+        $educations = Education::with('educationlevel')->where('job_seeker_id', $user->id)->get();
 
         $data = ([
-            "jobseeker" => $jobseeker
+            "jobseeker" => $jobseeker,
+            "skills" => $skills,
+            "educations" => $educations,
+            "workexperiences" => $workexperiences,
+            
         ]);
-
-
+        
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadview('job-seekers.generate-cv', $data);
+        	
+        return $pdf->download('curriculum-vitae-'. $jobseeker->first_name . ' ' . $jobseeker->last_name .'.pdf');
     }
 
 }

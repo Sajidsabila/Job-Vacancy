@@ -312,6 +312,13 @@ Breadcrumbs::for('admin.trashorder', function (BreadcrumbTrail $trail) {
     $trail->push('Trash Order', route('admin.trashorder'));
 });
 
+
+// Admin Home > (Trash Religion)
+Breadcrumbs::for('admin.trashreligion', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Trash Religion', route('admin.trashreligion'));
+});
+
 // Admin Home > Trash Users
 Breadcrumbs::for('admin.trashuser', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.dashboard');

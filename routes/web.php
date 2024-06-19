@@ -98,6 +98,9 @@ Route::prefix('/')->group(function () {
     Route::get('/job-details/{slug}', [JobDetailsController::class, 'index']);
     Route::post('/send-letter', [JobDetailsController::class, 'store']);
     Route::resource("/profile", ProfileController::class);
+
+Route::get("/generate-cv", [ProfileController::class,'generateCV']);
+
     Route::get('/about', [AboutController::class, 'index']);
 
     Route::get('landing-page/layouts/footer', [ConfigurationController::class, 'footer'])->name('landing-page.layouts.footer');
