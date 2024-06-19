@@ -114,6 +114,7 @@
                             <label for="name">Alamat Perusahaan</label>
                             <input type="text" id="email" name="email" value="{{ $company->addres }}"
                                 class="form-control @error('email') is-invalid @enderror" readonly>
+
                         </div>
                     </div>
 
