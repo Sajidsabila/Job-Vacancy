@@ -25,7 +25,6 @@ class JobListingController extends Controller
         $jobEloquent = Job::with('jobTime', 'company', 'jobcategory')
         ->where('status', 'Active'); // Filter hanya yang statusnya 'Active'
 
-        $jobEloquent = Job::with('jobTime', 'company', 'jobcategory');
         if ($jobCategoryId) {
             $jobEloquent->where("job_category_id", $jobCategoryId);
         }
