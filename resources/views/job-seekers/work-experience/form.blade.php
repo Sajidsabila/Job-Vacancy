@@ -52,9 +52,9 @@
                                         <div class="form-group">
                                             <label class="form-label">Mulai Di Bulan</label>
                                             <br>
-                                            <select name="start_month"
+                                            <select name="start_month" id="start_month"
                                                 class="form-control @error('start_month')is-invalid @enderror w-100 mb-2"
-                                                id="start_month" required>
+                                                required>
                                                 <option value="Januari"
                                                     {{ isset($workexperience) ? ($workexperience->start_month == 'Januari' ? 'selected' : '') : '' }}>
                                                     January</option>
@@ -180,13 +180,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="text-left m-4">
-                            <button type="submit" class="btn btn-primary">Save changes</button>
-                            <button type="reset" class="btn btn-default">Cancel</button>
-                        </div>
-                        </form>
                     </div>
+                    <div class="text-left m-4 mt-5">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="reset" class="btn btn-default">Cancel</button>
+                    </div>
+                    </form>
                 </div>
             </div>
         </div>
-    @endsection
+    </div>
+@endsection

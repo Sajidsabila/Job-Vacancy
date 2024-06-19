@@ -32,7 +32,7 @@
                             // Filter pekerjaan hanya untuk kategori saat ini
                             $jobsForCategory = $jobs->where('job_category_id', $category->id);
                         @endphp
-                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6" data-aos="flip-left" data-aos-duration="2000">
                             <div id="category_{{ $category->id }}" class="single-services text-center mb-30 single-job-link"
                                 data-url="{{ $jobCount > 0 ? route('jobs.by.category', $category->id) : '#' }}">
                                 <div class="services-ion">
@@ -46,7 +46,12 @@
                                     @else
                                         <h5>{{ $category->category }}</h5>
                                     @endif
+                                    {{-- @if ($jobCount > 0) --}}
                                     <span>{{ $jobCount }} Jobs</span>
+                                    {{-- @else
+                                        <span>0 Jobs</span>
+                                    @endif --}}
+                                    <!-- Tampilkan detail pekerjaan jika ada -->
                                 </div>
                             </div>
                         </div>
