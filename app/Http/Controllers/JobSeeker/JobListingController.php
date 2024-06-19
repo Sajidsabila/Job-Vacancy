@@ -22,7 +22,9 @@ class JobListingController extends Controller
         $configurations = Configuration::first();
         $keyword = $request->input("keyword");
 
-        $jobEloquent = Job::with('jobTime', 'company', 'jobcategory')->where('status', 'Active');
+
+        $jobEloquent = Job::with('jobTime', 'company', 'jobcategory')
+        ->where('status', 'Active'); // Filter hanya yang statusnya 'Active'
         if ($jobCategoryId) {
             $jobEloquent->where("job_category_id", $jobCategoryId);
         }
@@ -60,7 +62,11 @@ class JobListingController extends Controller
     {
         $categories = JobCategory::findOrFail($id);
 
-        $jobs = Job::where('job_category_id', $id)->get();
+        $jobs = Job::where('job_category_id', $id)
+               ->where('status', 'Active') // Filter hanya yang statusnya 'Active'
+               ->get();
+
+        // $jobs = Job::where('job_category_id', $id)->get();
         $jobCategoryId = Request()->input("job_category_id");
         $job_category = JobCategory::all();
         $job_time = JobTimeType::all();
@@ -95,8 +101,8 @@ class JobListingController extends Controller
         $job_category = JobCategory::all();
         $job_time = JobTimeType::all();
 
-        // Query dasar untuk job
-        $query = Job::query();
+         $query = Job::query()
+                ->where('status', 'Active'); // Filter hanya yang statusnya 'Active'
 
         // Filter berdasarkan kategori pekerjaan
         if ($request->filled('job_category_id')) {

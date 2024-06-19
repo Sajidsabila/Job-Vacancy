@@ -55,11 +55,11 @@
         </div>
 
         <!-- Navbar -->
-        @include ('adminTemplate.layouts.navbar');
+        @include ('adminTemplate.layouts.navbar')
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        @include ('adminTemplate.layouts.sidebar');
+        @include ('adminTemplate.layouts.sidebar')
         <!-- close sidebar -->
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
