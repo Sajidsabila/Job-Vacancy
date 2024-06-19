@@ -53,7 +53,7 @@ class SocialiteController extends Controller
             Auth::login($newUser);
             session()->regenerate();
 
-            return $this->redirectToDashboard($userFromDatabase->role);
+            return $this->redirectToDashboard('User');
         }
 
         // Jika user sudah ada, langsung login

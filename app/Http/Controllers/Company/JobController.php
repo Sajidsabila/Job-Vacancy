@@ -191,7 +191,7 @@ class JobController extends Controller
         $configuration = Configuration::first();
 
         // Periksa apakah job_id sudah ada di tabel orders
-        $order = Order::where('job_id', $id)->first();
+        $order = Order::with('job')->where('job_id', $id)->first();
 
         if ($order) {
             // Jika sudah ada, generate snapToken dan arahkan ke halaman index
@@ -206,7 +206,7 @@ class JobController extends Controller
                     'gross_amount' => $order->price,
                 ],
                 'customer_details' => [
-                    'name' => $job->company->name,
+                    'name' => $job->company->company_name,
                 ],
             ];
 
