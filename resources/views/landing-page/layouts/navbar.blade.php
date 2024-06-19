@@ -26,7 +26,7 @@
                                         <li class="{{ request()->is('about') ? 'active' : '' }}">
                                             <a href="{{ url('/about') }}">About</a>
                                         </li>
-                                        <li class="submenu {{ request()->is('blog*') ? 'active' : '' }}">
+                                        {{-- <li class="submenu {{ request()->is('blog*') ? 'active' : '' }}">
                                             <a href="#">Page</a>
                                             <ul class="submenu">
                                                 <li><a href="{{ url('/blog') }}">Blog</a></li>
@@ -34,7 +34,7 @@
                                                 <li><a href="{{ url('/elements') }}">Elements</a></li>
                                                 <li><a href="{{ url('/job_details') }}">Job Details</a></li>
                                             </ul>
-                                        </li>
+                                        </li> --}}
                                         <li class="{{ request()->is('contact') ? 'active' : '' }}">
                                             <a href="{{ url('/contact') }}">Contact</a>
                                         </li>
