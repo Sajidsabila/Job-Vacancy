@@ -15,34 +15,47 @@ class JobHistoryController extends Controller
     {
         $user = Auth::user();
         $configurations = Configuration::first();
-        $query = JobHistory::with(['jobseeker', 'job'])->where('job_seeker_id', $user->id);
-        $statuses = JobHistory::select('status')->distinct()->get();
 
+        $query = JobHistory::with(['jobseeker', 'job'])
+            ->where('job_seeker_id', $user->id);
+
+        // Menghitung jumlah total riwayat pekerjaan
         $historycount = $query->count();
-        $countviewed = $query->where('status', 'Lamaran Dilihat')->count();
-        $countreject = $query->where('status', 'Lamaran Ditolak')->count();
-        $countinterview = $query->where('status', 'Proses Interview')->count();
-        $countaccept = $query->where('status', 'Lamaran Diterima')->count();
+
+        // Menghitung jumlah riwayat pekerjaan berdasarkan status
+        $countviewed = $query;
+        $countreject = $query;
+        $countinterview = $query;
+        $countaccept = $query;
+
+        // Mengambil daftar status unik untuk filter
+        $statuses = JobHistory::select('status')->distinct()->get();
+        $jobhistories = $query->paginate(5);
+
+        // Menerapkan filter status jika ada
         $filterstatus = $request->input('statusFilter');
         if ($filterstatus) {
             $query->where('status', $filterstatus);
         }
 
-        // Mendapatkan data job histories dengan pagination
+        // Mengambil data riwayat pekerjaan dengan pagination
         $jobhistories = $query->paginate(5);
-        $data = ([
+        // dd($query->get()[1]);
+        // Menyiapkan data untuk dikirimkan ke view
+        $data = [
             "title" => "Data History Lamaran",
             "jobhistories" => $jobhistories,
             "configurations" => $configurations,
             "historycount" => $historycount,
-            'countviewed' => $countviewed,
-            'countreject' => $countreject,
-            'countinterview' => $countinterview,
-            'countaccept' => $countaccept,
+            'countviewed' => $countviewed->where('status', 'Lamaran Dilihat')->count(),
+            'countreject' => $countreject->where('status', 'Lamaran Ditolak')->count(),
+            'countinterview' => $countinterview->where('status', 'Proses Interview')->count(),
+            'countaccept' => $countaccept->where('status', 'Lamaran Diterima')->count(),
             "selectedStatus" => $filterstatus,
             "statuses" => $statuses,
-        ]);
+        ];
 
         return view("job-seekers.job-history", $data);
     }
+
 }

@@ -1,6 +1,6 @@
 @extends ('adminTemplate.layouts.main')
 @section('container')
-{{-- <!-- Small boxes (Stat box) -->
+    {{-- <!-- Small boxes (Stat box) -->
 <div class="row justify-content-center">
     <div class="col-lg-3 col-6">
         <!-- small box -->
@@ -81,7 +81,8 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label for="name">Nama Perusahaan</label>
-                            <input type="text" id="email" name="email" value="{{ $company->company_name }}" class="form-control @error('email') is-invalid @enderror" readonly>
+                            <input type="text" id="email" name="email" value="{{ $company->company_name }}"
+                                class="form-control @error('email') is-invalid @enderror" readonly>
                         </div>
                     </div>
 
@@ -95,30 +96,34 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label for="name">Email Perusahaan</label>
-                            <input type="email" id="email" name="email" value="{{ $company->email }}" class="form-control @error('email') is-invalid @enderror" readonly>
+                            <input type="email" id="email" name="email" value="{{ $company->email }}"
+                                class="form-control @error('email') is-invalid @enderror" readonly>
                         </div>
                     </div>
 
                     <div class="col-12">
                         <div class="form-group">
                             <label for="name">Nomor Telepon Perusahaan</label>
-                            <input type="text" id="email" name="email" value="{{ $company->phone }}" class="form-control @error('email') is-invalid @enderror" readonly>
+                            <input type="text" id="email" name="email" value="{{ $company->phone }}"
+                                class="form-control @error('email') is-invalid @enderror" readonly>
                         </div>
                     </div>
 
                     <div class="col-12">
                         <div class="form-group">
                             <label for="name">Alamat Perusahaan</label>
-                            <input type="text" id="email" name="email" value="{{ $company->addres }}" class="form-control @error('email') is-invalid @enderror" readonly>
+                            <input type="text" id="email" name="email" value="{{ $company->addres }}"
+                                class="form-control @error('email') is-invalid @enderror" readonly>
+
                         </div>
                     </div>
 
                     <div class="col-12">
-                        <a href="{{ URL::to('/companie/company-profile/' . $company->id . '/edit') }}" class="btn btn-warning btn-md mt-2">Edit</a>
+                        <a href="{{ URL::to('/companie/company-profile/' . $company->id . '/edit') }}"
+                            class="btn btn-warning btn-md mt-2">Edit</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-   
 @endsection

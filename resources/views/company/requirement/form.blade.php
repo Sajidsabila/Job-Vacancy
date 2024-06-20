@@ -1,7 +1,7 @@
 @extends('adminTemplate.layouts.main')
 @section('container')
     @if (isset($requirement))
-        <form method="POST" action="{{ URL::to('companie/requirement' . $requirement->id) }}" autocomplete="off">
+        <form method="POST" action="{{ URL::to('companie/requirement/' . $requirement->id) }}" autocomplete="off">
             @method('put')
         @else
             <form method="POST" action="{{ URL::to('companie/requirement') }}" autocomplete="off">
