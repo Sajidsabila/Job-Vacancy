@@ -17,8 +17,15 @@ class CompanyProfilController extends Controller
     {
         $user = Auth::user();
         $company = Company::where('id', $user->id)->first();
-        $job= Job::with('company')->where('company_id', $user->id)->count();
-        $job_histories= JobHistory::with('company')->where('id', $user->id)->count();
+        $job = Job::with('company')->where('company_id', $user->id)->count();
+        // $job_histories = JobHistory::whereHas('job', function ($query) use ($user) {
+        //     $query->where('company_id', $user->id);
+        // })->count();
+
+        $job_histories = JobHistory::join('jobs', 'job_histories.job_id', 'jobs.id')
+            ->where('company_id', $user->id)
+            ->count();
+        // dd($job_histories);
         $data = ([
             "title" => "Profile Perusahaan",
             "company" => $company,
