@@ -266,7 +266,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
-                    <div class="hero-cap text-center" data-aos="fade-down" data-aos-duration="1000">
+                    <div class="hero-cap text-center mb-4" data-aos="fade-down" data-aos-duration="1000">
                         <h2>About us</h2>
                     </div>
                 </div>
@@ -290,10 +290,9 @@
                                 <h2>24k Talented people are getting Jobs</h2>
                             </div>
                             <div class="support-caption">
-                                <p class="pera-top">At Job Vacancy, we believe in connecting talented individuals with
-                                    opportunities that can transform their lives and careers. Our platform serves as a
-                                    bridge between job seekers and employers, making the job search process efficient,
-                                    transparent, and rewarding.</p>
+                                <p class="pera-top">
+                                    {!! $configuration->description !!}
+                                </p>
                                 <a href="{{ URL::to('/listing-job') }}" class="btn post-btn">Find job</a>
                             </div>
                         </div>
