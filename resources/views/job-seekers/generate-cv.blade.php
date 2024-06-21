@@ -146,7 +146,7 @@
                 <img src="{{ public_path('storage/' . $jobseeker->photo) }}" alt="{{ $jobseeker->first_name }}">
             </div>
             <h1>{{ $jobseeker->first_name . ' ' . $jobseeker->last_name }}</h1>
-            <h3>Full-Stack Web Developer</h3>
+
         </div>
 
         <div class="main">

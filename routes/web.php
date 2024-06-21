@@ -99,10 +99,8 @@ Route::prefix('/')->group(function () {
     Route::post('/send-letter', [JobDetailsController::class, 'store']);
     Route::resource("/profile", ProfileController::class);
     Route::get('/about', [AboutController::class, 'index']);
-
     Route::get('landing-page/layouts/footer', [ConfigurationController::class, 'footer'])->name('landing-page.layouts.footer');
     Route::resource('/landing-page/layouts/footer', ConfigurationController::class);
-
     Route::resource("/work-experince", WorkExperienceController::class);
     Route::resource("/education-user", EducationController::class);
     Route::post("/profil/skills/create", [ProfileController::class, 'storeskill']);
@@ -118,7 +116,8 @@ Route::prefix('/')->group(function () {
     Route::get('/contact', [JobSeekerContactController::class, 'index'])->name('job-seekers.contact');
     Route::post('/contact', [JobSeekerContactController::class, 'store'])->name('job-seekers.contact.store');
     Route::get("/job-seekers/list-job", [LandingPageController::class, "listjob"]);
-    Route::get('listing-job', [JobListingController::class, 'filteredjob']);
+    Route::get('/listing-job', [JobListingController::class, 'filteredjob']);
+    Route::get('/generate-cv', [ProfileController::class, 'generateCV']);
 })->middleware('guest');
 
 

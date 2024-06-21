@@ -25,38 +25,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-sm-6 mb-3">
-                                <div class="text-center job-history-card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Lamaran Dilihat</h5>
-                                        <p class="card-text display-4">{{ $countviewed }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6 mb-3">
-                                <div class="text-center job-history-card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Lamaran Ditolak</h5>
-                                        <p class="card-text display-4">{{ $countreject }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6 mb-3">
-                                <div class="text-center job-history-card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Proses Interview</h5>
-                                        <p class="card-text display-4">{{ $countinterview }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6 mb-3">
-                                <div class="text-center job-history-card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Lamaran Diterima</h5>
-                                        <p class="card-text display-4">{{ $countaccept }}</p>
-                                    </div>
-                                </div>
-                            </div>
+
+
+
+
                         </div>
                         <div class="col-12">
                             <form action="" method="GET" class="d-flex align-items-center">

@@ -21,7 +21,7 @@
                     <td>{{ $job->title }}</td>
                     <td>{{ number_format($job->salary) }}</td>
                     <td>
-                        @if ($job->status == 'Unactive')
+                        @if ($job->status == 'Unactive' || $job->status == 'Nonactive')
                             <span class="badge badge-danger">{{ $job->status }}</span>
                         @else
                             <span class="badge badge-success">{{ $job->status }}</span>

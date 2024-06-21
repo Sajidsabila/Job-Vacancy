@@ -294,7 +294,7 @@
                                     opportunities that can transform their lives and careers. Our platform serves as a
                                     bridge between job seekers and employers, making the job search process efficient,
                                     transparent, and rewarding.</p>
-                                <a href="about.html" class="btn post-btn">Post a job</a>
+                                <a href="{{ URL::to('/listing-job') }}" class="btn post-btn">Find job</a>
                             </div>
                         </div>
                     </div>

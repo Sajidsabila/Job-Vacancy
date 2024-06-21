@@ -8,6 +8,7 @@ function DateFormat($date, $format = "D-M-Y H:m:s")
 {
     return \Carbon\Carbon::parse($date)->isoFormat($format);
 }
+
 function formatIndonesianDate($date)
 {
     if (is_null($date)) {

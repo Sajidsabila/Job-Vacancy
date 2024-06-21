@@ -21,7 +21,7 @@
                                             <a href="{{ url('/') }}">Home</a>
                                         </li>
                                         <li class="{{ request()->is('listing-job') ? 'active' : '' }}">
-                                            <a href="{{ url('/listing-job') }}">Find a Jobs</a>
+                                            <a href="{{ url('/listing-job') }}">Find a Job</a>
                                         </li>
                                         <li class="{{ request()->is('about') ? 'active' : '' }}">
                                             <a href="{{ url('/about') }}">About</a>

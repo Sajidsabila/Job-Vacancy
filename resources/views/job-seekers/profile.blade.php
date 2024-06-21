@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="font-weight-bold">Tanggal Lahir</label>
-                                    <div class="">{{ DateFormat($jobseeker->birth_date) }}</div>
+                                    <div class="">{{ formatIndonesianDate($jobseeker->birth_date) }}</div>
                                 </div>
                                 <div class="form-group">
                                     <label class="font-weight-bold">Nik</label>
@@ -83,9 +83,9 @@
                             <div class="card-header bg-primary text-white">Kemampuan</div>
 
                             <div class="form-group ml-3">
+                                @foreach ($skills as $skill)
+                                    <ul class="list-group  m-3">
 
-                                <ul class="list-group  m-3">
-                                    @foreach ($skills as $skill)
                                         <li class="list-group-item">{{ $skill->skill }}
                                             <div class="col-12 d-flex mt-3">
                                                 <a href="{{ URL::to('/profile/skills/edit/' . $skill->id) }}"
@@ -101,9 +101,10 @@
                                                 </form>
                                             </div>
                                         </li>
-                                    @endforeach
 
-                                </ul>
+
+                                    </ul>
+                                @endforeach
                                 <a href="{{ URL::to('/profile/create') }}" class="btn-add m-4">+ Tambahkan</a>
                             </div>
                         </div>
