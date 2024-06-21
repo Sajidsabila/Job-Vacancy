@@ -28,18 +28,11 @@
                             <!-- Section Tittle -->
                             <div class="section-tittle section-tittle2">
                                 <span>What we are doing</span>
-                                <h2>Welcome to Job Vacancy</h2>
+                                <h2>{{ $welcome }}</h2>
                             </div>
                             <div class="support-caption">
-                                <p class="pera-top">At Job Vacancy, we believe in connecting talented individuals with
-                                    opportunities that can transform their lives and careers. Our platform serves as a
-                                    bridge between job seekers and employers, making the job search process efficient,
-                                    transparent, and rewarding.</p>
-                                <p>Our mission is to empower job seekers by providing them with the tools and resources
-                                    they
-                                    need to find meaningful employment. We aim to support employers in their quest to
-                                    find
-                                    the right talent, fostering an environment where both parties can thrive.</p>
+                                <p class="pera-top">{!! $configuration->description !!}</p>
+                                <p></p>
                                 <a href="{{ URL::to('/job-listing') }}" class="btn post-btn" data-aos="zoom-in"
                                     data-aos-duration="1000">Find a job</a>
                             </div>

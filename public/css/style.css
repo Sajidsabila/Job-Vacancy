@@ -7584,15 +7584,20 @@ form.search-box .search-form a {
     transition: transform 0.2s; /* Animasi saat hover */
 }
 
-.job-history-card:hover {
-    transform: scale(1.05); /* Membesarkan kartu saat hover */
-}
+    .job-history-card:hover {
+        transform: scale(1.05); /* Membesarkan kartu saat hover */
+    }
 
-.select-wrapper {
-    overflow-y: hidden;
-  }
-  
-  .select-wrapper:focus-within {
-    overflow-y: auto;
-    height: 200px; /* adjust the height to your liking */
-  }
+    .select-wrapper {
+        overflow-y: hidden;
+    }
+    
+    .select-wrapper:focus-within {
+        overflow-y: auto;
+        height: 200px; /* adjust the height to your liking */
+    }
+
+  .scrollable-dropdown {
+        height: 100px;
+        overflow-y: auto;
+    }

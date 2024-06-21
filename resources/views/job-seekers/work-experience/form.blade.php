@@ -54,7 +54,7 @@
                                             <br>
                                             <select name="start_month" id="start_month"
                                                 class="form-control @error('start_month')is-invalid @enderror w-100 mb-2"
-                                                required>
+                                                required style="height: 200px; overflow-y: scroll;">
                                                 <option value="Januari"
                                                     {{ isset($workexperience) ? ($workexperience->start_month == 'Januari' ? 'selected' : '') : '' }}>
                                                     January</option>
