@@ -16,6 +16,7 @@ class AboutController extends Controller
         
         $data = [
             "title" => "About Us",
+            "welcome" => "Welcome to Job Vacancy"
         ];
         return view('job-seekers.about', $data);
 

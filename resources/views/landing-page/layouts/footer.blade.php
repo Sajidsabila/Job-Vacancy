@@ -10,7 +10,16 @@
                               <div class="footer-tittle">
                                   <h4>About Us</h4>
                                   <div class="footer-pera">
-                                      <p>{{ strip_tags($configuration->description) }}</p>
+                                      @php
+                                          // Memecah teks berdasarkan tanda titik
+                                          $sentences = preg_split(
+                                              '/(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s/',
+                                              strip_tags($configuration->description),
+                                          );
+                                          // Mengambil kalimat pertama
+                                          $firstSentence = $sentences[0] ?? '';
+                                      @endphp
+                                      <p>{{ $firstSentence }}</p>
                                   </div>
                               </div>
                           </div>
