@@ -72,55 +72,59 @@
     <hr>
     <div class="container mt-3">
         <div class="row">
-            <div class="col-12 col-md-6 mb-3">
-                <img src="{{ URL::to('storage/' . $company->logo) }}" alt="{{ $company->company_name }}" class="img-fluid">
-            </div>
+            <div class="card">
+                <div class="card-header">Profile Company</div>
+                <div class="col-12 col-md-6 mb-3">
+                    <img src="{{ URL::to('storage/' . $company->logo) }}" alt="{{ $company->company_name }}"
+                        class="img-fluid">
+                </div>
 
-            <div class="col-12 col-md-6">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="name">Nama Perusahaan</label>
-                            <input type="text" id="email" name="email" value="{{ $company->company_name }}"
-                                class="form-control @error('email') is-invalid @enderror" readonly>
+                <div class="col-12 col-md-6">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="name">Nama Perusahaan</label>
+                                <input type="text" id="email" name="email" value="{{ $company->company_name }}"
+                                    class="form-control @error('email') is-invalid @enderror" readonly>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="name">Deskripsi Perusahaan</label>
-                            {!! $company->deskripsi !!}
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="name">Deskripsi Perusahaan</label>
+                                {!! $company->deskripsi !!}
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="name">Email Perusahaan</label>
-                            <input type="email" id="email" name="email" value="{{ $company->email }}"
-                                class="form-control @error('email') is-invalid @enderror" readonly>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="name">Email Perusahaan</label>
+                                <input type="email" id="email" name="email" value="{{ $company->email }}"
+                                    class="form-control @error('email') is-invalid @enderror" readonly>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="name">Nomor Telepon Perusahaan</label>
-                            <input type="text" id="email" name="email" value="{{ $company->phone }}"
-                                class="form-control @error('email') is-invalid @enderror" readonly>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="name">Nomor Telepon Perusahaan</label>
+                                <input type="text" id="email" name="email" value="{{ $company->phone }}"
+                                    class="form-control @error('email') is-invalid @enderror" readonly>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="name">Alamat Perusahaan</label>
-                            <input type="text" id="email" name="email" value="{{ $company->addres }}"
-                                class="form-control @error('email') is-invalid @enderror" readonly>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="name">Alamat Perusahaan</label>
+                                <input type="text" id="email" name="email" value="{{ $company->addres }}"
+                                    class="form-control @error('email') is-invalid @enderror" readonly>
 
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-12">
-                        <a href="{{ URL::to('/companie/company-profile/' . $company->id . '/edit') }}"
-                            class="btn btn-warning btn-md mt-2">Edit</a>
+                        <div class="col-12">
+                            <a href="{{ URL::to('/companie/company-profile/' . $company->id . '/edit') }}"
+                                class="btn btn-warning btn-md mt-2">Edit</a>
+                        </div>
                     </div>
                 </div>
             </div>
