@@ -4,16 +4,22 @@ namespace App\Http\Controllers\Company;
 
 use App\Models\Job;
 use App\Models\Company;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\JobHistory;
+use Illuminate\Http\Request;
+use App\Charts\JobHistoryChart;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
+use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class CompanyProfilController extends Controller
 {
-    public function index()
+    public function __construct(JobHistoryChart $jobhistory)
+    {
+        $this->jobHistoryChart = $jobhistory;
+    }
+    public function index(JobHistoryChart $jobhistory)
     {
         $jobCount = Job::count();
         $jobHistoryCount = JobHistory::count();
@@ -30,7 +36,8 @@ class CompanyProfilController extends Controller
             'jobCount' => $jobCount,
             'jobHistoryCount' => $jobHistoryCount,
             'job' => $job,
-            'job_histories' => $job_histories
+            'job_histories' => $job_histories,
+            'jobhistory' => $jobhistory->build(),
         ]);
         //dd($company);
         if (!$company) {
