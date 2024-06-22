@@ -8,6 +8,8 @@
     <title>Job Vacancy | Register Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
 </head>
 
 <body>
@@ -35,8 +37,8 @@
                                 <a href="{{ URL::to('/register/companies') }}"
                                     class="btn btn-outline-primary nav-link active">Perusahaan</a>
                             </nav>
-                            <form method="POST" action="{{ URL::to('/register/proses') }}" class="needs-validation"
-                                novalidate="" autocomplete="off">
+                            <form method="POST" id="loginForm" action="{{ URL::to('/register/proses') }}"
+                                class="needs-validation" novalidate="" autocomplete="off">
                                 @csrf
                                 <div class="mb-3">
                                     <label class="mb-2 text-muted" for="email">E-Mail Address</label>
@@ -99,7 +101,22 @@
             </div>
         </div>
     </section>
-
+    <script>
+        $(document).ready(function() {
+            $('#loginForm').on('submit', function(e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Loading...',
+                    html: 'Please wait while we process your request',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading()
+                    }
+                });
+                this.submit();
+            });
+        });
+    </script>
 </body>
 
 </html>
