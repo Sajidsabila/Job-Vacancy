@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\JobSeeker;
 
-use App\Models\Benefit;
 use App\Models\Job;
+use App\Models\Benefit;
 use App\Models\Company;
 use App\Models\JobSeeker;
 use App\Models\JobHistory;
@@ -11,11 +11,13 @@ use App\Models\JobCategory;
 use App\Models\JobTimeType;
 use App\Models\Requirement;
 use Illuminate\Http\Request;
+use App\Models\Configuration;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Mail\NotificationIncomingApplication;
 use App\Http\Controllers\company\CompanyProfilController;
-use App\Models\Configuration;
 
 class JobDetailsController extends Controller
 {
@@ -79,6 +81,9 @@ class JobDetailsController extends Controller
                     'job_id' => $request->job_id,
                     'job_seeker_id' => auth()->user()->id
                 ]);
+                // $job = Job::find($request->job_id);
+                // $companyEmail = $job->company->email; // Pastikan relasi dengan perusahaan terdefinisi di model Job
+                // Mail::to($companyEmail)->send(new NotificationIncomingApplication($job, $user));
                 Alert::success("Berhasil", "Lamaran Berhasil Dikirim. Silahkan Dicheck di Riwayat Lamaran");
                 return back();
             } catch (\Throwable $th) {
