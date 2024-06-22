@@ -178,6 +178,8 @@ Route::group([
     Route::get('/order/{id}', [RestoreOrder::class, 'restore']);
     Route::get('/generate-cv/{id}', [RestoreOrder::class, 'generateCV']);
     Route::get('/trash-order', [RestoreOrder::class, 'index'])->name('trashorder');
+    Route::get('/list-perusahaan/accept/{id}', [CompanyController::class, 'accept']);
+    Route::get('/list-perusahaan/reject/{id}', [CompanyController::class, 'reject']);
 });
 
 
@@ -187,6 +189,7 @@ Route::group([
     'as' => 'companie.'
 ], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/send-submission', [DashboardController::class, 'sendSubmission']);
     Route::resource('/company-profile', CompanyProfilController::class);
     Route::get('/lowongan-kerja/detail_candidate/{id}', [JobController::class, 'showJobSeeker'])->name('lowongan-kerja.detail_candidate');
     Route::resource('/requirement', CompanyRequirementController::class);

@@ -73,6 +73,12 @@ class JobController extends Controller
         if (!$company) {
             Alert::warning("Maaf", "Untuk Input Lowongan Kerja, Masukkan Data Perusahaan Terlebih Dahulu");
             return back();
+        } else if ($company->status == 'Submission') {
+            Alert::warning("Maaf", "Perusahaan anda masih proses Pengajuan");
+            return back();
+        } else if ($company->status == 'Reject') {
+            Alert::warning("Maaf", "Maaf Proses Pengajuan Perusahaan Anda Ditolak");
+            return back();
         }
         return view("company.job.form", $data);
     }

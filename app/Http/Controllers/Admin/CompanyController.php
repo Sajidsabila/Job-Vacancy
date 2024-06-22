@@ -6,6 +6,12 @@ use App\Models\Job;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CompanyRejectNotification;
+use Illuminate\Support\Facades\Redirect;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Mail\CompanyAcceptanceNotification;
+
 
 class CompanyController extends Controller
 {
@@ -80,5 +86,43 @@ class CompanyController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function accept($id)
+    {
+        try {
+            $company = Company::findOrFail($id);
+            $company->status = "Accept";
+            $company->save();
+
+            Mail::to($company->email)->send(new CompanyAcceptanceNotification($company));
+
+            Alert::success("Berhasil", "Status Berhsil Di ubah dan email telah dikirim.");
+            return back();
+        } catch (\Throwable $th) {
+
+            Alert::error("Error", $th->getMessage());
+
+            return back();
+        }
+    }
+
+    public function Reject($id)
+    {
+        try {
+            $company = Company::findOrFail($id);
+            $company->status = "Reject";
+            $company->save();
+
+            Mail::to($company->email)->send(new CompanyRejectNotification($company));
+
+            Alert::success("Berhasil", "Status Berhsil Di ubah dan email telah dikirim.");
+            return back();
+        } catch (\Throwable $th) {
+
+            Alert::error("Error", $th->getMessage());
+
+            return back();
+        }
     }
 }

@@ -9,6 +9,8 @@
     <title>Login Page | Job Vacancy</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
 </head>
 
 <body>
@@ -47,8 +49,8 @@
                             @endif
                             <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
 
-                            <form method="POST" action="{{ URL::to('/auth') }}" class="needs-validation" novalidate=""
-                                autocomplete="off">
+                            <form id="loginForm" method="POST" action="{{ URL::to('/auth') }}" class="needs-validation"
+                                novalidate="" autocomplete="off">
                                 @csrf
                                 <div class="mb-3">
                                     <label class="mb-2 text-muted" for="email">E-Mail Address</label>
@@ -116,6 +118,22 @@
     </section>
 
     <script src="js/login.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#loginForm').on('submit', function(e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Loading...',
+                    html: 'Please wait while we process your request',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading()
+                    }
+                });
+                this.submit();
+            });
+        });
+    </script>
 </body>
 
 </html>

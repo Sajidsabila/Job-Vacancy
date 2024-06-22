@@ -15,25 +15,30 @@ class CompanyProfilController extends Controller
 {
     public function index()
     {
+        $jobCount = Job::count();
+        $jobHistoryCount = JobHistory::count();
         $user = Auth::user();
-        $company = Company::where('id', $user->id)->first();
         $job = Job::with('company')->where('company_id', $user->id)->count();
-        // $job_histories = JobHistory::whereHas('job', function ($query) use ($user) {
-        //     $query->where('company_id', $user->id);
-        // })->count();
-
+        // $job_histories= JobHistory::with('company')->where('id', $user->id)->count();
         $job_histories = JobHistory::join('jobs', 'job_histories.job_id', 'jobs.id')
             ->where('company_id', $user->id)
             ->count();
-        // dd($job_histories);
+        $company = Company::where('id', $user->id)->first();
         $data = ([
             "title" => "Profile Perusahaan",
             "company" => $company,
-            "job" => $job,
-            "job_histories" => $job_histories
+            'jobCount' => $jobCount,
+            'jobHistoryCount' => $jobHistoryCount,
+            'job' => $job,
+            'job_histories' => $job_histories
         ]);
+        //dd($company);
         if (!$company) {
             return view('company.profil-company.form');
+        } else if ($company->status == 'Submission') {
+            return view('company.profil-company.waiting-approval', $data);
+        } else if ($company->status == 'Reject') {
+            return view('company.profil-company.reject', $data);
         }
         return view('company.profil-company.index', $data);
     }
