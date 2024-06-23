@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\BenefitController;
+use App\Http\Controllers\Admin\JobSeekerController;
 use App\Models\User;
 use App\Models\JobHistory;
 use GuzzleHttp\Middleware;
@@ -134,6 +135,7 @@ Route::group([
     Route::resource('/configuration', ConfigurationController::class);
     Route::resource('/job-category', JobCategoryController::class);
     Route::resource('/religion', ReligionController::class);
+    Route::get('/job-seeker', [JobSeekerController::class, 'index'])->name('jobsekeer');
     Route::resource('/user', UserController::class);
     Route::resource('/order', OrderController::class);
     Route::resource('/list-perusahaan', CompanyController::class);
@@ -215,7 +217,7 @@ Route::group([
     Route::resource('/company/job', JobController::class);
     Route::get('/restore-lowongan-kerja/{id}', [TrashJobController::class, 'restore']);
     Route::delete('/delete-lowongan-kerja/{id}', [TrashJobController::class, 'destroy']);
-
+    Route::get('/download-receipt/{id}', [JobController::class, 'invoicepdf']);
     //Restore Benefit
     Route::get('/benefit/trash-benefit', [TrashJobController::class, 'index'])->name('trashbenefit');
     Route::resource('/company/benefit', JobController::class);

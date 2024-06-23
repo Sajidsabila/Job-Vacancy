@@ -62,6 +62,16 @@
                                     </p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+
+                                <a href="{{ URL::to('/admin/job-seeker') }}"
+                                    class="nav-link {{ Request::is('admin/job-seeker') ? ' active' : '' }}">
+                                    <i class="nav-icon fas fa-users"></i>
+                                    <p>
+                                        Job Seeker
+                                    </p>
+                                </a>
+                            </li>
 
                             <li class="nav-item">
 

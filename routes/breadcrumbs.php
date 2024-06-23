@@ -345,6 +345,11 @@ Breadcrumbs::for('admin.educationlevel', function (BreadcrumbTrail $trail) {
     $trail->push('Trash Education Level', route('admin.educationlevel'));
 });
 
+Breadcrumbs::for('admin.jobsekeer', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Data Job Seeker', route('admin.jobsekeer'));
+});
+
 // Admin Home > Trash Job Time Type
 Breadcrumbs::for('admin.jobtyme', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.dashboard');

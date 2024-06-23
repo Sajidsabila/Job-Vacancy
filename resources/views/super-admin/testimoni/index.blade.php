@@ -22,8 +22,9 @@
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $testimonial->jobSeeker->first_name ?? 'No Job Seeker' }}</td>
                                 <!-- Using null-safe operator and fallback text -->
-                                <td>{{ $testimonial->quote }}</td>
                                 <td>{{ $testimonial->job }}</td>
+                                <td>{{ $testimonial->quote }}</td>
+
                                 <td>
                                     <div class="d-flex">
                                         <form action="{{ URL::to('admin/testimonial/' . $testimonial->id) }}" method="post">

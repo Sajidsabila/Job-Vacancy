@@ -292,6 +292,13 @@ class JobController extends Controller
         $order = Order::findOrFail($id);
         return view("company.job.invoice", compact('order'));
     }
+    public function invoicepdf($id)
+    {
+        $order = Order::findOrFail($id);
+        $customPaper = array(0, 0, 720, 1440);
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('company.job.invoice-pdf', ['order' => $order])->setPaper($customPaper, 'portrait');
+        return $pdf->download('receipt' . '.pdf');
+    }
 
     public function showInvoice($id)
     {
