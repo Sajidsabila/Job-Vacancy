@@ -13,13 +13,13 @@ class ConfigurationController extends Controller
 {
     public function index()
     {
-        $configurations = Configuration::all();
+        $configuration = Configuration::first();
         $data = ([
             'title' => 'Data Perusahaan Website',
-            'configurations' => $configurations
+            'configuration' => $configuration
         ]);
 
-        if ($configurations->isEmpty()) {
+        if (!$configuration) {
             return view('super-admin.configuration.form', $data);
         } else {
             return view('super-admin.configuration.index', $data);

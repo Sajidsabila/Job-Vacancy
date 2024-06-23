@@ -63,7 +63,7 @@ class UserController extends Controller
 
         // Menggunakan sweet alert untuk memberi pesan bahwa data berhasil ditambahkan
         Alert::success('Sukses', 'Add data success.');
-        return redirect()->route('user.index');
+        return redirect()->route('super-admin.user.index');
     }
 
     /**
@@ -132,10 +132,10 @@ class UserController extends Controller
 
             $user->update($data);
             Alert::success('Sukses', 'Edit data success.');
-            return redirect('user.index');
+            return redirect('super-admin.user.index');
         } catch (\Throwable $th) {
             Alert::error('Error', $th->getMessage());
-            return redirect('user.index');
+            return redirect('super-admin.user.index');
 
         }
 
@@ -149,10 +149,10 @@ class UserController extends Controller
             $user = User::find($id);
             $user->delete();
             Alert::success('Sukses', 'Delete data success.');
-            return redirect('user.index');
+            return redirect('super-admin.user.index');
         } catch (\Throwable $th) {
             Alert::error('Error', $th->getMessage());
-            return redirect('user.index');
+            return redirect('super-admin.user.index');
 
         }
     }

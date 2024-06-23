@@ -37,7 +37,7 @@ class JobSeekerContactController extends Controller
         Contact::create($data);
 
         // Redirect kembali ke halaman kontak dengan pesan sukses
-        return redirect()->route('job-seekers.contact')->with('success', 'Message sent successfully!');
+        return back()->with('success', 'Data Saved Successfully.');
     }
 
     public function destroy(string $id)
