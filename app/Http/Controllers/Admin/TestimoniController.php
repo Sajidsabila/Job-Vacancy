@@ -22,11 +22,14 @@ class TestimoniController extends Controller
         $user = Auth::user();
         $jobseeker = JobSeeker::with('user')->where('id', $user->id)->first();
         $testimoni = Testimonial::orderby('id')->get();
+        $testimonials = Testimonial::with('jobSeeker')->get();
         $data = [
             "title" => "Data Testimoni",
             "testimoni" => $testimoni,
             "user" => $user,
-            "jobseeker" => $jobseeker
+            "jobseeker" => $jobseeker,
+            'testimonials' => $testimonials,
+
         ];
 
         return view('super-admin.testimoni.index', $data);

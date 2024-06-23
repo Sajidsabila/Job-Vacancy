@@ -17,7 +17,7 @@ class OrderController extends Controller
     public function index()
     {
         // select * from orders where role='order' order by name
-        $orders = Order::orderby('id')->get();
+        $orders = Order::with(['job', 'package'])->get();
         $data = [
             "title" => "Data Orders",
             "orders" => $orders,
