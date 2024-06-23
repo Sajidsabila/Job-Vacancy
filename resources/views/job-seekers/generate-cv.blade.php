@@ -3,61 +3,93 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Resume Website</title>
+    <title>Curriculum Vitae</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        body {
-            background: #fff;
-        }
-
-        .container {
-            background: #f5f5f5;
-            max-width: 800px;
-            margin: 60px auto;
+         .cv-container {
+            width: auto;
+            /* A4 width */
+            height: auto;
+            /* A4 height */
+            margin: 0 auto;
+            margin-bottom: 20px;
             padding: 20px;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .header {
             text-align: center;
-            margin-bottom: 20px;
+            /* margin-bottom: 20px; */
+            background-color: #337ab7;
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px;
         }
 
-        .header h1 {
-            margin-bottom: 10px;
-        }
-
-        .header h3 {
-            text-transform: uppercase;
-            font-size: 15px;
-            font-weight: 500;
-        }
-
-        .img-area {
+        .photo {
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            overflow: hidden;
-            margin: 25px auto;
-            border: 5px groove deepskyblue;
+               border: 3px solid #fff;
+               margin-bottom: 5px;
         }
 
-        .img-area img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .contact-info {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #ffffff;
+            flex: 1;
+            padding: 0 0 30px 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .contact-info p {
+            margin-left: 5px;
+            line-height: 2;
+            color: black;
+
+        }
+
+        .social-links {
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            margin-right: 10px;
+            color: #fff;
+        }
+
+        .social-links a:hover {
+            color: #ccc;
+        }
+
+        .section {
+            margin-bottom: 20px;
+            padding: 0 10px 0 10px;
+            background-color: #f7f7f7;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+
+        h1 {
+            font-weight: bold;
+            margin-top: 0;
+            color: #ffffff;
+            font-size: 20px;
         }
 
         h2 {
-            background: #00b6c4;
+
+            font-weight: bold;
+            background-color: #337ab7;
             padding: 15px;
             color: #fff;
             margin: 30px 0 10px 0;
@@ -65,144 +97,119 @@
             border-radius: 0 50px 50px 0;
         }
 
-        .main {
-            display: flex;
-            flex-wrap: wrap;
+        h2 span.badge {
+            margin-right: 10px;
         }
 
-        .left {
-            flex: 1;
-            padding: 30px;
+        .badge {
+
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
         }
 
-        .left p {
-            line-height: 2;
+        ul {
+            list-style: disc;
+            padding: 0;
+            margin: 0;
         }
 
-        .left ul li {
-            line-height: 2;
-            margin: 10px 0;
+        li {
+            margin-left: 15px;
         }
 
-        .right {
-            flex: 1;
-            padding: 30px;
-        }
-
-        .right h3 {
-            margin-bottom: 5px;
-        }
-
-        .right p {
-            line-height: 2;
-        }
-
-        .right ul li {
-            line-height: 2;
-            margin: 10px 0;
-        }
-
-        @media only screen and (min-width: 768px) and (max-width: 991px) {
-            .container {
-                width: 95%;
-                height: auto;
-            }
-
-            h2 {
-                font-size: 18px;
-            }
-        }
-
-        @media screen and (max-width: 600px) {
-            .main {
-                flex-direction: column;
-            }
-
-            .left,
-            .right {
-                flex: none;
-                width: 100%;
-            }
-
-            .container {
-                width: 95%;
-                height: auto;
-            }
-
-            h2 {
-                font-size: 15px;
-            }
+        p {
+            margin-bottom: 10px;
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <center>
-            <h1>Daftar Riwayat Hidup</h1>
-        </center>
+    <div class="cv-container">
         <div class="header">
-            <div class="img-area">
-                <img src="{{ public_path('storage/' . $jobseeker->photo) }}" alt="{{ $jobseeker->first_name }}">
-            </div>
-            <h1>{{ $jobseeker->first_name . ' ' . $jobseeker->last_name }}</h1>
-
-        </div>
-
-        <div class="main">
-            <div class="left">
-                <h2>Data Pribadi</h2>
-                <p><strong>Nama:</strong> {{ $jobseeker->first_name . ' ' . $jobseeker->last_name }}</p>
-                <p><strong>Tanggal Lahir:</strong> {{ $jobseeker->birth_date }}</p>
-                <p><strong>Phone:</strong> {{ $jobseeker->phone }}</p>
-                <p><strong>Alamat:</strong> {{ $jobseeker->address }}</p>
-                <p><strong>Agama:</strong> {{ $jobseeker->religion->religion }}</p>
-
-                <h2>Skills</h2>
-                <ul>
-                    @foreach ($skills as $skill)
-                        <li>{{ $skill->skill }}</li>
-                    @endforeach
-                </ul>
-
-                <h2>Riwayat Pendidikan</h2>
-                <ul>
-                    @foreach ($educations as $edu)
-                        <li>
-                            <h3>{{ $edu->educationlevel->level }} - {{ $edu->school }}, {{ $edu->start_month }}
-                                {{ $edu->start_year }} S/D
-                                @if ($edu->ongoing)
-                                    Sampai saat ini
-                                @else
-                                    {{ $edu->end_month && $edu->end_year ? $edu->end_month . ' ' . $edu->end_year : 'N/A' }}
-                                @endif
-                            </h3>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-
-            <div class="right">
-                <h2>Work Experience</h2>
-                <ul>
-                    @foreach ($workexperiences as $workexperience)
-                        <li>
-                            <h3>{{ $workexperience->company_name }}</h3>
-                            <p><strong>Position:</strong> {{ $workexperience->position }}</p>
-                            <p><strong>Duration:</strong> {{ $workexperience->start_month }}
-                                {{ $workexperience->start_year }} S/D
-                                @if ($workexperience->ongoing)
-                                    Sampai saat ini
-                                @else
-                                    {{ $workexperience->end_month && $workexperience->end_year ? $workexperience->end_month . ' ' . $workexperience->end_year : 'N/A' }}
-                                @endif
-                            </p>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
+            <img src="{{ public_path('storage/' . $jobseeker->photo) }}" alt="{{ $jobseeker->first_name }}"
+                class="photo">
+            <h1 class="name">{{ $jobseeker->first_name . ' ' . $jobseeker->last_name }}</h1>
+            <p>{{ $jobseeker->description }}</p>
         </div>
     </div>
+    
+    <div class="section">
+        <h2><span class="badge">Contact Info</span></h2>
+        <div class="contact-info">
+            <p><strong>Nama:</strong> {{ $jobseeker->first_name . ' ' . $jobseeker->last_name }}</p>
+            <p><strong>Tanggal Lahir:</strong> {{ $jobseeker->birth_date }}</p>
+            <p><strong>Phone:</strong> {{ $jobseeker->phone }}</p>
+            <p><strong>Alamat:</strong> {{ $jobseeker->address }}</p>
+            <p><strong>Email:</strong> <href="mailto:{{ $user->email }}">{{ $user->email }}</p>
+
+        </div>
+        {{-- <div class="social-links">
+                <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+            </div> --}}
+    </div>
+    </div>
+
+    {{-- <div class="section">
+            <h2><span class="badge">Summary</span></h2>
+            <ul>
+            {{ $jobseeker->description }}</ul>
+        </div> --}}
+    <div class="section">
+        <h2><span class="badge">Education</span></h2>
+        <ul>
+            @foreach ($educations as $edu)
+                <li>
+                    <p>{{ $edu->educationlevel->level }} - {{ $edu->school }}, {{ $edu->start_month }}
+                        {{ $edu->start_year }} S/D
+                        @if ($edu->ongoing)
+                            Sampai saat ini
+                        @else
+                            {{ $edu->end_month && $edu->end_year ? $edu->end_month . ' ' . $edu->end_year : 'N/A' }}
+                        @endif
+                    </p>
+                </li>
+                {{-- <li>
+                    <p>Master of Science in Software Engineering, ABC University (2020-2022)</p>
+                </li> --}}
+            @endforeach
+        </ul>
+    </div>
+    <div class="section">
+        <h2><span class="badge">Work Experience</span></h2>
+        <ul>
+            @foreach ($workexperiences as $workexperience)
+                <li>
+                    <p>{{ $workexperience->company_name }} , ( {{ $workexperience->start_month }}
+                        {{ $workexperience->start_year }} S/D
+                        @if ($workexperience->ongoing)
+                            Sampai saat ini )
+                        @else
+                            {{ $workexperience->end_month && $workexperience->end_year ? $workexperience->end_month . ' ' . $workexperience->end_year : 'N/A' }})
+                        @endif
+                    </p>
+
+                </li>
+            @endforeach
+        </ul>
+    </div>
+    <div class="section">
+        <h2><span class="badge">Skills</span></h2>
+        <ul>
+            @foreach ($skills as $skill)
+                <li>{{ $skill->skill }}</li>
+            @endforeach
+        </ul>
+    </div>
+    </div>
 </body>
+<script>
+    < link rel = "stylesheet"
+    href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" >
+</script>
 
 </html>

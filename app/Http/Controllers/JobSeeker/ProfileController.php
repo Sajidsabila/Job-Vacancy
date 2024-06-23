@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Education;
 use App\Models\EducationLevel;
+use App\Models\User;
 use App\Models\WorkExperience;
 
 class ProfileController extends Controller
@@ -234,10 +235,11 @@ class ProfileController extends Controller
             "skills" => $skills,
             "educations" => $educations,
             "workexperiences" => $workexperiences,
+            "user" => $user
             
         ]);
-        
-        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadview('job-seekers.generate-cv', $data);
+        $customPaper = array(0,0,720,1440);
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadview('job-seekers.generate-cv', $data)->setPaper($customPaper,'portrait');
         	
         return $pdf->download('curriculum-vitae-'. $jobseeker->first_name . ' ' . $jobseeker->last_name .'.pdf');
     }
