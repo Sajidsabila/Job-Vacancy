@@ -37,7 +37,7 @@ class JobController extends Controller
         $jobs = [];
 
         if ($company) {
-            $jobs = Job::with("company", "order")->where('company_id', $company->id)->get();
+            $jobs = Job::with("company", "order")->where('company_id', $company->id)->orderBy('created_at', 'desc')->get();
         }
         //  dd($jobs[0]->company);
         $data = [
