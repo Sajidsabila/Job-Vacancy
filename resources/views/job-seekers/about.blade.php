@@ -33,7 +33,7 @@
                             <div class="support-caption">
                                 <p class="pera-top">{!! $configuration->description !!}</p>
                                 <p></p>
-                                <a href="{{ URL::to('/job-listing') }}" class="btn post-btn" data-aos="zoom-in"
+                                <a href="{{ URL::to('/listing-job') }}" class="btn post-btn" data-aos="zoom-in"
                                     data-aos-duration="1000">Find a job</a>
                             </div>
                         </div>

@@ -13,23 +13,20 @@
                 <div class="col-md-7">
                     <div class="tab-content">
                         <div class="tab-pane fade active show" id="account-general">
-                            <div class="card-body media align-items-center">
+                            <div class="card-body media flex-column flex-md-row align-items-center">
                                 <img src="{{ 'storage/' . $jobseeker->photo }}" alt="{{ $jobseeker->first_name }}"
                                     class="d-block ui-w-80">
-                                <div class="media-body ml-4">
+                                <div class="media-body mt-3 mt-md-0 ml-md-4 text-center text-md-left">
                                     <div class="font-weight-bold">
                                         {{ $jobseeker->first_name . ' ' . $jobseeker->last_name }} <br>
                                         {{ $jobseeker->user->email }}
                                     </div>
-                                    <br>
-
                                 </div>
-                                <a href="{{ URL::to('/generate-cv') }}" class="btn-generate m-4">Generate Your CV</a>
+                                <a href="{{ URL::to('/generate-cv') }}" class="btn bg-primary text-white mt-3 mt-md-0 ms-md-4">Generate Your CV</a>
                             </div>
                             <hr class="border-light m-0">
                             <div class="card m-2">
                                 <div class="card-header bg-primary text-white">Deskripsi Tentang Diri Anda</div>
-
                                 <div class="form-group ml-3">
                                     <label class="font-weight-bold">{!! $jobseeker->description !!}</label>
                                 </div>
@@ -37,7 +34,7 @@
                         </div>
                         <div class="card m-2">
                             <div class="card-header bg-primary text-white">
-                                <ul class="nav nav-pills card-header-pills d-flex ">
+                                <ul class="nav nav-pills card-header-pills d-flex">
                                     <li class="nav-item">
                                         <a class="nav-link active" href="#">Data Diri</a>
                                     </li>
