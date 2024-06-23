@@ -18,9 +18,11 @@ class TestimoniController extends Controller
     {
         $testimoni = Testimonial::all();
         $testimoni = Testimonial::orderby('id')->get();
+        $testimonials = Testimonial::with('jobSeeker')->get();
         $data = [
             "title" => "Data Testimoni",
             "testimoni" => $testimoni,
+            'testimonials' => $testimonials,
         ];
 
         return view('super-admin.testimoni.index', $data);
