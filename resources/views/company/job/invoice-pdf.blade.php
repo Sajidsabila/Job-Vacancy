@@ -1,8 +1,16 @@
-@extends('adminTemplate.layouts.main')
-@section('container')
-    @include('sweetalert::alert')
-    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
-        data-client-key="{{ config('midtrans.client_key') }}"></script>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Document</title>
+</head>
+
+<body>
     <div class="card">
         <div class="card-header">Invoice</div>
         <div class="card-body">
@@ -24,8 +32,8 @@
                 <h5 class="fw-bold">{{ formatIndonesianDate($order->updated_at) }}</h5>
 
             </center>
-            <a href="{{ URL::to('/companie/lowongan-kerja') }}" class="btn btn-warning m-2">Kembali</a>
-            <a href="{{ URL::to('/companie/download-receipt/' . $order->id) }}" class="btn btn-primary m-2">Cetak</a>
         </div>
     </div>
-@endsection
+</body>
+
+</html>

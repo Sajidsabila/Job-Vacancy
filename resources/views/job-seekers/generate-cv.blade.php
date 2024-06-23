@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
     <style>
-         .cv-container {
+        .cv-container {
             width: auto;
             /* A4 width */
             height: auto;
@@ -37,8 +37,8 @@
             width: 100px;
             height: 100px;
             border-radius: 50%;
-               border: 3px solid #fff;
-               margin-bottom: 5px;
+            border: 3px solid #fff;
+            margin-bottom: 5px;
         }
 
         .contact-info {
@@ -132,12 +132,12 @@
             <img src="{{ public_path('storage/' . $jobseeker->photo) }}" alt="{{ $jobseeker->first_name }}"
                 class="photo">
             <h1 class="name">{{ $jobseeker->first_name . ' ' . $jobseeker->last_name }}</h1>
-            <p>{{ $jobseeker->description }}</p>
+            <p>{!! $jobseeker->description !!}</p>
         </div>
     </div>
-    
+
     <div class="section">
-        <h2><span class="badge">Contact Info</span></h2>
+        <h2><span class="badge">Profil</span></h2>
         <div class="contact-info">
             <p><strong>Nama:</strong> {{ $jobseeker->first_name . ' ' . $jobseeker->last_name }}</p>
             <p><strong>Tanggal Lahir:</strong> {{ $jobseeker->birth_date }}</p>

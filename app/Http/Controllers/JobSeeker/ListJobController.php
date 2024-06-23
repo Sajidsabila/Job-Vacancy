@@ -17,18 +17,17 @@ class ListJobController extends Controller
         $configurations = Configuration::first();
 
         $jobs = Job::with('jobTime', 'company', 'jobcategory')
-        ->where('status', 'Active')
-        ->get();
+            ->where('status', 'Active')
+            ->get();
 
-        
+
         $categories = JobCategory::with('jobs')->get();
         $jobs = Job::all(); // Ambil semua pekerjaan, atau sesuaikan query jika diperlukan
 
-        // Menghitung jumlah pekerjaan per kategori
 
         $jobCounts = Job::select('job_category_id', DB::raw('count(*) as total'))
-        ->where('status', 'active')
-        ->groupBy('job_category_id')
+            ->where('status', 'active')
+            ->groupBy('job_category_id')
             ->pluck('total', 'job_category_id');
 
 
