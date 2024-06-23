@@ -15,7 +15,7 @@
                         <div class="icon">
                             <i class="ion ion-briefcase"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        {{-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
                     </div>
                 </div>
                 <div class="col-lg-6 col-6">
@@ -27,7 +27,15 @@
                         <div class="icon">
                             <i class="ion ion-document-text"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        {{-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">Chart Lamaran</div>
+                        <div class="card-body">
+                            {!! $jobhistoryChart->container() !!}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -38,14 +46,6 @@
     <hr>
     <div class="container mt-3">
         <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">Chart Lamaran</div>
-                    <div class="card-body">
-                        {!! $jobhistory->container() !!}
-                    </div>
-                </div>
-            </div>
             <div class="card w-100">
                 <div class="card-header">Profile Company</div>
                 <div class="row no-gutters">
@@ -92,8 +92,10 @@
             </div>
         </div>
     </div>
+    <script src="{{ LarapexChart::cdn() }}"></script>
+    {{ $jobhistoryChart->script() }}
 @endsection
 
-@section('scripts')
-    {!! $jobhistory->script() !!}
-@endsection
+{{-- @section('scripts')
+    {!! $jobhistory->script() !!} --}}
+{{-- @endsection --}}

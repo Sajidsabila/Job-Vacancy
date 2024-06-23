@@ -1,13 +1,11 @@
 <?php
-// File: app/Charts/JobHistoryChart.php
 
 namespace App\Charts;
 
-use App\Models\JobHistory;
-use App\Models\Job; // tambahkan import untuk model Job
-use Illuminate\Support\Facades\Auth; // tambahkan import untuk Auth
 use ArielMejiaDev\LarapexCharts\LarapexChart;
-use ArielMejiaDev\LarapexCharts\PieChart;
+use App\Models\JobHistory;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class JobHistoryChart
 {
@@ -18,26 +16,44 @@ class JobHistoryChart
         $this->chart = $chart;
     }
 
-    public function build(): \ArielMejiaDev\LarapexCharts\PieChart
+    public function build(): LarapexChart
     {
-        $user = Auth::user(); // dapatkan user yang sedang login
+        $user = Auth::user(); // Dapatkan user yang sedang login
 
-        // Ambil data jumlah job history berdasarkan company_id dari database
-        $jobhistory = JobHistory::join('jobs', 'job_histories.job_id', 'jobs.id')
+        // Ambil data jumlah job history per hari dalam satu bulan terakhir berdasarkan company_id dari database
+        $jobHistoryData = JobHistory::join('jobs', 'job_histories.job_id', 'jobs.id')
             ->where('jobs.company_id', $user->id)
-            ->select('jobs.id', \DB::raw('count(*) as total'))
-            ->groupBy('jobs.id')
+            ->select(DB::raw('DATE(job_histories.created_at) as date'), DB::raw('count(*) as total'))
+            ->whereBetween('job_histories.created_at', [now()->subDays(29)->startOfDay(), now()->endOfDay()])
+            ->groupBy('date')
+            ->orderBy('date')
             ->get();
 
         // Siapkan data untuk chart
-        $data = $jobhistory->pluck('total')->toArray();
-        $labels = $jobhistory->pluck('job_id')->toArray();
+        $data = $jobHistoryData->pluck('total')->toArray();
+        $labels = $jobHistoryData->pluck('date')->toArray();
 
-        // Buat dan kembalikan chart
-        return $this->chart->pieChart()
-            ->setTitle('Job History Distribution')
-            ->setSubtitle('Job IDs and their counts')
-            ->addData($data)
-            ->setLabels($labels);
+        // Buat dan kembalikan chart sebagai area chart
+        return $this->chart->areaChart()
+            ->setTitle('Job History Distribution (Last 30 Days)')
+            ->setXAxis($labels)
+            ->addData('Job Histories', $data)
+            ->setColors(['#5bc0de'])
+            ->setOptions([
+                'chart' => [
+                    'toolbar' => [
+                        'show' => false
+                    ]
+                ],
+                'xaxis' => [
+                    'type' => 'datetime',
+                    'labels' => [
+                        'datetimeUTC' => false
+                    ]
+                ],
+                'dataLabels' => [
+                    'enabled' => false
+                ]
+            ]);
     }
 }

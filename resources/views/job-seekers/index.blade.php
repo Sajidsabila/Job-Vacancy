@@ -311,7 +311,7 @@
         </div>
         <!-- Support Company End-->
         <!-- Blog Area Start -->
-        <div class="home-blog-area blog-h-padding">
+        {{-- <div class="home-blog-area blog-h-padding">
             <div class="container">
                 <!-- Section Tittle -->
                 <div class="row">
@@ -365,7 +365,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- Blog Area End -->
     </main>
     <script>

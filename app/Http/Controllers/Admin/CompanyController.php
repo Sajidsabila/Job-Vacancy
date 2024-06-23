@@ -23,7 +23,7 @@ class CompanyController extends Controller
         $companies = Company::all();
         $data = ([
             "title" => "List Perusahaan",
-            "companies" => $companies
+            "companies" => $companies,
         ]);
 
         return view("super-admin.listcompany.index", $data);
