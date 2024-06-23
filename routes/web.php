@@ -55,6 +55,8 @@ use App\Http\Controllers\JobSeeker\LandingPageController;
 use App\Http\Controllers\JobSeeker\TestimonialController;
 use App\Http\Controllers\Admin\RestoreJobTimeTypeController;
 use App\Http\Controllers\Admin\RestoreOrder;
+use App\Http\Controllers\Admin\RestoreSkillController;
+use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Company\TrashBenefitController;
 
 use App\Http\Controllers\JobSeeker\WorkExperienceController;
@@ -134,6 +136,8 @@ Route::group([
     Route::resource('/configuration', ConfigurationController::class);
     Route::resource('/job-category', JobCategoryController::class);
     Route::resource('/religion', ReligionController::class);
+    Route::resource('/skill', SkillController::class);
+
     Route::resource('/user', UserController::class);
     Route::resource('/order', OrderController::class);
     Route::resource('/list-perusahaan', CompanyController::class);
@@ -142,12 +146,18 @@ Route::group([
     Route::get('/trash-job-seeker', [RestoreJobSeeker::class, 'index'])->name('trashjobseeker');
     Route::get('/trash-company', [RestoreCompanyController::class, 'index'])->name('trashcompany');
     Route::get('/trash-religion', [RestoreReligionController::class, 'index'])->name('trashreligion');
+    Route::get('/trash-skill', [RestoreSkillController::class, 'index'])->name('trashskill');
+
     Route::get('/trash-user', [RestoreUser::class, 'index'])->name('trashuser');
     Route::get('/restore-job-category/{id}', [RestoreDataJobCategory::class, 'restore'])->name('restorejobcategory');
     Route::get('/restore-religion/{id}', [RestoreReligionController::class, 'restore']);
+    Route::get('/restore-skill/{id}', [RestoreSkillController::class, 'restore']);
+
     Route::get('/user/{id}', [RestoreUser::class, 'restore']);
     Route::delete('/delete-job-category/{id}', [RestoreDataJobCategory::class, 'destroy']);
     Route::delete('/delete-religion/{id}', [RestoreReligionController::class, 'destroy']);
+    Route::delete('/delete-skill/{id}', [RestoreSkillController::class, 'destroy']);
+
     Route::delete('/delete-user/{id}', [RestoreUser::class, 'destroy']);
     Route::resource('/user', UserController::class);
     Route::resource('/benefit', BenefitController::class);

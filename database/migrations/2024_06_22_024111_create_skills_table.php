@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('skills');
             $table->foreign('job_seeker_id')->references('id')->on('job_seekers');
             $table->timestamps();
+            $table->dateTime('deleted_at')->nullable();
         });
     }
 

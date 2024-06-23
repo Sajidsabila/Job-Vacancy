@@ -13,11 +13,11 @@
                 </div>
                 <div class="col-md-9">
                     @if (isset($skill))
-                        <form action="{{ URL::to('/profile/skills/update/' . $skill->id) }}" method="post"
+                        <form action="{{ URL::to('/profile/skill/update/' . $skill->id) }}" method="post"
                             enctype="multipart/form-data">
                             @method('put')
                         @else
-                            <form action="{{ URL::to('/profil/skills/create') }}" method="post"
+                            <form action="{{ URL::to('/profil/skill/create') }}" method="post"
                                 enctype="multipart/form-data">
                     @endif
                     @csrf

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\JobSeeker;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -16,11 +18,15 @@ class TestimoniController extends Controller
      */
     public function index()
     {
-        $testimoni = Testimonial::all();
+        $testimoni = Testimonial::get();
+        $user = Auth::user();
+        $jobseeker = JobSeeker::with('user')->where('id', $user->id)->first();
         $testimoni = Testimonial::orderby('id')->get();
         $data = [
             "title" => "Data Testimoni",
             "testimoni" => $testimoni,
+            "user" => $user,
+            "jobseeker" => $jobseeker
         ];
 
         return view('super-admin.testimoni.index', $data);
@@ -31,11 +37,12 @@ class TestimoniController extends Controller
      */
     public function create()
     {
+        $jobSeekers = JobSeeker::all();
         $data = [
             "title" => "Add Testimoni",
         ];
 
-        return view('super-admin.testimoni.form', $data);
+        return view('admin.testimoni.form', compact('jobSeekers'));
     }
 
     /**
@@ -85,17 +92,21 @@ class TestimoniController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        $testimoni = Testimonial::find($id);
+        $testimoni = Testimonial::findOrFail($id);
+        $jobSeekers = JobSeeker::all();
+        // $testimoni = Testimonial::orderby('id')->get();
+
         if (!$testimoni) {
             return redirect('testimoni')->with("errorMessage", "Testimoni Tidak DItemukan");
         }
         $data = [
-            "title" => "Edit Testimoni",
+            "title" => "Edit Data Testimoni",
             "testimoni" => $testimoni,
+         
         ];
-        return view('super-admin.testimoni.form', $data);
+        return view('super-admin.testimoni.form', compact('testimoni', 'jobSeekers'));
     }
 
     /**

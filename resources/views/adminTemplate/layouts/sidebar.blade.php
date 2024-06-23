@@ -17,7 +17,7 @@
                with font-awesome or any other icon font library -->
                 <li class="nav-item">
                     <a href="{{ URL::to('/admin') }}" class="nav-link {{ Request::is('admin') ? ' active' : '' }}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-home"></i>
                         <p>
                             Dashboard
                         </p>
@@ -164,8 +164,8 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ URL::to('/admin/skills') }}"
-                                    class="nav-link {{ Request::is('admin/skills') ? ' active' : '' }}">
+                                <a href="{{ URL::to('/admin/skill') }}"
+                                    class="nav-link {{ Request::is('admin/skill') ? ' active' : '' }}">
                                     <i class="nav-icon fas fa-hand-sparkles"></i>
                                     <p>Skill</p>
                                 </a>
@@ -217,6 +217,13 @@
                                     class="nav-link {{ Request::is('admin/trash-religion') ? ' active' : '' }}">
                                     <i class="nav-icon fas fa-star-and-crescent"></i>
                                     <p>Religion</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ URL::to('/admin/trash-skill') }}"
+                                    class="nav-link {{ Request::is('admin/trash-skill') ? ' active' : '' }}">
+                                    <i class="nav-icon fas fa-hand-sparkles"></i>
+                                    <p>Skill</p>
                                 </a>
                             </li>
                             <li class="nav-item">

@@ -86,6 +86,31 @@ Breadcrumbs::for('admin.religion.show', function (BreadcrumbTrail $trail, $id) {
     $trail->push('Show', route('admin.religion.show', $id));
 });
 
+//SKILL
+// Admin Home > skill
+Breadcrumbs::for('admin.skill.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Skill', route('admin.skill.index'));
+});
+
+// Admin Home > skill > Create
+Breadcrumbs::for('admin.skill.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.skill.index');
+    $trail->push('Create', route('admin.skill.create'));
+});
+
+// Admin Home > skill > Edit
+Breadcrumbs::for('admin.skill.edit', function (BreadcrumbTrail $trail, $id) {
+    $trail->parent('admin.skill.index');
+    $trail->push('Edit', route('admin.skill.edit', $id));
+});
+
+// Admin Home > skill > Show
+Breadcrumbs::for('admin.skill.show', function (BreadcrumbTrail $trail, $id) {
+    $trail->parent('admin.skill.index');
+    $trail->push('Show', route('admin.skill.show', $id));
+});
+
 // Admin Home > Users
 Breadcrumbs::for('admin.user.index', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.dashboard');
@@ -318,6 +343,13 @@ Breadcrumbs::for('admin.trashreligion', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.dashboard');
     $trail->push('Trash Religion', route('admin.trashreligion'));
 });
+
+// Admin Home > (Trash skill)
+Breadcrumbs::for('admin.trashskill', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Trash Skill', route('admin.trashskill'));
+});
+
 
 // Admin Home > Trash Users
 Breadcrumbs::for('admin.trashuser', function (BreadcrumbTrail $trail) {
