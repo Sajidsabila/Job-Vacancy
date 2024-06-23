@@ -21,7 +21,7 @@
                         <td>{{ $order->job->title ?? 'No Job Title' }}</td>
                         <!-- Using null-safe operator and fallback text -->
                         <!-- Using null-safe operator and fallback text -->
-                        <td>{{ $order->price }}</td>
+                        <td>{{ number_format($order->price, 0, ',', '.') }}</td>
                         <td>{{ $order->status }}</td>
                         <td>
                             <div class="d-flex ">

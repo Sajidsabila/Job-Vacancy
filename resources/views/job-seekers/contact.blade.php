@@ -35,6 +35,13 @@
                     <div class="col-lg-8" data-aos="fade-right" data-aos-duration="1000">
                         <form class="form-contact contact_form" action="{{ URL::to('/contact') }}" method="post"
                             enctype="multipart/form-data">
+                            @if (session('success'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ session('success') }}
+                                    {{-- <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button> --}}
+                                </div>
+                            @endif
                             @csrf
                             <div class="row">
                                 <div class="col-6">

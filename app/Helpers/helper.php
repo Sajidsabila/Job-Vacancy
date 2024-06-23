@@ -1,8 +1,10 @@
 <?php
 
+use Illuminate\Support\Carbon;
+
 function NumberFormat($number)
 {
-    return number_format('0', ',', ',');
+    return number_format($number,0, ',', ',');
 }
 function DateFormat($date, $format = "D-M-Y H:m:s")
 {
