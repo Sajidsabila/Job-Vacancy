@@ -15,8 +15,8 @@
 
             </div>
             <hr class="border-light m-0">
-            <a href="{{ URL::to('/companie/generate-cv/' . $jobhistori->job_seeker_id) }}"
-                class="btn btn-primary m-3">Generate Cv</a>
+            <a href="{{ URL::to('/companie/generate-cv/' . $jobhistori->job_seeker_id) }}" class="btn btn-primary m-3">Lihat
+                CV</a>
         </div>
 
         <div class="col-12">

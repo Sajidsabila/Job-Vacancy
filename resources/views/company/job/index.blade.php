@@ -36,7 +36,7 @@
                                     class="mr-2 btn btn-success btn-sm">Publish</a>
                             @elseif ($job->order->status == 'Paid')
                                 <a href="{{ URL::to('/companie/lowongan-kerja/show-invoice/' . $job->id) }}"
-                                    class="mr-2 btn btn-info btn-sm">Receipt</a>
+                                    class="mr-2 btn btn-primary btn-sm">Receipt</a>
                             @endif
                             <a href="{{ URL::to('/companie/lowongan-kerja/' . $job->id . '/edit') }}"
                                 class="mr-2 btn btn-warning btn-sm">Edit</a>

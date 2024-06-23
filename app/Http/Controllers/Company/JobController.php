@@ -411,6 +411,7 @@ class JobController extends Controller
 
     public function generateCV($id)
     {
+        $user = Auth::user();
         $jobseeker = JobSeeker::with('user')->where('id', $id)->first();
         $skills = Skill::with('jobseeker')->where('job_seeker_id', $id)->get();
         $workexperiences = WorkExperience::where('job_seeker_id', $id)->get();
@@ -421,6 +422,7 @@ class JobController extends Controller
             "skills" => $skills,
             "educations" => $educations,
             "workexperiences" => $workexperiences,
+            "user" => $user
 
         ]);
 
