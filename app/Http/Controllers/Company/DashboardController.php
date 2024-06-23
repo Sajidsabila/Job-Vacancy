@@ -8,39 +8,41 @@ use App\Models\JobHistory;
 use Illuminate\Http\Request;
 use App\Charts\JobHistoryChart;
 use App\Http\Controllers\Controller;
-use ArielMejiaDev\LarapexCharts\LarapexChart;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
-
 class DashboardController extends Controller
 {
-    public function __construct(JobHistoryChart $jobhistory)
-    {
-        $this->jobHistoryChart = $jobhistory;
-    }
-    public function index(JobHistoryChart $jobhistory)
-    {
+    protected $jobHistoryChart;
+    protected $companyChart;
 
+    public function __construct(JobHistoryChart $jobHistoryChart)
+    {
+        $this->jobHistoryChart = $jobHistoryChart;
+        
+    }
+
+    public function index()
+    {
         $jobCount = Job::count();
         $jobHistoryCount = JobHistory::count();
         $user = Auth::user();
         $job = Job::with('company')->where('company_id', $user->id)->count();
-        // $job_histories= JobHistory::with('company')->where('id', $user->id)->count();
         $job_histories = JobHistory::join('jobs', 'job_histories.job_id', 'jobs.id')
             ->where('company_id', $user->id)
             ->count();
         $company = Company::where('id', $user->id)->first();
-        $data = ([
+        $data = [
             "title" => "Profile Perusahaan",
             "company" => $company,
             'jobCount' => $jobCount,
             'jobHistoryCount' => $jobHistoryCount,
             'job' => $job,
             'job_histories' => $job_histories,
-            'jobhistory' => $jobhistory->build(),
-        ]);
-        //dd($company);
+            'jobhistoryChart' => $this->jobHistoryChart->build(),
+            // 'companyChart' => $this->companyChart->build()
+        ];
+
         if (!$company) {
             return view('company.profil-company.form');
         } else if ($company->status == 'Submission') {

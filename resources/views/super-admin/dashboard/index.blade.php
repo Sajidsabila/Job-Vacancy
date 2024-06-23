@@ -12,7 +12,6 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6 col-6">
-
                     <div class="small-box bg-info">
                         <div class="inner">
                             <h3>{{ $jobSeekerCount }}</h3>
@@ -21,34 +20,50 @@
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
+                        {{-- <a href="#" class="small-box-footer">More info <i
+                                class="fas fa-arrow-circle-right"></i></a> --}}
                     </div>
                 </div>
 
-
                 <div class="col-lg-6 col-6">
-
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3>{{ $companies }}</h3>
+                            <h3>{{ $totalCompanies }}</h3>
                             <p>Job Company</p>
                         </div>
                         <div class="icon">
                             <i class="nav-icon fas fa-building"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
+                        {{-- <a href="#" class="small-box-footer">More info <i
+                                class="fas fa-arrow-circle-right"></i></a> --}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">Job Seeker Chart</div>
+                        <div class="card-body" id="jobSeekerChart">
+                            {!! $jobSeekerChart->container() !!}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <hdiv class="card-header"2>Company Chart</hdiv>
+                        <div class="card-body" id="companyChart">
+                            {!! $companyChart->container() !!}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div>
-            <h1>{{ $title }}</h1>
-            <canvas id="companyChart"></canvas>
-        </div>
     </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    {{ $jobSeekerChart->script() }}
+    {{ $companyChart->script() }}
 
 
     <div class="row">
@@ -115,27 +130,4 @@
     </div>
 
 </section>
-<script>
-    const ctx = document.getElementById('companyChart').getContext('2d');
-    const companyChart = new Chart(ctx, {
-        type: 'bar', // Jenis grafik, bisa 'bar', 'line', dll.
-        data: {
-            labels: ['Total Companies'], // Label untuk sumbu X
-            datasets: [{
-                label: 'Jumlah Perusahaan',
-                data: [{{ $totalCompanies }}], // Data untuk sumbu Y
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
 @endsection

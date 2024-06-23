@@ -49,16 +49,16 @@
                           <div class="footer-tittle">
                               <h4>Important Link</h4>
                               <ul>
-                                  <li><a href="#"> View Project</a></li>
+                                  {{-- <li><a href="#"> View Project</a></li> --}}
                                   <li><a href="{{ URL::to('/contact') }}">Contact Us</a></li>
-                                  <li><a href="#">Testimonial</a></li>
-                                  <li><a href="#">Proparties</a></li>
-                                  <li><a href="#">Support</a></li>
+                                  <li><a href="#testimoni">Testimonial</a></li>
+                                  <li><a href="{{ URL::to('/listing-job') }}">Find Jobs</a></li>
+                                  <li><a href="{{ URL::to('/about') }}">About</a></li>
                               </ul>
                           </div>
                       </div>
                   </div>
-                  <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                  {{-- <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
                       <div class="single-footer-caption mb-50">
                           <div class="footer-tittle">
                               <h4>Newsletter</h4>
@@ -86,7 +86,7 @@
                               </div>
                           </div>
                       </div>
-                  </div>
+                  </div> --}}
               </div>
               <!--  -->
               <div class="row footer-wejed justify-content-between">
@@ -99,20 +99,20 @@
                   <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
                       <div class="footer-tittle-bottom">
                           <span>{{ $countuser }}</span>
-                          <p>Pencari Kerjar</p>
+                          <p>Job Seeker</p>
                       </div>
                   </div>
                   <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
                       <div class="footer-tittle-bottom">
                           <span>{{ $countcompany }}</span>
-                          <p>Perusahaan</p>
+                          <p>Company</p>
                       </div>
                   </div>
                   <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
                       <!-- Footer Bottom Tittle -->
                       <div class="footer-tittle-bottom">
                           <span>{{ $countjob }}</span>
-                          <p>Lowongan Publish</p>
+                          <p>Vacancies Publish</p>
                       </div>
                   </div>
               </div>

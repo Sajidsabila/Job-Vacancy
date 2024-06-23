@@ -2,33 +2,30 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-
-use App\Models\Configuration;
+use App\Charts\CompanyChart;
+use App\Charts\JobSeekerChart;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\JobSeeker;
-use Diglactic\Breadcrumbs\Breadcrumbs;
+use App\Models\Configuration;
 
 class AdminController extends Controller
 {
-    //
-    public function index()
+    public function index(JobSeekerChart $jobSeekerChart, CompanyChart $companyChart)
     {
-        
         $jobSeekerCount = JobSeeker::count();
-        $companies = Company::count();
+        $totalCompanies = Company::count();
         $configurations = Configuration::all();
-        $totalCompanies = Company::count(); // Menghitung jumlah perusahaan
 
-        $data = ([
+        $data = [
             'title' => 'Data Perusahaan Website',
             'configurations' => $configurations,
             'jobSeekerCount' => $jobSeekerCount,
-            'companies' => $companies,
-            'totalCompanies' => $totalCompanies // Mengirim jumlah perusahaan ke view
+            'totalCompanies' => $totalCompanies,
+            'jobSeekerChart' => $jobSeekerChart->build(),
+            'companyChart' => $companyChart->build()
+        ];
 
-        ]);
         return view('super-admin.dashboard.index', $data);
     }
 }
