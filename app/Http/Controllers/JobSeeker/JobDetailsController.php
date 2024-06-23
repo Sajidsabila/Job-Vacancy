@@ -58,40 +58,51 @@ class JobDetailsController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-        $jobseeker = JobSeeker::where('id', $user->id)->exists();
+        $jobseeker = JobSeeker::where('id', $user->id)->first(); // Ambil objek JobSeeker, bukan hanya periksa keberadaannya
+
         if ($jobseeker) {
-            $data = $request->validate([
-                'file' => 'required|file|mimes:pdf|max:2048',
-                'job_id' => 'required|integer'
-            ]);
-
-            $check = JobHistory::where('job_seeker_id', auth()->user()->id)
-                ->where('job_id', $request->job_id)
-                ->exists();
-
-            if ($check) {
-                Alert::warning("Maaf", "Anda sudah melamar lowongan ini.")->flash();
-                return back();
-            }
-
             try {
+                $data = $request->validate([
+                    'file' => 'required|file|mimes:pdf|max:2048',
+                    'job_id' => 'required|integer'
+                ]);
+
+                $check = JobHistory::where('job_seeker_id', $user->id)
+                    ->where('job_id', $request->job_id)
+                    ->exists();
+
+                if ($check) {
+                    throw new \Exception("Anda sudah melamar lowongan ini.");
+                }
+
                 $path = $request->file('file')->store('file_lamaran/pdf', 'public');
                 JobHistory::create([
                     'file' => $path,
                     'job_id' => $request->job_id,
-                    'job_seeker_id' => auth()->user()->id
+                    'job_seeker_id' => $user->id
                 ]);
-                // $job = Job::find($request->job_id);
-                // $companyEmail = $job->company->email; // Pastikan relasi dengan perusahaan terdefinisi di model Job
-                // Mail::to($companyEmail)->send(new NotificationIncomingApplication($job, $user));
-                Alert::success("Berhasil", "Lamaran Berhasil Dikirim. Silahkan Dicheck di Riwayat Lamaran");
+
+                $job = Job::find($request->job_id);
+                $company = $job->company;
+                $companyEmail = $company->email;
+                $userEmail = $user->email; // Pastikan relasi dengan perusahaan terdefinisi di model Job
+                Mail::to($companyEmail)->send(new NotificationIncomingApplication($job, $jobseeker, $userEmail));
+
+                session()->flash('alert-success', 'Lamaran Berhasil Dikirim. Silahkan Dicheck di Riwayat Lamaran');
                 return back();
+            } catch (\Illuminate\Validation\ValidationException $e) {
+                session()->flash('alert-danger', 'Validasi gagal: ' . $e->getMessage());
+                return back()->withErrors($e->errors())->withInput();
             } catch (\Throwable $th) {
-                Alert::error("Error", $th->getMessage());
+                if ($th->getMessage() == "Anda sudah melamar lowongan ini.") {
+                    session()->flash('alert-warning', $th->getMessage());
+                } else {
+                    session()->flash('alert-danger', 'Terjadi kesalahan: ' . $th->getMessage());
+                }
                 return back();
             }
         } else {
-            Alert::warning("Maaf", "Anda belum mengisi biodata. Mohon isi biodata terlebih dahulu untuk melamar.")->flash();
+            session()->flash('alert-warning', 'Anda belum mengisi biodata. Mohon isi biodata terlebih dahulu untuk melamar.');
             return back();
         }
     }
