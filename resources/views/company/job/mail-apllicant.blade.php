@@ -9,11 +9,24 @@
 </head>
 
 <body>
-    <h1>Lamaran Pekerjaan Baru</h1>
+    <h1>Lamaran Masuk</h1>
     <p>Halo,</p>
-    <p>Ada lamaran pekerjaan baru dari {{ $user->email }} untuk posisi {{ $job->title }}.</p>
+    <p>Ada lamaran pekerjaan masuk untuk posisi {{ $job->title }}. Berikut Adalah Detail Pelamar :
+        <br>
+        <br>
+        <br>
+        <strong>Nama Pelamar : {{ $jobseekerName }}</strong>
+        <br>
+        <strong>Jenis Kelamain Pelamar: {{ $gender }}</strong>
+        <br>
+        <strong>Nomer Telepon Pelamar: {{ $phone }}</strong>
+        <br>
+        <br>
+        <br>
+        <br>
+        Masuk Ke akun anda untuk mengecek pelamar lebih detail
+    </p>
     <p>Terima kasih,</p>
-    <p>Tim Rekrutmen</p>
 </body>
 
 </html>

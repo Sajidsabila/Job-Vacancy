@@ -80,7 +80,7 @@
 
                             <div class="form-group">
                                 <label for="address">Alamat Perusahaan</label>
-                                <input type="text" id="address" name="address" value="{{ $company->address }}"
+                                <input type="text" id="address" name="address" value="{{ $company->addres }}"
                                     class="form-control" readonly>
                             </div>
 

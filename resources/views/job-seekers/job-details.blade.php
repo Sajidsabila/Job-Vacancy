@@ -2,6 +2,7 @@
 @section('content')
     @include('sweetalert::alert')
     <main>
+
         <!-- Hero Area Start-->
         <div class="slider-area ">
             <div class="single-slider section-overly slider-height2 d-flex align-items-center"
@@ -21,6 +22,32 @@
         <!-- job post company Start -->
         <div class="job-post-company pt-120 pb-120">
             <div class="container">
+                @if (session('alert-success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('alert-success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+
+                @if (session('alert-warning'))
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        {{ session('alert-warning') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+
+                @if (session('alert-danger'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('alert-danger') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                 <div class="row justify-content-between">
                     <!-- Button trigger modal -->
 
