@@ -33,7 +33,7 @@
                             Terima kasih telah mengajukan permohonan. Permohonan Anda sedang diproses
                             dan akan segera ditinjau oleh admin. Mohon bersabar menunggu konfirmasi lebih lanjut.
                         </p>
-                        <a href="{{ url('/') }}" class="btn btn-primary mt-4">Kembali ke Halaman Utama</a>
+                        {{-- <a href="{{ url('/') }}" class="btn btn-primary mt-4">Kembali ke Halaman Utama</a> --}}
                     </div>
                 </div>
             </div>

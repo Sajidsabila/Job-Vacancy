@@ -1,4 +1,4 @@
-@extends ('adminTemplate.layouts.main')
+@extends('adminTemplate.layouts.main')
 
 @section('container')
     @include('sweetalert::alert')
@@ -6,9 +6,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <!-- Small boxes (Stat box) -->
                 <div class="col-lg-6 col-6">
-                    <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
                             <h3>{{ $job }}</h3>
@@ -20,9 +18,7 @@
                         <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <!-- ./col -->
                 <div class="col-lg-6 col-6">
-                    <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
                             <h3>{{ $job_histories }}</h3>
@@ -42,12 +38,20 @@
     <hr>
     <div class="container mt-3">
         <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">Chart Lamaran</div>
+                    <div class="card-body">
+                        {!! $jobhistory->container() !!}
+                    </div>
+                </div>
+            </div>
             <div class="card w-100">
                 <div class="card-header">Profile Company</div>
                 <div class="row no-gutters">
                     <div class="col-md-4">
                         <img src="{{ URL::to('storage/' . $company->logo) }}" alt="{{ $company->company_name }}"
-                            class="img-fluid">
+                            class="img-fluid" width="200px">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -76,7 +80,7 @@
 
                             <div class="form-group">
                                 <label for="address">Alamat Perusahaan</label>
-                                <input type="text" id="address" name="address" value="{{ $company->addres }}"
+                                <input type="text" id="address" name="address" value="{{ $company->address }}"
                                     class="form-control" readonly>
                             </div>
 
@@ -88,4 +92,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    {!! $jobhistory->script() !!}
 @endsection
