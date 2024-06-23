@@ -3,50 +3,42 @@
     @include('sweetalert::alert')
     <h3>{{ $title }}</h3>
     <hr>
-
-
-    <a href="{{ URL::to('admin/testimoni/create') }}" class="btn btn-sm btn-primary mb-3"><i class="fas fa-plus"
-            aria-hidden="true"></i>
-        Add</a>
-        <div class="container mt-3">
-            <div class="row">
-                <div class="col-12">
-                    <table id="datatable1" class="table table-bordered table-striped">
-                        <thead>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-12">
+                <table id="datatable1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Name</th>
+                            <th>Job</th>
+                            <th>Quote</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($testimonials as $index => $testimonial)
                             <tr>
-                                <th>No.</th>
-                                <th>Name</th>
-                                <th>Image</th>
-                                <th>Job</th>
-                                <th>Quote</th>
-                                <th>Actions</th>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $testimonial->jobSeeker->first_name ?? 'No Job Seeker' }}</td>
+                                <!-- Using null-safe operator and fallback text -->
+                                <td>{{ $testimonial->quote }}</td>
+                                <td>{{ $testimonial->job }}</td>
+                                <td>
+                                    <div class="d-flex">
+                                        <form action="{{ URL::to('admin/testimonial/' . $testimonial->id) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-sm btn-danger"
+                                                onclick="return confirm('Are you sure you want to delete this testimonial?')">Delete</button>
+                                        </form>
+                                    </div>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($testimoni as $index => $testimoni)
-                                <tr>
-                                    <td>{{ $index + 1 }}</td>
-                                    <td>{{ $testimoni->name }}</td>
-                                    <td><img src="{{ URL::to('storage/' . $testimoni->image) }}" alt="" class="img-fluid" width="100px"></td>
-                                    <td>{{ $testimoni->job }}</td>
-                                    <td>{{ $testimoni->quote }}</td>
-                                    <td>
-                                        <div class="d-flex flex-column flex-md-row">
-                                            <a href="{{ URL::to('admin/testimoni/' . $testimoni->id) }}" class="btn btn-sm btn-info mb-2 mb-md-0 mr-md-2">Show</a>
-                                            <a href="{{ URL::to('admin/testimoni/' . $testimoni->id . '/edit') }}" class="btn btn-sm btn-warning mb-2 mb-md-0 mr-md-2">Edit</a>
-                                            <form action="{{ URL::to('admin/testimoni/' . $testimoni->id) }}" method="post" class="mb-2 mb-md-0 mr-md-2">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Anda Yakin akan Menghapus {{ $testimoni->email }}?')">Delete</button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
-    
+    </div>
 @endsection

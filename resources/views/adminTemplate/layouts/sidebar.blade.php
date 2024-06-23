@@ -27,7 +27,7 @@
                 @if (auth()->user()->role == 'Admin')
                     <li class="nav-item">
                         <a href="#"
-                            class="nav-link {{ Request::is('receipt') || Request::is('admin/report') ? ' active' : '' }}">
+                            class="nav-link {{ Request::is('admin/job-category', 'admin/list-perusahaan', 'admin/user', 'admin/testimoni', 'admin/contact', 'admin/applyProcess', 'admin/configuration', 'admin/requirement', 'admin/benefit', 'admin/order') ? 'active' : '' }}">
                             <i style="font-size:20px" class="fa">&#xf0c9;</i>
                             <p>
                                 System
@@ -130,7 +130,7 @@
 
                                 <a href="{{ URL::to('/admin/order') }}"
                                     class="nav-link {{ Request::is('admin/order') ? ' active' : '' }}">
-                                    <i class="nav-icon fas fa-shopping-cart"></i> 
+                                    <i class="nav-icon fas fa-shopping-cart"></i>
                                     <p>
                                         Order
                                     </p>
@@ -138,10 +138,9 @@
                             </li>
 
                         </ul>
-                    <li
-                        class="nav-item {{ Request::is('receipt') || Request::is('/admin/report') ? ' menu-open' : '' }}">
+                    <li class="nav-item">
                         <a href="#"
-                            class="nav-link {{ Request::is('receipt') || Request::is('admin/report') ? ' active' : '' }}">
+                            class="nav-link {{ Request::is('admin/religion', 'admin/educationLevel', 'admin/jobTimeType') ? 'active' : '' }}">
                             <i class="fa fa-solid fa-address-book"></i>
                             <p>
                                 Job Seekers
@@ -164,13 +163,6 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ URL::to('/admin/skills') }}"
-                                    class="nav-link {{ Request::is('admin/skills') ? ' active' : '' }}">
-                                    <i class="nav-icon fas fa-hand-sparkles"></i>
-                                    <p>Skill</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="{{ URL::to('/admin/jobTimeType') }}"
                                     class="nav-link {{ Request::is('admin/jobTimeType') ? ' active' : '' }}">
                                     <i class="nav-icon fas fa-clock"></i>
@@ -181,9 +173,9 @@
                         </ul>
                     </li>
                     </li>
-                    <li class="nav-item {{ Request::is('receipt') || Request::is('report') ? ' menu-open' : '' }}">
+                    <li class="nav-item">
                         <a href="#"
-                            class="nav-link {{ Request::is('/admin/trash-job-category') || Request::is('report') ? ' active' : '' }}">
+                            class="nav-link {{ Request::is('admin/trash-job-category', 'admin/trash-applyProcess', 'admin/trash-user', 'admin/trash-religion', 'admin/trash-educationLevel', 'admin/trash-job-seeker', 'admin/trash-company', 'admin/trash-jobTimeType', 'admin/trash-contact', 'admin/trash-order') ? 'active' : '' }}">
                             <i class="fa fa-solid fa-trash"></i>
                             <p>
                                 Restore Data
@@ -264,7 +256,7 @@
                             <li class="nav-item">
                                 <a href="{{ URL::to('/admin/trash-order') }}"
                                     class="nav-link {{ Request::is('admin/trash-order') ? ' active' : '' }}">
-                                    <i class="nav-icon fas fa-shopping-cart"></i> 
+                                    <i class="nav-icon fas fa-shopping-cart"></i>
                                     <p>Order </p>
                                 </a>
                             </li>
@@ -321,7 +313,7 @@
                                 </a>
                             </li> --}}
 
-                            {{-- <li class="nav-item">
+                    {{-- <li class="nav-item">
                                 <a href="{{ URL::to('/companie/lowongan-kerja') }}"
                                     class="nav-link {{ Request::is('companie/lowongan-kerja') ? ' active' : '' }}">
                                     <i class="nav-icon fas fa-list-alt"></i>
@@ -330,8 +322,8 @@
                                     </p>
                                 </a> --}}
 
-                    
-                    
+
+
                     <li class="nav-item {{ Request::is('receipt') || Request::is('report') ? ' menu-open' : '' }}">
                         <a href="#"
                             class="nav-link {{ Request::is('/companie/job/trash-job') || Request::is('report') ? ' active' : '' }}">
@@ -351,7 +343,7 @@
                                     </p>
                                 </a>
                             </li>
-                            
+
                             <li class="nav-item">
                                 <a href="{{ URL::to('/companie/benefit/trash-benefit') }}"
                                     class="nav-link {{ Request::is('companie/trash-benefit') ? ' active' : '' }}">
