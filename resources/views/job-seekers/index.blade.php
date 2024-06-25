@@ -126,8 +126,17 @@
                         <div class="cv-caption text-center" data-aos="fade-down" data-aos-duration="1000">
                             <p class="pera1">FEATURED TOURS Packages</p>
                             <p class="pera2"> Make a Difference with Your Online Resume!</p>
-                            <a href="{{ URL::to('/profile') }}" class="border-btn2 border-btn4" data-aos="fade-up"
-                                data-aos-duration="1000">Upload your cv</a>
+                            @auth
+                                <a href="{{ URL::to('/profile') }}" class="border-btn2 border-btn4" data-aos="fade-up"
+                                    data-aos-duration="1000">
+                                    Upload your CV
+                                </a>
+                            @else
+                                <a href="{{ route('login') }}" class="border-btn2 border-btn4" data-aos="fade-up"
+                                    data-aos-duration="1000">
+                                    upload your CV
+                                </a>
+                            @endauth
                         </div>
                     </div>
                 </div>

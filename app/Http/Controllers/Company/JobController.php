@@ -127,6 +127,14 @@ class JobController extends Controller
         // Get all job histories related to the job, optionally filtering by status
         $query = JobHistory::with(['jobseeker', 'job'])->where('job_id', $job->id);
 
+        $job_histories = JobHistory::with(['jobseeker', 'job'])
+            ->where('job_id', $job->id)
+            ->get();
+
+
+        $jobhistoriesInterview = $job_histories->where('status', 'Proses Interview')->count();
+        $jobhistoriesDiterima = $job_histories->where('status', 'Lamaran Diterima')->count();
+        $jobhistoriesDitolak = $job_histories->where('status', 'Lamaran Ditolak')->count();
         $filterstatus = $request->input("statusFilter");
         if ($filterstatus) {
             $query->where('status', $filterstatus);
@@ -140,9 +148,9 @@ class JobController extends Controller
             "title" => "Detail Data Lowongan",
             "job" => $job,
             "jobhistoris" => $jobhistoris,
-            "jobhistoriesInterview" => $query->where('status', 'Proses Interview')->count(),
-            "jobhistoriesDiterima" => $query->where('status', 'Lamaran Diterima')->count(),
-            "jobhistoriesDitolak" => $query->where('status', 'Lamaran Ditolak')->count(),
+            "jobhistoriesInterview" => $jobhistoriesInterview,
+            "jobhistoriesDiterima" => $jobhistoriesDiterima,
+            "jobhistoriesDitolak" => $jobhistoriesDitolak,
             "statuses" => $statuses,
             "selectedStatus" => $filterstatus,
 
@@ -400,7 +408,7 @@ class JobController extends Controller
             $jobhistori = JobHistory::findOrFail($id);
             $jobhistori->status = 'Lamaran Diterima';
             $jobhistori->save();
-            Alert::success("Berhasil", "status lamaran ditolak");
+            Alert::success("Berhasil", "status lamaran diterima");
             return back();
         } catch (Exception $e) {
 
